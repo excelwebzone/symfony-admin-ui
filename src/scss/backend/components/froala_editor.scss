@@ -1,0 +1,254 @@
+// remove the unlicensed editor notice
+.fr-wrapper>div:first-child>a {
+  display: none !important;
+}
+
+.ef-theme.fr-popup.fr-inline .fr-arrow,
+.ef-theme.fr-toolbar.fr-inline .fr-arrow {
+  display: none;
+}
+
+.ef-theme.fr-popup,
+.ef-theme.fr-toolbar {
+  border: none;
+  padding: 0;
+  z-index: 1051 !important;
+}
+
+.ef-theme.fr-popup .fr-buttons,
+.ef-theme.fr-toolbar .fr-buttons {
+  padding: 0;
+  box-shadow: none;
+}
+
+.ef-theme.fr-popup.fr-inline,
+.ef-theme.fr-toolbar.fr-inline {
+  margin-top: 5px;
+}
+
+.ef-theme.fr-popup .fr-command.fr-btn,
+.ef-theme.fr-toolbar .fr-command.fr-btn {
+  color: #888;
+  width: 40px;
+  height: 40px;
+  vertical-align: top;
+  margin: 0;
+}
+
+.ef-theme.fr-popup .fr-command.fr-btn.fr-active,
+.ef-theme.fr-toolbar .fr-command.fr-btn.fr-active {
+  color: #0D94F6;
+}
+
+.ef-theme.fr-popup .fr-command.fr-btn i,
+.ef-theme.fr-toolbar .fr-command.fr-btn i {
+  font-size: 20px;
+  width: 20px;
+  margin: 8px;
+}
+
+.ef-theme .fr-separator.fr-vs {
+  height: 40px;
+  margin: 0;
+}
+
+.ef-theme.fr-popup .fr-link-insert-layer {
+  display: inline-block;
+  vertical-align: top;
+  width: 240px;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+.ef-theme.fr-popup .fr-link-insert-layer .fr-input-line {
+  display: flex;
+  flex: 1;
+  padding: 0;
+}
+
+.ef-theme.fr-popup .fr-link-insert-layer .fr-input-line input[type=text] {
+  border-bottom: none;
+  padding: 0 5px;
+}
+
+.ef-theme.fr-popup .fr-link-insert-layer .fr-input-line input[type=text]:focus {
+  border-bottom: none;
+  box-shadow: none;
+}
+
+.ef-theme.fr-popup .fr-link-insert-layer .fr-input-line label {
+  display: none;
+}
+
+.ef-theme.fr-popup .fr-inline-buttons {
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: none;
+  padding: 0;
+  float: left;
+}
+
+.ef-theme .fr-placeholder {
+  color: #ccc;
+}
+
+.ef-theme .fr-view {
+  color: #363636;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.ef-theme .fr-view a,
+.ef-theme .fr-view ol,
+.ef-theme .fr-view p,
+.ef-theme .fr-view ul {
+  font-size: 13px;
+}
+
+.ef-theme .fr-view a {
+  text-decoration: underline;
+}
+
+.ef-theme .fr-view ol {
+  list-style: decimal;
+}
+
+.ef-theme .fr-view ul {
+  list-style: disc;
+}
+
+.ef-theme .fr-view ol,
+.ef-theme .fr-view ul {
+  margin-left: 1.75em;
+  padding: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.ef-theme .fr-view pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+  word-wrap: normal;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+/*-------------------
+    Modal
+--------------------*/
+
+.modal .ef-theme .fr-view {
+  border: 0 #000;
+  border-bottom: 1px solid #ccc;
+  line-height: 18px;
+  padding: 5px 0;
+}
+
+.modal .ef-theme .fr-view:focus {
+  border-color: #0d94f6;
+  box-shadow: inset 0 -2px 0 #0d94f6;
+}
+
+.modal .is-invalid .ef-theme .fr-view {
+  border-color: #eb4536;
+}
+
+.modal .is-invalid .ef-theme .fr-view:focus {
+  box-shadow: inset 0 -2px 0 #eb4536;
+}
+
+/*-------------------
+    Signature Table
+--------------------*/
+
+.ef-theme .fr-view .must-break {
+  border-bottom: 2px dotted #ccc;
+  margin: 0 0 20px;
+}
+
+.ef-theme .fr-view .table-signature {
+  width: 400px;
+}
+
+.ef-theme .fr-view .table-signature.small {
+  width: 120px;
+}
+
+.ef-theme .fr-view .table-signature.center {
+  margin: 20px 20% 20px;
+  text-align: center;
+}
+
+.ef-theme .fr-view .table-signature.right {
+  margin: 20px 80% 20px;
+}
+
+.ef-theme .fr-view .table-signature td {
+  border: none;
+}
+
+.ef-theme .fr-view .table-signature td.border {
+  border: none !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+.ef-theme .fr-view .table-signature td.title {
+  padding: 20px;
+}
+
+.ef-theme .fr-view .table-signature td img {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  background-color: transparent;
+}
+
+.ef-theme .fr-view .table-signature td i.bookmark {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  height: 2em;
+  width: 2em;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #eb4536;
+}
+
+.ef-theme .fr-view .table-signature td i.bookmark:before,
+.ef-theme .fr-view .table-signature td i.bookmark:after {
+  content: '';
+  pointer-events: none;
+  display: block;
+  position: absolute;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.ef-theme .fr-view .table-signature td i.bookmark:before {
+  top: .3em;
+  left: .25em;
+  border-style: solid;
+  border-width: .75em;
+  border-bottom-color: transparent;
+  -webkit-transform: scale(1, 1.4);
+  -ms-transform: scale(1, 1.4);
+  transform: scale(1, 1.4);
+}
+
+@media (max-width: 767.98px) {
+  .ef-theme .fr-view .table-signature.center {
+    margin-left: 20px !important;
+  }
+
+  .ef-theme .fr-view .table-signature.right {
+    margin-left: 70% !important;
+  }
+}

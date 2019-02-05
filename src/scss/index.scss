@@ -1,0 +1,151 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -moz-box-sizing: border-box;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+
+:-moz-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,600,700,900");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Extended");
+
+.material-icons-extended-pseudo:after {
+  font-family: "Material Icons Extended";
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" 1;
+  -webkit-font-feature-settings: "liga" 1;
+  -moz-font-feature-settings: "liga" 1;
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga" 1;
+  font-style: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 24px;
+}
+
+// Core librararies
+@import "~bootstrap/scss/bootstrap";
+@import "~material-design-iconic-font/scss/material-design-iconic-font";
+@import "~odometer/themes/odometer-theme-default.css";
+@import "~antiscroll/antiscroll.css";
+@import "~froala-editor/css/froala_editor.css";
+@import "~froala-editor/css/froala_style.css";
+
+// Layouts
+body.security_login,
+body.resetting_request,
+body.resetting_reset,
+body.two_factor_login {
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+
+  a {
+    color: #2196F3;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @import "./auth/layout";
+}
+
+body.logged-in[class*="admin_"] {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #363636;
+  font-family: Roboto,sans-serif;
+
+  @import "./backend/index";
+}
+
+/*-------------------
+    Error
+--------------------*/
+
+.error-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+}
+
+.error-wrapper .links {
+  margin-top: 40px;
+}
+
+.error-wrapper>p {
+  max-width: 380px;
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 24px;
+}
+
+.error-wrapper .logo {
+  margin-top: 32px;
+  height: 30px;
+}
+
+.error-wrapper .jumbo {
+  margin-top: 67px;
+}
+
+.error-wrapper .status-code {
+  font-size: 76px;
+  font-weight: 100;
+  color: #aaa;
+  margin-top: 15px;
+}
+
+.error-wrapper .status {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.error-wrapper a {
+  background: #495AC6;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.12),0 2px 2px 0 rgba(0,0,0,0.24);
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff !important;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  text-decoration: none;
+  line-height: 36px;
+  padding: 0 18px;
+  text-transform: uppercase;
+}

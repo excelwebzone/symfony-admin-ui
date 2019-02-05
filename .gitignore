@@ -1,0 +1,15 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.log
+
+# OS or Editor folders
+._*
+.cache
+.DS_Store
+.idea
+Thumbs.db
+
+# Folders to ignore
+build/
+node_modules/

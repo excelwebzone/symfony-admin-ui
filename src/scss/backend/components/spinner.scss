@@ -1,0 +1,46 @@
+.circle-spinner {
+  position: relative;
+  border: 1px solid #0d94f6;
+  border-left-color: transparent !important;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: circle-spinner .8s infinite linear;
+  animation: circle-spinner .8s infinite linear;
+}
+
+.circle-spinner,
+.circle-spinner:after {
+  border-radius: 50%;
+  height: 80%;
+  width: 80%;
+  margin: 10%;
+}
+
+@-webkit-keyframes circle-spinner {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circle-spinner {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.circle-spinner.circle-spinner-white {
+  border-color: #fff;
+}

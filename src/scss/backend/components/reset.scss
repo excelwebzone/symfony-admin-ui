@@ -1,0 +1,121 @@
+.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
+  font-weight: 400;
+}
+
+.h1,h1 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.h2,h2 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.h3,h3 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.h4,h4 {
+  font-size: 13px;
+  line-height: 24px;
+}
+
+.h5,h5 {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.h6,h6 {
+  font-size: 10px;
+  line-height: 20px;
+}
+
+ol,ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: list-item;
+}
+
+a {
+  color: #0D94F6;
+}
+
+a {
+  text-decoration: none;
+}
+
+.clear,.clearfix:after,.clearfix:before {
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.clear {
+  clear: both;
+}
+
+.clearfix:after,.clearfix:before {
+  content: '\0020';
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.vertical-divider {
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  border-right: 1px solid #ccc;
+}
+
+.hide,
+.hover-trigger:not(:hover) .hover-target {
+  display: none;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+// Truncate
+//
+// css-truncate will shorten text with an ellipsis.
+
+// Truncate double target
+//
+// css-truncate will shorten text with an ellipsis. The maximum width
+// of the truncated text can be changed by overriding the max-width
+// of the .css-truncate-target
+.css-truncate.css-truncate-target,
+.css-truncate .css-truncate-target {
+  display: inline-block;
+  max-width: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.css-truncate.expandable.zeroclipboard-is-hover .css-truncate-target,
+.css-truncate.expandable.zeroclipboard-is-hover.css-truncate-target,
+.css-truncate.expandable:hover .css-truncate-target,
+.css-truncate.expandable:hover.css-truncate-target {
+  max-width: 10000px !important;
+}

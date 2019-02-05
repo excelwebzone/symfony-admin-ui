@@ -1,0 +1,355 @@
+.navigation-main {
+  background-color: #fff;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  visibility: hidden;
+  top: 60px;
+  width: 100%;
+  z-index: 20;
+}
+
+.nav-is-open .navigation-main {
+  visibility: visible;
+}
+
+.navigation-item {
+  color: #616161;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  margin-bottom: 0;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.navigation-item:hover,
+.navigation-item:active,
+.navigation-item:focus {
+  color: #616161;
+}
+
+.navigation-item.is-active {
+  background: #f5f5f5;
+}
+
+.navigation-item.is-active.navigation-item-secondary {
+  background: none;
+  font-weight: 500;
+}
+
+.navigation-category-cta.is-active {
+  background: none;
+  font-weight: 500;
+}
+
+@media (max-width: 767.98px) {
+  .navigation-main {
+    transition: left .2s cubic-bezier(.4,0,.2,1);
+  }
+
+  .navigation-main .navigation-tier-one {
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .navigation-main .navigation-tier-one>.glue-zippy-btn::before,
+  .navigation-main .navigation-tier-one .navigation-tier-two-inner .glue-zippy>.glue-zippy-btn::before {
+    font-family: 'Material Icons Extended';
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga" 1;
+    -webkit-font-feature-settings: "liga" 1;
+    -moz-font-feature-settings: "liga" 1;
+    -ms-font-feature-settings: "liga" 1;
+    -o-font-feature-settings: "liga" 1;
+    font-size: 24px;
+    font-style: normal;
+    line-height: 1;
+    text-transform: none;
+    content: 'keyboard_arrow_down';
+    font-size: 18px;
+    position: absolute;
+    right: 20px;
+    transform: rotate(0);
+    transition: transform .3s ease-in-out;
+  }
+
+  .navigation-main .navigation-tier-one.glue-is-expanded>.glue-zippy-btn::before,
+  .navigation-main .navigation-tier-one .navigation-tier-two-inner .glue-zippy.glue-is-expanded>.glue-zippy-btn::before {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transform-origin: 50% 45%;
+    -moz-transform-origin: 50% 45%;
+    -ms-transform-origin: 50% 45%;
+    -o-transform-origin: 50% 45%;
+    transform-origin: 50% 45%;
+  }
+
+  .navigation-main .glue-zippy .glue-zippy-btn {
+    color: inherit;
+  }
+
+  .navigation-main-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 180px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navigation-tier-one>-item.navigation:hover,
+  .navigation-tier-one>-item.navigation:focus,
+  .navigation-tier-one>-item.navigation.is-active,
+  .navigation-has-secondary.is-active>-item.navigation,
+  .navigation-has-secondary:hover>-item.navigation,
+  .navigation-has-secondary:focus>-item.navigation {
+    background-color: transparent;
+    margin: 0;
+  }
+
+  .navigation-item:hover,
+  .navigation-item:active,
+  .navigation-item:focus {
+    color: auto;
+  }
+
+  .navigation-item.is-active {
+    font-weight: 400;
+  }
+
+  .navigation-item.is-active.navigation-item-secondary {
+    font-weight: 400;
+  }
+
+  .navigation-main {
+    box-shadow: 0 3px 5px .3px rgba(0,0,0,.24);
+    height: 48px;
+    overflow: visible;
+    transition: none;
+    width: 100%;
+  }
+
+  .navigation-main-wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+    position: relative;
+  }
+
+  .navigation-tier-one {
+    float: left;
+    margin-right: 20px;
+  }
+
+  .navigation-tier-one:last-child {
+    margin-right: 0;
+  }
+
+  .navigation-tier-one>.navigation-item {
+    padding: 0;
+  }
+
+  .navigation-tier-one>.navigation-item {
+    height: 48px;
+    font-weight: 400;
+    line-height: 48px;
+  }
+
+  .navigation-tier-one>.navigation-item:hover,
+  .navigation-tier-one>.navigation-item:focus {
+    color: #4285f4;
+  }
+
+  .navigation-tier-one>.navigation-item.is-active {
+    background: transparent;
+    border-bottom: 2px solid #4285f4;
+    color: #000;
+  }
+
+  .navigation-has-secondary {
+    position: relative;
+  }
+
+  .navigation-has-secondary.is-active>.navigation-item,
+  .navigation-has-secondary:hover>.navigation-item,
+  .navigation-has-secondary:focus>.navigation-item {
+    color: #4285f4;
+  }
+
+  .navigation-has-secondary.is-active>.navigation-item:after,
+  .navigation-has-secondary:hover>.navigation-item:after,
+  .navigation-has-secondary:focus>.navigation-item:after {
+    transform: rotate(180deg);
+  }
+
+  .navigation-has-secondary.is-active>.navigation-tier-two,
+  .navigation-has-secondary:hover>.navigation-tier-two,
+  .navigation-has-secondary:focus>.navigation-tier-two {
+    max-height: 1000px;
+    opacity: 1;
+    overflow: visible;
+  }
+
+  .navigation-has-secondary>.navigation-item:after {
+    color: #545454;
+    content: 'arrow_drop_down';
+    display: inline-block;
+    margin-top: -2px;
+    vertical-align: middle;
+  }
+
+  .navigation-tier-two {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    transition: opacity .3s cubic-bezier(.4,0,.2,1),max-height .3s cubic-bezier(.4,0,.2,1);
+    min-width: 230px;
+  }
+
+  .navigation-tier-two-inner {
+    background: #fff;
+    box-shadow: 0 3px 5px .3px rgba(0,0,0,.24),0 1px 7px .14px rgba(0,0,0,.16);
+  }
+
+  .navigation-products-categories,
+  .navigation-subnav {
+    overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    position: relative;
+    transition: width .2s ease-in-out,padding .2s ease-in-out;
+    width: 230px;
+  }
+
+  .navigation-products-categories::after,
+  .navigation-subnav::after {
+    background: #fff;
+    bottom: 100%;
+    box-shadow: 0 3px 5px .3px rgba(0,0,0,.24);
+    content: '';
+    height: 25px;
+    left: -2px;
+    position: absolute;
+    right: -2px;
+  }
+
+  .navigation-products-categories.desktop-nav-is-open,
+  .navigation-subnav.desktop-nav-is-open {
+    padding-bottom: 110px;
+    width: 460px;
+  }
+
+  .navigation-category {
+    max-width: 230px;
+  }
+
+  .navigation-category:hover,
+  .navigation-category:focus,
+  .navigation-category.is-active {
+    background-color: #f5f5f5;
+  }
+
+  .navigation-tier-two-inner .navigation-item {
+    color: #545454;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    padding: 15px 25px;
+    white-space: normal;
+    width: 100%;
+  }
+
+  .navigation-tier-two-inner .navigation-item:hover,
+  .navigation-tier-two-inner .navigation-item:focus,
+  .navigation-tier-two-inner .navigation-item.is-active {
+    background-color: #f5f5f5;
+  }
+
+  .navigation-products-categories {
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+
+  .navigation-products-categories .navigation-tier-two-item {
+    padding-left: 48px;
+  }
+
+  .navigation-products-categories .navigation-tier-two-item:before {
+    margin-left: 24px;
+  }
+
+  .navigation-products-categories:first-child .products-navigation-item {
+    white-space: nowrap;
+  }
+
+  .navigation-category-cta.is-active {
+    background: #f5f5f5;
+  }
+
+  .navigation-category-cta::before {
+    font-family: 'Material Icons Extended';
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga" 1;
+    -webkit-font-feature-settings: "liga" 1;
+    -moz-font-feature-settings: "liga" 1;
+    -ms-font-feature-settings: "liga" 1;
+    -o-font-feature-settings: "liga" 1;
+    font-size: 24px;
+    font-style: normal;
+    line-height: 1;
+    text-transform: none;
+    content: 'keyboard_arrow_right';
+    font-size: 18px;
+    position: absolute;
+    right: 20px;
+  }
+
+  .navigation-category {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .navigation-products {
+    background: #f5f5f5;
+    bottom: 0;
+    left: 230px;
+    overflow: hidden;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    transform: translateX(0);
+    transition: transform .5s ease;
+    visibility: hidden;
+    width: 230px;
+  }
+
+  .navigation-category:hover .navigation-products {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .navigation-category:hover .navigation-products-item:hover {
+    background: #e0e0e0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .navigation-tier-one {
+    margin-right: 35px;
+  }
+}

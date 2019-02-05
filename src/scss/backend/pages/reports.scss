@@ -1,0 +1,343 @@
+.reports-page {
+  height: 100%;
+}
+
+.reports-page .chart-container {
+  height: auto;
+}
+
+.reports-nav {
+  position: fixed;
+  top: 60px;
+  left: 60px;
+  bottom: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+  transition: left .3s;
+  z-index: 1;
+}
+
+.sidebar-collapsed .reports-nav {
+  left: 280px;
+}
+
+.nav-is-open .reports-nav {
+  top: 108px;
+}
+
+@media (max-width: 991.98px) {
+  .reports-nav {
+    left: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+.reports-main {
+  padding-left: 264px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.reports-main .card {
+  min-width: calc(1000px - 250px - 60px);
+}
+
+@media (max-width: 767.98px) {
+  .reports-nav {
+    display: none;
+  }
+
+  .reports-main {
+    padding-left: 0;
+  }
+}
+
+.reports-main .card {
+  margin: 40px;
+}
+
+@media (max-width: 991.98px) {
+  .reports-main .card {
+    min-width: calc(100% - 96px);
+    overflow-x: auto;
+    margin: 20px;
+  }
+
+  .reports-main .card-body {
+    min-width: 600px;
+  }
+}
+
+.report-nav {
+  margin: 20px 0;
+  padding: 0 20px;
+  width: 264px;
+}
+
+.report-nav-header {
+  position: relative;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.report-nav-header i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20px;
+  color: #888;
+}
+
+.report-nav-header i:hover {
+  color: #717171;
+}
+
+.report-nav-header.open i {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.report-nav-item {
+  color: #888;
+  font-size: 12px;
+  line-height: 20px;
+  padding-left: 25px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.report-nav-item .report-nav-primary {
+  display: inline-block;
+}
+
+.report-nav-item.active {
+  color: #0d94f6;
+}
+
+.report-nav-item:hover {
+  color: #363636;
+  text-decoration: none;
+}
+
+.report-nav-item .report-nav-new-flag {
+  background: #db4437;
+  padding: 3px 6px;
+  border-radius: 2px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-left: 5px;
+}
+
+.report-summary {
+  color: #363636;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.report-summary-desc {
+  position: relative;
+}
+
+.report-summary-desc-help {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.report-summary-desc-filters {
+  position: absolute;
+  top: -3px;
+  right: 0;
+}
+
+.report-summary-number-item {
+  display: inline-block;
+  margin-right: 60px;
+  position: relative;
+}
+
+.report-summary-number-item>div {
+  display: inline-block;
+}
+
+.report-summary-number-item>div:first-child {
+  font-size: 42px;
+  line-height: 80px;
+}
+
+.report-summary-number-item .report-tooltip-info {
+  position: relative;
+  top: 3px;
+}
+
+.report-summary-control-rows {
+  font-size: 0;
+  position: relative;
+}
+
+.report-summary-control-row {
+  margin-right: 41px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.report-summary-control-row:last-child {
+  margin-right: 0;
+}
+
+.report-summary-control-row+.report-summary-control-row:after {
+  background: #ccc;
+  bottom: 0;
+  content: '';
+  height: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: absolute;
+  right: 100%;
+  width: 1px;
+}
+
+.report-summary-filter {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}
+
+.report-summary-filter .dropdown {
+  width: 190px;
+}
+
+.report-summary-filter-label {
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  height: 21px;
+  line-height: 14px;
+  padding-top: 7px;
+}
+
+.report-summary-filter-content {
+  height: 30px;
+  line-height: 30px;
+  vertical-align: bottom;
+}
+
+.report-summary-filter-content>* {
+  vertical-align: middle;
+}
+
+.report-summary-filter:not(:last-child) {
+  margin-right: 41px;
+}
+
+.report-summary-filter:not(:last-child):after {
+  background: #ccc;
+  bottom: 0;
+  content: '';
+  height: 30px;
+  left: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: absolute;
+  width: 1px;
+}
+
+.report-summary-filter .list-filter-selector {
+  border-bottom: 1px solid #ccc;
+  display: inline-block;
+  position: relative;
+}
+
+.report-summary-filter .list-filter-selector:focus {
+  border-color: #0D94F6;
+  box-shadow: inset 0 -2px 0 #0D94F6;
+  outline: 0;
+}
+
+.report-summary-filter .list-filter-selector .option-list {
+  max-height: 220px;
+}
+
+.report-summary-filter .list-filter-selector-selected {
+  color: #363636;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  height: 28px;
+  line-height: 24px;
+  padding: 0 24px 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.report-summary-filter .list-filter-selector-indicator {
+  color: #888;
+  font-size: 16px;
+  position: absolute;
+  right: 8px;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.report-summary-filter .list-filter-selector-options {
+  border-radius: 2px;
+  left: -20px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: -20px;
+  top: -8px;
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 1px 6px rgba(0,0,0,0.12);
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.report-table-component {
+  max-height: 100vh;
+  margin: 40px;
+}
+
+@media (max-width: 991.98px) {
+  .report-table-component {
+    margin: 20px;
+  }
+}
+
+.report-table-component .ember-table-tables-container {
+  border: none !important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 1px 6px rgba(0,0,0,0.12);
+}
+
+.report-table-component .ember-table-body-container .ember-table-table-row.ember-table-selected {
+  background-color: #2196f3;
+}
+
+.report-table-component .ember-table-table-row.ember-table-last-row {
+  cursor: default !important;
+  background-color: #fff !important;
+}
+
+.report-table-component .ember-table-header-cell.table-header-cell-sortable,
+.report-table-component .ember-table-right-table-block .ember-table-header-cell.table-header-cell {
+  cursor: default;
+}
+
+.report-table-component.report-table-component-activity .ember-table-table-row {
+  cursor: default;
+}
+
+.report-table-component.report-table-component-activity .ember-table-body-container .ember-table-table-row.ember-table-hover {
+  background: #fff;
+}
