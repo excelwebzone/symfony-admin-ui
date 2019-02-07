@@ -3,7 +3,7 @@ import _ from 'underscore';
 import moment from 'moment';
 import toaster from '../../lib/utils/toaster';
 import axios from '../../lib/utils/axios_utils';
-import { withoutEmpty} from '../../lib/utils/form_parsing';
+import { withoutEmpty } from '../../lib/utils/form_parsing';
 import { dateRanges, getDateRange, initTagsPicker, initDateRangePicker } from './filter_range';
 
 const filterItemLI = (id, title, filters) => `
@@ -67,7 +67,7 @@ export default class Filter {
   }
 
   preloadFilters(filters) {
-    if ('preload' === this.getActiveFilter().data('id')) {
+    if (this.getActiveFilter().data('id') === 'preload') {
       this.getActiveFilter().attr('data-filter', filters);
       this.getActiveFilter().data('filter', JSON.parse(filters));
       this.getActiveFilter().click();
@@ -91,7 +91,7 @@ export default class Filter {
   }
 
   clearFilter() {
-    if ('preload' === this.getActiveFilter().data('id')) {
+    if (this.getActiveFilter().data('id') === 'preload') {
       this.loadDefaultFilter();
     } else {
       this.loadActiveFilter();
@@ -134,7 +134,7 @@ export default class Filter {
     const id = this.getActiveFilter().data('id');
     const url = $currentTarget.data('endpoint').replace('__ID__', id);
 
-    axios.put(url, {params:  this.filters})
+    axios.put(url, { params: this.filters })
       .then(({ data }) => {
         this.$clearButton.hide();
         this.$saveButton.hide();
@@ -196,7 +196,7 @@ export default class Filter {
     $filterItem.hide();
 
     const $nextFilter = this.$noPrivateFilters.nextAll('li:visible:eq(0)');
-    if (0 === $nextFilter.length || $nextFilter.hasClass('js-public-filters')) {
+    if ($nextFilter.length === 0 || $nextFilter.hasClass('js-public-filters')) {
       this.$noPrivateFilters.show();
     } else {
       this.$noPrivateFilters.hide();
@@ -206,7 +206,7 @@ export default class Filter {
 
     this.loadFilters();
 
-    return true
+    return true;
   }
 
   loadFilters() {
@@ -278,7 +278,7 @@ export default class Filter {
                     </span>
                   </div>
                 `);
-              } else if (key == selectedVal) {
+              } else if (key === selectedVal) {
                 $(element).find('.dropdown-reset').show();
                 $(element).find('.dropdown-text').removeClass('dropdown-placeholder').html(value.label ? value.label : value);
               }
@@ -319,7 +319,7 @@ export default class Filter {
         }
       }
 
-      $(element).find('.filter-range-label>a').html(label ? label : start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      $(element).find('.filter-range-label>a').html(label || start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
       if (!label && start.isSame(end, 'day')) {
         $(element).find('.filter-range-label>a').html(start.format('YYYY-MM-DD'));
       }
@@ -354,7 +354,7 @@ export default class Filter {
     // get multi autocomplete field names
     const acFields = [];
     for (let element of this.$container.find('.js-autocomplete-dropdown.js-select-dropdown-multiple', this.$form)) {
-      acFields.push($(element).find('input[type=hidden]').prop('id').substring(this.$form.prop('name').length+1));
+      acFields.push($(element).find('input[type=hidden]').prop('id').substring(this.$form.prop('name').length + 1));
     }
 
     // @hack: remove _token (not required)
@@ -362,7 +362,7 @@ export default class Filter {
 
     this.filters = JSON.stringify(params);
 
-    const isSameFilter = _.isEqual(params, this.currentFilter) && 'preload' !== this.getActiveFilter().data('id');
+    const isSameFilter = _.isEqual(params, this.currentFilter) && this.getActiveFilter().data('id') !== 'preload';
 
     // reset all label counts
     this.$container.find('.filter-label>span').text('');
@@ -387,7 +387,7 @@ export default class Filter {
       }
     }
     this.$counter.text(counter).show();
-    if (0 === counter) {
+    if (counter === 0) {
       this.$counter.hide();
     }
 

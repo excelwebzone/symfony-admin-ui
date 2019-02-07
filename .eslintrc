@@ -1,0 +1,18 @@
+{
+  "extends": "standard",
+  "env": {
+    "es6": true,
+    "browser": true,
+  },
+  "globals": {
+    "$": true
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "curly": "off",
+    "no-new": "off",
+    "no-useless-escape": "off",
+    "space-before-function-paren": ["error", "never"],
+    "operator-linebreak": ["error", "before"]
+  }
+}

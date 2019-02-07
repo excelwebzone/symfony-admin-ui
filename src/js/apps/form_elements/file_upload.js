@@ -58,13 +58,13 @@ export default class FileUpload {
           }
 
           if (json.redirect) {
-            window.location.href= json.redirect;
+            window.location.href = json.redirect;
             return;
           }
 
           const redirect = self.$selector.data('redirect');
           if (redirect) {
-            window.location.href= redirect.replace('__FILE__', _.last(json.filename.split('\/')));
+            window.location.href = redirect.replace('__FILE__', _.last(json.filename.split('\/')));
             return;
           }
 
@@ -122,15 +122,15 @@ export default class FileUpload {
     if (self.$selector.data('accepted-files')) {
       options.acceptedFiles = self.$selector.data('accepted-files');
 
-      if ('image/*' === options.acceptedFiles) {
+      if (options.acceptedFiles === 'image/*') {
         options.params = {
           is_photo: 1
-        }
+        };
       } else {
         options.params = {
           mimetypes_extensions: self.$selector.data('accepted-extensions'),
           mimetypes_types: options.acceptedFiles
-        }
+        };
       }
     }
 
@@ -149,13 +149,13 @@ export default class FileUpload {
     try {
       // handle file uploading
       self.$selector.dropzone(options);
-    } catch(e) {}
+    } catch (e) {}
   }
 
   clearIsClasses() {
     // removes anything that starts with "is-"
     this.$selector.removeClass((index, css) => {
-      return (css.match (/\bis-\S+/g) || []).join(' ');
+      return (css.match(/\bis-\S+/g) || []).join(' ');
     });
 
     if (this.$selector.data('display-output')) {

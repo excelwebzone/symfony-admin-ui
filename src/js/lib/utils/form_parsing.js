@@ -26,11 +26,11 @@ export function withoutEmpty(object) {
   });
 
   return _empty(object);
-};
+}
 
 export function emptyKeepFalsey(object) {
   return _.omit(object, i => i === null || i === undefined || i.length === 0);
-};
+}
 
 // Recursively remove items with string length 0 from an object
 // Ignores arrays.
@@ -42,4 +42,4 @@ export function emptyWithFalse(object) {
   });
 
   return emptyKeepFalsey(object);
-};
+}

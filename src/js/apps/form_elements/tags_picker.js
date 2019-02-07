@@ -2,7 +2,6 @@ import $ from 'jquery';
 
 export default class TagsPicker {
   constructor(pickerEl, options, cb) {
-
     // default settings for options
     this.parentEl = 'body';
     this.$picker = $(pickerEl);
@@ -119,7 +118,7 @@ export default class TagsPicker {
       .on('keypress.tagspicker', 'input', (e) => this.formInputsKeypress(e));
 
     this.$container
-      .on('click.tagspicker', 'button.apply-button', () => this.clickApply())
+      .on('click.tagspicker', 'button.apply-button', () => this.clickApply());
 
     if (this.$picker.is('input') || this.$picker.is('button')) {
       this.$picker.on({
@@ -189,10 +188,11 @@ export default class TagsPicker {
     if (this.ignoreMove) return;
 
     var parentOffset = {
-        top: 0,
-        left: 0
-      },
-      containerTop;
+      top: 0,
+      left: 0
+    };
+
+    var containerTop;
 
     var parentRightEdge = $(window).width();
 
@@ -204,13 +204,13 @@ export default class TagsPicker {
       parentRightEdge = this.parentEl[0].clientWidth + this.parentEl.offset().left;
     }
 
-    if (this.drops == 'up')
-        containerTop = this.$picker.offset().top - this.$container.outerHeight() - parentOffset.top;
+    if (this.drops === 'up')
+      containerTop = this.$picker.offset().top - this.$container.outerHeight() - parentOffset.top;
     else
-        containerTop = this.$picker.offset().top + this.$picker.outerHeight() - parentOffset.top;
-    this.$container[this.drops == 'up' ? 'addClass' : 'removeClass']('drop-up');
+      containerTop = this.$picker.offset().top + this.$picker.outerHeight() - parentOffset.top;
+    this.$container[this.drops === 'up' ? 'addClass' : 'removeClass']('drop-up');
 
-    if (this.opens == 'left') {
+    if (this.opens === 'left') {
       this.$container.css({
         top: containerTop,
         right: parentRightEdge - this.$picker.offset().left - this.$picker.outerWidth(),
@@ -222,11 +222,11 @@ export default class TagsPicker {
           left: 9
         });
       }
-    } else if (this.opens == 'center') {
+    } else if (this.opens === 'center') {
       this.$container.css({
         top: containerTop,
-        left: this.$picker.offset().left - parentOffset.left + this.$picker.outerWidth() / 2 -
-          this.$container.outerWidth() / 2,
+        left: this.$picker.offset().left - parentOffset.left + this.$picker.outerWidth() / 2
+          - this.$container.outerWidth() / 2,
         right: 'auto'
       });
       if (this.$container.offset().left < 0) {
@@ -282,7 +282,6 @@ export default class TagsPicker {
 
     // if apply was clicked..
     if (this.isApply) {
-
       // invoke the user callback function
       this.callback(this.tags.join('|'));
 
@@ -317,9 +316,9 @@ export default class TagsPicker {
     // itself then call this.hide()
     if (
       // ie modal dialog fix
-      e.type == 'focusin' ||
-      target.closest(this.$picker).length ||
-      target.closest(this.$container).length
+      e.type === 'focusin'
+      || target.closest(this.$picker).length
+      || target.closest(this.$container).length
     ) return;
     this.hide();
     this.$picker.trigger('outsideClick.tagspicker', this);
@@ -338,7 +337,7 @@ export default class TagsPicker {
     this.tags.push(value);
     // remove duplicates
     this.tags = this.tags.filter((elem, pos, arr) => {
-        return arr.indexOf(elem) == pos;
+      return arr.indexOf(elem) === pos;
     });
 
     this.updateView();

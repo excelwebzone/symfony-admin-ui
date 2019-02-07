@@ -49,7 +49,7 @@ export default class ListPage {
 
     // run before append html
     const preCallback = (data) => {
-      if (1 === data.page) {
+      if (data.page === 1) {
         const $dropdownCount = this.$container.find('.dropdown-count');
         if ($dropdownCount) {
           $dropdownCount.text(data.total);
@@ -72,7 +72,7 @@ export default class ListPage {
       }
 
       // automatically open single result (ignore under for multi block)
-      if (1 === data.page && 1 === data.total
+      if (data.page === 1 && data.total === 1
         && !this.$container.hasClass('js-ember-table-block')
         && !this.$table.hasClass('activity-list')
       ) {
@@ -83,7 +83,7 @@ export default class ListPage {
     // run before reseting html
     const preFilterLoad = (data) => {
       if (self.odCurrency) {
-       self.odCurrency.update(0);
+        self.odCurrency.update(0);
       }
     };
 
@@ -101,7 +101,7 @@ export default class ListPage {
   }
 
   selectAllRows() {
-    if (0 === this.$container.find('.js-bulk-select').length) {
+    if (this.$container.find('.js-bulk-select').length === 0) {
       this.$selectAllCheckbox.prop('checked', false);
       return;
     }
@@ -135,7 +135,7 @@ export default class ListPage {
   getFormData() {
     const ids = this.getSelectedItems();
     const formData = new FormData();
-    for (let i=0; i<ids.length; i++) {
+    for (let i = 0; i < ids.length; i++) {
       formData.set(`ids[${i}]`, ids[i]);
     }
     return formData;
@@ -264,7 +264,7 @@ export default class ListPage {
       }
 
       if ($button.data('trigger')) {
-        $button.trigger($button.data('trigger'), {ids: ids});
+        $button.trigger($button.data('trigger'), { ids: ids });
       }
     });
   }

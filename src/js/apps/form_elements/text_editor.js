@@ -17,8 +17,10 @@ export default class TextEditor {
     this.value = this.$selector.val();
 
     this.$selector
-      .on('froalaEditor.initialized', (e, editor) => this.editor = editor)
-      .froalaEditor({id: this.id});
+      .on('froalaEditor.initialized', (e, editor) => {
+        this.editor = editor;
+      })
+      .froalaEditor({ id: this.id });
 
     if (this.$selector.is(':disabled')) {
       this.editor.edit.off();
@@ -40,7 +42,7 @@ export default class TextEditor {
       this.$quickInsertContainer.on('click', '.quick-insert-container-button', () => this.toggleQuickInsert());
 
       $(document).on('click', (e) => {
-        if (0 === $(e.target).closest('.text-editor').length) {
+        if ($(e.target).closest('.text-editor').length === 0) {
           this.hideQuickInsert();
         }
       });
@@ -75,7 +77,7 @@ export default class TextEditor {
 
   insertHTML(snippet) {
     const html = this.editor.html.get();
-    if (html && '<br>' !== html.toLowerCase()) {
+    if (html && html.toLowerCase() !== '<br>') {
       this.restoreSelection();
       this.editor.html.insert(snippet);
     } else {
@@ -88,12 +90,12 @@ export default class TextEditor {
   }
 
   embedUploadedFile(data) {
-    if ('image/' === data.mimetype.substring(0, 6)) {
+    if (data.mimetype.substring(0, 6) === 'image/') {
       this.insertHTML(`<img src="${data.url}" style="max-width: 300px" />`);
-    } else if ('video/' === data.mimetype.substring(0, 6)) {
+    } else if (data.mimetype.substring(0, 6) === 'video/') {
       this.insertHTML(`<video src="${data.url}" style="max-width: 300px" controls></video>`);
     } else {
-      this.insertHTML(`<a href="${data.url}">${data.filename.substring(data.filename.lastIndexOf('/')+1)}</a>`);
+      this.insertHTML(`<a href="${data.url}">${data.filename.substring(data.filename.lastIndexOf('/') + 1)}</a>`);
     }
   }
 
@@ -177,7 +179,7 @@ export default class TextEditor {
   }
 
   onContentChanged(editor) {
-    if (this.value != editor.html.get()) {
+    if (this.value !== editor.html.get()) {
       this.value = editor.html.get();
       this.$selector.val(this.value).trigger('change');
     }
@@ -188,7 +190,6 @@ export default class TextEditor {
 
     if ($(clickEvent.target).hasClass('text-editor-merge-field')) {
       e.preventDefault();
-      return;
     }
   }
 
@@ -243,7 +244,8 @@ export default class TextEditor {
 
     if (e.rangeCount > 0) {
       const range = e.getRangeAt(0).cloneRange();
-      range.collapse(!0), position = this.getPosition(range);
+      range.collapse(!0);
+      position = this.getPosition(range);
     }
 
     return position;
@@ -255,11 +257,11 @@ export default class TextEditor {
       left: 0
     };
 
-    if (range.getBoundingClientRect && 0 === (position = range.getBoundingClientRect()).left && 0 === position.top) {
+    if (range.getBoundingClientRect && (position = range.getBoundingClientRect()).left === 0 && position.top === 0) {
       const spanEl = document.createElement('span');
 
       if (spanEl.getBoundingClientRect) {
-        spanEl.appendChild(document.createTextNode("â€‹")); //INVISIBLE_UNICODE
+        spanEl.appendChild(document.createTextNode('â€‹')); // INVISIBLE_UNICODE
         range.insertNode(spanEl);
         position = spanEl.getBoundingClientRect();
 

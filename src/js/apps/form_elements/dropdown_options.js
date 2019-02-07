@@ -20,13 +20,13 @@ export default class DropdownOptions {
   preloadData() {
     for (let dropdown of this.$container.find('.js-select-dropdown')) {
       let $item = $(dropdown).find('.option-list-item.is-selected');
-      if (0 === $item.length && $(dropdown).closest('.form-property-container').length) {
+      if ($item.length === 0 && $(dropdown).closest('.form-property-container').length) {
         $item = $(dropdown).find('.option-list-item:first-child');
         $item.attr('selected', true);
       }
       if ($item.length) {
         let $text = $item.find('.option-list-item-text');
-        if (0 === $text.length) {
+        if ($text.length === 0) {
           $text = $item.find('.option-list-info-item-text');
         }
 
@@ -143,7 +143,7 @@ export default class DropdownOptions {
       }
 
       const $options = $dropdown.find('.option-list').find('>ul');
-      if (0 === $options.find('li:visible').length) {
+      if ($options.find('li:visible').length === 0) {
         $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Options Found</div></li>');
       }
 
@@ -156,7 +156,7 @@ export default class DropdownOptions {
 
     if ($dropdown.find('.dropdown-text')) {
       let $text = $(this).find('.option-list-item-text');
-      if (0 === $text.length) {
+      if ($text.length === 0) {
         $text = $(this).find('.option-list-info-item-text');
       }
 
@@ -185,12 +185,12 @@ export default class DropdownOptions {
         let $form = $dropdown.closest('form');
 
         for (let [key, value] of Object.entries(json)) {
-          if ('object' === typeof value) {
+          if (typeof value === 'object') {
             continue;
           }
 
           if (value) {
-            value = value.replace('&#39;', "'");
+            value = value.replace('&#39;', '\'');
           }
 
           const $fields = $form.find(`[data-mapped="${key}"]`);
@@ -255,7 +255,7 @@ export default class DropdownOptions {
         .then(({ data }) => {
           $options.html('');
 
-          if (0 === data.count) {
+          if (data.count === 0) {
             $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Results Found</div></li>');
           }
 
@@ -264,12 +264,12 @@ export default class DropdownOptions {
             let options = '';
             if (_.isObject(value)) {
               if (value.extra) {
-                for (let [k, v] of Object.entries(value.extra)) {
+                for (let v of Object.values(value.extra)) {
                   options += `<span class="option-list-info-item-abbreviation">${v}</span>`;
                 }
                 delete value.extra;
               }
-              json = JSON.stringify(value.data).replace("'", '&#39;');
+              json = JSON.stringify(value.data).replace('\'', '&#39;');
               value = value.label;
             }
 
@@ -284,7 +284,7 @@ export default class DropdownOptions {
     $options.find('li').show();
     $options.find('li:not(:filter("' + this.value + '"))').hide();
 
-    if (0 === $options.find('li:visible').length) {
+    if ($options.find('li:visible').length === 0) {
       $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Options Found</div></li>');
     } else {
       $options.find('li:visible:first-child').addClass('is-highlighted');
@@ -298,8 +298,8 @@ export default class DropdownOptions {
     if ($dropdown.hasClass('js-select-dropdown-multiple')) {
       $dropdown
         .find('.option-list-item[data-value="' + $(this).data('value') + '"]')
-          .removeClass('is-selected')
-          .show();
+        .removeClass('is-selected')
+        .show();
 
       const $select = $dropdown.find('select');
       if ($select) {

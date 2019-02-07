@@ -13,11 +13,11 @@ $(() => {
   function toggleContainer($container, toggleState) {
     $container
       .toggleClass('is-expanded', toggleState !== undefined ? !toggleState : undefined);
-/*
+    /*
       .find('.js-toggle-button .zmdi-chevron-up, .js-toggle-button .zmdi-chevron-down')
       .toggleClass('zmdi-chevron-up', toggleState)
       .toggleClass('zmdi-chevron-down', toggleState !== undefined ? !toggleState : undefined);
-*/
+    */
 
     $container
       .find('.js-toggle-content')
@@ -25,7 +25,7 @@ $(() => {
   }
 
   $('body').on('click', '.js-toggle-button', function toggleButton(e) {
-    if ('a' === e.target.tagName.toLowerCase()
+    if (e.target.tagName.toLowerCase() === 'a'
       || $(e.target).hasClass('js-toggle-ignore')
       || $(e.target).closest('.js-toggle-ignore').length
     ) {

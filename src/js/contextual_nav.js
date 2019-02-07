@@ -64,7 +64,7 @@ export default class ContextualNav {
       });
     } else {
       // force navigation to be hidden at all time (using sidebar and second menu)
-      //this.$page.addClass('nav-is-open');
+      // this.$page.addClass('nav-is-open');
       this.$page.removeClass('nav-is-open');
 
       _.each($('.glue-zippy-btn'), (element) => {

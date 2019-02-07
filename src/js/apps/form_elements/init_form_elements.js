@@ -35,7 +35,8 @@ export function initFormElements(containerEl) {
   for (let element of $container.find('.js-datepicker')) {
     const $dataField = $(element).prev();
     const format = $(element).data('format');
-    const dateRangePicker = new DateRangePicker($(element), {
+
+    new DateRangePicker($(element), {
       singleDatePicker: true,
       autoUpdateInput: true,
       locale: {
@@ -52,7 +53,7 @@ export function initFormElements(containerEl) {
 
   // activate inline required forms
   for (let element of $container.find('form.js-requires-input')) {
-    $(element).requiresInput()
+    $(element).requiresInput();
   }
 
   // init ember-table elements

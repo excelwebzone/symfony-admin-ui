@@ -30,16 +30,16 @@ export default class Dashboard {
     $target.closest('.dropdown').find('.dropdown-text').text($target.text());
 
     // calculate date ranges
-    const tmp = $target.data('value').split('_')
+    const tmp = $target.data('value').split('_');
     let start = moment();
     let end = moment();
-    if ('last' === tmp[0]) {
+    if (tmp[0] === 'last') {
       start = start.subtract(1, tmp[1]);
       end = end.subtract(1, tmp[1]);
     }
     start = start.startOf(tmp[1]);
     end = end.endOf(tmp[1]);
-    if ('week' === tmp[1]) {
+    if (tmp[1] === 'week') {
       start = start.add(1, 'day');
       end = end.add(1, 'day');
     }
@@ -66,7 +66,7 @@ export default class Dashboard {
     $loading.show();
 
     // @tmp
-    if ($chart.data('endpoint') == '#') {
+    if ($chart.data('endpoint') === '#') {
       return;
     }
 
@@ -90,4 +90,4 @@ export default class Dashboard {
         }
       }).catch(() => $loading.hide());
   }
-};
+}

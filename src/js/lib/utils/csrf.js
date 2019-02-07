@@ -41,11 +41,11 @@ const csrf = {
   get headers() {
     if (this.csrfToken !== null) {
       return {
-        [this.headerKey]: this.token,
+        [this.headerKey]: this.token
       };
     }
     return {};
-  },
+  }
 };
 
 csrf.init();

@@ -5,7 +5,7 @@ import './froala_editor';
 import '../utils/axios_utils';
 
 // Polyfill: add compatible Object.entries support in older environments.
-if ('function' !== typeof Object.entries) {
+if (typeof Object.entries !== 'function') {
   Object.entries = function(obj) {
     const ownProps = Object.keys(obj);
 

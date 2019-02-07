@@ -66,10 +66,10 @@ export default class EntityForm {
     let params = $form.serializeObject();
     let formData = objectToFormData(params);
     const method = (formData.get('_method') || 'post').toLowerCase();
-    if ('delete' === method) {
+    if (method === 'delete') {
       delete params['_method']; // not needed
 
-      formData = {data: params};
+      formData = { data: params };
     }
 
     // remove for later usage
@@ -137,7 +137,7 @@ export default class EntityForm {
             }
           }
 
-          if ('delete' === method) {
+          if (method === 'delete') {
             const removeRow = $form.data('remove-row');
             if (removeRow) {
               $(removeRow).fadeOut('slow', () => {
@@ -169,7 +169,7 @@ export default class EntityForm {
                 <div class="media-body">
                   <div class="banner-block-title"></div>
                   <ul class="banner-block-content">
-                    <li>${_.escape(data.errors[0]||'Oops, you\'ve got an error')}</li>
+                    <li>${_.escape(data.errors[0] || 'Oops, you\'ve got an error')}</li>
                   </ul>
                 </div>
               </div>
@@ -177,17 +177,17 @@ export default class EntityForm {
           `));
 
           _.each(data.errors, (message, field) => {
-            if (0 !== field) {
+            if (field !== 0) {
               $form.find('#' + $form.prop('name') + '_' + field)
                 .closest('.form-group')
-                  .addClass('is-invalid')
-                  .find('.form-control-error')
-                    .append(`<div class="invalid-feedback ${message[0].length>30?'multiline':''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${message[0]}</span></li></ul></div>`);
+                .addClass('is-invalid')
+                .find('.form-control-error')
+                .append(`<div class="invalid-feedback ${message[0].length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${message[0]}</span></li></ul></div>`);
             }
           });
         }
 
-        //$form.trigger('ajax:complete');
+        // $form.trigger('ajax:complete');
         $('[type="submit"], .js-disable-on-submit', $form).enable();
       });
 
@@ -218,7 +218,7 @@ export default class EntityForm {
     $error.find('.invalid-feedback').remove();
 
     // remove all classes
-    $formGroup.removeClass('is-loading is-invalid successed')
+    $formGroup.removeClass('is-loading is-invalid successed');
     $formGroup.find('.typed-property-item').removeClass('is-invalid');
 
     // enabled all disabled fields
@@ -289,7 +289,7 @@ export default class EntityForm {
 
           // update string for textarea or input fields
           if (($element.is('textarea') || $element.is('input')) && data.updatedValue) {
-            if ($element.is('input') && 'color' === $element.prop('type')) {
+            if ($element.is('input') && $element.prop('type') === 'color') {
               data.updatedValue = `#${data.updatedValue}`;
             }
 
@@ -313,7 +313,7 @@ export default class EntityForm {
                 value = $found.closest('.js-select-dropdown').find('.dropdown-text').text();
               }
 
-              let field = $found.prop('id').substring($form.prop('name').length+1);
+              let field = $found.prop('id').substring($form.prop('name').length + 1);
               const $fieldReference = $found.closest('[data-field-reference]');
               if ($fieldReference.length) {
                 field = $fieldReference.data('field-reference');
@@ -323,7 +323,7 @@ export default class EntityForm {
                 }
               }
 
-              const $drawer = $found.closest('.drawer-frame')
+              const $drawer = $found.closest('.drawer-frame');
               const $container = $($form.data('container') || 'body');
 
               // single field
@@ -352,7 +352,7 @@ export default class EntityForm {
             $formGroup.addClass('is-invalid');
           }
 
-          $error.append(`<div class="invalid-feedback ${data.error.message.length>30?'multiline':''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
+          $error.append(`<div class="invalid-feedback ${data.error.message.length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
         }
       })
       .catch(() => $formGroup.removeClass('is-loading'));

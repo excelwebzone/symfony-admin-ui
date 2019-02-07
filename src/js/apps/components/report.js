@@ -27,6 +27,13 @@ export default class Report {
   createDataViewer() {
     const self = this;
 
+    // run before reseting html
+    const preFilterLoad = (data) => {
+      if (this.odCurrency) {
+        this.odCurrency.update(0);
+      }
+    };
+
     // run after setting
     const postFilterLoad = (filters) => {
       // load chart data
@@ -34,7 +41,7 @@ export default class Report {
         self.$chartLoading.show();
         self.$chartContainer.html('');
 
-        const params = {filters: filters};
+        const params = { filters: filters };
         const groupingType = $('input[name=groupingType]:checked');
         if (groupingType.length) {
           params.groupingType = groupingType.val();
@@ -64,16 +71,9 @@ export default class Report {
       }
     };
 
-    // run before reseting html
-    const preFilterLoad = (data) => {
-      if (this.odCurrency) {
-       this.odCurrency.update(0);
-      }
-    };
-
-
     this.dataViewer = new DataViewer(this.$container, {
+      preFilterLoad: preFilterLoad,
       postFilterLoad: postFilterLoad
     });
   }
-};
+}

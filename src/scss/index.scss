@@ -1,6 +1,6 @@
 html {
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 * {
@@ -35,16 +35,16 @@ html {
 
 .material-icons-extended-pseudo:after {
   font-family: "Material Icons Extended";
+  font-size: 24px;
+  font-style: normal;
+  line-height: 1;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "liga" 1;
-  -webkit-font-feature-settings: "liga" 1;
-  -moz-font-feature-settings: "liga" 1;
+  text-transform: none;
   -ms-font-feature-settings: "liga" 1;
   -o-font-feature-settings: "liga" 1;
-  font-style: normal;
-  text-transform: none;
-  line-height: 1;
-  font-size: 24px;
+  -moz-font-feature-settings: "liga" 1;
+  -webkit-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga" 1;
 }
 
 // Core librararies
@@ -60,12 +60,12 @@ body.security_login,
 body.resetting_request,
 body.resetting_reset,
 body.two_factor_login {
-  background-color: #f2f2f2;
   margin: 0;
   padding: 0;
+  background-color: #f2f2f2;
 
   a {
-    color: #2196F3;
+    color: #2196f3;
     text-decoration: none;
 
     &:hover {
@@ -80,9 +80,9 @@ body.logged-in[class*="admin_"] {
   position: fixed;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   color: #363636;
   font-family: Roboto,sans-serif;
+  overflow: hidden;
 
   @import "./backend/index";
 }
@@ -96,8 +96,8 @@ body.logged-in[class*="admin_"] {
   flex-direction: column;
   align-items: center;
   font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
   text-align: center;
+  -webkit-font-smoothing: antialiased;
 }
 
 .error-wrapper .links {
@@ -106,14 +106,14 @@ body.logged-in[class*="admin_"] {
 
 .error-wrapper>p {
   max-width: 380px;
-  font-size: 14px;
   color: #4a4a4a;
+  font-size: 14px;
   line-height: 24px;
 }
 
 .error-wrapper .logo {
-  margin-top: 32px;
   height: 30px;
+  margin-top: 32px;
 }
 
 .error-wrapper .jumbo {
@@ -121,31 +121,31 @@ body.logged-in[class*="admin_"] {
 }
 
 .error-wrapper .status-code {
+  margin-top: 15px;
+  color: #aaa;
   font-size: 76px;
   font-weight: 100;
-  color: #aaa;
-  margin-top: 15px;
 }
 
 .error-wrapper .status {
-  text-transform: uppercase;
-  font-weight: 700;
   color: #aaa;
   font-size: 14px;
+  font-weight: 700;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .error-wrapper a {
-  background: #495AC6;
-  box-shadow: 0 0 2px 0 rgba(0,0,0,0.12),0 2px 2px 0 rgba(0,0,0,0.24);
+  display: inline-block;
+  padding: 0 18px;
   border-radius: 2px;
+  background: #495ac6;
+  color: #fff !important;
   font-size: 14px;
   font-weight: 500;
-  color: #fff !important;
   letter-spacing: 0.5px;
-  display: inline-block;
-  text-decoration: none;
   line-height: 36px;
-  padding: 0 18px;
+  text-decoration: none;
   text-transform: uppercase;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.12),0 2px 2px 0 rgba(0,0,0,0.24);
 }

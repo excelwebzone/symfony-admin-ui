@@ -12,8 +12,8 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
       let $emberCell = $emberRow.find(`.ember-table-cell[data-index="${$emberColumn.data('index')}"]`);
       if (!$emberCell.length) {
         $emberCell = $container.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row')
-                      .eq($emberRow.index())
-                        .find(`.ember-table-cell[data-index="${$emberColumn.data('index')}"]`);
+          .eq($emberRow.index())
+          .find(`.ember-table-cell[data-index="${$emberColumn.data('index')}"]`);
       }
       if ($emberCell.length) {
         if (value && $emberCell.hasClass('table-cell-email')) {
@@ -21,9 +21,9 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
         } else if (value && $emberCell.hasClass('table-cell-phone')) {
           $emberCell.html(`<a href="tel:${value}">${value}</a>`);
         } else if ($emberCell.find('a').length) {
-          $emberCell.find('a').html(value ? value : '--');
+          $emberCell.find('a').html(value || '--');
         } else if ($emberCell.hasClass('table-cell-name')) {
-          $emberCell.html(`<div>${value ? value : '--'}</div>`);
+          $emberCell.html(`<div>${value || '--'}</div>`);
         } else if ($emberCell.hasClass('table-cell-integer')) {
           $emberCell.html(`<div>${value ? numeral(value).format('0,0') : '--'}</div>`);
         } else if ($emberCell.hasClass('table-cell-number')) {
@@ -33,7 +33,7 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
         } else if ($emberCell.hasClass('table-cell-percent')) {
           $emberCell.html(`<div>${value ? numeral(value).format('0,0.00') + '%' : '--'}</div>`);
         } else {
-          $emberCell.html(value ? value : '--');
+          $emberCell.html(value || '--');
         }
       }
     }
@@ -46,7 +46,7 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
 
   if ($form.length) {
     const $field = $form.find(`[id$="_${field}"]`);
-    if ($field.length && 0 === $field.closest('.dropdown').length) {
+    if ($field.length && $field.closest('.dropdown').length === 0) {
       $field.val(value);
     }
   }
@@ -83,4 +83,4 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
       }
     }
   }
-};
+}

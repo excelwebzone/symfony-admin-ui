@@ -4,7 +4,7 @@ const hideToaster = (toasterEl, fadeTransition = true) => {
   if (fadeTransition) {
     Object.assign(toasterEl.style, {
       transition: 'opacity .3s',
-      opacity: '0',
+      opacity: '0'
     });
   }
 
@@ -12,7 +12,7 @@ const hideToaster = (toasterEl, fadeTransition = true) => {
     toasterEl.remove();
   }, {
     once: true,
-    passive: true,
+    passive: true
   });
 
   if (!fadeTransition) toasterEl.dispatchEvent(new Event('transitionend'));
@@ -47,7 +47,7 @@ const createToasterEl = (message, type, closeButton) => `
 
 const removeToasterClickListener = (toasterEl, fadeTransition) => {
   toasterEl.addEventListener('click', (e) => {
-    if ('a' === e.target.tagName.toLowerCase()) {
+    if (e.target.tagName.toLowerCase() === 'a') {
       return;
     }
 
@@ -72,7 +72,7 @@ const createToaster = function createToaster(
   message,
   type = 'default',
   actionConfig = null,
-  fadeTransition = true,
+  fadeTransition = true
 ) {
   // auto open in new window
   if (actionConfig && actionConfig.open) {
@@ -114,6 +114,6 @@ export {
   createToasterEl,
   createAction,
   hideToaster,
-  removeToasterClickListener,
+  removeToasterClickListener
 };
 window.Toaster = createToaster;

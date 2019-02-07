@@ -77,7 +77,7 @@ class Search {
 
   getData() {
     this.reset();
-    if (0 === this.$inputField.val().length) {
+    if (this.$inputField.val().length === 0) {
       return;
     }
 
@@ -98,7 +98,7 @@ class Search {
       .then(({ data }) => {
         this.$options.html('');
 
-        if (0 === data.count) {
+        if (data.count === 0) {
           this.$options.html(SEARCH_EMPTY);
         } else {
           this.$options.append(SEARCH_RESULT(this.$inputField.val(), this.$container.data('redirect')));

@@ -51,10 +51,10 @@ export default class Pager {
   }
 
   append(count) {
-    if (0 === count) {
+    if (count === 0) {
       this.disable = true;
 
-      if (1 === this.page) {
+      if (this.page === 1) {
         this.$empty.show();
       }
 
@@ -80,4 +80,4 @@ export default class Pager {
       }
     });
   }
-};
+}

@@ -117,12 +117,12 @@ export default class EntityModal {
       ids.push($(element).val());
     }
 
-    if (0 === ids.length) {
+    if (ids.length === 0) {
       return;
     }
 
     this.createNewModal();
-    this.loadContent(_.template($(template).html())($.extend(args, {ids: ids})));
+    this.loadContent(_.template($(template).html())($.extend(args, { ids: ids })));
 
     $target.trigger('modal:shown', this.$modal);
   }

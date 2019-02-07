@@ -44,7 +44,7 @@ export default ($chart, categories, series) => {
     },
     plotOptions: {
       column: {
-        pointPadding: .2,
+        pointPadding: 0.2,
         borderWidth: 0
       },
       series: {
@@ -53,4 +53,4 @@ export default ($chart, categories, series) => {
     },
     series: series
   });
-}
+};

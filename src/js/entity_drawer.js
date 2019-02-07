@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import toaster from './lib/utils/toaster';
-import axios from './lib/utils/axios_utils';
 import { initFormElements } from './apps/form_elements/init_form_elements';
 
 export default class EntityDrawer {
@@ -27,7 +25,7 @@ export default class EntityDrawer {
     if (this.$drawer) {
       this.$drawer.collapse('hide');
       this.$drawer.on('hidden.bs.collapse', (e) => {
-          $(e.currentTarget).remove();
+        $(e.currentTarget).remove();
       });
     }
 
@@ -62,7 +60,7 @@ export default class EntityDrawer {
       initials: $target.data('initials'),
       icon: $target.data('icon'),
       isFollow: $target.data('is-follow') || false,
-      isComplete: $target.data('is-complete') || false,
+      isComplete: $target.data('is-complete') || false
     }));
 
     this.$drawer = $('.drawer-frame:not(.filter-options)');
@@ -102,7 +100,7 @@ export default class EntityDrawer {
       }
     }
 
-    if (0 === checked) {
+    if (checked === 0) {
       this.closeButton();
       return;
     }
@@ -110,7 +108,7 @@ export default class EntityDrawer {
     this.$drawer.find('.bulk-edit-drawer-title>span:eq(0)').text(checked);
 
     const $span = this.$drawer.find('.bulk-edit-drawer-title>span:eq(1)');
-    $span.text(1 === checked ? $span.data('singular') : $span.data('plural'));
+    $span.text(checked === 1 ? $span.data('singular') : $span.data('plural'));
   }
 
   createFromBulkTemplate(e) {
@@ -139,11 +137,11 @@ export default class EntityDrawer {
       ids.push($(element).val());
     }
 
-    if (0 === ids.length) {
+    if (ids.length === 0) {
       return;
     }
 
-    $('body').append(_.template($(template).html())($.extend(args, {ids: ids})));
+    $('body').append(_.template($(template).html())($.extend(args, { ids: ids })));
 
     this.$drawer = $('.drawer-frame:not(.filter-options)');
     this.$drawer.collapse('show');

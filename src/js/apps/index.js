@@ -73,5 +73,4 @@ document.addEventListener('DOMContentLoaded', () => {
       $block.trigger('block:load');
     }
   });
-
 });

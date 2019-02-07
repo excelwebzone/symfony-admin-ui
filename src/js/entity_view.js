@@ -87,7 +87,7 @@ export default class EntityView {
 
     $($target.data('bs.popover').tip).find('button').on('click', (e) => {
       if ($(e.currentTarget).hasClass('popover-submit')) {
-        _post()
+        _post();
       }
 
       $target.popover('hide');
@@ -231,7 +231,6 @@ export default class EntityView {
 
       if (redirect) {
         location.href = redirect;
-        return;
       }
     });
   }
@@ -271,7 +270,7 @@ export default class EntityView {
       $target.closest('.entity-summary').remove();
 
       // increase total
-      const total = parseInt(0+$counter.text())-1;
+      const total = parseInt(0 + $counter.text()) - 1;
       $counter.text(total);
 
       if (total === 0) {
@@ -309,7 +308,7 @@ export default class EntityView {
       $container.find('.entity-association-group-empty-row').hide();
 
       // increase total
-      const total = parseInt(0+$counter.text())+(data.items ? data.items.length : 1);
+      const total = parseInt(0 + $counter.text()) + (data.items ? data.items.length : 1);
       $counter.text(total);
 
       if ($target.data('reset') || $target.data('unlimited') || total <= 2) {
@@ -326,4 +325,4 @@ export default class EntityView {
       }
     });
   }
-};
+}

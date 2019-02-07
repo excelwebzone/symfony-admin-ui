@@ -37,7 +37,7 @@ export default class ActivityList {
     $(document).on('block:loaded', '.js-activity-block', (e) => {
       const $target = $(e.currentTarget);
       const $dropdown = $target.find('.activity-list .dropdown');
-      if (0 === $dropdown.length) {
+      if ($dropdown.length === 0) {
         this.getActivityList($target);
         return;
       }
@@ -94,7 +94,7 @@ export default class ActivityList {
         }
       }
 
-      if (1 === checked) {
+      if (checked === 1) {
         $text.text('1 Activity Type');
       } else if (checked) {
         $text.text(checked + ' Activity Types');
@@ -108,21 +108,21 @@ export default class ActivityList {
 
   getActivityList($sourceTarget, types = null) {
     let $container = $sourceTarget.find('.activity-list');
-    if (0 === $container.length) {
+    if ($container.length === 0) {
       if ($sourceTarget.hasClass('dropdown')) {
         $container = $sourceTarget.closest('.activity-list');
       } else {
         $container = $sourceTarget.closest('.entity-activity').find('.activity-list');
       }
     }
-    if (0 === $container.length) {
-      $container = $('.activity-list')
+    if ($container.length === 0) {
+      $container = $('.activity-list');
     }
 
     const $list = $container.find('.activity-log-list');
 
     const callback = (data) => {
-      if (data.page > 1 && 0 === data.count) {
+      if (data.page > 1 && data.count === 0) {
         return;
       }
 
@@ -130,7 +130,7 @@ export default class ActivityList {
 
       let lastLabel = null;
       for (let label of $list.find('.is-labeled>.activity-item-label')) {
-        if (!lastLabel || lastLabel != $(label).html()) {
+        if (!lastLabel || lastLabel !== $(label).html()) {
           lastLabel = $(label).html();
         } else {
           $(label).html('').parent('.is-labeled').removeClass('is-labeled');
@@ -154,7 +154,7 @@ export default class ActivityList {
     const $elements = $container.find('.activity-list-filter :input');
 
     if (types) {
-      params = {types: types};
+      params = { types: types };
     } else if ($elements.length) {
       params = $elements.serializeObject();
     }
@@ -171,7 +171,7 @@ export default class ActivityList {
       : $target.closest('.entity-activity');
 
     const $dropdown = $container.find('.activity-list .dropdown');
-    if (0 === $dropdown.length) {
+    if ($dropdown.length === 0) {
       this.getActivityList($container);
       return;
     }
@@ -217,7 +217,7 @@ export default class ActivityList {
 
         $item.remove();
 
-        if (0 === $container.find('.activity-item').length) {
+        if ($container.find('.activity-item').length === 0) {
           $container.html('<div class="activity-log-list-empty-message">No Activities in this Activity Feed.</div>');
         }
       });
@@ -267,7 +267,7 @@ export default class ActivityList {
     $error.find('.invalid-feedback').remove();
 
     // remove all classes
-    $formGroup.removeClass('is-loading is-invalid successed')
+    $formGroup.removeClass('is-loading is-invalid successed');
 
     // ignore empty parameters
     if (_.isEmpty($textarea.val())) {
@@ -304,7 +304,7 @@ export default class ActivityList {
           $textarea.focus();
           $formGroup.addClass('is-invalid');
 
-          $error.append(`<div class="invalid-feedback ${data.error.message.length>30?'multiline':''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
+          $error.append(`<div class="invalid-feedback ${data.error.message.length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
         }
       })
       .catch(() => {
@@ -330,4 +330,4 @@ export default class ActivityList {
       .toggleClass('zmdi-chevron-down')
       .toggleClass('zmdi-chevron-up');
   }
-};
+}

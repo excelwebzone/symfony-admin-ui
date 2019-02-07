@@ -58,4 +58,4 @@ export default ($chart, categories, series) => {
     },
     series: series
   });
-}
+};

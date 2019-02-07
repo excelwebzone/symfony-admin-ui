@@ -1,9 +1,9 @@
 import _ from 'underscore';
 import RecursiveIterator from 'recursive-iterator';
 
-let {FormData} = window;
-let {toString} = Object.prototype;
-let {isArray, isObject, isUndefined} = _; // (!) YOU MUST IMPLEMENT THESE FUNCTIONS
+let { FormData } = window;
+let { toString } = Object.prototype;
+let { isArray, isObject, isUndefined } = _; // (!) YOU MUST IMPLEMENT THESE FUNCTIONS
 
 /**
  * Returns type of anything.
@@ -40,7 +40,7 @@ export function toQueryString(any) {
 
   let stack = [];
 
-  for(let {node, path} of new RecursiveIterator(any)) {
+  for (let { node, path } of new RecursiveIterator(any)) {
     if (isObject(node)) continue;
     let name = toName(path);
     let value = encodeURIComponent(node);
@@ -74,7 +74,7 @@ export function objectToFormData(object) {
     }
   };
 
-  iterator.onStepInto = function({parent, node}) {
+  iterator.onStepInto = function({ parent, node }) {
     let type = getType(node);
     switch (type) {
       case 'Array':
@@ -88,7 +88,7 @@ export function objectToFormData(object) {
     }
   };
 
-  for(let {node, path} of iterator) {
+  for (let { node, path } of iterator) {
     var type = getType(node);
     switch (type) {
       case 'Array':

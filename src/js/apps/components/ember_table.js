@@ -11,7 +11,7 @@ document.addEventListener('beforeunload', () => {
 
 export default class EmberTable {
   constructor(tableEl) {
-    if (0 === $(tableEl).length) {
+    if ($(tableEl).length === 0) {
       return;
     }
 
@@ -43,9 +43,8 @@ export default class EmberTable {
     }
 
     if (this.$table.data('sortable')) {
-
       this.$sortableIndicator = this.$table.find('.ember-table-column-sortable-indicator');
-      if (0 === this.$sortableIndicator.length) {
+      if (this.$sortableIndicator.length === 0) {
         this.$table.append('<div class="ember-table-column-sortable-indicator"></div>');
         this.$sortableIndicator = this.$table.find('.ember-table-column-sortable-indicator');
       }
@@ -56,7 +55,7 @@ export default class EmberTable {
         cursor: 'move',
         helper: 'clone',
         items: '.ember-table-header-cell.sortable',
-        opacity: .9,
+        opacity: 0.9,
         placeholder: 'ui-state-highlight',
         scroll: true,
         tolerance: 'pointer',
@@ -101,7 +100,7 @@ export default class EmberTable {
 
     this.resizeTable();
 
-    if ('resizestop' === e.type) {
+    if (e.type === 'resizestop') {
       this.updateUserSettings();
     }
   }
@@ -126,8 +125,6 @@ export default class EmberTable {
   }
 
   onColumnSortDone(e, ui) {
-    const index = ui.item.index();
-
     const $rows = this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row>div');
     for (let row of $rows) {
       const $row = $(row);
@@ -188,11 +185,11 @@ export default class EmberTable {
       }
     }
 
-    axios.post(this.$table.data('settings-endpoint'), objectToFormData({columns: columns}));
+    axios.post(this.$table.data('settings-endpoint'), objectToFormData({ columns: columns }));
   }
 
   resizeTable() {
-    if (0 === this.$table.length) {
+    if (this.$table.length === 0) {
       return;
     }
 
@@ -202,13 +199,11 @@ export default class EmberTable {
     const totalRows = this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').length;
     const headerHeight = this.$table.data('header-height');
     const rowHeight = this.$table.data('row-height');
-    const tableWidth = this.$table.get(0).offsetWidth
+    const tableWidth = this.$table.get(0).offsetWidth;
     const tableHeight = totalRows * rowHeight;
     const containerHeight = this.$table.parent().get(0).offsetHeight - headerHeight;
-    const dynamicColumnWidth = Math.floor(tableWidth/totalColumns);
-    const maxHeight = tableHeight > containerHeight && containerHeight > 0
-                        ? containerHeight
-                        : tableHeight;
+    const dynamicColumnWidth = Math.floor(tableWidth / totalColumns);
+    const maxHeight = tableHeight > containerHeight && containerHeight > 0 ? containerHeight : tableHeight;
 
     // calculate row width
     let rowWidth = 0;
@@ -223,7 +218,7 @@ export default class EmberTable {
 
         rowWidth += columnWidth;
 
-        if ('left' === key) {
+        if (key === 'left') {
           leftBlockWidth += columnWidth;
         }
 
@@ -290,7 +285,7 @@ export default class EmberTable {
   selectRow(e) {
     const $currentTarget = $(e.currentTarget);
 
-    if ('a' === e.target.tagName.toLowerCase()
+    if (e.target.tagName.toLowerCase() === 'a'
       || $(e.target).hasClass('checkbox')
       || $(e.target).closest('.checkbox').length
       || $(e.target).closest('.import-table-panel').length
@@ -341,12 +336,11 @@ export default class EmberTable {
           $($element.data('scroll-block')).css('left', -e.currentTarget.scrollLeft);
         }
       })
-      .trigger('scroll');
+        .trigger('scroll');
 
       $element.on('refresh', () => {
         $element.data('antiscroll').refresh();
       });
-
     }
   }
 }

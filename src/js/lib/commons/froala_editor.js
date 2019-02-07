@@ -50,7 +50,7 @@ const icons = {
   linkEdit: 'edit',
   linkRemove: 'minus-circle-outline',
   linkInsert: 'done'
-}
+};
 for (const icon in icons) {
   $.FroalaEditor.DefineIcon(icon, {
     NAME: icons[icon],
@@ -62,7 +62,7 @@ $.FroalaEditor.RegisterCommand('linkInsert', {
   focus: false,
   refreshAfterCallback: false,
   callback() {
-    this.link.insertCallback()
+    this.link.insertCallback();
   },
   refresh() {}
 });

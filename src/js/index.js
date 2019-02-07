@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selector: '.has-tooltip, [data-toggle="tooltip"]',
       placement(tip, el) {
         return $(el).data('placement') || 'bottom';
-      },
+      }
     });
   }
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     trigger: 'focus',
     // set the viewport to the main content, excluding the navigation bar, so
     // the navigation can't overlap the popover
-    viewport: '.application-content',
+    viewport: '.application-content'
   });
 
   // Disable form buttons while a form is submitting

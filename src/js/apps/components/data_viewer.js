@@ -28,7 +28,7 @@ export default class DataViewer {
     this.$filterForm = this.$container.find('.js-filter-form > form');
 
     this.$table = this.$container.find('.list-page-table');
-    if (0 === this.$table.length) {
+    if (this.$table.length === 0) {
       this.$table = this.$container.find('[data-list-page-table]');
     }
     this.emberTable = new EmberTable(this.$table.find('.js-ember-table'));
@@ -74,8 +74,8 @@ export default class DataViewer {
 
   createPager() {
     const callback = (data) => {
-      if ('function' === typeof this.preCallback) {
-       this.preCallback.bind(this)(data);
+      if (typeof this.preCallback === 'function') {
+        this.preCallback.bind(this)(data);
       }
 
       if (this.$table.hasClass('activity-list')) {
@@ -100,8 +100,8 @@ export default class DataViewer {
         this.emberTable.rebindEvents();
       }
 
-      if ('function' === typeof this.postCallback) {
-       this.postCallback.bind(this)(data);
+      if (typeof this.postCallback === 'function') {
+        this.postCallback.bind(this)(data);
       }
     };
 
@@ -129,7 +129,7 @@ export default class DataViewer {
       return;
     }
 
-    if ('function' === typeof this.resetData) {
+    if (typeof this.resetData === 'function') {
       this.preFilterLoad.bind(this)();
     }
 
@@ -159,13 +159,13 @@ export default class DataViewer {
       }
     }
 
-    if ('function' === typeof this.postFilterLoad) {
+    if (typeof this.postFilterLoad === 'function') {
       this.postFilterLoad.bind(this)(filters);
     }
   }
 
   setSortColumn(e, $column) {
-    $column = $column ? $column : $(e.currentTarget);
+    $column = $column || $(e.currentTarget);
 
     this.$container.find('.table-header-cell-sortable.sortable').not($column)
       .removeClass('table-header-cell-sort-ascending table-header-cell-sort-descending');
@@ -196,7 +196,7 @@ export default class DataViewer {
 
     const $column = this.$container.find(`.table-header-cell-sortable.sortable[data-field="${sortName}"]`);
     if ($column.length) {
-      if (!sortDir || 'asc' === sortDir) {
+      if (!sortDir || sortDir === 'asc') {
         $column.addClass('table-header-cell-sort-descending');
       } else {
         $column.addClass('table-header-cell-sort-ascending');

@@ -32,7 +32,7 @@ export default class Rating {
 
   turnStarBack() {
     const rating = parseInt($(this).find('input').val());
-    const selectedStar = $(this).children().filter('#rating_star_' + rating)
+    const selectedStar = $(this).children().filter('#rating_star_' + rating);
     const prevLabels = $(selectedStar).nextAll();
     prevLabels.addClass('is-selected');
     selectedStar.addClass('is-selected');

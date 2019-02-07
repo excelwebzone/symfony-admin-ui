@@ -26,23 +26,26 @@ export default class ScrollableTabs {
     interact(`#${self.$selector.prop('id')}`)
       .draggable({
         preventDefault: 'auto',
-        onmove: function (event) {
-          const target = event.target,
-            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-            // translate the element
-            inverseX = -(x);
+        onmove: function(event) {
+          const target = event.target;
+
+          const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+
+          // translate the element
+
+          const inverseX = -(x);
 
           self.$drager.scrollLeft(inverseX);
           target.setAttribute('data-x', x);
         }
       })
-      .on('tap', function (event) {
+      .on('tap', function(event) {
         // because draggable blocks click event on touch, do manual trigger
         let $target = $(event.target);
         if (!$target.hasClass('tab')) {
           $target = $target.closest('.tab');
         }
-        if ($target.length && 'touch' === event.pointerType) {
+        if ($target.length && event.pointerType === 'touch') {
           $target.click();
         }
       });

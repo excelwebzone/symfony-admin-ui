@@ -24,7 +24,7 @@ export function initTagsPicker(pickerEl) {
   const options = {
     opens: 'left',
     autoUpdateInput: false,
-    ignoreMove: true,
+    ignoreMove: true
   };
 
   let bootstrapBreakpoint = bp.getBreakpointSize();
@@ -40,7 +40,8 @@ export function initTagsPicker(pickerEl) {
     $field.val(tags).trigger('change');
   };
 
-  const tagsPicker = new TagsPicker($picker, options, callback);
+  // create picker
+  new TagsPicker($picker, options, callback);
 
   $picker.on('show.tagspicker', (e, tagsPicker) => {
     tagsPicker.setTags($field.val());
@@ -75,7 +76,7 @@ export function initDateRangePicker(pickerEl) {
 
   const callback = (start, end, label) => {
     let foundLabel = false;
-    for (let [key, value] of Object.entries(dateRanges)) {
+    for (let value of Object.values(dateRanges)) {
       if (value[0].isSame(start, 'day') && value[1].isSame(end, 'day')) {
         foundLabel = true;
       }
@@ -91,7 +92,8 @@ export function initDateRangePicker(pickerEl) {
     $endDate.val(foundLabel ? '' : end.format('YYYY-MM-DD')).trigger('change');
   };
 
-  const dateRangePicker = new DateRangePicker($picker, options, callback);
+  // create picker
+  new DateRangePicker($picker, options, callback);
 
   $picker.on('show.daterangepicker', (e, dateRangePicker) => {
     let start = $startDate.val();
@@ -124,10 +126,13 @@ export function initDateRangePicker(pickerEl) {
 
 // reposition container on the right side of the filter window
 function repositionRangeSelect(picker, elementEl) {
-  const $parentEl = $(elementEl).closest('.filter-range'),
-    parentRect = $parentEl[0].getBoundingClientRect(),
-    $container = $('.range-select-container:visible'),
-    frameRect = $parentEl.closest('.filter-options-content')[0].getBoundingClientRect();
+  const $parentEl = $(elementEl).closest('.filter-range');
+
+  const parentRect = $parentEl[0].getBoundingClientRect();
+
+  const $container = $('.range-select-container:visible');
+
+  const frameRect = $parentEl.closest('.filter-options-content')[0].getBoundingClientRect();
 
   let bootstrapBreakpoint = bp.getBreakpointSize();
   if (bootstrapBreakpoint === 'xs') {
@@ -138,7 +143,7 @@ function repositionRangeSelect(picker, elementEl) {
         transform: ''
       });
 
-    if (0 === $container.closest('.filter-range').length) {
+    if ($container.closest('.filter-range').length === 0) {
       $container.appendTo($parentEl);
     }
 
@@ -159,9 +164,11 @@ function repositionRangeSelect(picker, elementEl) {
   }
 
   if (!(parentRect.top + parentRect.height / 2 < frameRect.top || parentRect.bottom - parentRect.height / 2 > frameRect.bottom)) {
-    const containerRect = $container[0].getBoundingClientRect(),
-      top = parentRect.top + parentRect.height / 2 - containerRect.height / 2,
-      bottom = top + containerRect.height;
+    const containerRect = $container[0].getBoundingClientRect();
+
+    const top = parentRect.top + parentRect.height / 2 - containerRect.height / 2;
+
+    const bottom = top + containerRect.height;
 
     let distance = 0;
     if (top < frameRect.top) {
@@ -170,7 +177,7 @@ function repositionRangeSelect(picker, elementEl) {
       distance = frameRect.bottom - bottom;
     }
 
-    let transform = `translateX(${frameRect.left-containerRect.width}px) translateY(${Math.floor(top+distance)}px)`;
+    let transform = `translateX(${frameRect.left - containerRect.width}px) translateY(${Math.floor(top + distance)}px)`;
 
     $container
       .addClass('has-nub')
@@ -181,7 +188,7 @@ function repositionRangeSelect(picker, elementEl) {
 
     const $nub = $container.find('.range-select-nub');
     if ($nub.length > 0) {
-      transform = `translateY(${Math.min(Math.max(parentRect.height/2,(containerRect.height-2)/2-distance),containerRect.height-2-$nub[0].getBoundingClientRect().height/2)}px)`;
+      transform = `translateY(${Math.min(Math.max(parentRect.height / 2, (containerRect.height - 2) / 2 - distance), containerRect.height - 2 - $nub[0].getBoundingClientRect().height / 2)}px)`;
 
       $nub.css({
         '-webkit-transform': transform,

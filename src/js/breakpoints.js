@@ -2,7 +2,7 @@ export const breakpoints = {
   lg: 1200,
   md: 992,
   sm: 768,
-  xs: 0,
+  xs: 0
 };
 
 const BreakpointInstance = {
@@ -13,7 +13,7 @@ const BreakpointInstance = {
     const breakpoint = Object.keys(breakpoints).find(key => windowWidth > breakpoints[key]);
 
     return breakpoint;
-  },
+  }
 };
 
 export default BreakpointInstance;
