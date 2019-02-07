@@ -1,2 +1,4 @@
 # symfony-admin-ui
-Common classes and utils for symfony-admin apps
+
+Symfony Admin UI is a simple set of UI behaviors and components used with your
+[symfony-admin](https://github.com/excelwebzone/symfony-admin) application.
