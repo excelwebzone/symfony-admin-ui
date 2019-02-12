@@ -34,9 +34,13 @@ export default class DataViewer {
     this.emberTable = new EmberTable(this.$table.find('.js-ember-table'));
 
     const $column = this.$container.find('.table-header-cell-sortable.sortable.js-default-sort');
-    this.sortColumn = `${$column.data('field')}-desc`;
-    if ($column.hasClass('table-header-cell-sort-ascending')) {
-      this.sortColumn = this.sortColumn.replace('-desc', '-asc');
+    if ($column.length) {
+      this.sortColumn = `${$column.data('field')}-desc`;
+      if ($column.hasClass('table-header-cell-sort-ascending')) {
+        this.sortColumn = this.sortColumn.replace('-desc', '-asc');
+      }
+    } else {
+      this.sortColumn = null;
     }
 
     const sortParam = getParameterValues('sort');
@@ -142,9 +146,11 @@ export default class DataViewer {
     }
 
     const params = {
-      filters: filters,
-      sort: this.sortColumn
+      filters: filters
     };
+    if (this.sortColumn) {
+      params.sort = this.sortColumn;
+    }
 
     this.pager.setPage(1);
     this.pager.setParams(Object.assign({}, params));
