@@ -168,6 +168,10 @@ export default class DataViewer {
     if (typeof this.postFilterLoad === 'function') {
       this.postFilterLoad.bind(this)(filters);
     }
+
+    if (this.$table.data('trigger')) {
+      this.$table.trigger(this.$table.data('trigger'));
+    }
   }
 
   setSortColumn(e, $column) {
