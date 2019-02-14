@@ -338,6 +338,10 @@ export default class EntityForm {
             }
           }
 
+          if ($form.data('trigger')) {
+            $form.trigger($form.data('trigger'), data);
+          }
+
           toaster(data.label + ' updated');
         } else {
           $element.focus();
