@@ -143,9 +143,9 @@ export default class TextEditor {
 </tr>
 <tr>
 <td><i class="bookmark">&nbsp;</i></td>
-<td class="border"><span class="text-editor-merge-field-container"><span class="text-editor-merge-field is-signature" data-name="${id}" data-placeholder="Sign Here" contenteditable="false">Sign Here</span></span></td>
+<td class="border"><div class="signature-pad-link" data-id="${id}" data-placeholder="Sign Here" contenteditable="false">Sign Here</div></td>
 <td></td>
-<td class="border"><span class="text-editor-merge-field-container"><span class="text-editor-merge-field is-recipient" data-name="date" contenteditable="false"># date</span></span></td>
+<td class="border"><div class="text-editor-merge-field-container"><span class="text-editor-merge-field is-recipient" data-id="date" contenteditable="false"># date</span></span></td>
 </tr>
 <tr>
 <td></td>
@@ -162,7 +162,7 @@ export default class TextEditor {
         snippet = `<table class="table table-signature small right">
 <tbody>
 <tr>
-<td class="border"><span class="text-editor-merge-field-container"><span class="text-editor-merge-field is-signature" data-name="${id}" data-placeholder="Enter Initials" contenteditable="false">Enter Initials</span></span></td>
+<td class="border"><div class="signature-pad-link" data-id="${id}" data-placeholder="Enter Initials" contenteditable="false">Enter Initials</div></td>
 </tr>
 <tr>
 <td>Initials</td>
