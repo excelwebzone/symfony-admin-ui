@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Pager from './pager';
-import TextEditor from '../form_elements/text_editor';
 import toaster from '../../lib/utils/toaster';
 import axios from '../../lib/utils/axios_utils';
 
@@ -231,8 +230,8 @@ export default class ActivityList {
     const $textarea = $container.find('textarea');
     $textarea.trigger('keydown');
 
-    if ($textarea.hasClass('js-froala-editor')) {
-      new TextEditor($textarea);
+    if ($textarea.hasClass('js-text-editor')) {
+      $textarea.trigger('init-text-editor');
     }
   }
 
@@ -245,8 +244,8 @@ export default class ActivityList {
       .val($container.find('.activity-item-body').html())
       .trigger('keydown');
 
-    if ($textarea.hasClass('js-froala-editor')) {
-      $textarea.froalaEditor('html.set', $textarea.val());
+    if ($textarea.hasClass('js-text-editor')) {
+      $textarea.trigger('update-text-editor');
     }
   }
 

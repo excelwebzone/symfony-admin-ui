@@ -4,13 +4,15 @@ import TypedProperty from './typed_property';
 import DropdownOptions from './dropdown_options';
 import FileUpload from './file_upload';
 import DateRangePicker from './date_range_picker';
-import TextEditor from './text_editor';
 import ScrollableTabs from './scrollable_tabs';
 import Rating from './rating';
 import EmberTable from '../components/ember_table';
 
 export function initFormElements(containerEl) {
   const $container = containerEl ? $(containerEl) : $('body');
+
+  // allow adding custom form elements
+  $(document).trigger('init-form-elements', [containerEl]);
 
   // init form related object
   new TypedProperty($container);
@@ -59,11 +61,6 @@ export function initFormElements(containerEl) {
   // init ember-table elements
   for (let element of $container.find('.js-ember-table')) {
     new EmberTable($(element));
-  }
-
-  // init froala-editor elements
-  for (let element of $container.find('.js-froala-editor')) {
-    new TextEditor($(element));
   }
 
   // init scrollable-tabs elements

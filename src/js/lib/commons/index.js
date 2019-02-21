@@ -1,7 +1,6 @@
 import 'underscore';
 import './jquery';
 import './bootstrap';
-import './froala_editor';
 import '../utils/axios_utils';
 
 // Polyfill: add compatible Object.entries support in older environments.
