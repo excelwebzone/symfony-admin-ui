@@ -12,7 +12,7 @@ export function initFormElements(containerEl) {
   const $container = containerEl ? $(containerEl) : $('body');
 
   // allow adding custom form elements
-  $(document).trigger('init-form-elements', [containerEl]);
+  $(document).trigger('init-form-elements', $container);
 
   // init form related object
   new TypedProperty($container);
