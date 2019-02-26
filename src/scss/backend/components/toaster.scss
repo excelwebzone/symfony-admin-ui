@@ -63,6 +63,12 @@
   -ms-transform: translatex(0);
   -webkit-transform: translatex(0);
   transform: translatex(0);
+
+  // override bootstrap
+  opacity: 1;
+  max-width: auto;
+  background-clip: none;
+  border: none;
 }
 
 .toast .button.button-toaster-button {
