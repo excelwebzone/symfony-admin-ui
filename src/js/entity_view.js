@@ -268,6 +268,7 @@ export default class EntityView {
 
       const $container = $target.closest('.entity-association-group').find('.js-entity-related-container');
       const $counter = $target.closest('.entity-association-group').find('.entity-association-group-title>span');
+      const $addRow = $target.closest('.entity-association-group').find('.entity-association-group-add-row');
 
       // remove row
       $target.closest('.entity-summary').remove();
@@ -276,7 +277,7 @@ export default class EntityView {
       const total = parseInt(0 + $counter.text()) - 1;
       $counter.text(total);
 
-      if (total === 0) {
+      if (total === 0 && (0 === $addRow.length || !$addRow.hasClass('is-active'))) {
         $container.find('.entity-association-group-empty-row').show();
       }
       if (total < 2) {
@@ -351,7 +352,10 @@ export default class EntityView {
 
     $button.toggleClass('is-active');
     $container.find('.entity-association-group-add-row').toggle();
-    $container.find('.entity-association-group-empty-row').toggle();
+
+    if (0 === $container.find('.js-entity-related-container .entity-summary').length) {
+      $container.find('.entity-association-group-empty-row').toggle();
+    }
 
     if ($button.hasClass('is-active') && !$container.hasClass('is-expanded')) {
       $container.find('.js-related-toggle-button').click();
@@ -368,8 +372,8 @@ export default class EntityView {
     const $counter = $target.closest('.entity-association-group').find('.entity-association-group-title>span');
     const $template = $($target.closest('.js-related-select-dropdown').data('template'));
 
-    // remove empty row
-    $container.find('.entity-association-group-empty-row').remove();
+    // hide empty row
+    $container.find('.entity-association-group-empty-row').hide();
 
     // increase total
     const total = parseInt(0 + $counter.text()) + 1;
