@@ -338,7 +338,7 @@ export default class EntityView {
     }
 
     const $target = $(e.currentTarget);
-    const $addButton = $target.find('.js-related-add');
+    const $addButton = $target.find('.js-related-add-row');
     if (!$target.hasClass('open') && $addButton.length && $addButton.hasClass('is-active')) {
       $addButton.click();
     }
@@ -347,14 +347,14 @@ export default class EntityView {
   showAddRelatedRow(e) {
     const $target = $(e.currentTarget);
     const $container = $target.closest('.entity-association-group');
-    const $button = $container.find('.quick-add-toggle.js-related-add');
+    const $button = $container.find('.quick-add-toggle.js-related-add-row');
 
     $button.toggleClass('is-active');
     $container.find('.entity-association-group-add-row').toggle();
     $container.find('.entity-association-group-empty-row').toggle();
 
     if ($button.hasClass('is-active') && !$container.hasClass('is-expanded')) {
-      $container.find('.js-related-toggle').click();
+      $container.find('.js-related-toggle-button').click();
     }
   }
 
@@ -366,7 +366,7 @@ export default class EntityView {
 
     const $container = $target.closest('.entity-association-group').find('.js-entity-related-container');
     const $counter = $target.closest('.entity-association-group').find('.entity-association-group-title>span');
-    const $template = $($target.closest('.js-related-select').data('template'));
+    const $template = $($target.closest('.js-related-select-dropdown').data('template'));
 
     // remove empty row
     $container.find('.entity-association-group-empty-row').remove();
@@ -377,5 +377,7 @@ export default class EntityView {
 
     $target.closest('.entity-association-group-add-row')
       .after(_.template($template.html())($target.data('json')));
+
+    $target.closest('.js-related-select-dropdown').trigger('dropdown:related-selected');
   }
 }
