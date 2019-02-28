@@ -55,8 +55,12 @@
   overflow-y: scroll;
 }
 
+.entity-association-group-add-row,
 .entity-association-group-empty-row {
   padding: 0 25px 10px;
+}
+
+.entity-association-group-empty-row {
   color: #ccc;
   cursor: pointer;
   font-size: 18px;
