@@ -19,7 +19,10 @@ export default class EntityView {
     $(document).on('click', '.js-complete-item', (e) => this.toggleComplete(e));
     $(document).on('modal:shown', '.js-delete-item', (e, modal) => this.deleteModal(e, modal));
     $(document).on('modal:shown', '.js-delete-related-item', (e, modal) => this.deleteRelatedModal(e, modal));
-    $(document).on('modal:shown', '.js-new-entity-related', (e, modal) => this.newEntityRealted(e, modal));
+    $(document).on('modal:shown', '.js-new-related-item', (e, modal) => this.newRelatedItem(e, modal));
+    $(document).on('click', '.js-related-toggle-button', (e) => this.toggleRelatedButton(e));
+    $(document).on('click', '.js-related-add-row', (e) => this.showAddRelatedRow(e));
+    $(document).on('click', '.js-related-select-dropdown .option-list-item:not(.option-list-item-action-button)', (e) => this.selectRelatedItem(e));
 
     $(window).on('resize.entityview', () => this.optimizeView());
     $('.profile-right,.profile-center').on('block:loaded', () => this.optimizeView());
@@ -289,7 +292,7 @@ export default class EntityView {
     });
   }
 
-  newEntityRealted(e, modal) {
+  newRelatedItem(e, modal) {
     const $target = $(e.currentTarget);
     const template = $target.data('template');
 
@@ -324,5 +327,55 @@ export default class EntityView {
         modifiedValues($drawer, field, value, $($target.data('container') || 'body'));
       }
     });
+  }
+
+  toggleRelatedButton(e)
+    if (e.target.tagName.toLowerCase() === 'a'
+      || $(e.target).hasClass('js-toggle-ignore')
+      || $(e.target).closest('.js-toggle-ignore').length
+    ) {
+      return;
+    }
+
+    const $target = $(e.currentTarget);
+    const $addButton = $target.find('.js-related-add');
+    if (!$target.hasClass('open') && $addButton.length && $addButton.hasClass('is-active')) {
+      $addButton.click();
+    }
+  }
+
+  showAddRelatedRow(e) {
+    const $target = $(e.currentTarget);
+    const $container = $target.closest('.entity-association-group');
+    const $button = $container.find('.quick-add-toggle.js-related-add');
+
+    $button.toggleClass('is-active');
+    $container.find('.entity-association-group-add-row').toggle();
+    $container.find('.entity-association-group-empty-row').toggle();
+
+    if ($button.hasClass('is-active') && !$container.hasClass('is-expanded')) {
+      $container.find('.js-related-toggle').click();
+    }
+  }
+
+  selectRelatedItem(e) {
+    const $target = $(e.currentTarget);
+    if (!$target.data('json')) {
+      return;
+    }
+
+    const $container = $target.closest('.entity-association-group').find('.js-entity-related-container');
+    const $counter = $target.closest('.entity-association-group').find('.entity-association-group-title>span');
+    const $template = $($target.closest('.js-related-select').data('template'));
+
+    // remove empty row
+    $container.find('.entity-association-group-empty-row').remove();
+
+    // increase total
+    const total = parseInt(0 + $counter.text()) + 1;
+    $counter.text(total);
+
+    $target.closest('.entity-association-group-add-row')
+      .after(_.template($template.html())($target.data('json')));
   }
 }
