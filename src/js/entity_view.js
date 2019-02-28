@@ -329,7 +329,7 @@ export default class EntityView {
     });
   }
 
-  toggleRelatedButton(e)
+  toggleRelatedButton(e) {
     if (e.target.tagName.toLowerCase() === 'a'
       || $(e.target).hasClass('js-toggle-ignore')
       || $(e.target).closest('.js-toggle-ignore').length
