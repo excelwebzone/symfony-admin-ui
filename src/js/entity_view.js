@@ -277,7 +277,7 @@ export default class EntityView {
       const total = parseInt(0 + $counter.text()) - 1;
       $counter.text(total);
 
-      if (total === 0 && (0 === $addRow.length || !$addRow.hasClass('is-active'))) {
+      if (total === 0 && ($addRow.length === 0 || !$addRow.hasClass('is-active'))) {
         $container.find('.entity-association-group-empty-row').show();
       }
       if (total < 2) {
@@ -353,7 +353,7 @@ export default class EntityView {
     $button.toggleClass('is-active');
     $container.find('.entity-association-group-add-row').toggle();
 
-    if (0 === $container.find('.js-entity-related-container .entity-summary').length) {
+    if ($container.find('.js-entity-related-container .entity-summary').length === 0) {
       $container.find('.entity-association-group-empty-row').toggle();
     }
 
