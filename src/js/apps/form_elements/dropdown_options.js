@@ -189,7 +189,7 @@ export default class DropdownOptions {
             continue;
           }
 
-          if (value) {
+          if (typeof value === 'string') {
             value = value.replace('&#39;', '\'');
           }
 
@@ -275,6 +275,8 @@ export default class DropdownOptions {
 
             $options.append(`<li class="option-list-item" data-value="${key}" data-json=\'${json}\'>${options}<span class="option-list-item-text">${value}</span></li>`);
           }
+
+          $dropdown.trigger('dropdown:autocomplete');
         });
 
       return;
