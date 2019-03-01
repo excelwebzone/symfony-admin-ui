@@ -316,7 +316,12 @@ export default class EntityView {
       $counter.text(total);
 
       if ($target.data('reset') || $target.data('unlimited') || total <= 2) {
-        $container.prepend(_.template($(template).html())(data));
+        const $addRow = $container.find('.entity-association-group-add-row');
+        if ($addRow.length) {
+          $addRow.after(_.template($(template).html())(data));
+        } else {
+          $container.prepend(_.template($(template).html())(data));
+        }
       }
       if (total === 2) {
         $container.find('.entity-association-group-footer-link').show();
