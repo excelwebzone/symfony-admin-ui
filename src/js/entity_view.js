@@ -72,6 +72,8 @@ export default class EntityView {
               modifiedValues($drawer, field, value, $($target.data('container') || 'body'));
             }
           }
+
+          $target.trigger('item:action');
         });
     };
 
@@ -113,6 +115,8 @@ export default class EntityView {
             modifiedValues($drawer, field, value, $($button.data('container') || 'body'));
           }
         }
+
+        $button.trigger('item:toggle');
       });
   }
 
@@ -127,6 +131,8 @@ export default class EntityView {
             $row.toggleClass('is-unread');
           }
         }
+
+        $button.trigger('item:unread');
       });
   }
 
@@ -160,6 +166,8 @@ export default class EntityView {
               .toggleClass('zmdi-star');
           }
         }
+
+        $button.trigger('item:follow');
       });
   }
 
@@ -208,6 +216,8 @@ export default class EntityView {
             $drawer.find('.js-complete-item').prop('checked', !$drawer.find('.js-complete-item').prop('checked'));
           }
         }
+
+        $button.trigger('item:complete');
       });
   }
 
