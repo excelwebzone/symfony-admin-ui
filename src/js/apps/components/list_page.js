@@ -48,14 +48,14 @@ export default class ListPage {
     const self = this;
 
     // run before append html
-    const preCallback = (data) => {
+    const preCallback = (viewer, data) => {
       if (data.page === 1) {
-        const $dropdownCount = this.$container.find('.dropdown-count');
+        const $dropdownCount = viewer.$container.find('.dropdown-count');
         if ($dropdownCount) {
           $dropdownCount.text(data.total);
         }
 
-        this.$table.trigger('data:loaded', data);
+        viewer.$table.trigger('data:loaded', data);
       }
 
       if (data.currency && self.odCurrencies) {
@@ -66,7 +66,7 @@ export default class ListPage {
     };
 
     // run after append html
-    const postCallback = (data) => {
+    const postCallback = (viewer, data) => {
       // auto select all new checkboxes when select-all is checked
       if (self.$selectAllCheckbox.is(':checked')) {
         self.$selectAllCheckbox.prop('checked', false);
@@ -75,15 +75,15 @@ export default class ListPage {
 
       // automatically open single result (ignore under for multi block)
       if (data.page === 1 && data.total === 1
-        && !this.$container.hasClass('js-ember-table-block')
-        && !this.$table.hasClass('activity-list')
+        && !viewer.$container.hasClass('js-ember-table-block')
+        && !viewer.$table.hasClass('activity-list')
       ) {
-        this.$table.find('.ember-table-body-container .ember-table-left-table-block>div .js-entity-drawer:eq(0)').click();
+        viewer.$table.find('.ember-table-body-container .ember-table-left-table-block>div .js-entity-drawer:eq(0)').click();
       }
     };
 
     // run before reseting html
-    const preFilterLoad = (data) => {
+    const preFilterLoad = (viewer, data) => {
       if (self.odCurrency) {
         self.odCurrency.update(0);
       }

@@ -79,7 +79,7 @@ export default class DataViewer {
   createPager() {
     const callback = (data) => {
       if (typeof this.preCallback === 'function') {
-        this.preCallback.bind(this)(data);
+        this.preCallback(this, data);
       }
 
       if (this.$table.hasClass('activity-list')) {
@@ -105,7 +105,7 @@ export default class DataViewer {
       }
 
       if (typeof this.postCallback === 'function') {
-        this.postCallback.bind(this)(data);
+        this.postCallback(this, data);
       }
     };
 
@@ -134,7 +134,7 @@ export default class DataViewer {
     }
 
     if (typeof this.resetData === 'function') {
-      this.preFilterLoad.bind(this)();
+      this.preFilterLoad(this);
     }
 
     // reset data
