@@ -55,9 +55,7 @@ export default class ListPage {
           $dropdownCount.text(data.total);
         }
 
-        if (this.$container.data('trigger')) {
-          this.$container.trigger(this.$container.data('trigger'), data);
-        }
+        this.$table.trigger('data:loaded', data);
       }
 
       if (data.currency && self.odCurrencies) {
