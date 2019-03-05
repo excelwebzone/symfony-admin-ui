@@ -83,7 +83,7 @@ export default class ListPage {
     };
 
     // run before reseting html
-    const preFilterLoad = (viewer, data) => {
+    const preFilterLoad = (viewer) => {
       if (self.odCurrency) {
         self.odCurrency.update(0);
       }

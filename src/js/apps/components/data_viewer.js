@@ -14,6 +14,7 @@ export default class DataViewer {
     this.postCallback = config.postCallback;
     this.preFilterLoad = config.preFilterLoad;
     this.postFilterLoad = config.postFilterLoad;
+    this.setFilterParams = config.setFilterParams;
 
     // load current filter
     this.filter.loadActiveFilter();
@@ -133,7 +134,7 @@ export default class DataViewer {
       return;
     }
 
-    if (typeof this.resetData === 'function') {
+    if (typeof this.preFilterLoad === 'function') {
       this.preFilterLoad(this);
     }
 
@@ -145,9 +146,12 @@ export default class DataViewer {
       this.$table.find('.ember-table-body-container .ember-table-right-table-block>div').html('');
     }
 
-    const params = {
-      filters: filters
-    };
+    let params = {};
+    if (typeof this.setFilterParams === 'function') {
+      params = Object.assign(params, this.setFilterParams(this) || {});
+    }
+
+    params.filters = filters;
     if (this.sortColumn) {
       params.sort = this.sortColumn;
     }
@@ -166,7 +170,7 @@ export default class DataViewer {
     }
 
     if (typeof this.postFilterLoad === 'function') {
-      this.postFilterLoad.bind(this)(filters);
+      this.postFilterLoad(this, filters);
     }
 
     if (this.$table.data('trigger')) {
