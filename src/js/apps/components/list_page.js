@@ -54,8 +54,6 @@ export default class ListPage {
         if ($dropdownCount) {
           $dropdownCount.text(data.total);
         }
-
-        viewer.$table.trigger('data:loaded', data);
       }
 
       if (data.currency && self.odCurrencies) {
@@ -63,6 +61,8 @@ export default class ListPage {
           self.odCurrencies[key].update(value || 0);
         }
       }
+
+      viewer.$table.trigger('data:received', data);
     };
 
     // run after append html
@@ -80,6 +80,8 @@ export default class ListPage {
       ) {
         viewer.$table.find('.ember-table-body-container .ember-table-left-table-block>div .js-entity-drawer:eq(0)').click();
       }
+
+      viewer.$table.trigger('data:loaded', data);
     };
 
     // run before reseting html
