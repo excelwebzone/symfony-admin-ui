@@ -135,6 +135,8 @@ export default class ActivityList {
           $(label).html('').parent('.is-labeled').removeClass('is-labeled');
         }
       }
+
+      $list.trigger('data:loaded', data);
     };
 
     const pager = new Pager($container, null, $('.activity-list-loading-row'), false, callback);
