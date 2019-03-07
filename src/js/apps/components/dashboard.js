@@ -63,6 +63,7 @@ export default class Dashboard {
     const $loading = $report.find('.chart-loading-overlay');
     const $total = $report.find('.dashboard-report-data-value');
 
+    $chart.html('');
     $loading.show();
 
     // @tmp
