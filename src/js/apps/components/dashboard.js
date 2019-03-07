@@ -52,7 +52,7 @@ export default class Dashboard {
 
     // update filter
     const $chart = $target.closest('.card').find('.chart-container-chart');
-    $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22%3A%22(.+)%22`), `%22${$chart.data('date-field')}%22%3A%22${$target.data('value')}%22`));
+    $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22(.+)%22`), `%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22${$target.data('value')}%22`));
 
     // reload chart
     this.loadChart($target.closest('.card').find('.dashboard-report'));
