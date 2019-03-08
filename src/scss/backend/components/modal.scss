@@ -339,7 +339,7 @@
 }
 
 .modal-tabs .modal-body>.scrollable-tabs {
-  position: fixed;
+  position: absolute;
   width: calc(100% - 2px);
   z-index: 10;
 }
