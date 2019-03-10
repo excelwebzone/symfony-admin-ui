@@ -56,9 +56,9 @@ export default class EntityDrawer {
       id: $target.data('id'),
       title: $target.data('title'),
       subtitle: $target.data('subtitle'),
-      photoFile: $target.data('photo-file'),
       initials: $target.data('initials'),
       icon: $target.data('icon'),
+      photo: $target.data('photo'),
       isFollow: $target.data('is-follow') || false,
       isComplete: $target.data('is-complete') || false
     }));
