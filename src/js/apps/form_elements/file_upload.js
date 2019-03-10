@@ -78,7 +78,7 @@ export default class FileUpload {
             if (self.$selector.data('update-ember-table-avatar')) {
               const $row = $(`.js-entity-drawer[data-id="${self.$selector.data('id')}"]`);
               if ($row) {
-                $row.data('photo-file', json.filename);
+                $row.data('photo', json.filename);
                 $row.find('.table-cell-avatar').html(`<div class="profile-image-component profile-image-component-circle is-photo-loaded"><div class="profile-image-component-image"><img src="${json.filename}"></div></div>`);
               }
             }
