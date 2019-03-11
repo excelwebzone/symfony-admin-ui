@@ -350,9 +350,14 @@
 .ember-table-body-container .antiscroll-box {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.ember-table-body-container .antiscroll-box:hover {
   overflow: scroll;
 }
 
+// use built-in scrollbar
 .ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-horizontal,
 .ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-vertical {
   display: none !important;
