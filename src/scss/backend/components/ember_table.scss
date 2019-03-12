@@ -350,17 +350,22 @@
 .ember-table-body-container .antiscroll-box {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-}
-
-.ember-table-body-container .antiscroll-box:hover {
   overflow: scroll;
+  -ms-overflow-style: none;  // IE 10+
+  overflow: -moz-scrollbars-none;  // Firefox
+  scrollbar-width: none; // Firefox
 }
 
-// use built-in scrollbar
-.ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-horizontal,
-.ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-vertical {
-  display: none !important;
+.ember-table-body-container .antiscroll-box::-webkit-scrollbar {
+  display: none; // Safari and Chrome
+}
+
+.ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-horizontal {
+  height: 13px;
+}
+
+.ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-horizontal+.antiscroll-scrollbar-horizontal {
+  display: none;
 }
 
 .ember-table-body-container .ember-table-left-table-block {
