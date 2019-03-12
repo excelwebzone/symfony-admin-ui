@@ -21,7 +21,7 @@ export const dateRanges = {
 };
 
 export function getDateRange(key) {
-  const label = key.replace('_', ' ').toLowerCase().replace(/^(.)|\s(.)/g, ($1) => $1.toUpperCase());
+  const label = key.replace(/_/g, ' ').toLowerCase().replace(/^(.)|\s(.)/g, ($1) => $1.toUpperCase());
   return dateRanges[label];
 }
 
