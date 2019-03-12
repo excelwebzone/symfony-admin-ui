@@ -1126,25 +1126,21 @@ label .invalid-feedback {
 
 .range-select-date-range .filter-calendar-button-panel {
   margin: 5px;
-  width: 162px;
+  width: 240px;
   position: relative;
 }
 
 .range-select-date-range .filter-calendar-button-panel ul {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   justify-content: space-between;
-  height: 238px;
+  height: 220px;
 }
 
 .range-select-date-range .filter-calendar-button-panel ul>li {
   display: flex;
   flex: none;
-  margin-bottom: 4px;
-}
-
-.range-select-date-range .filter-calendar-button-panel ul>li:last-child {
-  margin-bottom: 0;
+  margin: 0 4px;
 }
 
 .range-select-date-range .filter-calendar-button-panel .button {
