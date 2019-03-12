@@ -6,13 +6,13 @@ import bp from '../../breakpoints';
 
 export const dateRanges = {
   'Today': [moment(), moment(), 'is the current day.'],
-  'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days'), 'is the previous day.'],
   'This Week': [moment().startOf('week').add(1, 'day'), moment().endOf('week').add(1, 'day'), 'is within the current week.'],
   'Last Week': [moment().subtract(1, 'weeks').startOf('week').add(1, 'day'), moment().subtract(1, 'weeks').endOf('week').add(1, 'day'), 'was in the previous week.'],
   'This Month': [moment().startOf('month'), moment().endOf('month'), 'is within the current month.'],
   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month'), 'was in the previous month.'],
   'This Year': [moment().startOf('year'), moment().endOf('year'), 'is within the current year.'],
   'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year'), 'was in the previous year.'],
+  'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days'), 'is the previous day.'],
   'Last 7 Days': [moment().subtract(7, 'days'), moment().subtract(1, 'days'), 'is the previous 7 days.'],
   'Last 30 Days': [moment().subtract(30, 'days'), moment().subtract(1, 'days'), 'is the previous 30 days.'],
   'Last 60 Days': [moment().subtract(60, 'days'), moment().subtract(1, 'days'), 'is the previous 60 days.'],
@@ -94,7 +94,7 @@ export function initDateRangePicker(pickerEl) {
       $picker.find('.filter-range-label>a').html(start.format('YYYY-MM-DD'));
     }
 
-    $unitDate.val(label.replace(' ', '_').toLowerCase());
+    $unitDate.val(label.replace(/\s/g, '_').toLowerCase());
     $startDate.val(foundLabel ? '' : start.format('YYYY-MM-DD'));
     $endDate.val(foundLabel ? '' : end.format('YYYY-MM-DD')).trigger('change');
   };
