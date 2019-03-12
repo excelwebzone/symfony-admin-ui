@@ -13,11 +13,11 @@ export const dateRanges = {
   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month'), 'was in the previous month.'],
   'This Year': [moment().startOf('year'), moment().endOf('year'), 'is within the current year.'],
   'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year'), 'was in the previous year.'],
-  'Last 7': [moment().subtract(7, 'days'), moment().subtract(1, 'days'), 'is the previous 7 days.'],
-  'Last 30': [moment().subtract(30, 'days'), moment().subtract(1, 'days'), 'is the previous 30 days.'],
-  'Last 60': [moment().subtract(60, 'days'), moment().subtract(1, 'days'), 'is the previous 60 days.'],
-  'Last 90': [moment().subtract(90, 'days'), moment().subtract(1, 'days'), 'is the previous 90 days.'],
-  'Last 180': [moment().subtract(180, 'days'), moment().subtract(1, 'days'), 'is the previous 180 days.']
+  'Last 7 Days': [moment().subtract(7, 'days'), moment().subtract(1, 'days'), 'is the previous 7 days.'],
+  'Last 30 Days': [moment().subtract(30, 'days'), moment().subtract(1, 'days'), 'is the previous 30 days.'],
+  'Last 60 Days': [moment().subtract(60, 'days'), moment().subtract(1, 'days'), 'is the previous 60 days.'],
+  'Last 90 Days': [moment().subtract(90, 'days'), moment().subtract(1, 'days'), 'is the previous 90 days.'],
+  'Last 180 Days': [moment().subtract(180, 'days'), moment().subtract(1, 'days'), 'is the previous 180 days.']
 };
 
 export function getDateRange(key) {
