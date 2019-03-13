@@ -171,6 +171,12 @@ export default class DropdownOptions {
         $select.val($(this).data('value'));
         $select.trigger('change');
       }
+
+      const $input = $dropdown.find('input[type=hidden]');
+      if ($input) {
+        $input.val($(this).data('value'));
+        $input.trigger('change');
+      }
     }
 
     if ($dropdown.hasClass('js-autocomplete-dropdown')) {
@@ -229,6 +235,12 @@ export default class DropdownOptions {
       if ($select) {
         $select.val('');
         $select.trigger('change');
+      }
+
+      const $input = $dropdown.find('input[type=hidden]');
+      if ($input) {
+        $input.val('');
+        $input.trigger('change');
       }
     }
 
