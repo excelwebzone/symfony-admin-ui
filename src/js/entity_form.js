@@ -288,15 +288,23 @@ export default class EntityForm {
           }
 
           // update string for textarea or input fields
-          if (($element.is('textarea') || $element.is('input')) && data.updatedValue) {
-            if ($element.is('input') && $element.prop('type') === 'color') {
-              data.updatedValue = `#${data.updatedValue}`;
-            }
+          if (($element.is('textarea') || $element.is('input')) && data.fields) {
+            for (let [field, value] of Object.entries(data.fields)) {
+              if ($element.prop('name').indexOf(`[${field}]`) > -1
+                || $element.prop('name') === field
+              ) {
+                if ($element.is('input') && $element.prop('type') === 'color') {
+                  value = `#${data.updatedValue}`;
+                }
 
-            $element.val(data.updatedValue);
+                $element.val(value);
+
+                break;
+              }
+            }
           }
 
-          // update other location field is found (on-the-fly)
+          // update other location the field is found (on-the-fly)
           if ($form.prop('name')) {
             let $found;
             for (let e of $element) {
