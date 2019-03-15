@@ -364,7 +364,7 @@
   height: 13px;
 }
 
-.ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-horizontal+.antiscroll-scrollbar-horizontal {
+.ember-table-body-container.antiscroll-wrap .antiscroll-scrollbar-horizontal:not(:first-child) {
   display: none;
 }
 
