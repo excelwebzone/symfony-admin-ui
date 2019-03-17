@@ -281,7 +281,9 @@ export default class DropdownOptions {
                 }
                 delete value.extra;
               }
-              json = JSON.stringify(value.data).replace('\'', '&#39;');
+              if (value.data) {
+                json = JSON.stringify(value.data).replace('\'', '&#39;');
+              }
               value = value.label;
             }
 
