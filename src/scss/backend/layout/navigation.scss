@@ -37,6 +37,16 @@
   background: #f5f5f5;
 }
 
+.navigation-item.has-icon {
+  padding: 16px 20px;
+}
+
+.navigation-item .zmdi {
+  width: 30px;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
 .navigation-item.is-active.navigation-item-secondary {
   background: none;
   font-weight: 500;
@@ -103,12 +113,12 @@
 }
 
 @media (min-width: 768px) {
-  .navigation-tier-one>-item.navigation:hover,
-  .navigation-tier-one>-item.navigation:focus,
-  .navigation-tier-one>-item.navigation.is-active,
-  .navigation-has-secondary.is-active>-item.navigation,
-  .navigation-has-secondary:hover>-item.navigation,
-  .navigation-has-secondary:focus>-item.navigation {
+  .navigation-tier-one>.navigation-item:hover,
+  .navigation-tier-one>.navigation-item:focus,
+  .navigation-tier-one>.navigation-item.is-active,
+  .navigation-has-secondary.is-active>.navigation-item,
+  .navigation-has-secondary:hover>.navigation-item,
+  .navigation-has-secondary:focus>.navigation-item {
     background-color: transparent;
     margin: 0;
   }
@@ -270,6 +280,15 @@
   .navigation-tier-two-inner .navigation-item:focus,
   .navigation-tier-two-inner .navigation-item.is-active {
     background-color: #f5f5f5;
+  }
+
+  .navigation-tier-two-inner .navigation-item.has-icon {
+    padding: 11px 25px;
+  }
+
+  .navigation-tier-two-inner .navigation-products-item .navigation-item.is-active,
+  .navigation-tier-two-inner .navigation-products-item .navigation-item:hover {
+    background: #e0e0e0;
   }
 
   .navigation-products-categories {
