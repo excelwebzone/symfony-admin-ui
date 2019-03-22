@@ -230,11 +230,13 @@
   .navigation-products-categories,
   .navigation-subnav {
     overflow: hidden;
+    overflow-y: scroll;
     padding-bottom: 20px;
     padding-top: 20px;
     position: relative;
     transition: width .2s ease-in-out,padding .2s ease-in-out;
     width: 230px;
+    max-height: 400px;
   }
 
   .navigation-products-categories::after,
@@ -348,6 +350,7 @@
     bottom: 0;
     left: 230px;
     overflow: hidden;
+    overflow-y: scroll;
     padding: 20px 0;
     position: absolute;
     top: 0;
