@@ -107,7 +107,7 @@
 
   .navigation-main-wrapper {
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-bottom: 180px;
   }
 }
@@ -230,7 +230,7 @@
   .navigation-products-categories,
   .navigation-subnav {
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-bottom: 20px;
     padding-top: 20px;
     position: relative;
@@ -350,7 +350,7 @@
     bottom: 0;
     left: 230px;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 20px 0;
     position: absolute;
     top: 0;
