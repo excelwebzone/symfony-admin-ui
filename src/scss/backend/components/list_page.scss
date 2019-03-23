@@ -8,14 +8,14 @@
   padding-top: 48px;
 }
 
-.report-list-page .navigation-main {
+.list-page-container .navigation-main {
   top: 0;
   visibility: visible;
   z-index: 1;
 }
 
 @media (max-width: 767.98px) {
-  .report-list-page .navigation-main {
+  .list-page-container .navigation-main {
     display: none;
   }
 }
