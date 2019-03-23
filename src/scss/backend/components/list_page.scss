@@ -15,6 +15,10 @@
 }
 
 @media (max-width: 767.98px) {
+  .list-page-container.has-navigation {
+    padding-top: 0;
+  }
+
   .list-page-container .navigation-main {
     display: none;
   }
