@@ -37,7 +37,7 @@ export function initTagsPicker(pickerEl) {
   };
 
   let bootstrapBreakpoint = bp.getBreakpointSize();
-  if (bootstrapBreakpoint === 'xs') {
+  if (['xs', 'sm'].indexOf(bootstrapBreakpoint) !== -1) {
     options.parentEl = $picker.closest('.filter-range');
   }
 
@@ -75,7 +75,7 @@ export function initDateRangePicker(pickerEl) {
   };
 
   let bootstrapBreakpoint = bp.getBreakpointSize();
-  if (bootstrapBreakpoint === 'xs') {
+  if (['xs', 'sm'].indexOf(bootstrapBreakpoint) !== -1) {
     options.parentEl = $picker.closest('.filter-range');
   }
 
@@ -144,7 +144,7 @@ function repositionRangeSelect(picker, elementEl) {
   const frameRect = $parentEl.closest('.filter-options-content')[0].getBoundingClientRect();
 
   let bootstrapBreakpoint = bp.getBreakpointSize();
-  if (bootstrapBreakpoint === 'xs') {
+  if (['xs', 'sm'].indexOf(bootstrapBreakpoint) !== -1) {
     $container
       .removeClass('has-nub')
       .css({

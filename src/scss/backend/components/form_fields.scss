@@ -1143,6 +1143,21 @@ label .invalid-feedback {
   margin: 0 4px;
 }
 
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .range-select-date-range .filter-calendar-button-panel {
+    width: 120px;
+  }
+
+  .range-select-date-range .filter-calendar-button-panel ul {
+    flex-flow: column;
+    overflow-y: auto;
+  }
+
+  .range-select-date-range .filter-calendar-button-panel ul>li {
+    margin: 4px;
+  }
+}
+
 .range-select-date-range .filter-calendar-button-panel .button {
   height: 28px;
   font-size: 11px;
@@ -1212,7 +1227,7 @@ label .invalid-feedback {
   display: block;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .range-select-container {
     position: relative;
   }
