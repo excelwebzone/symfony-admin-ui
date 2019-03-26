@@ -296,14 +296,16 @@ export default class DropdownOptions {
       return;
     }
 
+    const ignore = $dropdown.hasClass('js-select-dropdown-multiple')
+      ? ':not(.is-selected)'
+      : '';
+
     $options.find('.option-list-label-empty').remove();
-    $options.find('li').show();
-    $options.find('li:not(:filter("' + this.value + '"))').hide();
+    $options.find(`li${ignore}`).show();
+    $options.find(`li${ignore}:not(:filter("${this.value}"))`).hide();
 
     if ($options.find('li:visible').length === 0) {
       $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Options Found</div></li>');
-    } else {
-      $options.find('li:visible:first-child').addClass('is-highlighted');
     }
   }
 
@@ -315,6 +317,7 @@ export default class DropdownOptions {
       $dropdown
         .find('.option-list-item[data-value="' + $(this).data('value') + '"]')
         .removeClass('is-selected')
+        .removeClass('is-highlighted')
         .show();
 
       const $select = $dropdown.find('select');
