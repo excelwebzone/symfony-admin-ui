@@ -16,11 +16,11 @@ const SEARCH_LOADING = `
   </div>
 `;
 
-const SEARCH_EMPTY = `
+const SEARCH_EMPTY = (message) => `
   <div class="global-search-typeahead-empty-state">
     <div class="global-search-typeahead-empty-state-title pb-1">No Results Found</div>
     <p class="global-search-typeahead-empty-state-text pb-0">
-      Try narrowing your search by using the filters on the stones page.
+      ${message}
     </p>
   </div>
 `;
@@ -99,9 +99,12 @@ class Search {
         this.$options.html('');
 
         if (data.count === 0) {
-          this.$options.html(SEARCH_EMPTY);
+          this.$options.html(SEARCH_EMPTY(this.$container.data('empty')));
         } else {
-          this.$options.append(SEARCH_RESULT(this.$inputField.val(), this.$container.data('redirect')));
+          if (this.$container.data('redirect')) {
+            this.$options.append(SEARCH_RESULT(this.$inputField.val(), this.$container.data('redirect')));
+          }
+
           this.$options.find('.option-list>ul').append(data.html);
         }
       });
