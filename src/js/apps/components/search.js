@@ -90,9 +90,7 @@ class Search {
 
     axios.get(this.$container.data('endpoint'), {
       params: {
-        filters: {
-          search: this.$inputField.val()
-        }
+        search: this.$inputField.val()
       }
     })
       .then(({ data }) => {
