@@ -25,21 +25,23 @@ const SEARCH_EMPTY = (message) => `
   </div>
 `;
 
-const SEARCH_RESULT = (keyword, redirect) => `
+const SEARCH_RESULT = `
   <div class="option-list">
-    <ul>
-      <li class="option-list-item option-list-item-detailed" onclick="location.href='${redirect.replace('__KEYWORD__', keyword)}'">
-        <div class="profile-image-component option-list-item-profile-image is-empty" style="background-color:transparent;color:#888">
-          <div class="profile-image-component-icon">
-            <i class="zmdi zmdi-search"></i>
-          </div>
-        </div>
-        <div class="option-list-item-title" style="padding-top:8px" >
-          See all results for "${keyword}"
-        </div>
-      </li>
-    </ul>
+    <ul></ul>
   </div>
+`;
+
+const SEARCH_SEE_ALL = (keyword, redirect) => `
+  <li class="option-list-item option-list-item-detailed" onclick="location.href='${redirect.replace('__KEYWORD__', keyword)}'">
+    <div class="profile-image-component option-list-item-profile-image is-empty bg-transparent text-muted">
+      <div class="profile-image-component-icon">
+        <i class="zmdi zmdi-search"></i>
+      </div>
+    </div>
+    <div class="option-list-item-title" style="padding-top:8px" >
+      See all results for "${keyword}"
+    </div>
+  </li>
 `;
 
 class Search {
@@ -77,16 +79,22 @@ class Search {
 
   getData() {
     this.reset();
-    if (this.$inputField.val().length === 0) {
-      return;
-    }
 
     this.$container
       .removeClass('is-empty')
       .addClass('is-expanded');
 
-    this.$container.find('.typeahead-header').append(SEARCH_HINT);
     this.$options.html(SEARCH_LOADING);
+
+    if (this.$inputField.val().length === 0) {
+      setTimeout(() => {
+        this.$options.html(SEARCH_EMPTY(this.$container.data('empty')));
+      }, 600);
+
+      return;
+    }
+
+    this.$container.find('.typeahead-header').append(SEARCH_HINT);
 
     axios.get(this.$container.data('endpoint'), {
       params: {
@@ -99,8 +107,10 @@ class Search {
         if (data.count === 0) {
           this.$options.html(SEARCH_EMPTY(this.$container.data('empty')));
         } else {
+          this.$options.append(SEARCH_RESULT);
+
           if (this.$container.data('redirect')) {
-            this.$options.append(SEARCH_RESULT(this.$inputField.val(), this.$container.data('redirect')));
+            this.$options.find('.option-list>ul').append(SEARCH_SEE_ALL(this.$inputField.val(), this.$container.data('redirect')));
           }
 
           this.$options.find('.option-list>ul').append(data.html);
