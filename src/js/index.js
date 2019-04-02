@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize popovers
   $body.popover({
     selector: '[data-toggle="popover"]',
-    trigger: 'hover focus',
     // set the viewport to the main content, excluding the navigation bar, so
     // the navigation can't overlap the popover
     viewport: '.application-content'
