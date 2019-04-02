@@ -7,6 +7,7 @@ import './lib/behaviors/';
 // everything else
 import bp from './breakpoints';
 import initLayoutNav from './layout_nav';
+import { mouseenter, debouncedMouseleave, togglePopover } from './lib/utils/popover';
 
 document.addEventListener('beforeunload', () => {
   // Unbind scroll events
@@ -56,13 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
   $('[data-toggle="dropdown"]').dropdown();
 
   // Initialize popovers
-  $body.popover({
-    selector: '[data-toggle="popover"]',
-    trigger: 'focus',
-    // set the viewport to the main content, excluding the navigation bar, so
-    // the navigation can't overlap the popover
-    viewport: '.application-content'
-  });
+  $body
+    .popover({
+      selector: '[data-toggle="popover"]',
+      trigger: 'focus',
+      // set the viewport to the main content, excluding the navigation bar, so
+      // the navigation can't overlap the popover
+      viewport: '.application-content'
+    })
+    .on('mouseenter', '.js-popover-link', mouseenter)
+    .on('mouseleave', '.js-popover-link', debouncedMouseleave())
+    .on('show.bs.popover', (e) => {
+      const $popover = $(e.target);
+      if ($popover && $popover.hasClass('js-popover-link')) {
+        const hideOnScroll = togglePopover.bind($popover, false);
+
+        window.addEventListener('scroll', hideOnScroll, { once: true });
+      }
+    });
 
   // Disable form buttons while a form is submitting
   $body.on('ajax:complete, ajax:beforeSend, submit', 'form', function ajaxCompleteCallback(e) {
