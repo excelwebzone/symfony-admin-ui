@@ -77,11 +77,23 @@ export default class Dashboard {
 
         if ($total.length) {
           for (let total of $total) {
-            let format = '0,0a';
-            if ($(total).data('money')) format = '$0,0a';
-            if ($(total).data('percent')) format = '0,0a%';
+            const $total = $(total);
+            const value = data.total[$total.data('name')];
 
-            $(total).html(numeral(data.total[$(total).data('name')]).format(format));
+            let format = '0,0a';
+            if ($total.data('money')) format = '$0,0a';
+            if ($total.data('percent')) format = '0,0a%';
+
+            let html = numeral(value).format(format);
+            if ($total.data('color')) {
+              if (value > 0) {
+                html = `<span class="text-success">+${html}</span>`;
+              } else if (value < 0) {
+                html = `<span class="text-danger">${html}</span>`;
+              }
+            }
+
+            $total.html(html);
           }
         }
 
