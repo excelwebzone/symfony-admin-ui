@@ -20,7 +20,18 @@ export default class Dashboard {
   }
 
   bindEvents() {
+    $(document).on('block:loaded', '.js-report-block', (e) => this.initBlock(e));
     $(document).on('click', '.js-report-date-range-dropdown .option-list-item', (e) => this.selectDateRange(e));
+  }
+
+  initBlock(e) {
+    const $block = $(e.currentTarget);
+
+    // load reports in block
+    const $reports = $block.find('.dashboard-report');
+    for (let report of $reports) {
+      this.loadChart($(report));
+    }
   }
 
   selectDateRange(e) {
