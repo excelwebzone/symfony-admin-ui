@@ -55,24 +55,53 @@ export default class Dashboard {
       end = end.add(1, 'day');
     }
 
-    $target.closest('.card').find('.card-subheader').html(`
+    const $card = $target.closest('.card');
+    if ($card.length) {
+      $card.find('.card-subheader').html(this.getDateRangeTitle(start, end));
+
+      this.updateChartEndpoint($card.find('.chart-container-chart'), $target.data('value'));
+      this.loadChart($card.find('.dashboard-report'));
+    }
+
+    const $reportFilter = $target.closest('.report-filter');
+    if ($reportFilter.length) {
+      $reportFilter.find('.report-filter-current-date').html(this.getDateRangeTitle(start, end));
+
+      for (let report of $reportFilter.next('.report-container').find('.dashboard-report')) {
+        this.updateChartEndpoint($(report).find('.chart-container-chart'), $target.data('value'));
+        this.loadChart($(report));
+      }
+    }
+  }
+
+  getDateRangeTitle(start, end) {
+    return `
       <time datetime="${start.format('MM/DD/YYYY\THH:mm:ss.000\Z')}" title="${start.format('MMM DD, YYYY at HH:mm A')}">${start.format('MMM DD, YYYY')}</time>
       –
       <time datetime="${end.format('MM/DD/YYYY\THH:mm:ss.000\Z')}" title="${end.format('MMM DD, YYYY at HH:mm A')}">${end.format('MMM DD, YYYY')}</time>
-    `);
+    `;
+  }
 
-    // update filter
-    const $chart = $target.closest('.card').find('.chart-container-chart');
-    $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22(.+)%22`), `%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22${$target.data('value')}%22`));
-
-    // reload chart
-    this.loadChart($target.closest('.card').find('.dashboard-report'));
+  updateChartEndpoint($chart, unit) {
+    $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22(.+)%22`), `%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22${unit}%22`));
   }
 
   loadChart($report) {
     const $chart = $report.find('.chart-container-chart');
     const $loading = $report.find('.chart-loading-overlay');
     const $total = $report.find('.dashboard-report-data-value');
+
+    if ($total.length) {
+      for (let total of $total) {
+        const $total = $(total);
+
+        let format = '0,0a';
+        if ($total.data('money')) format = '$0,0a';
+        if ($total.data('percent')) format = '0,0a%';
+
+        $total.html(numeral(0).format(format));
+      }
+    }
 
     $chart.html('');
     $loading.show();
