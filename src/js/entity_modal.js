@@ -53,6 +53,7 @@ export default class EntityModal {
 
   loadContent(html) {
     this.$modal.find('.modal-content').html(html);
+    this.$modal.find('[autofocus]').focus();
 
     if (this.$modal.find('.modal-form').data('size-large')) {
       this.$modal.find('.modal-dialog').addClass('modal-lg');
