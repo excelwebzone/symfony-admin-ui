@@ -54,7 +54,7 @@ export default class Pager {
     if (data.count === 0 || data.count === data.total) {
       this.disable = true;
 
-      if (this.page === 1) {
+      if (data.count === 0 && this.page === 1) {
         this.$empty.show();
       }
 
