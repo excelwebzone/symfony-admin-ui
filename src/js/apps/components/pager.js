@@ -38,7 +38,7 @@ export default class Pager {
       })
     })
       .then(({ data }) => {
-        this.append(data.count);
+        this.append(data);
         this.callback(data);
 
         // keep loading until we've filled the viewport height
@@ -50,8 +50,8 @@ export default class Pager {
       }).catch(() => this.$loading.hide());
   }
 
-  append(count) {
-    if (count === 0) {
+  append(data) {
+    if (data.count === 0 || data.count === data.total) {
       this.disable = true;
 
       if (this.page === 1) {
