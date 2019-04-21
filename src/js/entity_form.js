@@ -288,18 +288,37 @@ export default class EntityForm {
           }
 
           // update string for textarea or input fields
-          if (($element.is('textarea') || $element.is('input')) && data.fields) {
-            for (let [field, value] of Object.entries(data.fields)) {
-              if ($element.prop('name').indexOf(`[${field}]`) > -1
-                || $element.prop('name') === field
-              ) {
-                if ($element.is('input') && $element.prop('type') === 'color') {
-                  value = `#${data.updatedValue}`;
+          for (let e of $element) {
+            const $e = $(e);
+            if (($e.is('textarea') || $e.is('input')) && data.fields) {
+              for (let [field, value] of Object.entries(data.fields)) {
+                const name = $e.prop('name');
+                if (name.indexOf(`[${field}]`) > -1 || name === field) {
+                  if ($element.prop('type') === 'color') {
+                    value = `#${data.updatedValue}`;
+                  }
+
+                  if ('object' === typeof value) {
+                    const regex = /([\w_]+)(\[([\w\d_]+)\])(\[([\w\d_]+)\])(\[([\w\d_]+)\])?/;
+                    const m = regex.exec(name);
+
+                    // invalid pattern
+                    if (m === null) {
+                      break;
+                    }
+
+                    // The result can be accessed through the `m`-variable.
+                    m.forEach((match, groupIndex) => {
+                      if (groupIndex > 0 && match && m[groupIndex-1] === `[${match}]` && match !== field) {
+                       value = value[match];
+                      }
+                    });
+                  }
+
+                  $element.val(value);
+
+                  break;
                 }
-
-                $element.val(value);
-
-                break;
               }
             }
           }
