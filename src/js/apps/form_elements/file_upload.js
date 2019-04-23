@@ -117,7 +117,7 @@ export default class FileUpload {
 
     options.url = self.$selector.data('endpoint');
     options.maxFiles = self.$selector.data('max-files') || 1;
-    options.maxFilesize = self.$selector.data('max-filesize') || 1;
+    options.maxFilesize = self.$selector.data('max-filesize') || 5;
 
     if (self.$selector.data('accepted-files')) {
       options.acceptedFiles = self.$selector.data('accepted-files');
