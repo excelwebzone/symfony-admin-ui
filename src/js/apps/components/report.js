@@ -121,7 +121,9 @@ export default class Report {
       params.sort = this.dataViewer.getSortColumn();
     }
 
-    axios.post($(e.currentTarget).data('endpoint'), params)
+    axios.get($(e.currentTarget).data('endpoint'), {
+      params: params
+    })
       .then(({ data }) => {
         if (data.message) {
           toaster(data.message, 'default', data.actionConfig);
