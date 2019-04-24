@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import numeral from 'numeral';
 import axios from '../../lib/utils/axios_utils';
+import toaster from '../../lib/utils/toaster';
 import DataViewer from './data_viewer';
 
 export default class Report {
@@ -22,10 +23,29 @@ export default class Report {
 
   bindEvents() {
     this.$container.on('click', 'input[name=groupingType]', () => this.dataViewer.filterData());
+    this.$container.on('click', '.js-print-report', () => this.printReport());
   }
 
   createDataViewer() {
     const self = this;
+
+    // run before append html
+    const preCallback = (viewer, data) => {
+      if (data.page === 1) {
+        const $dropdownCount = viewer.$container.find('.dropdown-count');
+        if ($dropdownCount) {
+          $dropdownCount.text(data.total);
+        }
+      }
+
+      if (data.currency && self.odCurrencies) {
+        for (let [key, value] of Object.entries(data.currency)) {
+          self.odCurrencies[key].update(value || 0);
+        }
+      }
+
+      viewer.$table.trigger('data:received', data);
+    };
 
     // run after setting
     const postFilterLoad = (viewer, filters) => {
@@ -73,8 +93,26 @@ export default class Report {
     };
 
     this.dataViewer = new DataViewer(this.$container, {
+      preCallback: preCallback,
       postFilterLoad: postFilterLoad,
       setFilterParams: setFilterParams
     });
+  }
+
+  printReport(e) {
+    const params = {};
+    if (this.dataViewer.getFilter().getData()) {
+      params.filters = this.dataViewer.getFilter().getData();
+    }
+    if (this.dataViewer.getSortColumn()) {
+      params.sort = this.dataViewer.getSortColumn();
+    }
+
+    axios.post($(e.currentTarget).data('endpoint'), params)
+      .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        }
+      });
   }
 }

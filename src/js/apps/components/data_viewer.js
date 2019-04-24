@@ -178,6 +178,10 @@ export default class DataViewer {
     }
   }
 
+  getSortColumn() {
+    return this.sortColumn;
+  }
+
   setSortColumn(e, $column) {
     $column = $column || $(e.currentTarget);
 

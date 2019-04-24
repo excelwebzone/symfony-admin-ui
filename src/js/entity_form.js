@@ -298,7 +298,7 @@ export default class EntityForm {
                     value = `#${data.updatedValue}`;
                   }
 
-                  if ('object' === typeof value) {
+                  if (typeof value === 'object') {
                     const regex = /([\w_]+)(\[([\w\d_]+)\])(\[([\w\d_]+)\])(\[([\w\d_]+)\])?/;
                     const m = regex.exec(name);
 
@@ -309,8 +309,8 @@ export default class EntityForm {
 
                     // The result can be accessed through the `m`-variable.
                     m.forEach((match, groupIndex) => {
-                      if (groupIndex > 0 && match && m[groupIndex-1] === `[${match}]` && match !== field) {
-                       value = value[match];
+                      if (groupIndex > 0 && match && m[groupIndex - 1] === `[${match}]` && match !== field) {
+                        value = value[match];
                       }
                     });
                   }
