@@ -47,6 +47,18 @@ export default class Report {
       viewer.$table.trigger('data:received', data);
     };
 
+    // run before reseting html
+    const preFilterLoad = (viewer) => {
+      const $dropdownCount = viewer.$container.find('.dropdown-count');
+      if ($dropdownCount) {
+        $dropdownCount.text(0);
+      }
+
+      if (self.odCurrency) {
+        self.odCurrency.update(0);
+      }
+    };
+
     // run after setting
     const postFilterLoad = (viewer, filters) => {
       // load chart data
@@ -94,6 +106,7 @@ export default class Report {
 
     this.dataViewer = new DataViewer(this.$container, {
       preCallback: preCallback,
+      preFilterLoad: preFilterLoad,
       postFilterLoad: postFilterLoad,
       setFilterParams: setFilterParams
     });

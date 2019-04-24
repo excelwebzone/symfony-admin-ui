@@ -86,6 +86,11 @@ export default class ListPage {
 
     // run before reseting html
     const preFilterLoad = (viewer) => {
+      const $dropdownCount = viewer.$container.find('.dropdown-count');
+      if ($dropdownCount) {
+        $dropdownCount.text(0);
+      }
+
       if (self.odCurrency) {
         self.odCurrency.update(0);
       }
