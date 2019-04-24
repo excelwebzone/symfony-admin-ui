@@ -23,7 +23,7 @@ export default class Report {
 
   bindEvents() {
     this.$container.on('click', 'input[name=groupingType]', () => this.dataViewer.filterData());
-    this.$container.on('click', '.js-print-report', () => this.printReport());
+    this.$container.on('click', '.js-print-report', (e) => this.printReport(e));
   }
 
   createDataViewer() {
