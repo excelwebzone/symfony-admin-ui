@@ -36,6 +36,14 @@ export default class Report {
         if ($dropdownCount) {
           $dropdownCount.text(data.total);
         }
+
+        for (let [key, value] of Object.entries(data.totals)) {
+          const $span = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content>span`);
+          $span.tooltip({
+            placement: 'left',
+            title: value
+          });
+        }
       }
 
       if (data.currency && self.odCurrencies) {
@@ -52,6 +60,12 @@ export default class Report {
       const $dropdownCount = viewer.$container.find('.dropdown-count');
       if ($dropdownCount) {
         $dropdownCount.text(0);
+      }
+
+      const $headers = viewer.$table.find('.table-header-cell[data-field]');
+      for (let header of $headers) {
+        const $span = $(header).find('.table-header-cell-content>span');
+        $span.tooltip('dispose');
       }
 
       if (self.odCurrency) {
@@ -98,10 +112,18 @@ export default class Report {
 
     // extends the filter request params
     const setFilterParams = (viewer) => {
+      const params = {};
+
       const groupingType = $('input[name=groupingType]:checked');
       if (groupingType.length) {
-        return { groupingType: groupingType.val() };
+        params.groupingType = groupingType.val();
       }
+
+      if (viewer.$table.data('totals')) {
+        params.showTotals = 1;
+      }
+
+      return params;
     };
 
     this.dataViewer = new DataViewer(this.$container, {
