@@ -169,7 +169,7 @@ export default class EntityForm {
                 <div class="media-body">
                   <div class="banner-block-title"></div>
                   <ul class="banner-block-content">
-                    <li>${_.escape(data.errors[0] || 'Oops, you\'ve got an error')}</li>
+                    <li>${data.errors[0] || 'Oops, you\'ve got an error'}</li>
                   </ul>
                 </div>
               </div>
