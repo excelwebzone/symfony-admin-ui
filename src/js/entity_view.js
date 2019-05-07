@@ -23,6 +23,8 @@ export default class EntityView {
     $(document).on('click', '.js-related-toggle-button', (e) => this.toggleRelatedButton(e));
     $(document).on('click', '.js-related-add-row', (e) => this.showAddRelatedRow(e));
     $(document).on('click', '.js-related-select-dropdown .option-list-item:not(.option-list-item-action-button)', (e) => this.selectRelatedItem(e));
+    $(document).on('dropdown:autocomplete', '.js-related-select-dropdown', (e) => this.addCreateLinkToSelectRelatedItems(e));
+    $(document).on('dropdown:related-selected', '.js-related-select-dropdown', (e) => this.addSelectedRelatedItem(e));
 
     $(window).on('resize.entityview', () => this.optimizeView());
     $('.profile-right,.profile-center').on('block:loaded', () => this.optimizeView());
@@ -398,5 +400,41 @@ export default class EntityView {
       .after(_.template($template.html())($target.data('json')));
 
     $target.closest('.js-related-select-dropdown').trigger('dropdown:related-selected');
+  }
+
+  addCreateLinkToSelectRelatedItems(e) {
+    const $dropdown = $(e.currentTarget);
+    const $options = $dropdown.find('.option-list').find('>ul');
+
+    // remove when not found items
+    $options.find('li.option-list-label.option-list-label-empty').remove();
+
+    // add "create new"
+    if ($dropdown.data('create-endpoint')) {
+      const inputText = $dropdown.find('.dropdown-filter>.input-text').val();
+
+      $options.append(`
+        <li class="option-list-item js-new-related-item js-entity-modal"
+          data-template="${$dropdown.data('template')}"
+          data-endpoint="${$dropdown.data('create-endpoint').replace('__NAME__', inputText)}"
+          data-unlimited="true"
+        >
+          <div class="option-list-label-label">Create "${inputText}"</div>
+        </li>
+      `);
+    }
+  }
+
+  addSelectedRelatedItem(e) {
+    const $dropdown = $(e.currentTarget);
+    const $option = $dropdown.find('.option-list-item.is-selected');
+    $option.remove();
+
+    axios.post($dropdown.data('add-endpoint').replace('__ID__', $option.data('value')))
+      .then(({ data }) => {
+        if (data.error) {
+          toaster(data.error.message, 'error');
+        }
+      });
   }
 }
