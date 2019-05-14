@@ -36,6 +36,14 @@ export default class Report {
         if ($dropdownCount) {
           $dropdownCount.text(data.total);
         }
+
+        for (let [key, value] of Object.entries(data.totals)) {
+          const $span = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content>span`);
+          $span.tooltip({
+            placement: 'left',
+            title: value
+          });
+        }
       }
 
       if (data.currency && self.odCurrencies) {
@@ -47,44 +55,17 @@ export default class Report {
       viewer.$table.trigger('data:received', data);
     };
 
-    // run after append html
-    const postCallback = (viewer, data) => {
-      if (data.page === 1 && Object.entries(data.totals).length) {
-        for (let block of ['left', 'right']) {
-          const columns = [];
-          const $headers = viewer.$table.find(`.ember-table-${block}-table-block .table-header-cell`);
-          for (let header of $headers) {
-            const $header = $(header);
-            const index = $header.data('index');
-            const field = $header.data('field');
-            const value = data.totals[field] || '—';
-            let key = 'number';
-            if (value.indexOf('$') !== -1) key = 'money';
-            if (value.indexOf('%') !== -1) key = 'percent';
-            const isMobile = $header.hasClass('table-cell-mobile');
-            columns.push(`<div class="ember-table-cell table-cell-${key} ${isMobile ? 'table-cell-mobile' : ''} text-left js-ember-table-column-width" data-index="${index}"><div>${value}</div></div>`);
-          }
-
-          viewer.$table.find(`.ember-table-body-container .ember-table-${block}-table-block>div`)
-            .prepend(`
-              <div class="ember-table-table-row ember-table-totals js-ember-table-row-height js-ember-row-${block}-width">
-                <div class="js-ember-row-${block}-width">
-                  ${columns.join('')}
-                </div>
-              </div>
-            `);
-        }
-
-        viewer.emberTable.resizeTable();
-        viewer.emberTable.rebindEvents();
-      }
-    };
-
     // run before reseting html
     const preFilterLoad = (viewer) => {
       const $dropdownCount = viewer.$container.find('.dropdown-count');
       if ($dropdownCount) {
         $dropdownCount.text(0);
+      }
+
+      const $headers = viewer.$table.find('.table-header-cell[data-field]');
+      for (let header of $headers) {
+        const $span = $(header).find('.table-header-cell-content>span');
+        $span.tooltip('dispose');
       }
 
       if (self.odCurrency) {
@@ -147,7 +128,6 @@ export default class Report {
 
     this.dataViewer = new DataViewer(this.$container, {
       preCallback: preCallback,
-      postCallback: postCallback,
       preFilterLoad: preFilterLoad,
       postFilterLoad: postFilterLoad,
       setFilterParams: setFilterParams

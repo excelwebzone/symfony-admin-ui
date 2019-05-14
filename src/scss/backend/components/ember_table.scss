@@ -384,15 +384,7 @@
 
 .ember-table-body-container .ember-table-table-row.ember-table-hover,
 .ember-table-body-container .ember-table-table-row:hover {
-  background-color: rgba(13,148,246,0.04);
-}
-
-.ember-table-body-container .ember-table-table-row.ember-table-totals {
-  background-color: #4caf50 !important;
-}
-
-.ember-table-body-container .ember-table-table-row.ember-table-totals .ember-table-cell {
-  color: #fff !important;
+  background-color: #e5edf8;
 }
 
 .ember-table-body-container .ember-table-table-row.ember-table-selected {
@@ -738,6 +730,11 @@
 }
 .ember-view .ember-table-header-container .ember-table-right-table-block .ember-table-table-row {
   overflow-x: unset;
+}
+
+.ember-table-body-container .ember-table-table-row.ember-table-hover,
+.ember-table-body-container .ember-table-table-row:hover {
+  background-color: rgba(13,148,246,0.04);
 }
 
 /*------------------------------------*\
