@@ -54,7 +54,7 @@ export default class EntityDrawer {
 
     $('body').append(_.template($template.html())({
       id: $target.data('id'),
-      relatedId: $target.data('relatedId'),
+      relatedId: $target.data('related-id'),
       title: $target.data('title'),
       subtitle: $target.data('subtitle'),
       initials: $target.data('initials'),
