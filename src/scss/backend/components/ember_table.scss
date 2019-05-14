@@ -440,6 +440,18 @@
   cursor: pointer;
 }
 
+.ember-table-header-cell.table-header-cell.table-header-cell-sortable .table-header-cell-content>span>.total-value {
+  display: block;
+  margin-top: -17px;
+  background-color: #49B04B;
+  color: #fff;
+  padding: 1px;
+}
+
+.ember-table-header-cell.table-header-cell.table-header-cell-sortable .table-header-cell-content>span>.total-value.is-negative {
+  background-color: #bd2e22;
+}
+
 .ember-table-header-cell.table-header-cell.table-header-cell-sort-ascending .table-header-cell-content .zmdi-sort-amount-desc,
 .ember-table-header-cell.table-header-cell.table-header-cell-sort-descending .table-header-cell-content .zmdi-sort-amount-desc,
 .ember-table-header-cell.table-header-cell.table-header-cell-sortable .table-header-cell-content .zmdi-sort-amount-desc {
