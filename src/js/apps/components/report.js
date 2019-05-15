@@ -5,8 +5,9 @@ import toaster from '../../lib/utils/toaster';
 import DataViewer from './data_viewer';
 
 export default class Report {
-  constructor(getReportCallback) {
+  constructor(getReportCallback, allowDecimals = true) {
     this.getReportCallback = getReportCallback;
+    this.allowDecimals = allowDecimals;
 
     this.initDomElements();
     this.bindEvents();
@@ -39,7 +40,13 @@ export default class Report {
 
         for (let [key, value] of Object.entries(data.totals)) {
           const $span = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content>span`);
-          $span.append(`<span class="total-value ${value < 0 ? 'is-negative' : ''}">${value}</span>`);
+
+          // remove decimals
+          if (!self.allowDecimals && value.indexOf('.') !== -1) {
+            value = value.replace(/^(\W)?([0-9,]+)([0-9.]+)(\W)?$/g, '$1$2$4');
+          }
+
+          $span.append(`<span class="total-value ${value.replace(/\D/g, '') < 0 ? 'is-negative' : ''}">${value}</span>`);
         }
       }
 
