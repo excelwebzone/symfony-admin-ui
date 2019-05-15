@@ -17,6 +17,7 @@ export default class Pager {
     this.page = parseInt(getParameterValues('page'), 10) || 1;
     this.params = {};
     this.disable = disable;
+    this.orgDisable = disable;
     this.callback = callback;
     this.initLoadMore();
   }
@@ -51,6 +52,10 @@ export default class Pager {
   }
 
   append(data) {
+    if (data.page === 1) {
+      this.disable = this.orgDisable;
+    }
+
     if (data.count === 0 || data.count === data.total) {
       this.disable = true;
 
