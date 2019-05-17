@@ -69,6 +69,10 @@ export default class DataViewer {
 
     if (this.$container.is('body')) {
       window.addEventListener('popstate', (e) => {
+        if (!e.state) {
+          return;
+        }
+
         this.add2History = false;
 
         this.selectSortColumn(e.state.sort);
