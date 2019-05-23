@@ -111,6 +111,12 @@ export default class EntityView {
       .then(({ data }) => {
         $button.toggleClass('is-active');
 
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         if (data.fields) {
           // in page or drawer header
           for (let [field, value] of Object.entries(data.fields)) {
@@ -126,6 +132,12 @@ export default class EntityView {
     const $button = $(e.currentTarget);
     axios.post($button.data('endpoint'))
       .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         const $drawer = $button.closest('.drawer-frame');
         if ($drawer.length) {
           const $row = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
@@ -144,6 +156,12 @@ export default class EntityView {
 
     axios.post($button.data('endpoint'))
       .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         $icon
           .toggleClass('zmdi-star-outline')
           .toggleClass('zmdi-star');
@@ -178,6 +196,12 @@ export default class EntityView {
 
     axios.post($button.data('endpoint'))
       .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         $button.closest('.task-check-box-container').toggleClass('is-completed');
 
         const $entitySummary = $button.closest('.entity-summary-task');

@@ -185,6 +185,12 @@ export default class ListPage {
     const ids = this.getSelectedItems();
     axios.post($button.data('endpoint'), this.getFormData())
       .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         for (let id of ids) {
           const $emberRow = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
           if ($emberRow.length) {
@@ -199,6 +205,8 @@ export default class ListPage {
             }
           }
         }
+
+        $button.trigger('item:bulk-follow');
       });
   }
 
@@ -207,6 +215,12 @@ export default class ListPage {
     const ids = this.getSelectedItems();
     axios.post($button.data('endpoint'), this.getFormData())
       .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         for (let id of ids) {
           const $emberRowLeft = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
           if ($emberRowLeft.length) {
@@ -226,6 +240,8 @@ export default class ListPage {
             }
           }
         }
+
+        $button.trigger('item:bulk-complete');
       });
   }
 
@@ -234,12 +250,20 @@ export default class ListPage {
     const ids = this.getSelectedItems();
     axios.post($button.data('endpoint'), this.getFormData())
       .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        } else if (data.error) {
+          toaster(data.error.message, 'error', data.actionConfig);
+        }
+
         for (let id of ids) {
           const $emberRow = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
           if ($emberRow.length) {
             $emberRow.toggleClass('is-unread');
           }
         }
+
+        $button.trigger('item:bulk-unread');
       });
   }
 
