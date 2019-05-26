@@ -46,21 +46,54 @@ export default class EntityView {
     }
   }
 
+  showPopover($button, _post) {
+    const popover = $button.data('popover');
+    if (!popover) {
+      return _post();
+    }
+
+    if ($button.is(':hidden')) {
+      $button = $button.parent();
+    }
+
+    $button.popover({
+      placement: popover.placement || 'top',
+      title: popover.title,
+      html: popover.html,
+      content: popover.content
+    });
+    $button.popover('show');
+
+    $($button.data('bs.popover').tip).find('.button').on('click', (e) => {
+      if ($(e.currentTarget).hasClass('popover-submit')) {
+        _post();
+      }
+
+      $button.popover('hide');
+    });
+  }
+
   printItem(e) {
-    axios.post($(e.currentTarget).data('endpoint'))
-      .then(({ data }) => {
-        if (data.message) {
-          toaster(data.message, 'default', data.actionConfig);
-        }
-      });
+    const $button = $(e.currentTarget);
+
+    const _post = () => {
+      axios.post($button.data('endpoint'))
+        .then(({ data }) => {
+          if (data.message) {
+            toaster(data.message, 'default', data.actionConfig);
+          }
+        });
+    };
+
+    this.showPopover($button, _post);
   }
 
   actionItem(e) {
-    const $target = $(e.currentTarget);
-    const $drawer = $target.closest('.drawer-frame');
+    const $button = $(e.currentTarget);
+    const $drawer = $button.closest('.drawer-frame');
 
     const _post = () => {
-      axios.post($target.data('endpoint'))
+      axios.post($button.data('endpoint'))
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
@@ -71,180 +104,176 @@ export default class EntityView {
           if (data.fields) {
             // in page or drawer header
             for (let [field, value] of Object.entries(data.fields)) {
-              modifiedValues($drawer, field, value, $($target.data('container') || 'body'));
+              modifiedValues($drawer, field, value, $($button.data('container') || 'body'));
             }
           }
 
-          $target.trigger('item:action');
+          $button.trigger('item:action');
         });
     };
 
-    const popover = $target.data('popover');
-    if (!popover) {
-      return _post();
-    }
-
-    $target.popover({
-      placement: popover.placement || 'top',
-      title: popover.title,
-      html: popover.html,
-      content: popover.content
-    });
-    $target.popover('show');
-
-    $($target.data('bs.popover').tip).find('button').on('click', (e) => {
-      if ($(e.currentTarget).hasClass('popover-submit')) {
-        _post();
-      }
-
-      $target.popover('hide');
-    });
-
-    e.stopPropagation();
+    this.showPopover($button, _post);
   }
 
   toggleItem(e) {
     const $button = $(e.currentTarget);
     const $drawer = $button.closest('.drawer-frame');
 
-    axios.post($button.data('endpoint'))
-      .then(({ data }) => {
-        $button.toggleClass('is-active');
+    const _post = () => {
+      axios.post($button.data('endpoint'))
+        .then(({ data }) => {
+          $button.toggleClass('is-active');
 
-        if (data.message) {
-          toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
-          toaster(data.error.message, 'error', data.actionConfig);
-        }
-
-        if (data.fields) {
-          // in page or drawer header
-          for (let [field, value] of Object.entries(data.fields)) {
-            modifiedValues($drawer, field, value, $($button.data('container') || 'body'));
+          if (data.message) {
+            toaster(data.message, 'default', data.actionConfig);
+          } else if (data.error) {
+            toaster(data.error.message, 'error', data.actionConfig);
           }
-        }
 
-        $button.trigger('item:toggle');
-      });
+          if (data.fields) {
+            // in page or drawer header
+            for (let [field, value] of Object.entries(data.fields)) {
+              modifiedValues($drawer, field, value, $($button.data('container') || 'body'));
+            }
+          }
+
+          $button.trigger('item:toggle');
+        });
+    };
+
+    this.showPopover($button, _post);
   }
 
   unreadItem(e) {
     const $button = $(e.currentTarget);
-    axios.post($button.data('endpoint'))
-      .then(({ data }) => {
-        if (data.message) {
-          toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
-          toaster(data.error.message, 'error', data.actionConfig);
-        }
 
-        const $drawer = $button.closest('.drawer-frame');
-        if ($drawer.length) {
-          const $row = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
-          if ($row.length) {
-            $row.toggleClass('is-unread');
+    const _post = () => {
+      axios.post($button.data('endpoint'))
+        .then(({ data }) => {
+          if (data.message) {
+            toaster(data.message, 'default', data.actionConfig);
+          } else if (data.error) {
+            toaster(data.error.message, 'error', data.actionConfig);
           }
-        }
 
-        $button.trigger('item:unread');
-      });
+          const $drawer = $button.closest('.drawer-frame');
+          if ($drawer.length) {
+            const $row = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+            if ($row.length) {
+              $row.toggleClass('is-unread');
+            }
+          }
+
+          $button.trigger('item:unread');
+        });
+    };
+
+    this.showPopover($button, _post);
   }
 
   toggleFollow(e) {
     const $button = $(e.currentTarget);
     const $icon = $button.find('i');
 
-    axios.post($button.data('endpoint'))
-      .then(({ data }) => {
-        if (data.message) {
-          toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
-          toaster(data.error.message, 'error', data.actionConfig);
-        }
-
-        $icon
-          .toggleClass('zmdi-star-outline')
-          .toggleClass('zmdi-star');
-
-        const $drawer = $button.closest('.drawer-frame');
-        if ($drawer.length) {
-          const $row = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
-          if ($row.length) {
-            $row.data('is-follow', !$row.data('is-follow'));
-            $row.find('.js-follow-item').prop('checked', !$row.find('.js-follow-item').prop('checked'));
+    const _post = () => {
+      axios.post($button.data('endpoint'))
+        .then(({ data }) => {
+          if (data.message) {
+            toaster(data.message, 'default', data.actionConfig);
+          } else if (data.error) {
+            toaster(data.error.message, 'error', data.actionConfig);
           }
-        }
 
-        const $emberRow = $button.closest('.js-entity-drawer');
-        if ($emberRow.length) {
-          $emberRow.data('is-follow', !$emberRow.data('is-follow'));
+          $icon
+            .toggleClass('zmdi-star-outline')
+            .toggleClass('zmdi-star');
 
-          const $drawer = $(`.drawer-frame[data-id="${$emberRow.data('id')}"]`);
+          const $drawer = $button.closest('.drawer-frame');
           if ($drawer.length) {
-            $drawer.find('.js-follow-item>i')
-              .toggleClass('zmdi-star-outline')
-              .toggleClass('zmdi-star');
+            const $row = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+            if ($row.length) {
+              $row.data('is-follow', !$row.data('is-follow'));
+              $row.find('.js-follow-item').prop('checked', !$row.find('.js-follow-item').prop('checked'));
+            }
           }
-        }
 
-        $button.trigger('item:follow');
-      });
+          const $emberRow = $button.closest('.js-entity-drawer');
+          if ($emberRow.length) {
+            $emberRow.data('is-follow', !$emberRow.data('is-follow'));
+
+            const $drawer = $(`.drawer-frame[data-id="${$emberRow.data('id')}"]`);
+            if ($drawer.length) {
+              $drawer.find('.js-follow-item>i')
+                .toggleClass('zmdi-star-outline')
+                .toggleClass('zmdi-star');
+            }
+          }
+
+          $button.trigger('item:follow');
+        });
+    };
+
+    this.showPopover($button, _post);
   }
 
   toggleComplete(e) {
     const $button = $(e.currentTarget);
 
-    axios.post($button.data('endpoint'))
-      .then(({ data }) => {
-        if (data.message) {
-          toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
-          toaster(data.error.message, 'error', data.actionConfig);
-        }
+    const _post = () => {
+      axios.post($button.data('endpoint'))
+        .then(({ data }) => {
+          if (data.message) {
+            toaster(data.message, 'default', data.actionConfig);
+          } else if (data.error) {
+            toaster(data.error.message, 'error', data.actionConfig);
+          }
 
-        $button.closest('.task-check-box-container').toggleClass('is-completed');
+          $button.closest('.task-check-box-container').toggleClass('is-completed');
 
-        const $entitySummary = $button.closest('.entity-summary-task');
-        if ($entitySummary.length) {
-          $entitySummary.toggleClass('is-complete');
+          const $entitySummary = $button.closest('.entity-summary-task');
+          if ($entitySummary.length) {
+            $entitySummary.toggleClass('is-complete');
 
-          return;
-        }
+            return;
+          }
 
-        const $drawer = $button.closest('.drawer-frame');
-        if ($drawer.length) {
-          $drawer.toggleClass('is-complete');
+          const $drawer = $button.closest('.drawer-frame');
+          if ($drawer.length) {
+            $drawer.toggleClass('is-complete');
 
-          const $emberRowLeft = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+            const $emberRowLeft = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+            if ($emberRowLeft.length) {
+              $emberRowLeft.data('is-complete', !$emberRowLeft.data('is-complete'));
+              $emberRowLeft.find('.task-check-box-container').toggleClass('is-completed');
+              $emberRowLeft.find('.js-complete-item').prop('checked', !$emberRowLeft.find('.js-complete-item').prop('checked'));
+              $emberRowLeft.find('.table-cell-name').toggleClass('is-completed');
+
+              const $emberRowRight = $emberRowLeft.closest('.list-page-table').find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($emberRowLeft.index());
+              $emberRowRight.find('.table-cell-name').toggleClass('is-completed');
+            }
+          }
+
+          const $emberRowLeft = $button.closest('.js-entity-drawer');
           if ($emberRowLeft.length) {
             $emberRowLeft.data('is-complete', !$emberRowLeft.data('is-complete'));
-            $emberRowLeft.find('.task-check-box-container').toggleClass('is-completed');
-            $emberRowLeft.find('.js-complete-item').prop('checked', !$emberRowLeft.find('.js-complete-item').prop('checked'));
             $emberRowLeft.find('.table-cell-name').toggleClass('is-completed');
 
             const $emberRowRight = $emberRowLeft.closest('.list-page-table').find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($emberRowLeft.index());
             $emberRowRight.find('.table-cell-name').toggleClass('is-completed');
+
+            const $drawer = $(`.drawer-frame[data-id="${$emberRowLeft.data('id')}"]`);
+            if ($drawer.length) {
+              $drawer.toggleClass('is-complete');
+              $drawer.find('.task-check-box-container').toggleClass('is-completed');
+              $drawer.find('.js-complete-item').prop('checked', !$drawer.find('.js-complete-item').prop('checked'));
+            }
           }
-        }
 
-        const $emberRowLeft = $button.closest('.js-entity-drawer');
-        if ($emberRowLeft.length) {
-          $emberRowLeft.data('is-complete', !$emberRowLeft.data('is-complete'));
-          $emberRowLeft.find('.table-cell-name').toggleClass('is-completed');
+          $button.trigger('item:complete');
+        });
+    };
 
-          const $emberRowRight = $emberRowLeft.closest('.list-page-table').find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($emberRowLeft.index());
-          $emberRowRight.find('.table-cell-name').toggleClass('is-completed');
-
-          const $drawer = $(`.drawer-frame[data-id="${$emberRowLeft.data('id')}"]`);
-          if ($drawer.length) {
-            $drawer.toggleClass('is-complete');
-            $drawer.find('.task-check-box-container').toggleClass('is-completed');
-            $drawer.find('.js-complete-item').prop('checked', !$drawer.find('.js-complete-item').prop('checked'));
-          }
-        }
-
-        $button.trigger('item:complete');
-      });
+    this.showPopover($button, _post);
   }
 
   deleteModal(e, modal) {
