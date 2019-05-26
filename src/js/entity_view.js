@@ -56,6 +56,7 @@ export default class EntityView {
       $button = $button.parent();
     }
 
+    $button.popover('dispose');
     $button.popover({
       placement: popover.placement || 'top',
       title: popover.title,
