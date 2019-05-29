@@ -22,7 +22,13 @@ $.fn.requiresInput = function requiresInput() {
 
   function requireInput() {
     // Collect the input values of *all* required fields
-    const values = _.map($(fieldSelector, $form), field => field.value);
+    const values = _.map($(fieldSelector, $form), field => {
+      const pattern = field.getAttribute('pattern');
+
+      return !pattern || new RegExp(pattern).exec(field.value)
+        ? field.value
+        : null;
+    });
 
     // Disable the button if any required fields are empty
     if (values.length && _.any(values, _.isEmpty)) {
