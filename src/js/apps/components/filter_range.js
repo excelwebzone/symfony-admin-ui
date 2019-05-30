@@ -41,7 +41,7 @@ export function initTagsPicker(pickerEl) {
     options.parentEl = $picker.closest('.filter-range');
   }
 
-  const $field = $(`#${$picker.data('filter-field')}`);
+  const $field = $picker.find(`#${$picker.data('filter-field')}`);
 
   const callback = (tags) => {
     const total = tags.length ? tags.split('|').length : 0;
@@ -79,9 +79,9 @@ export function initDateRangePicker(pickerEl) {
     options.parentEl = $picker.closest('.filter-range');
   }
 
-  const $unitDate = $(`#${$picker.data('filter-field')}_unit`);
-  const $startDate = $(`#${$picker.data('filter-field')}_from`);
-  const $endDate = $(`#${$picker.data('filter-field')}_to`);
+  const $unitDate = $picker.find(`#${$picker.data('filter-field')}_unit`);
+  const $startDate = $picker.find(`#${$picker.data('filter-field')}_from`);
+  const $endDate = $picker.find(`#${$picker.data('filter-field')}_to`);
 
   const callback = (start, end, label) => {
     let foundLabel = false;
