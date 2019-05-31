@@ -87,6 +87,10 @@ export default class DataViewer {
         this.preCallback(this, data);
       }
 
+      if (data.page === 1) {
+        this.resetTableData();
+      }
+
       if (this.$table.hasClass('activity-list')) {
         this.$table.find('.activity-log-list').append(data.html);
 
@@ -117,6 +121,15 @@ export default class DataViewer {
     this.pager = new Pager(this.$table, this.$container.find('.list-page-empty-content'), this.$container.find('.list-page-loading-popup'), false, callback);
   }
 
+  resetTableData() {
+    if (this.$table.hasClass('activity-list')) {
+      this.$table.find('.activity-log-list').html('');
+    } else {
+      this.$table.find('.ember-table-body-container .ember-table-left-table-block>div').html('');
+      this.$table.find('.ember-table-body-container .ember-table-right-table-block>div').html('');
+    }
+  }
+
   getFilter() {
     return this.filter;
   }
@@ -142,13 +155,7 @@ export default class DataViewer {
       this.preFilterLoad(this);
     }
 
-    // reset data
-    if (this.$table.hasClass('activity-list')) {
-      this.$table.find('.activity-log-list').html('');
-    } else {
-      this.$table.find('.ember-table-body-container .ember-table-left-table-block>div').html('');
-      this.$table.find('.ember-table-body-container .ember-table-right-table-block>div').html('');
-    }
+    this.resetTableData();
 
     let params = {};
     if (typeof this.setFilterParams === 'function') {
