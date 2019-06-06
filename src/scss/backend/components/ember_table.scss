@@ -688,6 +688,7 @@
 
 .ember-table-table-row.ember-table-selected .table-cell-date,
 .ember-table-table-row.ember-table-selected .table-cell-datetime,
+.ember-table-table-row.ember-table-selected .table-cell-time,
 .ember-table-table-row.ember-table-selected .table-cell-money,
 .ember-table-table-row.ember-table-selected .table-cell-money-rounded,
 .ember-table-table-row.ember-table-selected .table-cell-percent,
@@ -703,6 +704,7 @@
 
 .ember-table-table-row.ember-table-selected .table-cell-date.is-overdue,
 .ember-table-table-row.ember-table-selected .table-cell-datetime.is-overdue,
+.ember-table-table-row.ember-table-selected .table-cell-time.is-overdue,
 .ember-table-table-row.ember-table-selected .table-cell-money.is-overdue,
 .ember-table-table-row.ember-table-selected .table-cell-money-rounded.is-overdue,
 .ember-table-table-row.ember-table-selected .table-cell-percent.is-overdue,
@@ -775,6 +777,7 @@
 
 .table-cell-date,
 .table-cell-datetime,
+.table-cell-time,
 .table-cell-money,
 .table-cell-money-rounded,
 .table-cell-percent,
@@ -798,6 +801,7 @@
 
 .table-cell-date,
 .table-cell-datetime,
+.table-cell-time,
 .table-cell-money,
 .table-cell-money-rounded,
 .table-cell-percent,
@@ -813,6 +817,7 @@
 
 .table-cell-date.is-overdue,
 .table-cell-datetime.is-overdue,
+.table-cell-time.is-overdue,
 .table-cell-money.is-overdue,
 .table-cell-money-rounded.is-overdue,
 .table-cell-percent.is-overdue,
