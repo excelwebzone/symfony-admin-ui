@@ -48,6 +48,7 @@ export default class EntityDrawer {
       $target = $target.closest('.js-entity-drawer');
     }
 
+    const wasUnread = $target.hasClass('is-unread');
     $target.removeClass('is-unread');
 
     const $template = $($target.data('template') || '#entityDrawerTemplate');
@@ -68,7 +69,7 @@ export default class EntityDrawer {
     this.$drawer.collapse('show');
     this.$drawer.find('.js-block-request').trigger('block:load');
 
-    $target.trigger('drawer:shown', this.$drawer);
+    $target.trigger('drawer:shown', [this.$drawer, wasUnread]);
 
     initFormElements(this.$drawer);
   }
