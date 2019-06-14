@@ -17,7 +17,7 @@ import '../commons/bootstrap';
 
 $.fn.requiresInput = function requiresInput() {
   const $form = $(this);
-  const $button = $('button[type=submit], input[type=submit]', $form);
+  const $button = $('button[type=submit], input[type=submit], .button-submit', $form);
   const fieldSelector = 'input[required=required], select[required=required], textarea[required=required]';
 
   function requireInput() {
@@ -44,7 +44,7 @@ $.fn.requiresInput = function requiresInput() {
 };
 
 $(() => {
-  const $form = $('form.js-requires-input');
+  const $form = $('.js-requires-input');
   if ($form) {
     $form.requiresInput();
   }
