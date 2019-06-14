@@ -59,13 +59,23 @@ export default class EntityView {
     $button.popover('dispose');
     $button.popover({
       placement: popover.placement || 'top',
-      title: popover.title,
-      html: popover.html,
+      title: popover.title || '',
+      html: popover.html || false,
+      sanitize: popover.sanitize || false,
       content: popover.content
     });
     $button.popover('show');
 
-    $($button.data('bs.popover').tip).find('.button').on('click', (e) => {
+    const $tip = $($button.data('bs.popover').tip);
+
+    $button.on('shown.bs.popover', () => {
+      const $form = $tip.find('.js-requires-input');
+      if ($form.length) {
+        $form.requiresInput();
+      }
+    });
+
+    $tip.find('.button').on('click', (e) => {
       if ($(e.currentTarget).hasClass('popover-submit')) {
         _post();
       }
