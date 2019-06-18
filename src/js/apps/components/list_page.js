@@ -6,9 +6,10 @@ import toaster from '../../lib/utils/toaster';
 import DataViewer from './data_viewer';
 
 export default class ListPage {
-  constructor(containerEl, getChartCallback = null, allowDecimals = true) {
+  constructor(containerEl, getChartCallback = null, allowDecimals = true, showSingleRowInfo = true) {
     this.getChartCallback = getChartCallback;
     this.allowDecimals = allowDecimals;
+    this.showSingleRowInfo = showSingleRowInfo;
 
     this.initDomElements(containerEl);
     this.bindEvents();
@@ -97,7 +98,7 @@ export default class ListPage {
       }
 
       // automatically open single result (ignore under for multi block)
-      if (data.page === 1 && data.total === 1
+      if (self.showSingleRowInfo && data.page === 1 && data.total === 1
         && !viewer.$container.hasClass('js-ember-table-block')
         && !viewer.$table.hasClass('activity-list')
       ) {
