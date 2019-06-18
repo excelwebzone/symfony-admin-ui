@@ -1,11 +1,15 @@
 import $ from 'jquery';
+import numeral from 'numeral';
 import Odometer from 'odometer';
 import axios from '../../lib/utils/axios_utils';
 import toaster from '../../lib/utils/toaster';
 import DataViewer from './data_viewer';
 
 export default class ListPage {
-  constructor(containerEl) {
+  constructor(containerEl, getChartCallback = null, allowDecimals = true) {
+    this.getChartCallback = getChartCallback;
+    this.allowDecimals = allowDecimals;
+
     this.initDomElements(containerEl);
     this.bindEvents();
     this.createDataViewer();
@@ -15,6 +19,9 @@ export default class ListPage {
     this.$container = containerEl ? $(containerEl) : $('body');
 
     this.$selectAllCheckbox = this.$container.find('.js-bulk-select-all');
+    this.$chartTotals = this.$container.find('.list-chart-summary-number-item');
+    this.$chartContainer = this.$container.find('.chart-container-chart');
+    this.$chartLoading = this.$container.find('.chart-loading-overlay');
 
     this.odCurrencies = {};
     for (let currency of this.$container.find('.js-odometer-currency')) {
@@ -32,9 +39,12 @@ export default class ListPage {
       this.dataViewer.getFilter().loadActiveFilter();
     });
 
-    this.$selectAllCheckbox.on('click', () => this.selectAllRows());
-    this.$container.on('click', '.js-bulk-select', () => this.selectRow());
+    this.$container.on('click', 'input[name=groupingType]', () => this.dataViewer.filterData());
 
+    this.$selectAllCheckbox.on('click', () => this.selectAllRows());
+    this.$container.find('.js-bulk-select').on('click', () => this.selectRow());
+
+    this.$container.find('.js-print-list').on('click', (e) => this.printList(e));
     this.$container.find('.js-bulk-export,.js-bulk-print,.js-bulk-action').on('click', (e) => this.bulkGeneric(e));
     this.$container.find('.js-bulk-email').on('click', (e) => this.bulkMailto(e));
     this.$container.find('.js-bulk-follow').on('click', (e) => this.bulkFollow(e));
@@ -53,6 +63,19 @@ export default class ListPage {
         const $dropdownCount = viewer.$container.find('.dropdown-count');
         if ($dropdownCount) {
           $dropdownCount.text(data.total);
+        }
+
+        if (typeof data.totals === 'object') {
+          for (let [key, value] of Object.entries(data.totals)) {
+            const $span = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content>span`);
+
+            // remove decimals
+            if (!self.allowDecimals && value.indexOf('.') !== -1) {
+              value = value.replace(/^(\W)?([0-9,]+)([0-9.]+)(\W)?$/g, '$1$2$4');
+            }
+
+            $span.append(`<span class="total-value ${value.replace(/\D/g, '') < 0 ? 'is-negative' : ''}">${value}</span>`);
+          }
         }
       }
 
@@ -91,16 +114,95 @@ export default class ListPage {
         $dropdownCount.text(0);
       }
 
+      const $headers = viewer.$table.find('.table-header-cell[data-field]');
+      for (let header of $headers) {
+        $(header).find('.table-header-cell-content>span>.total-value').remove();
+      }
+
       if (self.odCurrency) {
         self.odCurrency.update(0);
       }
     };
 
+    // run after setting
+    const postFilterLoad = (viewer, filters) => {
+      // load chart data
+      if (self.$chartContainer.length && self.getChartCallback) {
+        self.$chartLoading.show();
+        self.$chartContainer.html('');
+
+        const params = { filters: filters };
+        const groupingType = $('input[name=groupingType]:checked');
+        if (groupingType.length) {
+          params.groupingType = groupingType.val();
+        }
+
+        axios.get(self.$chartContainer.data('endpoint'), {
+          params: params
+        })
+          .then(({ data }) => {
+            self.$chartLoading.hide();
+
+            for (let total of self.$chartTotals) {
+              const $total = $(total).find('>div:eq(0)');
+
+              let format = '0,0a';
+              if ($total.data('money')) format = '$0,0a';
+              if ($total.data('percent')) format = '0,0a%';
+
+              $total.html(numeral(data.total[$total.data('name')]).format(format));
+            }
+
+            const chartFunc = self.getChartCallback(self.$chartContainer.data('token'));
+            if (chartFunc) {
+              chartFunc(self.$chartContainer, data.labels, data.items);
+            }
+          }).catch(() => self.$chartLoading.hide());
+      }
+    };
+
+    // extends the filter request params
+    const setFilterParams = (viewer) => {
+      const params = {};
+
+      const groupingType = $('input[name=groupingType]:checked');
+      if (groupingType.length) {
+        params.groupingType = groupingType.val();
+      }
+
+      if (viewer.$table.data('totals')) {
+        params.showTotals = 1;
+      }
+
+      return params;
+    };
+
     this.dataViewer = new DataViewer(this.$container, {
       preCallback: preCallback,
       postCallback: postCallback,
-      preFilterLoad: preFilterLoad
+      preFilterLoad: preFilterLoad,
+      postFilterLoad: postFilterLoad,
+      setFilterParams: setFilterParams
     });
+  }
+
+  printList(e) {
+    const params = {};
+    if (this.dataViewer.getFilter().getData()) {
+      params.filters = this.dataViewer.getFilter().getData();
+    }
+    if (this.dataViewer.getSortColumn()) {
+      params.sort = this.dataViewer.getSortColumn();
+    }
+
+    axios.get($(e.currentTarget).data('endpoint'), {
+      params: params
+    })
+      .then(({ data }) => {
+        if (data.message) {
+          toaster(data.message, 'default', data.actionConfig);
+        }
+      });
   }
 
   toggleBulkTools(toggle) {
