@@ -40,7 +40,14 @@ export default class ListPage {
       this.dataViewer.getFilter().loadActiveFilter();
     });
 
-    this.$container.on('click', 'input[name=groupingType]', () => this.dataViewer.filterData());
+    this.$container.on('click', 'input[name=groupingType]', () => {
+      if (this.$chartContainer.length && !this.$chartContainer.data('reload-list')) {
+        this.loadChartData(this.dataViewer.getFilter().getData());
+        return;
+      }
+
+      this.dataViewer.filterData();
+    });
 
     this.$selectAllCheckbox.on('click', () => this.selectAllRows());
     this.$container.find('.js-bulk-select').on('click', () => this.selectRow());
@@ -127,39 +134,7 @@ export default class ListPage {
 
     // run after setting
     const postFilterLoad = (viewer, filters) => {
-      // load chart data
-      if (self.$chartContainer.length && self.getChartCallback) {
-        self.$chartLoading.show();
-        self.$chartContainer.html('');
-
-        const params = { filters: filters };
-        const groupingType = $('input[name=groupingType]:checked');
-        if (groupingType.length) {
-          params.groupingType = groupingType.val();
-        }
-
-        axios.get(self.$chartContainer.data('endpoint'), {
-          params: params
-        })
-          .then(({ data }) => {
-            self.$chartLoading.hide();
-
-            for (let total of self.$chartTotals) {
-              const $total = $(total).find('>div:eq(0)');
-
-              let format = '0,0a';
-              if ($total.data('money')) format = '$0,0a';
-              if ($total.data('percent')) format = '0,0a%';
-
-              $total.html(numeral(data.total[$total.data('name')]).format(format));
-            }
-
-            const chartFunc = self.getChartCallback(self.$chartContainer.data('token'));
-            if (chartFunc) {
-              chartFunc(self.$chartContainer, data.labels, data.items);
-            }
-          }).catch(() => self.$chartLoading.hide());
-      }
+      self.loadChartData(filters);
     };
 
     // extends the filter request params
@@ -185,6 +160,41 @@ export default class ListPage {
       postFilterLoad: postFilterLoad,
       setFilterParams: setFilterParams
     });
+  }
+
+  loadChartData(filters) {
+    if (this.$chartContainer.length && this.getChartCallback) {
+      this.$chartLoading.show();
+      this.$chartContainer.html('');
+
+      const params = { filters: filters };
+      const groupingType = $('input[name=groupingType]:checked');
+      if (groupingType.length) {
+        params.groupingType = groupingType.val();
+      }
+
+      axios.get(this.$chartContainer.data('endpoint'), {
+        params: params
+      })
+        .then(({ data }) => {
+          this.$chartLoading.hide();
+
+          for (let total of this.$chartTotals) {
+            const $total = $(total).find('>div:eq(0)');
+
+            let format = '0,0a';
+            if ($total.data('money')) format = '$0,0a';
+            if ($total.data('percent')) format = '0,0a%';
+
+            $total.html(numeral(data.total[$total.data('name')]).format(format));
+          }
+
+          const chartFunc = this.getChartCallback(this.$chartContainer.data('token'));
+          if (chartFunc) {
+            chartFunc(this.$chartContainer, data.labels, data.items);
+          }
+        }).catch(() => this.$chartLoading.hide());
+    }
   }
 
   printList(e) {
