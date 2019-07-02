@@ -50,7 +50,7 @@ export default class ListPage {
     });
 
     this.$selectAllCheckbox.on('click', () => this.selectAllRows());
-    this.$container.find('.js-bulk-select').on('click', () => this.selectRow());
+    this.$container.on('click', '.js-bulk-select', () => this.selectRow());
 
     this.$container.find('.js-print-list').on('click', (e) => this.printList(e));
     this.$container.find('.js-bulk-export,.js-bulk-print,.js-bulk-action').on('click', (e) => this.bulkGeneric(e));
