@@ -4,8 +4,9 @@ import numeral from 'numeral';
 import axios from '../../lib/utils/axios_utils';
 
 export default class Dashboard {
-  constructor(getReportCallback) {
-    this.getReportCallback = getReportCallback;
+  constructor(getChartCallback, allowDecimals = true) {
+    this.getChartCallback = getChartCallback;
+    this.allowDecimals = allowDecimals;
 
     this.initDomElements();
     this.bindEvents();
@@ -95,9 +96,9 @@ export default class Dashboard {
       for (let total of $total) {
         const $total = $(total);
 
-        let format = '0,0a';
-        if ($total.data('money')) format = '$0,0a';
-        if ($total.data('percent')) format = '0,0a%';
+        let format = '0,0';
+        if ($total.data('money')) format = '$0,0';
+        if ($total.data('percent')) format = '0,0%';
 
         $total.html(numeral(0).format(format));
       }
@@ -118,11 +119,19 @@ export default class Dashboard {
         if ($total.length) {
           for (let total of $total) {
             const $total = $(total);
-            const value = data.total[$total.data('name')];
+            let value = data.total[$total.data('name')];
 
-            let format = '0,0a';
-            if ($total.data('money')) format = '$0,0a';
-            if ($total.data('percent')) format = '0,0a%';
+            let format = '0,0[.]00';
+            if ($total.data('money')) format = '$0,0[.]00';
+            if ($total.data('percent')) {
+              format = '0,0[.]00%';
+
+              value /= 100; // @hack: value is a percent
+            }
+
+            if (!this.allowDecimals) {
+              format = format.replace('[.]00', '');
+            }
 
             let html = numeral(value).format(format);
             if ($total.data('color')) {
@@ -137,9 +146,9 @@ export default class Dashboard {
           }
         }
 
-        const reportFunc = this.getReportCallback($chart.data('report'));
-        if (reportFunc) {
-          reportFunc($chart, data.labels, data.items);
+        const chartFunc = this.getChartCallback($chart.data('report'));
+        if (chartFunc) {
+          chartFunc($chart, data.labels, data.items);
         }
       }).catch(() => $loading.hide());
   }

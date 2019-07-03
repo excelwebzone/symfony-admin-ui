@@ -181,12 +181,21 @@ export default class ListPage {
 
           for (let total of this.$chartTotals) {
             const $total = $(total).find('>div:eq(0)');
+            let value = data.total[$total.data('name')];
 
-            let format = '0,0a';
-            if ($total.data('money')) format = '$0,0a';
-            if ($total.data('percent')) format = '0,0a%';
+            let format = '0,0[.]00';
+            if ($total.data('money')) format = '$0,0[.]00';
+            if ($total.data('percent')) {
+              format = '0,0[.]00%';
 
-            $total.html(numeral(data.total[$total.data('name')]).format(format));
+              value /= 100; // @hack: value is a percent
+            }
+
+            if (!this.allowDecimals) {
+              format = format.replace('[.]00', '');
+            }
+
+            $total.html(numeral(value).format(format));
           }
 
           const chartFunc = this.getChartCallback(this.$chartContainer.data('token'));
