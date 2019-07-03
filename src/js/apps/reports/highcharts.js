@@ -112,18 +112,12 @@ const CHART_COLORS = [
   COLORS.ORANGE
 ];
 
-function getColors(objectType) {
-  let colorIndex = 0;
-  switch (objectType) {
-    case 'lead':
-      colorIndex = CHART_COLORS.indexOf(COLORS.LIGHT_GREEN);
-      break;
-    case 'customer':
-      colorIndex = CHART_COLORS.indexOf(COLORS.TEAL);
-      break;
-    default:
-      colorIndex = CHART_COLORS.indexOf(COLORS.PURPLE);
+function getColors(colorName) {
+  if (!colorName || _.isUndefined(COLORS[colorName.toUpperCase()])) {
+    colorName = 'PURPLE';
   }
+
+  let colorIndex = CHART_COLORS.indexOf(COLORS[colorName.toUpperCase()]);
   colorIndex = Math.max(0, colorIndex);
 
   const colors = [];

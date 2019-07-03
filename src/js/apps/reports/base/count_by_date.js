@@ -1,13 +1,13 @@
 import numeral from 'numeral';
 import Highcharts from '../highcharts';
 
-export default ($chart, categories, series) => {
+export default ($chart, categories, series, color = null) => {
   Highcharts.chart({
     chart: {
       type: 'column',
       renderTo: $chart[0]
     },
-    colors: Highcharts.getColors(),
+    colors: Highcharts.getColors(color),
     title: {
       text: null
     },

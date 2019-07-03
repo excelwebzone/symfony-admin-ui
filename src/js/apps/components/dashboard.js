@@ -148,7 +148,7 @@ export default class Dashboard {
 
         const chartFunc = this.getChartCallback($chart.data('report'));
         if (chartFunc) {
-          chartFunc($chart, data.labels, data.items);
+          chartFunc($chart, data.labels, data.items, $chart.data('color'));
         }
       }).catch(() => $loading.hide());
   }

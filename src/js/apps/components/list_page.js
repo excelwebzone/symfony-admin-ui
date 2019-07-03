@@ -200,7 +200,7 @@ export default class ListPage {
 
           const chartFunc = this.getChartCallback(this.$chartContainer.data('token'));
           if (chartFunc) {
-            chartFunc(this.$chartContainer, data.labels, data.items);
+            chartFunc(this.$chartContainer, data.labels, data.items, this.$chartContainer.data('color'));
           }
         }).catch(() => this.$chartLoading.hide());
     }
