@@ -121,10 +121,10 @@ export default class Dashboard {
             const $total = $(total);
             let value = data.total[$total.data('name')];
 
-            let format = '0,0[.]00a';
-            if ($total.data('money')) format = '$0,0[.]00a';
+            let format = '0,0[.]00';
+            if ($total.data('money')) format = '$0,0[.]00';
             if ($total.data('percent')) {
-              format = '0,0[.]00a%';
+              format = '0,0[.]00%';
 
               value /= 100; // @hack: value is a percent
             }

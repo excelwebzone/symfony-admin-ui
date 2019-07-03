@@ -28,14 +28,14 @@ export default ($chart, categories, series, color = null) => {
       labels: {
         rotation: -45,
         formatter() {
-          return numeral(this.value).format('$0,0[.]00a');
+          return numeral(this.value).format('$0,0[.]00');
         }
       },
       allowDecimals: !1
     },
     tooltip: {
       formatter: Highcharts.getTooltipFormatter({
-        valueFormatter: value => numeral(value).format('$0,0[.]00a')
+        valueFormatter: value => numeral(value).format('$0,0[.]00')
       }),
       shared: !1
     },

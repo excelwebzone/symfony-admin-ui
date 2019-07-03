@@ -27,11 +27,12 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
         } else if ($emberCell.hasClass('table-cell-integer')) {
           $emberCell.html(`<div>${value ? numeral(value).format('0,0') : '--'}</div>`);
         } else if ($emberCell.hasClass('table-cell-number')) {
-          $emberCell.html(`<div>${value ? numeral(value).format('0,0.00') : '--'}</div>`);
+          $emberCell.html(`<div>${value ? numeral(value).format('0,0[.]00') : '--'}</div>`);
         } else if ($emberCell.hasClass('table-cell-money')) {
-          $emberCell.html(`<div>${value ? numeral(value).format('$0,0.00') : '--'}</div>`);
+          $emberCell.html(`<div>${value ? numeral(value).format('$0,0[.]00') : '--'}</div>`);
         } else if ($emberCell.hasClass('table-cell-percent')) {
-          $emberCell.html(`<div>${value ? numeral(value).format('0,0.00') + '%' : '--'}</div>`);
+          // @hack: value is a percent
+          $emberCell.html(`<div>${value ? numeral(value / 100).format('0,0[.]00') + '%' : '--'}</div>`);
         } else {
           $emberCell.html(value || '--');
         }
