@@ -183,10 +183,10 @@ export default class ListPage {
             const $total = $(total).find('>div:eq(0)');
             let value = data.total[$total.data('name')];
 
-            let format = '0,0[.]00';
-            if ($total.data('money')) format = '$0,0[.]00';
+            let format = '0,0[.]00a';
+            if ($total.data('money')) format = '$0,0[.]00a';
             if ($total.data('percent')) {
-              format = '0,0[.]00%';
+              format = '0,0[.]00a%';
 
               value /= 100; // @hack: value is a percent
             }
