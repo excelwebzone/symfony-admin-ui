@@ -15,7 +15,7 @@ export default class FileUpload {
     self.$selector.find('.js-file-remove').on('click', (e) => this.removeFile(e));
 
     $('.js-new-file').on('click', (e) => {
-      $('.js-file-chooser').click();
+      $($(e.currentTarget).data('target')).click();
       e.stopPropagation();
     });
 
