@@ -84,7 +84,7 @@ export default class Dashboard {
   }
 
   updateChartEndpoint($chart, unit) {
-    $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22(.+)%22`), `%22${$chart.data('date-field')}%22%3A%7B%22unit%22%3A%22${unit}%22`));
+    $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22:%7B%22unit%22:%22(.+)%22%7D`), `%22${$chart.data('date-field')}%22:%7B%22unit%22:%22${unit}%22%7D`));
   }
 
   loadChart($report) {
