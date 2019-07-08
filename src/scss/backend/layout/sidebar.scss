@@ -117,7 +117,6 @@
   .sidebar .nav-logo-option {
     position: relative;
     bottom: 0;
-    border-top: none;
   }
 }
 
@@ -125,7 +124,6 @@
   .sidebar .nav-logo-option {
     position: absolute;
     bottom: 0;
-    border-top: 1px solid #3C4C57;
   }
 }
 
@@ -151,6 +149,32 @@
 
 .sidebar .nav-logo-text .text {
   padding-top: 0;
+}
+
+.sidebar-brand-logo {
+  right: 2px;
+  position: relative;
+  top: 1px;
+  transition: opacity .3s;
+  -webkit-transition: opacity .3s;
+  opacity: 0;
+}
+
+.sidebar-collapsed .sidebar-brand-logo {
+  opacity: 1;
+}
+
+.sidebar-brand-icon {
+  right: 150px;
+  bottom: 1px;
+  position: relative;
+  transition: opacity .3s;
+  -webkit-transition: opacity .3s;
+  opacity: 1;
+}
+
+.sidebar-collapsed .sidebar-brand-icon {
+  opacity: 0;
 }
 
 .sidebar .nav-logo-action {
