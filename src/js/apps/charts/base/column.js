@@ -26,7 +26,8 @@ export default ($chart, categories, series, colors = null, moneyFormat = false) 
           fontWeight: '600',
           color: '#888888'
         }
-      }
+      },
+      crosshair: true
     },
     yAxis: {
       title: {
@@ -46,14 +47,9 @@ export default ($chart, categories, series, colors = null, moneyFormat = false) 
       shared: !0
     },
     plotOptions: {
-      series: {
-        stacking: 'normal',
-        lineColor: '#e9e9e9',
-        lineWidth: 1,
-        marker: {
-          lineWidth: 1,
-          lineColor: '#e9e9e9'
-        }
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
       }
     },
     series: series
