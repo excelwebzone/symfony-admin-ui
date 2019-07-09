@@ -2,9 +2,13 @@ import numeral from 'numeral';
 import Highcharts from '../highcharts';
 
 export default ($chart, categories, series, colors = null, moneyFormat = false) => {
+  const minRowHeight = 25;
+  const minHeight = (categories.length || 0) * minRowHeight + 110;
+
   Highcharts.chart({
     chart: {
       type: 'bar',
+      height: Math.max(minHeight, 400),
       renderTo: $chart[0]
     },
     colors: colors && colors.length ? colors : Highcharts.getColors(),
