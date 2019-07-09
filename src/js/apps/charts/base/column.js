@@ -1,13 +1,13 @@
 import numeral from 'numeral';
 import Highcharts from '../highcharts';
 
-export default ($chart, categories, series, color = null) => {
+export default ($chart, categories, series, colors = null, moneyFormat = false) => {
   Highcharts.chart({
     chart: {
       type: 'column',
       renderTo: $chart[0]
     },
-    colors: Highcharts.getColors(color),
+    colors: colors && colors.length ? colors : Highcharts.getColors(),
     title: {
       text: null
     },
@@ -34,14 +34,14 @@ export default ($chart, categories, series, color = null) => {
       },
       labels: {
         formatter() {
-          return numeral(this.value).format('0,0[.]00');
+          return numeral(this.value).format(`${moneyFormat ? '$' : ''}0,0[.]00`);
         }
       },
       allowDecimals: !0
     },
     tooltip: {
       formatter: Highcharts.getSharedTooltipFormatter({
-        valueFormatter: value => numeral(value).format('0,0[.]00')
+        valueFormatter: value => numeral(value).format(`${moneyFormat ? '$' : ''}0,0[.]00`)
       }),
       shared: !0
     },

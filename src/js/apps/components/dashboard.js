@@ -146,9 +146,12 @@ export default class Dashboard {
           }
         }
 
-        const chartFunc = this.getChartCallback($chart.data('report'));
+        const chartFunc = this.getChartCallback($chart.data('token'));
         if (chartFunc) {
-          chartFunc($chart, data.labels, data.items, $chart.data('color'));
+          const colors = $chart.data('colors') || null;
+          const moneyFormat = $chart.data('money') === true;
+
+          chartFunc($chart, data.labels, data.items, colors, moneyFormat);
         }
       }).catch(() => $loading.hide());
   }

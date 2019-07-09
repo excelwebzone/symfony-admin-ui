@@ -200,7 +200,10 @@ export default class ListPage {
 
           const chartFunc = this.getChartCallback(this.$chartContainer.data('token'));
           if (chartFunc) {
-            chartFunc(this.$chartContainer, data.labels, data.items, this.$chartContainer.data('color'));
+            const colors = this.$chartContainer.data('colors') || null;
+            const moneyFormat = this.$chartContainer.data('money') === true;
+
+            chartFunc(this.$chartContainer, data.labels, data.items, colors, moneyFormat);
           }
         }).catch(() => this.$chartLoading.hide());
     }

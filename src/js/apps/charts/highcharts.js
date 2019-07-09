@@ -112,7 +112,7 @@ const CHART_COLORS = [
   COLORS.ORANGE
 ];
 
-function getColors(colorName) {
+function getColors(colorName = null) {
   if (!colorName || _.isUndefined(COLORS[colorName.toUpperCase()])) {
     colorName = 'PURPLE';
   }

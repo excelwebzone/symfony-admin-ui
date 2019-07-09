@@ -1,17 +1,13 @@
 import numeral from 'numeral';
 import Highcharts from '../highcharts';
 
-export default ($chart, categories, series, color = null) => {
-  const minRowHeight = 25;
-  const minHeight = (categories.length || 0) * minRowHeight + 110;
-
+export default ($chart, categories, series, colors = null, moneyFormat = false) => {
   Highcharts.chart({
     chart: {
       type: 'bar',
-      height: Math.max(minHeight, 400),
       renderTo: $chart[0]
     },
-    colors: Highcharts.getColors(color),
+    colors: colors && colors.length ? colors : Highcharts.getColors(),
     title: {
       text: null
     },
@@ -28,14 +24,14 @@ export default ($chart, categories, series, color = null) => {
       labels: {
         rotation: -45,
         formatter() {
-          return numeral(this.value).format('0,0[.]00');
+          return numeral(this.value).format(`${moneyFormat ? '$' : ''}0,0[.]00`);
         }
       },
       allowDecimals: !1
     },
     tooltip: {
       formatter: Highcharts.getTooltipFormatter({
-        valueFormatter: value => numeral(value).format('0,0[.]00')
+        valueFormatter: value => numeral(value).format(`${moneyFormat ? '$' : ''}0,0[.]00`)
       }),
       shared: !1
     },
