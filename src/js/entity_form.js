@@ -267,6 +267,9 @@ export default class EntityForm {
       $formGroup.find('.typed-property-key-dropdown').not($target.prev('.typed-property-key-dropdown')).addClass('is-disabled');
       $formGroup.find('.dropdown-selected').not($target.prev('.typed-property-key-dropdown').find('.dropdown-selected')).addClass('disabled');
       $formGroup.find('.typed-property-value-field').not($target).disable();
+
+      // remove when value is empty
+      $target.closest('.typed-property-item').trigger('blur');
     }
 
     // add loading
@@ -290,7 +293,7 @@ export default class EntityForm {
           // update string for textarea or input fields
           for (let e of $element) {
             const $e = $(e);
-            if (($e.is('textarea') || $e.is('input')) && data.fields) {
+            if (($e.is('textarea') || $e.is('input') || $e.hasClass('typed-property-key-field')) && data.fields) {
               for (let [field, value] of Object.entries(data.fields)) {
                 const name = $e.prop('name');
                 if (name.indexOf(`[${field}]`) > -1 || name === field) {
@@ -315,7 +318,7 @@ export default class EntityForm {
                     });
                   }
 
-                  $element.val(value);
+                  $e.val(value);
 
                   break;
                 }
