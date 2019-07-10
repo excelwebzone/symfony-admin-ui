@@ -196,6 +196,15 @@ export default class EntityForm {
 
   updateFieldData(e) {
     let $target = $(e.currentTarget);
+
+    // reset $target when value is not empty, otherwise exit
+    if ($target.hasClass('typed-property-key-field')) {
+      $target = $target.closest('.typed-property-item').find('.typed-property-value-field');
+      if (_.isEmpty($target.val())) {
+        return;
+      }
+    }
+
     const $form = $target.closest('form');
     const $formGroup = $target.closest('.form-group');
     let $element = $formGroup.find(':input');
@@ -252,14 +261,6 @@ export default class EntityForm {
     // ignore empty parameters
     if (_.isEmpty(params)) {
       return;
-    }
-
-    // ignore
-    if ($target.hasClass('typed-property-key-field')) {
-      $target = $target.closest('.typed-property-item').find('.typed-property-value-field');
-      if (_.isEmpty($target.val())) {
-        return;
-      }
     }
 
     // disabled all other values
