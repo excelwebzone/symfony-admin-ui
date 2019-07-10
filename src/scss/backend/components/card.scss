@@ -4,6 +4,9 @@
   border-radius: 2px;
   position: relative;
   overflow: initial;
+}
+
+.card-body {
   display: flex;
   flex-flow: column nowrap;
 }
