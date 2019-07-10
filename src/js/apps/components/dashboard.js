@@ -151,11 +151,6 @@ export default class Dashboard {
           const colors = $chart.data('colors') || null;
           const moneyFormat = $chart.data('money') === true;
 
-          // @hack: set chart height based on container
-          if ($chart.closest('.card').height() < 400) {
-            $chart.height($chart.parent().height());
-          }
-
           chartFunc($chart, data.labels, data.items, colors, moneyFormat);
         }
       }).catch(() => $loading.hide());
