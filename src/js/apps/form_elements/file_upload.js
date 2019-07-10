@@ -101,7 +101,7 @@ export default class FileUpload {
           }
 
           if (self.$selector.data('trigger')) {
-            self.$selector.trigger(self.$selector.data('trigger'), json);
+            self.$selector.trigger(self.$selector.data('trigger'), [json, file]);
           }
 
           self.clearIsClasses();
