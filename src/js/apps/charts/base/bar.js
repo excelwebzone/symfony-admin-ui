@@ -2,13 +2,9 @@ import numeral from 'numeral';
 import Highcharts from '../highcharts';
 
 export default ($chart, categories, series, colors = null, moneyFormat = false) => {
-  const minRowHeight = 25;
-  const minHeight = (categories.length || 0) * minRowHeight + 110;
-
   Highcharts.chart({
     chart: {
       type: 'bar',
-      height: Math.max(minHeight, 400),
       renderTo: $chart[0]
     },
     colors: colors && colors.length ? colors : Highcharts.getColors(),
@@ -17,38 +13,28 @@ export default ($chart, categories, series, colors = null, moneyFormat = false) 
     },
     xAxis: {
       categories: categories,
-      labels: {
-        x: -20
-      }
+      crosshair: true
     },
     yAxis: {
       title: {
         text: null
       },
       labels: {
-        rotation: -45,
         formatter() {
           return numeral(this.value).format(`${moneyFormat ? '$' : ''}0,0[.]00`);
         }
-      },
-      allowDecimals: !1
+      }
     },
     tooltip: {
-      formatter: Highcharts.getTooltipFormatter({
+      formatter: Highcharts.getSharedTooltipFormatter({
         valueFormatter: value => numeral(value).format(`${moneyFormat ? '$' : ''}0,0[.]00`)
       }),
-      shared: !1
-    },
-    legend: {
-      useHTML: true
+      shared: !0
     },
     plotOptions: {
       column: {
         pointPadding: 0.2,
         borderWidth: 0
-      },
-      series: {
-        stacking: 'normal'
       }
     },
     series: series

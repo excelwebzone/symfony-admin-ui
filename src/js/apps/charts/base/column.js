@@ -11,22 +11,8 @@ export default ($chart, categories, series, colors = null, moneyFormat = false) 
     title: {
       text: null
     },
-    subtitle: {
-      text: null
-    },
     xAxis: {
       categories: categories,
-      tickmarkPlacement: 'off',
-      title: {
-        enabled: !0
-      },
-      labels: {
-        step: 3,
-        style: {
-          fontWeight: '600',
-          color: '#888888'
-        }
-      },
       crosshair: true
     },
     yAxis: {
@@ -37,8 +23,7 @@ export default ($chart, categories, series, colors = null, moneyFormat = false) 
         formatter() {
           return numeral(this.value).format(`${moneyFormat ? '$' : ''}0,0[.]00`);
         }
-      },
-      allowDecimals: !0
+      }
     },
     tooltip: {
       formatter: Highcharts.getSharedTooltipFormatter({
