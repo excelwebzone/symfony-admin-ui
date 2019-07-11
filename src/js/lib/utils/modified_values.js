@@ -32,7 +32,7 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
           $emberCell.html(`<div>${value ? numeral(value).format('$0,0[.]00') : '--'}</div>`);
         } else if ($emberCell.hasClass('table-cell-percent')) {
           // @hack: value is a percent
-          $emberCell.html(`<div>${value ? numeral(value / 100).format('0,0[.]00') + '%' : '--'}</div>`);
+          $emberCell.html(`<div>${value ? numeral(value / 100).format('0,0[.]00%') : '--'}</div>`);
         } else {
           $emberCell.html(value || '--');
         }

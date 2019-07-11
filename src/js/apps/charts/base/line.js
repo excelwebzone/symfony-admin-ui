@@ -20,13 +20,14 @@ export default ($chart, categories, series, colors = null, format = null) => {
       },
       labels: {
         formatter() {
-          return numeral(this.value).format(`${format === 'money' ? '$' : ''}0,0[.]00${format === 'percent' ? '%' : ''}`);
+          return numeral(format === 'percent' ? this.value / 100 : this.value).format(`${format === 'money' ? '$' : ''}0,0[.]00${format === 'percent' ? '%' : ''}`);
         }
       }
     },
     tooltip: {
       formatter: Highcharts.getSharedTooltipFormatter({
-        valueFormatter: value => numeral(value).format(`${format === 'money' ? '$' : ''}0,0[.]00${format === 'percent' ? '%' : ''}`)
+        // @hack: value is a percent
+        valueFormatter: value => numeral(format === 'percent' ? value / 100 : value).format(`${format === 'money' ? '$' : ''}0,0[.]00${format === 'percent' ? '%' : ''}`)
       }),
       shared: !0
     },
