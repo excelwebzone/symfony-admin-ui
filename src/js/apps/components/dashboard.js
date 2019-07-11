@@ -149,9 +149,9 @@ export default class Dashboard {
         const chartFunc = this.getChartCallback($chart.data('token'));
         if (chartFunc) {
           const colors = $chart.data('colors') || null;
-          const moneyFormat = $chart.data('money') === true;
+          const format = $chart.data('format');
 
-          chartFunc($chart, data.labels, data.items, colors, moneyFormat);
+          chartFunc($chart, data.labels, data.items, colors, format);
         }
       }).catch(() => $loading.hide());
   }

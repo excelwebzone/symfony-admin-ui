@@ -201,9 +201,9 @@ export default class ListPage {
           const chartFunc = this.getChartCallback(this.$chartContainer.data('token'));
           if (chartFunc) {
             const colors = this.$chartContainer.data('colors') || null;
-            const moneyFormat = this.$chartContainer.data('money') === true;
+            const format = this.$chartContainer.data('format');
 
-            chartFunc(this.$chartContainer, data.labels, data.items, colors, moneyFormat);
+            chartFunc(this.$chartContainer, data.labels, data.items, colors, format);
           }
         }).catch(() => this.$chartLoading.hide());
     }
