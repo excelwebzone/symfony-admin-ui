@@ -39,6 +39,13 @@
   margin: 22px 10px;
 }
 
+@media (max-width: 767.98px) {
+  .list-page-header .add-buttons-container,
+  .list-page-header .list-page-stats {
+    display: none !important;
+  }
+}
+
 .list-page-header .list-page-stats-value {
   height: 64px;
   float: left;
@@ -121,6 +128,12 @@
   padding: 16px 0 16px 16px;
 }
 
+@media (max-width: 575.98px) {
+  .list-page-header .bulk-buttons-container {
+    float: none;
+  }
+}
+
 .list-page-header .bulk-buttons-container .selection-count {
   margin-right: 20px;
   font-size: 12px;
@@ -129,6 +142,12 @@
   vertical-align: middle;
   display: inline-block;
   cursor: default;
+}
+
+@media (max-width: 575.98px) {
+  .list-page-header .bulk-buttons-container .selection-count {
+    display: none;
+  }
 }
 
 .list-page-header .bulk-buttons-container.not-bulk-buttons .selection-count {
@@ -165,6 +184,35 @@
   float: right;
   font-size: 24px;
   padding: 15px 25px 15px 0;
+}
+
+.list-page-header .list-buttons-container.has-toggle>.list-buttons-toggle-content {
+  display: inline !important;
+}
+
+.list-page-header .list-buttons-container.has-toggle>.list-buttons-toggle-button {
+  display: none !important;
+}
+
+@media (max-width: 767.98px) {
+  .list-page-header .list-buttons-container.has-toggle {
+    position: absolute;
+    right: 0;
+    background: #f2f2f2;
+    text-align: right;
+  }
+
+  .list-page-header .list-buttons-container.has-toggle.is-expanded {
+    width: 100%;
+  }
+
+  .list-page-header .list-buttons-container.has-toggle:not(.is-expanded)>.list-buttons-toggle-content {
+    display: none !important;
+  }
+
+  .list-page-header .list-buttons-container.has-toggle>.list-buttons-toggle-button {
+    display: inline !important;
+  }
 }
 
 .list-filter-selector {
@@ -515,21 +563,4 @@
   margin: 0 auto;
   vertical-align: middle;
   width: 20px;
-}
-
-@media (max-width: 767.98px) {
-  .list-page-header .add-buttons-container,
-  .list-page-header .list-page-stats {
-    display: none !important;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .list-page-header .bulk-buttons-container {
-    float: none;
-  }
-
-  .list-page-header .bulk-buttons-container .selection-count {
-    display: none;
-  }
 }
