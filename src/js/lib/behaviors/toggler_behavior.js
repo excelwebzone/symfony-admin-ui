@@ -25,6 +25,8 @@ $(() => {
   }
 
   $('body').on('click', '.js-toggle-button', function toggleButton(e) {
+    e.currentTarget.classList.toggle(e.currentTarget.dataset.toggleOpenClass || 'open');
+
     if (e.target.tagName.toLowerCase() === 'a'
       || $(e.target).hasClass('js-toggle-ignore')
       || $(e.target).closest('.js-toggle-ignore').length
@@ -33,8 +35,6 @@ $(() => {
     }
 
     const $container = $($(this).closest('.js-toggle-container'));
-
-    e.currentTarget.classList.toggle(e.currentTarget.dataset.toggleOpenClass || 'open');
     toggleContainer($container);
 
     if ($container.hasClass('is-expanded')) {
