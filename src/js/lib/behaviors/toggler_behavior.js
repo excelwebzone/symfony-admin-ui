@@ -14,13 +14,13 @@ $(() => {
     $container
       .toggleClass('is-expanded', toggleState !== undefined ? !toggleState : undefined);
     /*
-      .find('.js-toggle-button .zmdi-chevron-up, .js-toggle-button .zmdi-chevron-down')
+      .find('>.js-toggle-button .zmdi-chevron-up, >.js-toggle-button .zmdi-chevron-down')
       .toggleClass('zmdi-chevron-up', toggleState)
       .toggleClass('zmdi-chevron-down', toggleState !== undefined ? !toggleState : undefined);
     */
 
     $container
-      .find('.js-toggle-content')
+      .find('>.js-toggle-content')
       .toggle(toggleState);
   }
 
