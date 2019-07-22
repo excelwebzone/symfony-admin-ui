@@ -200,6 +200,7 @@
     right: 0;
     background: #f2f2f2;
     text-align: right;
+    height: calc(100% - 1px);
   }
 
   .list-page-header .list-buttons-container.has-toggle:not(.is-expanded)>.list-buttons-toggle-content {
