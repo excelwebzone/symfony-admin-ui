@@ -35,8 +35,8 @@ export default class FileUpload {
           self.removeClass('is-dragging');
           self.addClass('is-uploading');
 
-          if (self.$selector.find('.filename')) {
-            self.$selector.find('.filename').text(file.name);
+          if (self.$selector.find('.js-progress-text')) {
+            self.$selector.find('.js-progress-text').text(`Progress: ${progress}%, Sent: ${bytesSent}KB`);
           }
         });
 
