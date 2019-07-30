@@ -43,7 +43,7 @@
 .toaster {
   position: fixed;
   max-width: 700px;
-  z-index: 100;
+  z-index: 9999;
 }
 
 .toast {
@@ -153,17 +153,11 @@
   color: #363636;
 }
 
-.toaster.toaster-default {
-  bottom: 35px;
-  left: 50%;
-  transform: translatex(-50%);
-}
-
+.toaster.toaster-default,
 .toaster.toaster-error {
   bottom: 35px;
   left: 50%;
-  margin-left: -266px;
-  z-index: 1000;
+  transform: translatex(-50%);
 }
 
 .toaster.toaster-error .toast.is-closed {
