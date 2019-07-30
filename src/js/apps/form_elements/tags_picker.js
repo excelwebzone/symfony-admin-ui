@@ -42,7 +42,7 @@ export default class TagsPicker {
         <div class="range-select-container">
           <div class="range-select range-select-tags-range">
             <div class="range-select-range-field">
-              <input type="text" name="tagpicker" class="input-text" placeholder="Add tag" autocomplete="off" />
+              <input type="text" name="tagpicker" class="input-text ignore-input" placeholder="Add tag" autocomplete="off" />
               <div class="tag-collection"></div>
             </div>
             <div>
@@ -92,7 +92,7 @@ export default class TagsPicker {
     }
 
     if (this.autoApply) {
-      this.$container.find('.apply-button').addClass('hide');
+      this.$container.find('.apply-button').hide();
     }
 
     // if no tags set, check if an input element contains initial values
@@ -168,6 +168,9 @@ export default class TagsPicker {
     $currentTarget.closest('.tag').remove();
     this.updateView();
     this.updateElement();
+
+    if (this.autoApply)
+      this.clickApply();
   }
 
   updateView() {
@@ -354,6 +357,9 @@ export default class TagsPicker {
       this.formInputsChanged(e);
       // Reset
       $(e.currentTarget).val('');
+
+      if (this.autoApply)
+        this.clickApply();
     }
   }
 

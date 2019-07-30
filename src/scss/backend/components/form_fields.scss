@@ -1230,15 +1230,40 @@ label .invalid-feedback {
 @media (max-width: 991.98px) {
   .range-select-container {
     position: relative;
+    margin: 0 -30px;
+    padding: 0 30px;
+    border: none;
+    box-shadow: none;
+  }
+
+  .range-select-container:not(.has-nub):before,
+  .range-select-container:not(.has-nub):after {
+    border: none;
   }
 
   .range-select-date-range .range-select-content {
-    overflow-x: auto;
+    flex-direction: column;
   }
 
   .range-select-date-range .range-select-footer {
     display: block;
     padding-top: 10px;
+  }
+
+  .range-select-date-range .filter-calendar-button-panel {
+    order: 0;
+  }
+
+  .range-select-date-range .filter-calendar.from-date-selector {
+    order: 1;
+  }
+
+  .range-select-date-range .filter-calendar.to-date-selector {
+    order: 2;
+  }
+
+  .range-select-date-range .filter-calendar>.calendar {
+    display: none;
   }
 
   .range-select .range-select-button-section {

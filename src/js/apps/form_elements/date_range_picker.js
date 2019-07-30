@@ -68,7 +68,7 @@ export default class DateRangePicker {
                 <div class="range-select-range-field">
                   <div class="filter">
                     <span>From:</span>
-                    <input type="text" name="daterangepicker_start" class="input-text" placeholder="mm/dd/yyyy" autocomplete="off" />
+                    <input type="text" name="daterangepicker_start" class="input-text ignore-input" placeholder="mm/dd/yyyy" autocomplete="off" />
                   </div>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default class DateRangePicker {
                 <div class="range-select-range-field">
                   <div class="filter">
                     <span>To:</span>
-                    <input type="text" name="daterangepicker_end" class="input-text" placeholder="mm/dd/yyyy" autocomplete="off" />
+                    <input type="text" name="daterangepicker_end" class="input-text ignore-input" placeholder="mm/dd/yyyy" autocomplete="off" />
                   </div>
                 </div>
               </div>
@@ -304,7 +304,7 @@ export default class DateRangePicker {
     if (this.autoApply && typeof options.ranges !== 'object') {
       this.$container.find('.ranges').hide();
     } else if (this.autoApply) {
-      this.$container.find('.apply-button, .cancel-button').addClass('hide');
+      this.$container.find('.apply-button, .cancel-button').hide();
     }
 
     if (this.singleDatePicker) {
