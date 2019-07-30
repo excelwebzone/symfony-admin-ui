@@ -36,7 +36,12 @@ export default class FileUpload {
           self.addClass('is-uploading');
 
           if (self.$selector.find('.js-progress-text')) {
-            self.$selector.find('.js-progress-text').text(`Progress: ${progress}%, Sent: ${bytesSent}KB`);
+            // converts a long string of bytes into a readable format e.g KB, MB, GB, TB, YB
+            const size = Math.floor(Math.log(bytesSent) / Math.log(1024));
+            const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+            const readableBytes = (bytesSent / Math.pow(1024, size)).toFixed(2) * 1 + ' ' + sizes[size];
+
+            self.$selector.find('.js-progress-text').text(`Progress: ${progress}%, Sent: ${readableBytes}`);
           }
         });
 
