@@ -47,6 +47,12 @@
   padding: 0 20px;
 }
 
+@media (max-width: 575.98px) {
+  .dashboard-content .scrollable-tabs-drager {
+    padding: 0 5px;
+  }
+}
+
 .dashboard-tabs {
   display: block;
   overflow: hidden;
