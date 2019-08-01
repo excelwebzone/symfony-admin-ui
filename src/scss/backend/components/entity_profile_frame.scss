@@ -269,6 +269,12 @@
   border-bottom: 1px solid #d5d8d8
 }
 
+@media (max-width: 767.98px) {
+  .entity-profile-frame-tabs.entity-profile-frame:not(.entity-profile-frame-preview) .entity-profile-frame-header-actions-box {
+    top: 20px;
+  }
+}
+
 .entity-profile-frame-tabs .entity-profile-frame-tab-box {
   top: 12px;
   width: calc(100% - 100px);
