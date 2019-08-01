@@ -13,11 +13,16 @@
   padding: 20px 15px;
 }
 
+.dashboard-content .scrollable-tabs {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #d5d8d8;
+}
+
 .dashboard-tabs {
   display: block;
   overflow: hidden;
-  margin: 0 10px 25px;
-  border-bottom: 1px solid #d5d8d8;
+  margin: 0 10px;
+  border-bottom: none;
 }
 
 .dashboard-cards .card {
