@@ -15,7 +15,7 @@ export default class DateRangePicker {
     this.singleDatePicker = false;
     this.showDropdowns = false;
     this.showCustomRangeLabel = true;
-    this.linkedCalendars = true;
+    this.linkedCalendars = false;
     this.autoUpdateInput = true;
     this.alwaysShowCalendars = false;
     this.ignoreMove = false;
@@ -455,16 +455,16 @@ export default class DateRangePicker {
 
   updateMonthsInView() {
     if (this.endDate) {
-      // if both dates are visible already, do nothing
-      if (!this.singleDatePicker && this.leftCalendar.month && this.rightCalendar.month
-        && (this.startDate.format('YYYY-MM') === this.leftCalendar.month.format('YYYY-MM') || this.startDate.format('YYYY-MM') === this.rightCalendar.month.format('YYYY-MM'))
-        && (this.endDate.format('YYYY-MM') === this.leftCalendar.month.format('YYYY-MM') || this.endDate.format('YYYY-MM') === this.rightCalendar.month.format('YYYY-MM'))
-      ) {
-        return;
-      }
+    /* // if both dates are visible already, do nothing
+    if (!this.singleDatePicker && this.leftCalendar.month && this.rightCalendar.month
+      && (this.startDate.format('YYYY-MM') === this.leftCalendar.month.format('YYYY-MM') || this.startDate.format('YYYY-MM') === this.rightCalendar.month.format('YYYY-MM'))
+      && (this.endDate.format('YYYY-MM') === this.leftCalendar.month.format('YYYY-MM') || this.endDate.format('YYYY-MM') === this.rightCalendar.month.format('YYYY-MM'))
+    ) {
+      return;
+    } */
 
       this.leftCalendar.month = this.startDate.clone().date(2);
-      if (!this.linkedCalendars && (this.endDate.month() !== this.startDate.month() || this.endDate.year() !== this.startDate.year())) {
+      if (!this.linkedCalendars) {
         this.rightCalendar.month = this.endDate.clone().date(2);
       } else {
         this.rightCalendar.month = this.startDate.clone().date(2).add(1, 'month');
@@ -558,7 +558,7 @@ export default class DateRangePicker {
     // Display the calendar
     //
 
-    let minDate = side === 'left' ? this.minDate : this.startDate;
+    let minDate = this.minDate;
     let maxDate = this.maxDate;
 
     let html = '<div class="ui-datepicker">';
@@ -628,6 +628,10 @@ export default class DateRangePicker {
     html += '</thead>';
     html += '<tbody>';
 
+    // adjust minDate to reflect the dateLimit setting in order to
+    // grey out start dates before the dateLimit
+    minDate = this.startDate;
+
     // adjust maxDate to reflect the dateLimit setting in order to
     // grey out end dates beyond the dateLimit
     if (this.endDate === null && this.dateLimit) {
@@ -635,6 +639,8 @@ export default class DateRangePicker {
       if (!maxDate || maxLimit.isBefore(maxDate)) {
         maxDate = maxLimit;
       }
+    } else {
+      maxDate = this.endDate;
     }
 
     for (let row = 0; row < 6; row++) {
@@ -662,16 +668,18 @@ export default class DateRangePicker {
           isDisabled = true;
         }
 
-        // don't allow selection of dates before the minimum date
-        if (this.minDate && calendar[row][col].isBefore(this.minDate, 'day')) {
-          classes.push('ui-state-disabled');
-          isDisabled = true;
-        }
+        if (!this.singleDatePicker && !this.linkedCalendars) {
+          // don't allow selection of dates before the minimum date
+          if (side === 'right' && minDate && calendar[row][col].isBefore(minDate, 'day')) {
+            classes.push('ui-state-disabled');
+            isDisabled = true;
+          }
 
-        // don't allow selection of dates after the maximum date
-        if (maxDate && calendar[row][col].isAfter(maxDate, 'day')) {
-          classes.push('ui-state-disabled');
-          isDisabled = true;
+          // don't allow selection of dates after the maximum date
+          if (side === 'left' && maxDate && calendar[row][col].isAfter(maxDate, 'day')) {
+            classes.push('ui-state-disabled');
+            isDisabled = true;
+          }
         }
 
         // don't allow selection of date if a custom function decides it's invalid
@@ -709,18 +717,10 @@ export default class DateRangePicker {
             Array.prototype.push.apply(classes, isCustom);
         }
 
-        let cname = '';
-        let disabled = false;
+        if (!isDisabled)
+          classes.push('ui-datepicker-current-day');
 
-        for (let i = 0; i < classes.length; i++) {
-          cname += classes[i] + ' ';
-          if (classes[i] === 'ui-state-disabled')
-            disabled = true;
-        }
-        if (!disabled)
-          cname += 'ui-datepicker-current-day';
-
-        html += '<td class="' + cname.replace(/^\s+|\s+$/g, '') + '" data-title="' + 'r' + row + 'c' + col + '"><span>' + calendar[row][col].date() + '</span></td>';
+        html += '<td class="' + classes.join(' ').replace(/^\s+|\s+$/g, '') + '" data-title="' + 'r' + row + 'c' + col + '"><span>' + calendar[row][col].date() + '</span></td>';
       }
       html += '</tr>';
     }
@@ -1038,19 +1038,29 @@ export default class DateRangePicker {
     // * if one of the inputs above the calendars was focused, cancel that manual input
     //
 
-    if (this.singleDatePicker || date.isBefore(this.startDate, 'day')) { // picking start
+    if (this.singleDatePicker) {
       this.setStartDate(date.clone());
-    } else { // picking end
-      this.setEndDate(date.clone());
+      this.setEndDate(this.startDate);
+      this.clickApply();
+    } else {
+      if (cal.hasClass('left')) {
+        if (date.isSameOrBefore(this.endDate, 'day')) {
+          this.setStartDate(date.clone());
+        } else if (date.isSameOrAfter(this.endDate, 'day')) {
+          this.setEndDate(date.clone());
+        }
+      }
+      if (cal.hasClass('right')) {
+        if (date.isSameOrBefore(this.startDate, 'day')) {
+          this.setStartDate(date.clone());
+        } else if (date.isSameOrAfter(this.startDate, 'day')) {
+          this.setEndDate(date.clone());
+        }
+      }
       if (this.autoApply) {
         this.calculateChosenLabel();
         this.clickApply();
       }
-    }
-
-    if (this.singleDatePicker) {
-      this.setEndDate(this.startDate);
-      this.clickApply();
     }
 
     this.updateView();

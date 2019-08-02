@@ -1490,6 +1490,10 @@ label .invalid-feedback {
   color: #ccc;
 }
 
+.calendar>.ui-datepicker .ui-datepicker-calendar td.ui-state-disabled span:hover {
+  background: transparent;
+}
+
 .calendar>.ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today span {
   color: #0777c9;
   font-weight: 700;
