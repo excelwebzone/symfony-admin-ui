@@ -401,6 +401,20 @@
   font-size: 28px;
 }
 
+@media (max-width: 767.98px) {
+  .dashboard-report-data-block {
+    min-width: auto;
+  }
+
+  .dashboard-report-data-value {
+    font-size: 18px;
+  }
+
+  .dashboard-report-positive-data-value {
+    font-size: 18px;
+  }
+}
+
 .dashboard-report-positive-data-value::before {
   content: '+';
 }

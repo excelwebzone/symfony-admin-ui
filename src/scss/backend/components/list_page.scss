@@ -334,6 +334,12 @@
   position: relative;
 }
 
+@media (max-width: 767.98px) {
+  .list-chart-summary-number-item {
+    margin-right: 10px;
+  }
+}
+
 .list-chart-summary-number-item>div {
   display: inline-block;
 }
@@ -341,6 +347,14 @@
 .list-chart-summary-number-item>div:first-child {
   font-size: 42px;
   line-height: 80px;
+}
+
+@media (max-width: 767.98px) {
+  .list-chart-summary-number-item>div:first-child {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: bold;
+  }
 }
 
 .list-chart-summary-number-item .list-chart-summary-tooltip-info {
