@@ -151,6 +151,11 @@ export default class Dashboard {
           const colors = $chart.data('colors') || null;
           const format = $chart.data('format');
 
+          // @hack: set chart height based on container
+          if ($chart.closest('.card').height() < 400) {
+            $chart.height($chart.parent().height());
+          }
+
           chartFunc($chart, data.labels, data.items, colors, format);
         }
       }).catch(() => $loading.hide());
