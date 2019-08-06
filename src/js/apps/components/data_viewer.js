@@ -127,8 +127,6 @@ export default class DataViewer {
     } else {
       this.$table.find('.ember-table-body-container .ember-table-left-table-block>div').html('');
       this.$table.find('.ember-table-body-container .ember-table-right-table-block>div').html('');
-
-      this.emberTable.resizeTable();
     }
   }
 
