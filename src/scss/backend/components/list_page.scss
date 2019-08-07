@@ -185,6 +185,10 @@
   padding: 15px 25px 15px 25px;
 }
 
+.list-page-header .list-buttons-toggle-content .dropdown-options {
+  z-index: 2 !important;
+}
+
 .list-page-header .list-buttons-container.has-toggle>.list-buttons-toggle-content {
   display: inline !important;
 }
@@ -270,7 +274,7 @@
   position: absolute;
   right: -20px;
   top: -8px;
-  z-index: 1;
+  z-index: 2;
   background-color: #FFF;
   min-width: 300px;
   max-width: 500px;
