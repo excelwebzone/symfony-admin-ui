@@ -11,7 +11,7 @@
 .list-page-container .navigation-main {
   top: 0;
   visibility: visible;
-  z-index: 2;
+  z-index: 3;
 }
 
 @media (max-width: 767.98px) {
@@ -320,6 +320,7 @@
   background-color: #fff;
   border-top: 1px solid #e9e9e9;
   padding: 10px 20px 20px;
+  z-index: 1;
 }
 
 .list-chart-summary {
@@ -481,7 +482,7 @@
   position: absolute;
   right: -20px;
   top: -8px;
-  z-index: 1;
+  z-index: 2;
   background-color: #fff;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 1px 6px rgba(0,0,0,0.12);
   min-width: 300px;
