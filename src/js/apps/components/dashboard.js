@@ -11,10 +11,7 @@ export default class Dashboard {
 
     this.initDomElements();
     this.bindEvents();
-
-    for (let report of this.$reports) {
-      this.loadChart($(report));
-    }
+    this.initBlock($('body'));
   }
 
   initDomElements() {
@@ -27,13 +24,7 @@ export default class Dashboard {
   }
 
   initBlock(e) {
-    const $block = $(e.currentTarget);
-
-    // load reports in block
-    const $reports = $block.find('.dashboard-report');
-    for (let report of $reports) {
-      this.loadChart($(report));
-    }
+    this.processReports(Object.entries($(e.currentTarget).find('.dashboard-report')));
   }
 
   selectDateRange(e) {
@@ -57,12 +48,15 @@ export default class Dashboard {
       end = end.add(1, 'day');
     }
 
+    const reports = [];
+
     const $card = $target.closest('.card');
     if ($card.length) {
       $card.find('.card-subheader').html(this.getDateRangeTitle(start, end));
 
       this.updateChartEndpoint($card.find('.chart-container-chart'), $target.data('value'));
-      this.loadChart($card.find('.dashboard-report'));
+      this.resetChart($card.find('.dashboard-report'));
+      reports.push($card.find('.dashboard-report'));
     }
 
     const $reportFilter = $target.closest('.report-filter');
@@ -71,9 +65,12 @@ export default class Dashboard {
 
       for (let report of $reportFilter.next('.report-container').find('.dashboard-report')) {
         this.updateChartEndpoint($(report).find('.chart-container-chart'), $target.data('value'));
-        this.loadChart($(report));
+        this.resetChart($(report));
+        reports.push($(report));
       }
     }
+
+    this.processReports(reports);
   }
 
   getDateRangeTitle(start, end) {
@@ -88,7 +85,17 @@ export default class Dashboard {
     $chart.data('endpoint', $chart.data('endpoint').replace(new RegExp(`%22${$chart.data('date-field')}%22:%7B%22unit%22:%22(.+)%22%7D`), `%22${$chart.data('date-field')}%22:%7B%22unit%22:%22${unit}%22%7D`));
   }
 
-  loadChart($report) {
+  // executes Promises sequentially
+  processReports(reports) {
+    const concat = result => Array.prototype.concat.bind(result);
+    const promiseConcat = func => result => func().then(concat(result));
+    const promiseReduce = (promise, func) => promise.then(promiseConcat(func));
+    const serial = funcs => funcs.reduce(promiseReduce, Promise.resolve([]));
+
+    serial(reports.map(report => () => this.loadChart($(report))));
+  }
+
+  resetChart($report) {
     const $chart = $report.find('.chart-container-chart');
     const $loading = $report.find('.chart-loading-overlay');
     const $total = $report.find('.dashboard-report-data-value');
@@ -107,13 +114,25 @@ export default class Dashboard {
 
     $chart.html('');
     $loading.show();
+  }
+
+  loadChart($report) {
+    if ($report.length === 0) {
+      return Promise.resolve();
+    }
+
+    const $chart = $report.find('.chart-container-chart');
+    const $loading = $report.find('.chart-loading-overlay');
+    const $total = $report.find('.dashboard-report-data-value');
+
+    this.resetChart($report);
 
     // @tmp
     if ($chart.data('endpoint') === '#') {
-      return;
+      return Promise.resolve();
     }
 
-    axios.get($chart.data('endpoint'))
+    return axios.get($chart.data('endpoint'))
       .then(({ data }) => {
         $loading.hide();
 
