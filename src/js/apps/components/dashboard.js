@@ -2,6 +2,7 @@ import $ from 'jquery';
 import moment from 'moment';
 import numeral from 'numeral';
 import axios from '../../lib/utils/axios_utils';
+import bp from '../../breakpoints';
 
 export default class Dashboard {
   constructor(getChartCallback, allowDecimals = true) {
@@ -152,7 +153,7 @@ export default class Dashboard {
           const format = $chart.data('format');
 
           // @hack: set chart height based on container
-          if ($chart.closest('.card').height() < 400) {
+          if (bp.getBreakpointSize() !== 'lg') {
             $chart.height($chart.parent().height());
           }
 
