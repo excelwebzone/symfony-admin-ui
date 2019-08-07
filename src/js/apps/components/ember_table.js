@@ -189,10 +189,6 @@ export default class EmberTable {
   }
 
   resizeTable() {
-    if (this.$table.length === 0) {
-      return;
-    }
-
     const useDynamicWidth = this.$table.data('dynamic-width');
     const defaultColumnWidth = this.$table.data('default-column-width');
     const totalColumns = this.$table.find('.ember-table-header-container .ember-table-header-cell').length;
