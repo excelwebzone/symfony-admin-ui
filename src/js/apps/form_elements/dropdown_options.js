@@ -18,6 +18,11 @@ export default class DropdownOptions {
   }
 
   preloadData() {
+    for (let dropdown of this.$container.find('[data-toggle="dropdown"]')) {
+      $(dropdown).dropdown('dispose');
+      $(dropdown).dropdown();
+    }
+
     for (let dropdown of this.$container.find('.js-select-dropdown')) {
       let $item = $(dropdown).find('.option-list-item.is-selected');
       if ($item.length === 0 && $(dropdown).closest('.form-property-container').length) {
