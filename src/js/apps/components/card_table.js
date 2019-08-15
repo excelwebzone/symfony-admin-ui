@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import axios from '../../lib/utils/axios_utils';
+import toaster from '../../lib/utils/toaster';
 import EmberTable from './ember_table';
 
 export default class CardTable {
@@ -232,6 +233,12 @@ export default class CardTable {
 
       axios.put(this.dragSourceEl.data('update-fields-endpoint'), params)
         .then(({ data }) => {
+          if (data.error && data.error.message) {
+            toaster(data.error.message, 'error');
+
+            return;
+          }
+
           this.moveCell(this.dragSourceEl, newValue);
 
           const $form = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"] .entity-details`);
