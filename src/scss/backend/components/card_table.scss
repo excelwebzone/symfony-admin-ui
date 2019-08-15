@@ -1,0 +1,253 @@
+.card-table-component {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  max-width: 100%;
+  position: relative;
+}
+
+.card-table-component .ember-table-header-container .ember-table-table-fixed-wrapper {
+  background-color: #fff;
+}
+
+.card-table-component .ember-table-body-container .ember-table-table-row.ember-table-hover {
+  background-color: transparent;
+}
+
+.card-table-component .ember-table-table-row {
+  cursor: default;
+}
+
+.card-table-component.is-dragging,
+.card-table-component.is-dragging *,
+.card-table-component.is-dragging a {
+  cursor: url(https://mail.google.com/mail/images/2/closedhand.cur),move;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing,-moz-grabbing,url(https://mail.google.com/mail/images/2/closedhand.cur),move;
+}
+
+.card-table-component .cell {
+  padding: 10px 5% 10px 30px;
+}
+
+.card-table-component .ember-table-header-row {
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.card-table-component .ember-table-header-cell.last .carrot,
+.card-table-component .ember-table-header-row .ember-table-header-cell .carrot.active,
+.card-table-component .ember-table-header-row .ember-table-header-cell.active .carrot {
+  display: none;
+}
+
+.card-table-component .ember-table-header-row .ember-table-header-cell,
+.card-table-component .ember-table-header-row .ember-table-header-cell:hover {
+  background-color: #fff;
+}
+
+.card-table-component .ember-table-header-row .ember-table-header-cell.active {
+  z-index: 1;
+  background-color: #2B41B2;
+  border-color: #2B41B2;
+}
+
+.card-table-component .ember-table-header-row .ember-table-header-cell.active * {
+  color: #fff;
+}
+
+.card-table-component .ember-table-header-row .ember-table-header-cell .carrot {
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: -12px;
+}
+
+.card-table-component .ember-table-header-row .ember-table-header-cell.active .carrot.active {
+  display: inline-block;
+}
+
+.card-table-component .ember-table-header-row .ember-table-header-cell.last .carrot,
+.card-table-component .ember-table-header-row .ember-table-header-cell.last .carrot.active {
+  display: none;
+}
+
+.card-table-component .header-cell {
+  overflow: hidden;
+  padding: 12px 5% 0 37px;
+}
+
+.card-table-component .header-cell .title {
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #212121;
+  text-transform: uppercase;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-table-component .header-cell .total {
+  font-size: 12px;
+  line-height: 20px;
+  color: #757575;
+}
+
+.card-table-component-model-cell {
+  cursor: url(https://mail.google.com/mail/images/2/openhand.cur),move;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab,-moz-grab,url(https://mail.google.com/mail/images/2/openhand.cur),move;
+  position: relative;
+  padding: 5px 8px;
+  height: 100%;
+}
+
+.card-table-component-model-cell .cell-content {
+  height: 100%;
+  position: relative;
+  padding: 20px 30px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.12);
+  border-radius: 2px;
+}
+
+.card-table-component-model-cell .cell-content:hover {
+  background-color: rgba(33,150,243,0.04);
+}
+
+.card-table-component-model-cell.is-current .cell-content {
+  background: #e3f2fd;
+}
+
+.card-table-component-model-cell.hide {
+  opacity: 0;
+}
+
+.card-table-component-model-cell.animating-drag-shadow.drag-shadow .shadow-model-cover,
+.card-table-component-model-cell.shadow-model.drag-shadow .shadow-model-cover {
+  display: none;
+}
+
+.card-table-component-model-cell.drag-shadow {
+  position: absolute;
+  padding-left: 30px;
+  padding-right: 10px;
+  z-index: 1000;
+  -ms-transform: rotate(3deg);
+  -webkit-transform: rotate(3deg);
+  transform: rotate(3deg);
+  cursor: url(https://mail.google.com/mail/images/2/closedhand.cur),move;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing,-moz-grabbing,url(https://mail.google.com/mail/images/2/closedhand.cur),move;
+}
+
+.card-table-component-model-cell.drag-shadow .cell-content {
+  background-color: #fff;
+}
+
+.card-table-component-model-cell.drag-shadow .title {
+  cursor: url(https://mail.google.com/mail/images/2/closedhand.cur),move;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing,-moz-grabbing,url(https://mail.google.com/mail/images/2/closedhand.cur),move;
+}
+
+.card-table-component-model-cell.drag-shadow.rotate-back {
+  -ms-transform: none;
+  -webkit-transform: none;
+  transform: none;
+  -webkit-transition: -webkit-transform .2s;
+  transition: transform .2s;
+}
+
+.card-table-component-model-cell.animating-drag-shadow .cell-content,
+.card-table-component-model-cell.shadow-model .cell-content {
+  border: 2px dashed rgba(43,65,178,0.16)
+}
+
+.card-table-component-model-cell.animating-drag-shadow .shadow-model-cover,
+.card-table-component-model-cell.shadow-model .shadow-model-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+}
+
+.card-table-component-model-cell.animating-drag-shadow .cell-content {
+  background-color: #e3f2fd;
+}
+
+.card-table-component-model-cell .click-area {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.card-table-component-model-cell .title-span .task-check-box {
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  vertical-align: middle;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-table-component-model-cell .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 24px;
+  color: #212121;
+  cursor: pointer;
+  max-width: -webkit-calc(100% - 25px);
+  max-width: calc(100% - 25px);
+  vertical-align: middle;
+}
+
+.card-table-component-model-cell .title:hover {
+  text-decoration: underline;
+}
+
+.card-table-component-model-cell .account-assignee,
+.card-table-component-model-cell .monetary-value {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 20px;
+  color: #757575;
+}
+
+.card-table-component-model-cell .account-assignee.monetary-value,
+.card-table-component-model-cell .monetary-value.monetary-value {
+  min-height: 14px;
+}
+
+.card-table-component .ember-table-cell {
+  border: none;
+}
+
+.card-table-component .ember-table-tables-container .ember-table-table-row {
+  border: none;
+  border-bottom: none;
+}
