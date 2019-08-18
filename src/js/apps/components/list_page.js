@@ -78,7 +78,9 @@ export default class ListPage {
             const $span = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content>span`);
 
             // remove decimals
-            if (!self.allowDecimals && value.indexOf('.') !== -1) {
+            if ((!self.allowDecimals && (value.indexOf('.') !== -1))
+                || (self.allowDecimals && parseInt(value.substring(value.indexOf('.') + 1)) === 0)
+            ) {
               value = value.replace(/^(\W)?([0-9,]+)([0-9.]+)(\W)?$/g, '$1$2$4');
             }
 
