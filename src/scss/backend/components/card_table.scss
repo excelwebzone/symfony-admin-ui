@@ -64,10 +64,16 @@
   height: 100%;
   top: 0;
   right: -12px;
+  background: transparent url("../images/card-header-carrot.png") center right no-repeat;
+  width: 12px;
+  height: 60px;
 }
 
 .card-table-component .ember-table-header-row .ember-table-header-cell.active .carrot.active {
   display: inline-block;
+  background: transparent url("../images/card-header-carrot-active.png") center right no-repeat;
+  width: 13px;
+  height: 60px;
 }
 
 .card-table-component .ember-table-header-row .ember-table-header-cell.last .carrot,
