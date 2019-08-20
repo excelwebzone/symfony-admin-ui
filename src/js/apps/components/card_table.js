@@ -3,7 +3,15 @@ import axios from '../../lib/utils/axios_utils';
 import toaster from '../../lib/utils/toaster';
 import EmberTable from './ember_table';
 
+const EMPTY_CELL = index => `<div class="ember-table-cell is-empty text-left js-ember-table-column-width js-draggable-cell" data-index="${index}"></div>`;
+
 export default class CardTable {
+  /**
+   * {
+   *   onFieldChange: (field, value, $cell) => {..},
+   *   onDragEnd: ($field, newValue) => {..}
+   * }
+   */
   constructor(callback) {
     this.callback = callback || {};
 
@@ -14,10 +22,13 @@ export default class CardTable {
   initDomElements() {
     this.dragSourceEl = null;
     this.dragTargetEl = null;
+
+    this.$table = $('.list-page-table');
+    this.emberTable = new EmberTable(this.$table.find('.js-ember-table'));
   }
 
   bindEvents() {
-    $(document).on('data:loaded', '.list-page-table', (e, data) => this.listLoaded(e, data));
+    this.$table.on('data:loaded', (e, data) => this.listLoaded(e, data));
 
     $(document).on('click', '.js-drawer-close', (e) => this.unselectItem(e));
     $(document).on('click', '.card-table-component-model-cell', (e) => this.selectItem(e));
@@ -30,15 +41,70 @@ export default class CardTable {
   }
 
   listLoaded(e, data) {
-    for (let [key, value] of Object.entries(data.columns)) {
-      $(`.ember-table-header-cell[data-value="${key}"]`)
-        .find('.total>span.counter')
-        .text(`${value}`);
+    if (data.page === 1
+      && typeof data.columns === 'object'
+    ) {
+      for (let [key, value] of Object.entries(data.columns)) {
+        this.$table.find(`.ember-table-header-cell[data-value="${key}"]`)
+          .find('.total>span.counter')
+          .text(`${value}`);
+      }
     }
+
+    for (let column of this.$table.find('.ember-table-header-container .ember-table-header-cell')) {
+      const index = $(column).data('index');
+
+      for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
+        const $row = $(row);
+        const $rowCell = $row.find(`.ember-table-cell[data-index="${index}"]`);
+        if ($rowCell.length) {
+          if ($rowCell.hasClass('is-empty')) {
+            for (let subRow of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
+              const $subRow = $(subRow);
+              if ($row.index() < $subRow.index()) {
+                const $subRowCell = $subRow.find(`.ember-table-cell[data-index="${index}"]:not(.is-empty)`);
+                if ($subRowCell.length) {
+                  $rowCell.replaceWith($subRowCell.clone());
+                  $subRowCell.replaceWith(EMPTY_CELL(index));
+
+                  break;
+                }
+              }
+            }
+          } else {
+            const $duplicateCells = this.$table.find(`.ember-table-cell[data-index="${index}"][data-id="${$rowCell.data('id')}"]`);
+            let i = 0;
+            for (let dupCell of $duplicateCells) {
+              if (i++ > 0) {
+                $(dupCell).replaceWith(EMPTY_CELL(index));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    this.removeLastRow();
+    this.emberTable.resizeTable();
+    this.emberTable.rebindEvents();
+  }
+
+  removeLastRow() {
+    let $lastRow, cells, emptyCells;
+    do {
+      $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
+
+      cells = $lastRow.find('.ember-table-cell').length;
+      emptyCells = $lastRow.find('.ember-table-cell.is-empty').length;
+
+      if (cells === emptyCells) {
+        $lastRow.remove();
+      }
+    } while ($lastRow.length && cells === emptyCells);
   }
 
   unselectItem(e) {
-    $('.card-table-component-model-cell.is-current').removeClass('is-current');
+    this.$table.find('.card-table-component-model-cell.is-current').removeClass('is-current');
   }
 
   selectItem(e) {
@@ -48,7 +114,7 @@ export default class CardTable {
       return;
     }
 
-    $('.card-table-component-model-cell').removeClass('is-current');
+    this.$table.find('.card-table-component-model-cell').removeClass('is-current');
 
     $(e.currentTarget).addClass('is-current');
     $(e.currentTarget)
@@ -58,7 +124,7 @@ export default class CardTable {
 
   deleteItem(e, modal) {
     const $target = $(e.currentTarget);
-    const $cell = $('.card-table-component-model-cell.is-current').closest('.js-entity-drawer');
+    const $cell = this.$table.find('.card-table-component-model-cell.is-current').closest('.js-entity-drawer');
 
     $(modal).on('modal:hidden', (e, data) => {
       $(modal).off('modal:hidden');
@@ -73,8 +139,7 @@ export default class CardTable {
   }
 
   deleteCell($cell) {
-    const $table = $('.js-ember-table');
-    const $emptyCell = $(`<div class="ember-table-cell is-empty text-left js-ember-table-column-width js-draggable-cell" data-index="${$cell.data('index')}"></div>`);
+    const $emptyCell = $(EMPTY_CELL($cell.data('index')));
 
     // set as empty
     $cell.replaceWith($emptyCell);
@@ -82,7 +147,7 @@ export default class CardTable {
     const index = $emptyCell.data('index');
     let $prevRow = $emptyCell.closest('.ember-table-table-row');
 
-    for (let row of $table.find('.ember-table-body-container .ember-table-table-row')) {
+    for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
       const $row = $(row);
 
       if ($row.index() > $prevRow.index()) {
@@ -100,19 +165,17 @@ export default class CardTable {
       }
     }
 
-    const emberTable = new EmberTable($table);
-    emberTable.resizeTable();
-    emberTable.rebindEvents();
+    this.removeLastRow();
+    this.emberTable.resizeTable();
+    this.emberTable.rebindEvents();
 
-    const $counter = $(`.ember-table-header-cell[data-index="${index}"]`).find('.total>span.counter');
+    const $counter = this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).find('.total>span.counter');
     $counter.text(parseInt($counter.text()) - 1);
   }
 
   moveCell($cell, value) {
-    const $table = $('.js-ember-table');
-
     let $column = null;
-    for (let column of $('.ember-table-header-container .ember-table-header-cell')) {
+    for (let column of this.$table.find('.ember-table-header-container .ember-table-header-cell')) {
       if (value === $(column).data('value')) {
         $column = $(column);
       }
@@ -127,16 +190,18 @@ export default class CardTable {
     const $cloneCell = $cell.clone();
     this.deleteCell($cell);
 
-    let $lastRow = $table.find('.ember-table-body-container .ember-table-table-row:last-child');
+    // add empty cells
+    let $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
     if (!$lastRow.find(`.ember-table-cell[data-index="${index}"]`).hasClass('is-empty')) {
       $lastRow.after($lastRow.clone());
-      $lastRow = $table.find('.ember-table-body-container .ember-table-table-row:last-child');
+      $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
       for (let cell of $lastRow.find('.ember-table-cell')) {
-        $(cell).replaceWith(`<div class="ember-table-cell is-empty text-left js-ember-table-column-width js-draggable-cell" data-index="${$(cell).data('index')}"></div>`);
+        $(cell).replaceWith(EMPTY_CELL($(cell).data('index')));
       }
     }
 
-    for (let row of $table.find('.ember-table-body-container .ember-table-table-row')) {
+    // move and replace
+    for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
       const $row = $(row);
       const $rowCell = $row.find(`.ember-table-cell[data-index="${index}"]`);
       if ($rowCell.hasClass('is-empty')) {
@@ -148,16 +213,16 @@ export default class CardTable {
       }
     }
 
-    const emberTable = new EmberTable($table);
-    emberTable.resizeTable();
-    emberTable.rebindEvents();
+    this.removeLastRow();
+    this.emberTable.resizeTable();
+    this.emberTable.rebindEvents();
 
-    const $counter = $(`.ember-table-header-cell[data-index="${index}"]`).find('.total>span.counter');
+    const $counter = this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).find('.total>span.counter');
     $counter.text(parseInt($counter.text()) + 1);
   }
 
   fieldUpdated(e, data) {
-    const $cell = $('.card-table-component-model-cell.is-current').closest('.js-entity-drawer');
+    const $cell = this.$table.find('.card-table-component-model-cell.is-current').closest('.js-entity-drawer');
 
     if (data.fields) {
       for (let [field, value] of Object.entries(data.fields)) {
@@ -183,7 +248,7 @@ export default class CardTable {
   dragStart(e) {
     this.dragSourceEl = $(e.currentTarget);
 
-    $('.card-table-component').addClass('is-dragging');
+    this.$table.find('.card-table-component').addClass('is-dragging');
 
     const $clone = this.dragSourceEl.clone();
     $clone
@@ -209,8 +274,8 @@ export default class CardTable {
   dragEnter(e) {
     this.dragTargetEl = $(e.currentTarget);
     const index = this.dragTargetEl.data('index');
-    $('.ember-table-header-cell.active').removeClass('active');
-    $(`.ember-table-header-cell[data-index="${index}"]`).addClass('active');
+    this.$table.find('.ember-table-header-cell.active').removeClass('active');
+    this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).addClass('active');
   }
 
   dragEnd(e) {
@@ -218,15 +283,15 @@ export default class CardTable {
       e.stopPropagation();
     }
 
-    $('.card-table-component').removeClass('is-dragging');
-    $('.ember-table-header-cell').removeClass('active');
-    $('.card-table-component-model-cell').removeClass('shadow-model');
-    $('.js-draggable-cell.is-clone').remove();
+    this.$table.find('.card-table-component').removeClass('is-dragging');
+    this.$table.find('.ember-table-header-cell').removeClass('active');
+    this.$table.find('.card-table-component-model-cell').removeClass('shadow-model');
+    this.$table.find('.js-draggable-cell.is-clone').remove();
 
     // don't do anything if we're dropping on the same column we're dragging.
     if (this.dragSourceEl !== this.dragTargetEl) {
       const index = this.dragTargetEl.data('index');
-      const newValue = $(`.ember-table-header-cell[data-index="${index}"]`).data('value');
+      const newValue = this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).data('value');
 
       const params = {};
       params[this.dragSourceEl.data('target-field')] = newValue;
