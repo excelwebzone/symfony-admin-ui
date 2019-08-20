@@ -4,6 +4,7 @@ import Odometer from 'odometer';
 import axios from '../../lib/utils/axios_utils';
 import toaster from '../../lib/utils/toaster';
 import DataViewer from './data_viewer';
+import { mergeUrlParams, removeParams, getParameterValues } from '../../lib/utils/url_utility';
 
 export default class ListPage {
   constructor(containerEl, getChartCallback = null, allowDecimals = true, showSingleRowInfo = true) {
@@ -60,6 +61,19 @@ export default class ListPage {
     this.$container.find('.js-bulk-unread').on('click', (e) => this.bulkUnread(e));
     this.$container.find('.js-bulk-edit').on('drawer:shown', (e, drawer) => this.bulkEditDrawer(e, drawer));
     this.$container.find('.js-bulk-delete').on('modal:shown', (e, modal) => this.bulkDeleteModal(e, modal));
+
+    // toggle between list and card view (reload page)
+    this.$container.on('click', '.js-toggle-card-view', (e) => {
+      const $button = $(e.currentTarget);
+      if ($button.data('endpoint')) {
+        window.location.href = $button.data('endpoint') + window.location.href.substring(window.location.href.indexOf('?'));
+        return !1;
+      }
+
+      window.location.href = parseInt(getParameterValues('cardView'), 10)
+        ? removeParams(['cardView'])
+        : mergeUrlParams({ cardView: 1 }, window.location.href);
+    });
   }
 
   createDataViewer() {
@@ -150,6 +164,10 @@ export default class ListPage {
 
       if (viewer.$table.data('totals')) {
         params.showTotals = 1;
+      }
+
+      if (viewer.$table.data('card-view')) {
+        params.cardView = 1;
       }
 
       return params;
