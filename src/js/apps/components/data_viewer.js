@@ -34,7 +34,7 @@ export default class DataViewer {
     }
     this.emberTable = new EmberTable(this.$table.find('.js-ember-table'));
 
-    const $column = this.$container.find('.table-header-cell-sortable.sortable.js-default-sort');
+    const $column = this.$table.find('.table-header-cell-sortable.sortable.js-default-sort');
     if ($column.length) {
       this.sortColumn = `${$column.data('field')}-desc`;
       if ($column.hasClass('table-header-cell-sort-ascending')) {
@@ -56,7 +56,7 @@ export default class DataViewer {
     this.$filterForm.on('change', ':input:not(.ignore-input)', () => this.filterData());
     this.$container.on('click', '.js-saved-filter', (e) => this.selectFilter(e));
 
-    this.$container.find('.table-header-cell-sortable.sortable').on('click', (e) => {
+    this.$table.find('.table-header-cell-sortable.sortable').on('click', (e) => {
       if (e.target.classList.contains('ui-resizable-handle')) {
         return;
       }
@@ -196,7 +196,7 @@ export default class DataViewer {
   setSortColumn(e, $column) {
     $column = $column || $(e.currentTarget);
 
-    this.$container.find('.table-header-cell-sortable.sortable').not($column)
+    this.$table.find('.table-header-cell-sortable.sortable').not($column)
       .removeClass('table-header-cell-sort-ascending table-header-cell-sort-descending');
 
     if ($column.hasClass('table-header-cell-sort-ascending')) {
@@ -223,7 +223,7 @@ export default class DataViewer {
       return;
     }
 
-    const $column = this.$container.find(`.table-header-cell-sortable.sortable[data-field="${sortName}"]`);
+    const $column = this.$table.find(`.table-header-cell-sortable.sortable[data-field="${sortName}"]`);
     if ($column.length) {
       if (!sortDir || sortDir === 'asc') {
         $column.addClass('table-header-cell-sort-descending');
