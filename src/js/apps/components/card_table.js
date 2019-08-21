@@ -138,13 +138,13 @@ export default class CardTable {
     });
   }
 
-  deleteCell($cell) {
-    const $emptyCell = $(EMPTY_CELL($cell.data('index')));
+  deleteCell($cell, cleanup = true) {
+    const index = $cell.data('index');
+    const $emptyCell = $(EMPTY_CELL(index));
 
     // set as empty
     $cell.replaceWith($emptyCell);
 
-    const index = $emptyCell.data('index');
     let $prevRow = $emptyCell.closest('.ember-table-table-row');
 
     for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
@@ -165,7 +165,10 @@ export default class CardTable {
       }
     }
 
-    this.removeLastRow();
+    if (cleanup) {
+      this.removeLastRow();
+    }
+
     this.emberTable.resizeTable();
     this.emberTable.rebindEvents();
 
@@ -188,7 +191,7 @@ export default class CardTable {
     const index = $column.data('index');
 
     const $cloneCell = $cell.clone();
-    this.deleteCell($cell);
+    this.deleteCell($cell, false);
 
     // add empty cells
     let $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
