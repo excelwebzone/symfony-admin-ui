@@ -54,7 +54,7 @@ export default class EmberTable {
         containment: 'parent',
         cursor: 'move',
         helper: 'clone',
-        items: '.ember-table-header-cell.sortable',
+        items: '.ember-table-header-cell',
         opacity: 0.9,
         placeholder: 'ui-state-highlight',
         scroll: true,
