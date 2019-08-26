@@ -199,14 +199,14 @@ export default class DataViewer {
     this.$table.find('.table-header-cell-sortable.sortable').not($column)
       .removeClass('table-header-cell-sort-ascending table-header-cell-sort-descending');
 
-    if ($column.hasClass('table-header-cell-sort-ascending')) {
+    if ($column.hasClass('table-header-cell-sort-descending')) {
       $column
-        .removeClass('table-header-cell-sort-ascending')
-        .addClass('table-header-cell-sort-descending');
+        .removeClass('table-header-cell-sort-descending')
+        .addClass('table-header-cell-sort-ascending');
     } else {
       $column
-        .addClass('table-header-cell-sort-ascending')
-        .removeClass('table-header-cell-sort-descending');
+        .addClass('table-header-cell-sort-descending')
+        .removeClass('table-header-cell-sort-ascending');
     }
 
     this.sortColumn = `${$column.data('field')}-desc`;
