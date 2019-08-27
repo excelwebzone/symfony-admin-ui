@@ -146,6 +146,18 @@ export default class ListPage {
       if (self.odCurrency) {
         self.odCurrency.update(0);
       }
+
+      if (self.$chartTotals.length) {
+        for (let total of self.$chartTotals) {
+          const $total = $(total).find('>div:eq(0)');
+
+          let format = '0';
+          if ($total.data('money')) format = '$0';
+          if ($total.data('percent')) format = '0%';
+
+          $total.html(numeral(0).format(format));
+        }
+      }
     };
 
     // run after setting
