@@ -89,7 +89,7 @@ export default class ListPage {
 
         if (typeof data.totals === 'object') {
           for (let [key, value] of Object.entries(data.totals)) {
-            const $span = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content>span`);
+            const $cellContent = viewer.$table.find(`.table-header-cell[data-field="${key}"] .table-header-cell-content`);
 
             // remove decimals
             if ((!self.allowDecimals && (value.indexOf('.') !== -1))
@@ -98,7 +98,7 @@ export default class ListPage {
               value = value.replace(/^(\W)?([0-9,]+)([0-9.]+)(\W)?$/g, '$1$2$4');
             }
 
-            $span.append(`<span class="total-value ${value.replace(/\D/g, '') < 0 ? 'is-negative' : ''}">${value}</span>`);
+            $cellContent.append(`<span class="total-value ${value.replace(/\D/g, '') < 0 ? 'is-negative' : ''}">${value}</span>`);
           }
         }
       }
@@ -140,7 +140,7 @@ export default class ListPage {
 
       const $headers = viewer.$table.find('.table-header-cell[data-field]');
       for (let header of $headers) {
-        $(header).find('.table-header-cell-content>span>.total-value').remove();
+        $(header).find('.table-header-cell-content>span.total-value').remove();
       }
 
       if (self.odCurrency) {

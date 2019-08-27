@@ -171,7 +171,7 @@ export default class EmberTable {
 
           columns[key].push({
             field: $column.data('field'),
-            name: $column.find('.table-header-cell-content').text().trim(),
+            name: $column.find('.table-header-cell-content>span:not(.total-value)').text().trim(),
             width: $column.data('column-width'),
             align: $column.hasClass('text-left')
               ? 'left'
