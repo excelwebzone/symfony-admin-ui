@@ -211,7 +211,7 @@ export default class ListPage {
               value /= 100; // @hack: value is a percent
             }
 
-            if (!this.allowDecimals) {
+            if (!this.allowDecimals && !this.$chartContainer.data('allow-decimals')) {
               format = format.replace('[.]00', '');
             }
 

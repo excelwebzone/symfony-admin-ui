@@ -149,7 +149,7 @@ export default class Dashboard {
               value /= 100; // @hack: value is a percent
             }
 
-            if (!this.allowDecimals) {
+            if (!this.allowDecimals && !$chart.data('allow-decimals')) {
               format = format.replace('[.]00', '');
             }
 
