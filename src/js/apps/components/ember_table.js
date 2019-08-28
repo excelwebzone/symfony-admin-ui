@@ -185,7 +185,8 @@ export default class EmberTable {
       }
     }
 
-    axios.post(this.$table.data('settings-endpoint'), objectToFormData({ columns: columns }));
+    axios.post(this.$table.data('settings-endpoint'), objectToFormData({ columns: columns }))
+      .then(() => this.$table.trigger('column:sorted'));
   }
 
   resizeTable() {
