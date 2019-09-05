@@ -50,6 +50,7 @@ export default class Filter {
     this.$updateButton = this.$container.find('.js-filter-update-button');
     this.$counter = this.$container.find('.js-filter-counter');
     this.$noPrivateFilters = this.$container.find('.js-no-private-filters');
+    this.$noPublicFilters = this.$container.find('.js-no-public-filters');
   }
 
   bindEvents() {
@@ -110,11 +111,18 @@ export default class Filter {
   }
 
   toggleNoPrivateFilters() {
-    const $nextFilter = this.$noPrivateFilters.nextAll('li:visible:eq(0)');
-    if ($nextFilter.length === 0 || $nextFilter.hasClass('js-public-filters')) {
+    let $nextFilter = this.$noPrivateFilters.nextAll('.js-filter-item:not(.is-locked):not(.is-hidden)');
+    if ($nextFilter.length === 0) {
       this.$noPrivateFilters.show();
     } else {
       this.$noPrivateFilters.hide();
+    }
+
+    $nextFilter = this.$noPublicFilters.nextAll('.js-filter-item.is-locked:not(.is-hidden)');
+    if ($nextFilter.length === 0) {
+      this.$noPublicFilters.show();
+    } else {
+      this.$noPublicFilters.hide();
     }
   }
 
@@ -255,13 +263,14 @@ export default class Filter {
     const $activeItem = this.getActiveFilter();
     const $hiddenItem = this.$container.find(`.js-filter-list .js-filter-item[data-id="${$activeItem.data('id')}"]`);
 
-    $filterItem.show(); // @hack: show before moving
+    // @hack: show before moving
+    $filterItem.show().removeClass('is-hidden');
     $activeItem.replaceWith($filterItem.clone());
-    $hiddenItem.show();
-    $filterItem.hide();
+    $hiddenItem.show().removeClass('is-hidden');
+    $filterItem.hide().addClass('is-hidden');
 
     if ($filterItem.data('id') === $hiddenItem.data('id')) {
-      $hiddenItem.hide();
+      $hiddenItem.hide().addClass('is-hidden');
     }
 
     // style as active
