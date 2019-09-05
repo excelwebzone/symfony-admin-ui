@@ -7,7 +7,7 @@ import { withoutEmpty } from '../../lib/utils/form_parsing';
 import { dateRanges, getDateRange, initTagsPicker, initDateRangePicker } from './filter_range';
 
 const filterItemLI = (id, title, filters) => `
-  <li class="option-list-item option-list-item-filter option-list-item-has-overflow js-saved-filter" data-id="${id}" data-filter='${filters}'>
+  <li class="option-list-item option-list-item-filter option-list-item-has-overflow js-filter-item" data-id="${id}" data-filter='${filters}'>
     <div class="option-list-item-right-content">
       <div class="option-list-item-hover-content">
         <i class="zmdi zmdi-icon zmdi-lock"></i>
@@ -21,7 +21,7 @@ export default class Filter {
   constructor(containerEl) {
     this.currentFilter = {};
     this.filters = '{}';
-    this.isLoadingFilters = false;
+    this.isLoading = false;
 
     this.initDomElements(containerEl);
     this.bindEvents();
@@ -58,12 +58,13 @@ export default class Filter {
     this.$saveButton.on('modal:shown', (e, modal) => this.createNew(e, modal));
     this.$searchField.on('keydown', _.debounce(() => this.setSearchKeyword(), 1300));
 
-    this.$container.on('modal:shown', '.js-saved-filter .js-entity-modal', (e, modal) => this.editFilter(e, modal));
-    this.$container.on('modal:shown', '.js-saved-filter .js-entity-modal-template', (e, modal) => this.deleteFilter(e, modal));
+    this.$container.on('click', '.js-filter-item .js-filter-item-default', (e) => this.setDefaultFilter(e));
+    this.$container.on('modal:shown', '.js-filter-item .js-filter-item-update', (e, modal) => this.editFilter(e, modal));
+    this.$container.on('modal:shown', '.js-filter-item .js-filter-item-delete', (e, modal) => this.deleteFilter(e, modal));
   }
 
   getActiveFilter() {
-    return this.$container.find('.js-filter-active .option-list-item-filter');
+    return this.$container.find('.js-filter-active .js-filter-item');
   }
 
   preloadFilters(filters) {
@@ -75,11 +76,11 @@ export default class Filter {
     }
 
     // show all options
-    for (let element of this.$container.find('.js-filter-list .option-list-item-filter')) {
+    for (let element of this.$container.find('.js-filter-list .js-filter-item')) {
       $(element).show();
     }
 
-    this.$container.find('.js-filter-active .option-list-item-filter').replaceWith(
+    this.$container.find('.js-filter-active .js-filter-item').replaceWith(
       filterItemLI(
         'preload',
         'Preload Search',
@@ -101,11 +102,54 @@ export default class Filter {
   loadActiveFilter() {
     this.getActiveFilter().click();
 
-    this.$container.find(`.js-filter-list .option-list-item-filter[data-id="${this.getActiveFilter().data('id')}"]`).hide();
+    this.$container.find(`.js-filter-list .js-filter-item[data-id="${this.getActiveFilter().data('id')}"]`).hide();
   }
 
   loadDefaultFilter() {
-    this.$container.find('.js-filter-list .option-list-item-filter.is-default').click();
+    this.$container.find('.js-filter-list .js-filter-item.is-default').click();
+  }
+
+  toggleNoPrivateFilters() {
+    const $nextFilter = this.$noPrivateFilters.nextAll('li:visible:eq(0)');
+    if ($nextFilter.length === 0 || $nextFilter.hasClass('js-public-filters')) {
+      this.$noPrivateFilters.show();
+    } else {
+      this.$noPrivateFilters.hide();
+    }
+  }
+
+  setDefaultFilter(e) {
+    const $currentTarget = $(e.currentTarget);
+    const $filterItem = $currentTarget.closest('.js-filter-item');
+    const url = $currentTarget.data('endpoint');
+
+    axios.post(url)
+      .then(({ data }) => {
+        this.$container.find('.js-filter-item .js-filter-item-default')
+          .removeClass('zmdi-star')
+          .addClass('zmdi-star-outline')
+          .parent()
+          .show();
+
+        this.$container.find('.js-filter-item.is-default').removeClass('is-default');
+        this.$container.find('.js-filter-item .js-default-item-icon').remove();
+
+        for (let item of this.$container.find(`.js-filter-item[data-id="${$filterItem.data('id')}"]`)) {
+          $(item).addClass('is-default');
+
+          $(item).find('.js-filter-item-default')
+            .addClass('zmdi-star')
+            .removeClass('zmdi-star-outline')
+            .parent()
+            .hide();
+
+          $(item).find('.option-list-item-right-content').prepend('<i class="zmdi zmdi-star js-default-item-icon"></i>');
+        }
+
+        toaster('Default Filter changed to ' + $filterItem.find('.option-list-item-text').text());
+      });
+
+    e.stopPropagation();
   }
 
   createNew(e, modal) {
@@ -125,7 +169,7 @@ export default class Filter {
       ))
         .insertAfter(this.$noPrivateFilters);
 
-      this.$container.find(`.js-saved-filter[data-id="${data.id}"]`).click();
+      this.$container.find(`.js-filter-item[data-id="${data.id}"]`).click();
     });
   }
 
@@ -142,7 +186,7 @@ export default class Filter {
 
         this.currentFilter = JSON.parse(this.filters);
 
-        for (let item of this.$container.find(`.option-list-item-filter[data-id="${id}"]`)) {
+        for (let item of this.$container.find(`.js-filter-item[data-id="${id}"]`)) {
           $(item).attr('data-filter', this.filters);
           $(item).data('filter', this.currentFilter);
         }
@@ -153,11 +197,12 @@ export default class Filter {
 
   editFilter(e, modal) {
     const $currentTarget = $(e.currentTarget);
-    const $filterItem = $currentTarget.closest('.js-saved-filter');
+    const $filterItem = $currentTarget.closest('.js-filter-item');
 
     $(modal).on('modal:hidden', (e, data) => {
       $(modal).off('modal:hidden');
 
+      $filterItem.attr('data-filter', JSON.stringify(data.params));
       $filterItem.data('filter', data.params);
       $filterItem.find('.option-list-item-text').html(data.label);
     });
@@ -167,7 +212,31 @@ export default class Filter {
     $(modal).on('modal:hidden', (e, data) => {
       $(modal).off('modal:hidden');
 
-      this.loadDefaultFilter();
+      // delete all items
+      this.$container.find(`.js-filter-item[data-id="${data.id}"]`).remove();
+
+      // mark "public" default as default
+      if (this.$container.find('.js-filter-item.is-default').length === 0) {
+        for (let item of this.$container.find('.js-filter-item.is-public-default')) {
+          $(item).addClass('is-default');
+
+          $(item).find('.js-filter-item-default')
+            .addClass('zmdi-star')
+            .removeClass('zmdi-star-outline')
+            .parent()
+            .hide();
+
+          $(item).find('.option-list-item-right-content').prepend('<i class="zmdi zmdi-star js-default-item-icon"></i>');
+        }
+      }
+
+      this.toggleNoPrivateFilters();
+
+      if (this.getActiveFilter().length === 0) {
+        this.$container.find('.js-filter-active>ul').replaceWith('<li class="js-filter-item"></li>');
+
+        this.loadDefaultFilter();
+      }
     });
   }
 
@@ -184,33 +253,30 @@ export default class Filter {
 
     const $filterItem = $(e.currentTarget);
     const $activeItem = this.getActiveFilter();
-    const $hiddenItem = this.$container.find(`.js-filter-list .option-list-item-filter[data-id="${$activeItem.data('id')}"]`);
-
-    if (_.isEqual($hiddenItem, $activeItem.data('id'))) {
-      return false;
-    }
+    const $hiddenItem = this.$container.find(`.js-filter-list .js-filter-item[data-id="${$activeItem.data('id')}"]`);
 
     $filterItem.show(); // @hack: show before moving
     $activeItem.replaceWith($filterItem.clone());
     $hiddenItem.show();
     $filterItem.hide();
 
-    const $nextFilter = this.$noPrivateFilters.nextAll('li:visible:eq(0)');
-    if ($nextFilter.length === 0 || $nextFilter.hasClass('js-public-filters')) {
-      this.$noPrivateFilters.show();
-    } else {
-      this.$noPrivateFilters.hide();
+    if ($filterItem.data('id') === $hiddenItem.data('id')) {
+      $hiddenItem.hide();
     }
+
+    // style as active
+    this.getActiveFilter().addClass('option-list-item-active');
 
     this.currentFilter = $filterItem.data('filter') || {};
 
     this.loadFilters();
+    this.toggleNoPrivateFilters();
 
     return true;
   }
 
   loadFilters() {
-    this.isLoadingFilters = true;
+    this.isLoading = true;
 
     this.$form[0].reset();
 
@@ -337,12 +403,12 @@ export default class Filter {
       $(element).find('.filter-range-label>a').html(val.split('|').length + ' Tags');
     }
 
-    this.isLoadingFilters = false;
+    this.isLoading = false;
   }
 
   getData() {
     // exit while loading filters
-    if (this.isLoadingFilters) {
+    if (this.isLoading) {
       return;
     }
 

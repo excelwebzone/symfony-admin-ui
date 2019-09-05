@@ -54,7 +54,7 @@ export default class DataViewer {
     this.$table.on('load-filters', () => this.loadFilters());
 
     this.$filterForm.on('change', ':input:not(.ignore-input)', () => this.filterData());
-    this.$container.on('click', '.js-saved-filter', (e) => this.selectFilter(e));
+    this.$container.on('click', '.js-filter-item', (e) => this.selectFilter(e));
 
     this.$table.find('.table-header-cell-sortable.sortable').on('click', (e) => {
       if (e.target.classList.contains('ui-resizable-handle')) {
