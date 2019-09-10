@@ -20,7 +20,7 @@ export default class Rating {
       .trigger('mouseout');
 
     // unbind
-    $(this).find('.star').off('click');
+    $(this).off('click');
     $(this).off('mouseover');
     $(this).off('mouseout');
   }
