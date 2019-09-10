@@ -1935,8 +1935,8 @@ label .invalid-feedback {
   color: #888;
 }
 
-.rating .star:hover:before,
-.rating .star:hover~.star:before {
+.rating:not(.is-readonly) .star:hover:before,
+.rating:not(.is-readonly) .star:hover~.star:before {
   content: "\f27d";
   color: #f4b400;
 }
