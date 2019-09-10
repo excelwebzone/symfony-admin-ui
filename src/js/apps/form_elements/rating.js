@@ -11,6 +11,18 @@ export default class Rating {
     this.$container.on('click', '.star', this.labelWasClicked);
     this.$container.on('mouseover', this.turnToStar);
     this.$container.on('mouseout', this.turnStarBack);
+    this.$container.on('set:readonly', this.markAsReadonly);
+  }
+
+  markAsReadonly() {
+    $(this)
+      .addClass('is-readonly')
+      .trigger('mouseout');
+
+    // unbind
+    $(this).find('.star').off('click');
+    $(this).off('mouseover');
+    $(this).off('mouseout');
   }
 
   labelWasClicked(e) {
