@@ -1907,14 +1907,10 @@ label .invalid-feedback {
 
 .rating {
   padding: 8px 0;
-}
-
-.rating-well {
-  display: inline-block;
   direction: rtl;
 }
 
-.rating input.rating {
+.rating>input {
   display: none;
 }
 
@@ -1949,14 +1945,6 @@ label .invalid-feedback {
   content: "\f27d";
   padding-right: 5px;
   color: #f4b400;
-}
-
-.rating .star.is-max:before {
-  color: #49B04B !important;
-}
-
-.rating .star.is-empty:before {
-  color: #0D94F6 !important;
 }
 
 .rating .star-lg {

@@ -9,8 +9,8 @@ export default class Rating {
 
   bindEvents() {
     this.$container.on('click', '.star', this.labelWasClicked);
-    this.$container.on('mouseover', '.rating-well', this.turnToStar);
-    this.$container.on('mouseout', '.rating-well', this.turnStarBack);
+    this.$container.on('mouseover', this.turnToStar);
+    this.$container.on('mouseout', this.turnStarBack);
   }
 
   labelWasClicked(e) {
@@ -18,7 +18,7 @@ export default class Rating {
     if (input.attr('disabled')) {
       return;
     }
-    input.val($(this).attr('data-value'))
+    input.val(input.val() !== $(this).attr('data-value') ? $(this).attr('data-value') : 0)
       .trigger('change');
   }
 

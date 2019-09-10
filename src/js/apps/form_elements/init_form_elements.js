@@ -19,7 +19,7 @@ export function initFormElements(containerEl) {
   new DropdownOptions($container);
 
   // init rating elements
-  for (let element of $container.find('.rating')) {
+  for (let element of $container.find('.rating:not(.is-readonly)')) {
     new Rating($(element));
   }
 
