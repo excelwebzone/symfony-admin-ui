@@ -1900,7 +1900,6 @@ label .invalid-feedback {
   cursor: default;
 }
 
-
 /*-------------------
     Rating
 --------------------*/
@@ -1947,24 +1946,38 @@ label .invalid-feedback {
   color: #f4b400;
 }
 
-.rating .star-lg {
-  font-size:1.33333333em;
-  line-height:.75em;
-  vertical-align:-15%
+.rating .star.star-success.is-selected:before {
+  color: #28a745;
+}
+
+.rating .star.star-info.is-selected:before {
+  color: #17a2b8;
+}
+
+.rating .star.star-warning.is-selected:before {
+  color: #ffc107;
+}
+
+.rating .star.star-danger.is-selected:before {
+  color: #dc3545;
+}
+
+.rating .star-1x {
+  font-size: 1em !important;
 }
 
 .rating .star-2x {
-  font-size:2em !important;
+  font-size: 2em !important;
 }
 
 .rating .star-3x {
-  font-size:3em !important;
+  font-size: 3em !important;
 }
 
 .rating .star-4x {
-  font-size:4em !important;
+  font-size: 4em !important;
 }
 
 .rating .star-5x {
-  font-size:5em !important;
+  font-size: 5em !important;
 }
