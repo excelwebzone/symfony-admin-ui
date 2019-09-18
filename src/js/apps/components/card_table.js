@@ -2,6 +2,7 @@ import $ from 'jquery';
 import axios from '../../lib/utils/axios_utils';
 import toaster from '../../lib/utils/toaster';
 import EmberTable from './ember_table';
+import { modifiedValues } from '../../lib/utils/modified_values';
 
 const EMPTY_CELL = index => `<div class="ember-table-cell is-empty text-left js-ember-table-column-width js-draggable-cell" data-index="${index}"></div>`;
 
@@ -309,14 +310,30 @@ export default class CardTable {
 
           this.moveCell(this.dragSourceEl, newValue);
 
-          const $form = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"] .entity-details`);
-          if ($form.length) {
-            const $field = $form.find(`[id$="_${this.dragSourceEl.data('target-field')}"]`);
-            if ($field.length) {
-              if (typeof this.callback.onDragEnd === 'function') {
-                this.callback.onDragEnd($field, newValue);
-              } else {
-                $field.val(newValue);
+          const $drawer = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"]`);
+          if ($drawer.length) {
+            const $form = $drawer.find('.entity-details');
+            const $container = $form.length
+              ? $($form.data('container') || 'body')
+              : $('body');
+
+            if (data.fields) {
+              for (let [field, value] of Object.entries(data.fields)) {
+                modifiedValues($drawer, field, value, $container);
+              }
+            }
+
+            if ($form.length) {
+              let $field = $form.find(`[id$="_${this.dragSourceEl.data('target-field')}"]`);
+              if ($field.length === 0) {
+                $field = $form.find(`[id$="_${this.dragSourceEl.data('target-field')}_date"]`);
+              }
+              if ($field.length) {
+                if (typeof this.callback.onDragEnd === 'function') {
+                  this.callback.onDragEnd($field, newValue);
+                } else {
+                  $field.val(newValue);
+                }
               }
             }
           }
