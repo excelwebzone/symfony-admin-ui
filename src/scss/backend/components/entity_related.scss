@@ -340,23 +340,23 @@
   display: block;
 }
 
-.entity-stats .entity-stats-stacked-bar-graph .entity-stats-open {
+.entity-stats .entity-stats-stacked-bar-graph .entity-stats-primary {
   background-color: #0D94F6;
 }
 
-.entity-stats .entity-stats-stacked-bar-graph .entity-stats-open .entity-stats-detail-label {
+.entity-stats .entity-stats-stacked-bar-graph .entity-stats-primary .entity-stats-detail-label {
   color: #0D94F6;
 }
 
-.entity-stats .entity-stats-stacked-bar-graph .entity-stats-paid {
+.entity-stats .entity-stats-stacked-bar-graph .entity-stats-success {
   background-color: #49B04B;
 }
 
-.entity-stats .entity-stats-stacked-bar-graph .entity-stats-paid .entity-stats-detail-label {
+.entity-stats .entity-stats-stacked-bar-graph .entity-stats-success .entity-stats-detail-label {
   color: #49B04B;
 }
 
-.entity-stats .entity-stats-stacked-bar-graph .entity-stats-paid .entity-stats-detail {
+.entity-stats .entity-stats-stacked-bar-graph .entity-stats-success .entity-stats-detail {
   position: absolute;
   left: 5px;
   right: auto;
