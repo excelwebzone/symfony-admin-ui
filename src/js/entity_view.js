@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import toaster from './lib/utils/toaster';
 import axios from './lib/utils/axios_utils';
+import { objectToFormData } from './lib/utils/object_formdata_utils';
 import { modifiedValues } from './lib/utils/modified_values';
 import bp from './breakpoints';
 
@@ -77,7 +78,7 @@ export default class EntityView {
 
     $tip.find('.button').on('click', (e) => {
       if ($(e.currentTarget).hasClass('popover-submit')) {
-        _post();
+        _post(objectToFormData($tip.find(':input').serializeObject()));
       }
 
       $button.popover('hide');
@@ -87,8 +88,8 @@ export default class EntityView {
   printItem(e) {
     const $button = $(e.currentTarget);
 
-    const _post = () => {
-      axios.post($button.data('endpoint'))
+    const _post = (formData) => {
+      axios.post($button.data('endpoint'), formData)
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
@@ -103,8 +104,8 @@ export default class EntityView {
     const $button = $(e.currentTarget);
     const $drawer = $button.closest('.drawer-frame');
 
-    const _post = () => {
-      axios.post($button.data('endpoint'))
+    const _post = (formData) => {
+      axios.post($button.data('endpoint'), formData)
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
@@ -130,8 +131,8 @@ export default class EntityView {
     const $button = $(e.currentTarget);
     const $drawer = $button.closest('.drawer-frame');
 
-    const _post = () => {
-      axios.post($button.data('endpoint'))
+    const _post = (formData) => {
+      axios.post($button.data('endpoint'), formData)
         .then(({ data }) => {
           $button.toggleClass('is-active');
 
@@ -158,8 +159,8 @@ export default class EntityView {
   unreadItem(e) {
     const $button = $(e.currentTarget);
 
-    const _post = () => {
-      axios.post($button.data('endpoint'))
+    const _post = (formData) => {
+      axios.post($button.data('endpoint'), formData)
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
@@ -186,8 +187,8 @@ export default class EntityView {
     const $button = $(e.currentTarget);
     const $icon = $button.find('i');
 
-    const _post = () => {
-      axios.post($button.data('endpoint'))
+    const _post = (formData) => {
+      axios.post($button.data('endpoint'), formData)
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
@@ -230,8 +231,8 @@ export default class EntityView {
   toggleComplete(e) {
     const $button = $(e.currentTarget);
 
-    const _post = () => {
-      axios.post($button.data('endpoint'))
+    const _post = (formData) => {
+      axios.post($button.data('endpoint'), formData)
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
