@@ -5,7 +5,7 @@ export default ($chart, categories, series, colors = null, format = null) => {
   const minRowHeight = 25;
   const minHeight = (categories.length || 0) * minRowHeight + 110;
 
-  Highcharts.chart({
+  return Highcharts.chart({
     chart: {
       type: 'bar',
       height: Math.max(minHeight, 400),

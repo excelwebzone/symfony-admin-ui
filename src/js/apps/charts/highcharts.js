@@ -207,7 +207,7 @@ function getSharedTooltipFormatter(data) {
 
 export default {
   chart: function(highChartConfig) {
-    new Highcharts.Chart(highChartConfig);
+    return new Highcharts.Chart(highChartConfig);
   },
   getColors: getColors,
   getTooltipFormatter: getTooltipFormatter,

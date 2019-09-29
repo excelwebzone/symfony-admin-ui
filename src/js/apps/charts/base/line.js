@@ -2,7 +2,7 @@ import numeral from 'numeral';
 import Highcharts from '../highcharts';
 
 export default ($chart, categories, series, colors = null, format = null) => {
-  Highcharts.chart({
+  return Highcharts.chart({
     chart: {
       type: 'line',
       renderTo: $chart[0]
