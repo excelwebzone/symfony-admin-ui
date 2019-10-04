@@ -13,8 +13,9 @@ export default class CardTable {
    *   onDragEnd: ($field, newValue) => {..}
    * }
    */
-  constructor(callback) {
+  constructor(callback, allowEmptyFields) {
     this.callback = callback || {};
+    this.allowEmptyFields = allowEmptyFields || [];
 
     this.initDomElements();
     this.bindEvents();
@@ -230,7 +231,7 @@ export default class CardTable {
 
     if (data.fields) {
       for (let [field, value] of Object.entries(data.fields)) {
-        if (value) {
+        if (value || this.allowEmptyFields.indexOf(field) !== -1) {
           if (typeof this.callback.onFieldChange === 'function') {
             this.callback.onFieldChange(field, value, $cell);
           } else if (field === $cell.data('target-field')) {
