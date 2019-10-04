@@ -302,7 +302,7 @@ export default class EntityForm {
                     value = `#${data.updatedValue}`;
                   }
 
-                  if (typeof value === 'object') {
+                  if (value && typeof value === 'object') {
                     const regex = /([\w_]+)(\[([\w\d_]+)\])(\[([\w\d_]+)\])(\[([\w\d_]+)\])?/;
                     const m = regex.exec(name);
 
