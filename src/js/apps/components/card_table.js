@@ -66,7 +66,7 @@ export default class CardTable {
               if ($row.index() < $subRow.index()) {
                 const $subRowCell = $subRow.find(`.ember-table-cell[data-index="${index}"]:not(.is-empty)`);
                 if ($subRowCell.length) {
-                  $rowCell.replaceWith($subRowCell.clone());
+                  $rowCell.replaceWith($subRowCell.clone(true));
                   $subRowCell.replaceWith(EMPTY_CELL(index));
 
                   break;
@@ -160,7 +160,7 @@ export default class CardTable {
           break;
         }
 
-        $prevCell.replaceWith($rowCell.clone());
+        $prevCell.replaceWith($rowCell.clone(true));
         $rowCell.replaceWith($emptyCell);
 
         $prevRow = $row;
@@ -192,13 +192,13 @@ export default class CardTable {
 
     const index = $column.data('index');
 
-    const $cloneCell = $cell.clone();
+    const $cloneCell = $cell.clone(true);
     this.deleteCell($cell, false);
 
     // add empty cells
     let $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
     if (!$lastRow.find(`.ember-table-cell[data-index="${index}"]`).hasClass('is-empty')) {
-      $lastRow.after($lastRow.clone());
+      $lastRow.after($lastRow.clone(true));
       $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
       for (let cell of $lastRow.find('.ember-table-cell')) {
         $(cell).replaceWith(EMPTY_CELL($(cell).data('index')));
@@ -255,7 +255,7 @@ export default class CardTable {
 
     this.$table.find('.card-table-component').addClass('is-dragging');
 
-    const $clone = this.dragSourceEl.clone();
+    const $clone = this.dragSourceEl.clone(true);
     $clone
       .css('position', 'absolute')
       .css('border', 'none')
