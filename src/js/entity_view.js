@@ -372,6 +372,7 @@ export default class EntityView {
 
   newRelatedItem(e, modal) {
     const $target = $(e.currentTarget);
+    const $drawer = $target.closest('.drawer-frame');
     const template = $target.data('template');
 
     $(modal).on('modal:hidden', (e, data) => {
@@ -404,10 +405,11 @@ export default class EntityView {
         $container.find('.entity-association-group-footer-link').show();
       }
 
-      // in page or drawer header
-      const $drawer = $target.closest('.drawer-frame');
-      for (let [field, value] of Object.entries(data.fields)) {
-        modifiedValues($drawer, field, value, $($target.data('container') || 'body'));
+      if (data.fields) {
+        // in page or drawer header
+        for (let [field, value] of Object.entries(data.fields)) {
+          modifiedValues($drawer, field, value, $($target.data('container') || 'body'));
+        }
       }
     });
   }
