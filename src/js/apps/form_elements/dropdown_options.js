@@ -35,7 +35,7 @@ export default class DropdownOptions {
           $text = $item.find('.option-list-info-item-text');
         }
 
-        $(dropdown).find('.dropdown-text').removeClass('dropdown-placeholder').html($text.text());
+        $(dropdown).find('.dropdown-text').removeClass('dropdown-placeholder').html($text.html());
       }
     }
 
@@ -165,7 +165,7 @@ export default class DropdownOptions {
         $text = $(this).find('.option-list-info-item-text');
       }
 
-      $dropdown.find('.dropdown-text').removeClass('dropdown-placeholder').html($text.text());
+      $dropdown.find('.dropdown-text').removeClass('dropdown-placeholder').html($text.html());
     }
 
     if ($dropdown.hasClass('js-select-dropdown')) {
