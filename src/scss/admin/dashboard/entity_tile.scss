@@ -1,0 +1,35 @@
+.entity-tile {
+  color: #363636;
+  margin-top: 10px;
+  min-height: 55px;
+  position: relative;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.entity-tile-media {
+  height: 50px;
+  width: 50px;
+}
+
+.entity-tile-content {
+  margin-left: 10px;
+}
+
+.entity-tile-name {
+  margin-bottom: 0;
+
+  > a {
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.entity-tile-detail {
+  color: #888;
+}

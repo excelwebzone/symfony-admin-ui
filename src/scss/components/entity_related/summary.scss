@@ -1,0 +1,142 @@
+.entity-summary {
+  min-height: 64px;
+  padding: 10px 25px;
+  position: relative;
+  -webkit-transition: background-color 0.3s cubic-bezier(0.55, 0, 0, 1);
+  transition: background-color 0.3s cubic-bezier(0.55, 0, 0, 1);
+
+  &:hover {
+    background-color: rgba(242, 242, 242, 0.5);
+
+    .entity-summary-button-container {
+      display: block;
+    }
+
+    .entity-summary-detail {
+      display: none;
+      width: 32px;
+    }
+  }
+}
+
+.entity-summary-subtitle-group > span, .entity-summary-subtitle-name {
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-summary-title {
+  color: #363636;
+  font-weight: 500;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  > a {
+    color: #363636;
+  }
+
+  &:last-child {
+    line-height: 44px;
+  }
+}
+
+.entity-summary-subtitle {
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-summary-subtitle-name {
+  max-width: 40%;
+  vertical-align: top;
+}
+
+.entity-summary-subtitle-group {
+  font-size: 0;
+  line-height: 0;
+
+  > span {
+    font-size: 12px;
+    line-height: 20px;
+    max-width: 49%;
+
+    &:only-of-type {
+      max-width: 100%;
+    }
+
+    + span:before {
+      content: '|';
+      padding: 0 6px;
+    }
+  }
+}
+
+.entity-summary-detail {
+  color: #888;
+  float: right;
+  line-height: 24px;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-summary-icon {
+  color: #fff;
+  float: left;
+  font-size: 18px;
+  height: 34px;
+  line-height: 18px;
+  margin: 5px 10px 5px 0;
+  width: 34px;
+}
+
+.entity-summary-button-container {
+  display: none;
+  float: right;
+  font-size: 0;
+  margin: -6px -10px -2px 0;
+  text-align: right;
+}
+
+.entity-summary-button {
+  color: #888;
+  display: inline-block;
+  font-size: 16px;
+  height: 32px;
+  margin-left: -6px;
+  text-align: center;
+  width: 32px;
+
+  &:hover {
+    color: #363636;
+  }
+}
+
+.entity-summary.entity-summary-task {
+  .entity-summary-icon {
+    color: #363636;
+    cursor: pointer;
+    line-height: 34px;
+    text-align: center;
+  }
+
+  &.is-complete {
+    .entity-summary-icon {
+      color: #0D94F6;
+    }
+
+    .entity-summary-title {
+      color: #ccc;
+      text-decoration: line-through;
+    }
+  }
+
+  &.is-overdue .entity-summary-detail {
+    color: #db4437;
+  }
+}

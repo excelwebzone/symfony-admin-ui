@@ -1,0 +1,49 @@
+.card {
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  position: relative;
+  overflow: initial;
+}
+
+.card-body {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.card-title {
+  flex: 0 0 auto;
+}
+
+.card-subheader {
+  color: #888;
+}
+
+.card-content {
+  flex: 1 1 auto;
+
+  .list-spinner {
+    display: block;
+    position: relative;
+    top: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-indent {
+    padding: 24px;
+  }
+}
+
+.card.card-scroll {
+  .card-body {
+    height: 100%;
+  }
+
+  .card-content {
+    height: 100%;
+    margin: 0 -35px;
+    padding: 35px;
+    overflow-y: auto;
+  }
+}

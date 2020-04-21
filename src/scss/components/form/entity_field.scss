@@ -1,0 +1,63 @@
+.entity-field {
+  padding: 0 0 15px;
+  position: relative;
+}
+
+.entity-field-label {
+  position: relative;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.entity-field-value {
+  position: relative;
+  width: 100%;
+
+  .entity-field-summary-value {
+    color: #ccc;
+  }
+
+  &.entity-field-smaller-width {
+    cursor: pointer;
+    width: 80%;
+  }
+}
+
+.entity-field-half-width {
+  width: 50%;
+  float: left;
+}
+
+.entity-field-edit-icon {
+  display: none;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  position: relative;
+  float: right;
+  padding: 0 2px;
+  top: -30px;
+  cursor: pointer;
+}
+
+.entity-field {
+  .bulk-edit-drawer-dot, .form-group, .accordion-groups {
+    display: none;
+  }
+
+  &.is-active {
+    .entity-field-summary-value {
+      display: none;
+    }
+
+    .entity-field-edit-icon, .form-group, .accordion-groups {
+      display: block;
+    }
+
+    .bulk-edit-drawer-dot {
+      display: inline;
+    }
+  }
+}

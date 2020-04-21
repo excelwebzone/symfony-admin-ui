@@ -1,0 +1,30 @@
+.typed-property-layout {
+  position: relative;
+
+  &:hover .typed-property-add {
+    display: block;
+  }
+}
+
+.typed-property-wrapper {
+  margin: 0;
+}
+
+.typed-property-item {
+  margin-bottom: 15px;
+
+  .typed-property-key-dropdown {
+    border-bottom: none;
+    box-shadow: none;
+  }
+}
+
+.typed-property-add {
+  color: #0D94F6;
+  display: none;
+  font-size: 12px;
+  position: absolute;
+  bottom: -18px;
+  right: 0;
+  z-index: 1;
+}

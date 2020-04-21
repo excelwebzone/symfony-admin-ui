@@ -1,0 +1,87 @@
+.rating {
+  padding: 8px 0;
+  direction: rtl;
+
+  > input {
+    display: none;
+  }
+
+  .star {
+    font-family: "Material-Design-Iconic-Font";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 3em;
+    display: inline-block;
+    position: relative;
+
+    &.is-selected, &.is-empty {
+      font-family: "Material-Design-Iconic-Font";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 3em;
+      display: inline-block;
+      position: relative;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:before {
+      content: "\f27c";
+      padding-right: 5px;
+      color: #888;
+    }
+  }
+
+  &:not(.is-readonly) .star:hover {
+    &:before, ~ .star:before {
+      content: "\f27d";
+      color: #f4b400;
+    }
+  }
+
+  .star {
+    &.is-selected:before {
+      content: "\f27d";
+      padding-right: 5px;
+      color: #f4b400;
+    }
+
+    &.star-success.is-selected:before {
+      color: #28a745;
+    }
+
+    &.star-info.is-selected:before {
+      color: #17a2b8;
+    }
+
+    &.star-warning.is-selected:before {
+      color: #ffc107;
+    }
+
+    &.star-danger.is-selected:before {
+      color: #dc3545;
+    }
+  }
+
+  .star-1x {
+    font-size: 1em !important;
+  }
+
+  .star-2x {
+    font-size: 2em !important;
+  }
+
+  .star-3x {
+    font-size: 3em !important;
+  }
+
+  .star-4x {
+    font-size: 4em !important;
+  }
+
+  .star-5x {
+    font-size: 5em !important;
+  }
+}

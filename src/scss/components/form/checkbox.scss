@@ -1,0 +1,138 @@
+.checkbox {
+  user-select: none;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.checkbox-settings {
+    color: #363636;
+    font-size: 13px;
+  }
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-display, .checkbox-text {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.checkbox-label {
+  overflow: visible;
+  font-size: inherit;
+
+  &:focus {
+    border: 1px solid #0777c9;
+    outline: transparent solid 1px;
+  }
+}
+
+.checkbox-text {
+  vertical-align: middle;
+  font-size: 12px;
+  line-height: 15px;
+  margin-left: 10px;
+}
+
+.checkbox-display {
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+
+  &:focus .unchecked {
+    color: #0D94F6;
+  }
+
+  .unchecked {
+    color: #888;
+  }
+
+  .checked {
+    display: none;
+    color: #0D94F6;
+  }
+
+  &.is-checked .checked {
+    display: inline-block;
+  }
+}
+
+.checkbox-input:checked + .checkbox-display .checked {
+  display: inline-block;
+}
+
+.checkbox.is-locked .checkbox-display {
+  .checked, .unchecked {
+    display: none;
+  }
+}
+
+.checkbox-display.is-checked .unchecked, .checkbox-input:checked + .checkbox-display .unchecked {
+  display: none;
+}
+
+.checkbox.is-disabled .checkbox-display {
+  cursor: default;
+  opacity: .5;
+}
+
+.checkbox-input {
+  &:checked:disabled + .checkbox-display, &:disabled + .checkbox-display {
+    cursor: default;
+    opacity: .5;
+  }
+}
+
+.checkbox.is-disabled .checkbox-display {
+  .checked, .unchecked {
+    color: #ccc;
+  }
+}
+
+.checkbox-input {
+  &:checked:disabled + .checkbox-display {
+    .checked, .unchecked {
+      color: #ccc;
+    }
+  }
+
+  &:disabled + .checkbox-display {
+    .checked, .unchecked {
+      color: #ccc;
+    }
+  }
+}
+
+.checkbox.is-disabled .checkbox-text, .checkbox-input:disabled + .checkbox-text {
+  opacity: .5;
+}
+
+.checkbox.is-locked .checkbox-display {
+  background-color: transparent;
+  border-color: transparent;
+
+  &:after {
+    background: 0 0;
+    color: #888;
+    content: '\e819';
+    display: inline-block;
+    font-family: fontello;
+    font-size: 18px;
+    font-weight: 400;
+    height: 100%;
+    left: 0;
+    text-align: center;
+    top: 0;
+    width: 100%;
+  }
+}

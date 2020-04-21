@@ -1,0 +1,71 @@
+.pdf-form-viewer {
+  margin-bottom: 20px;
+  overflow-x: auto;
+
+  input {
+    &[type="text"] {
+      background-color: #e5e5e5;
+      border: 1px solid #f4f3ea;
+      padding: 0;
+      color: #000;
+    }
+
+    &:focus {
+      border: 1px solid #73a6ff;
+      background: #eff5ff;
+      color: #000;
+    }
+  }
+
+  .pdfpage {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    > {
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #f4f3ea;
+      }
+
+      form {
+        position: relative;
+        z-index: 1;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+
+  .inputControl {
+    background: transparent;
+    border: 0px none;
+    position: absolute;
+    margin: auto;
+
+    &[type="checkbox"] {
+      margin: 0px;
+    }
+  }
+
+  .inputHint {
+    opacity: 0.2;
+    background: #ccc;
+    position: absolute;
+  }
+
+  .inputAssignment {
+    position: absolute;
+    cursor: pointer;
+    color: #e11d21;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 5px;
+
+    &.selected {
+      color: #009800;
+    }
+  }
+}

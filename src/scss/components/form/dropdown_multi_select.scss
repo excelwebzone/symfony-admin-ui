@@ -1,0 +1,41 @@
+.multi-select-dropdown-options {
+  position: absolute;
+  min-width: 200px;
+  max-width: 300px;
+  max-height: 270px;
+  overflow-y: auto;
+  top: -8px;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+
+.multi-select-dropdown-option-item {
+  min-height: 40px;
+  padding: 5px 30px 5px 10px;
+  max-width: 300px;
+  width: 100%;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background-color: #e9e9e9;
+  }
+
+  .checkbox-display {
+    margin-left: 5px;
+  }
+
+  .checkbox-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 13px;
+    margin-left: 5px;
+  }
+}
+
+.multi-select-dropdown-selectalloption {
+  border-bottom: 1px solid #e9e9e9;
+}

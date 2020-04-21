@@ -1,0 +1,356 @@
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+input[type="color"],
+.input-text,
+textarea,
+select {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+  box-shadow: none;
+  color: #424242;
+  font-family: "Roboto",arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .5px;
+  margin-bottom: 0;
+  max-width: 100%;
+  outline: 0;
+  padding: 4px 0;
+  width: 100%;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder,
+input[type="url"]::placeholder,
+input[type="number"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="date"]::placeholder,
+input[type="color"]::placeholder,
+.input-text::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: rgba(0,0,0,.38);
+  font-family: "Roboto",arial,sans-serif;
+  font-weight: 300;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="color"]:focus,
+.input-text:focus,
+textarea:focus,
+select:focus {
+  border-color: #0d94f6;
+  box-shadow: inset 0 -2px 0 #0d94f6;
+}
+
+label+input[type="text"]:focus,
+label+input[type="password"]:focus,
+label+input[type="email"]:focus,
+label+input[type="url"]:focus,
+label+input[type="number"]:focus,
+label+input[type="tel"]:focus,
+label+input[type="date"]:focus,
+label+input[type="color"]:focus,
+label+.input-text:focus,
+label+textarea:focus,
+label+select:focus {
+  color: #4285f4;
+}
+
+label.form-label-floating+input[type="text"]:focus,
+label.form-label-floating+input[type="text"].is-filled,
+label.form-label-floating+input[type="password"]:focus,
+label.form-label-floating+input[type="password"].is-filled,
+label.form-label-floating+input[type="email"]:focus,
+label.form-label-floating+input[type="email"].is-filled,
+label.form-label-floating+input[type="url"]:focus,
+label.form-label-floating+input[type="url"].is-filled,
+label.form-label-floating+input[type="number"]:focus,
+label.form-label-floating+input[type="number"].is-filled,
+label.form-label-floating+input[type="tel"]:focus,
+label.form-label-floating+input[type="tel"].is-filled,
+label.form-label-floating+input[type="date"]:focus,
+label.form-label-floating+input[type="date"].is-filled,
+label.form-label-floating+input[type="color"]:focus,
+label.form-label-floating+input[type="color"].is-filled,
+label.form-label-floating+.input-text:focus,
+label.form-label-floating+.input-text.is-filled,
+label.form-label-floating+textarea:focus,
+label.form-label-floating+textarea.is-filled,
+label.form-label-floating+select:focus,
+label.form-label-floating+select.is-filled {
+  font-size: 13px;
+  top: 0;
+  visibility: visible;
+}
+
+.is-invalid input[type="text"],
+.is-invalid input[type="password"],
+.is-invalid input[type="email"],
+.is-invalid input[type="url"],
+.is-invalid input[type="number"],
+.is-invalid input[type="tel"],
+.is-invalid input[type="date"],
+.is-invalid input[type="color"],
+.is-invalid .input-text,
+.is-invalid textarea,
+.is-invalid select {
+  border-color: #eb4536;
+}
+
+.is-invalid input[type="text"]:focus,
+.is-invalid input[type="password"]:focus,
+.is-invalid input[type="email"]:focus,
+.is-invalid input[type="url"]:focus,
+.is-invalid input[type="number"]:focus,
+.is-invalid input[type="tel"]:focus,
+.is-invalid input[type="date"]:focus,
+.is-invalid input[type="color"]:focus,
+.is-invalid .input-text:focus,
+.is-invalid textarea:focus,
+.is-invalid select:focus {
+  color: #ea4335;
+  box-shadow: inset 0 -2px 0 #eb4536;
+}
+
+input[type="text"][readonly],
+input[type="password"][readonly],
+input[type="email"][readonly],
+input[type="url"][readonly],
+input[type="number"][readonly],
+input[type="tel"][readonly],
+input[type="date"][readonly],
+input[type="color"][readonly],
+.input-text[readonly],
+textarea[readonly],
+select[readonly] {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+input[type="text"][disabled],
+input[type="password"][disabled],
+input[type="email"][disabled],
+input[type="url"][disabled],
+input[type="number"][disabled],
+input[type="tel"][disabled],
+input[type="date"][disabled],
+input[type="color"][disabled],
+.input-text[disabled],
+textarea[disabled],
+select[disabled] {
+  background-color: #f8f8f8;
+}
+
+textarea {
+  height: 38px;
+  min-height: 38px;
+  overflow: hidden;
+  resize: none;
+  border: 0 #000;
+  border-bottom: 1px solid #ccc;
+  line-height: 18px;
+  padding: 5px 0;
+}
+
+select {
+  &:not([multiple]) {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background: transparent url("../images/arrow-dropdown-black-18dp.png") center right no-repeat;
+    border-radius: 0;
+    color: #bdbdbd;
+    font-weight: 400;
+    padding-right: 18px;
+    width: 100%;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.form-group {
+  padding: 0 0 10px;
+  margin: 0;
+  position: relative;
+
+  &.is-required > {
+    label::after, .col-form-label::after {
+      content: '•';
+      font-size: 14px;
+      line-height: 14px;
+      color: #db4437;
+      margin-left: 4px;
+    }
+  }
+
+  &.is-disabled > {
+    label::after, .col-form-label::after {
+      margin-left: 4px;
+      content: 'lock';
+      font-family: 'Material Icons';
+      font-weight: 400;
+      font-size: inherit;
+      font-style: normal;
+      color: #bdbdbd;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: 'liga';
+    }
+  }
+
+  .input-group-text {
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    color: #ccc;
+    font-size: 16px;
+  }
+
+  .input-group-prepend + .form-control {
+    padding-left: 35px;
+  }
+
+  .input-group-append ~ .form-control {
+    padding-right: 35px;
+  }
+
+  .form-control + .input-group-append > .input-group-text {
+    left: auto;
+    right: 5px;
+  }
+
+  .input-group-text {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}
+
+[class*="col-"] .form-group .dropdown-selected {
+  height: 34px;
+  padding: 4px 0;
+}
+
+.form-group {
+  .dropdown-options {
+    width: 100%;
+  }
+
+  .dropdown-options-auto {
+    width: auto;
+  }
+}
+
+.form-profile-pic {
+  height: 54px;
+  width: 54px;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+
+label, .col-form-label {
+  position: relative;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-transform: capitalize;
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+label:empty, .col-form-label:empty {
+  display: none;
+}
+
+.form-content-buttons {
+  display: none;
+  position: absolute;
+  right: 20px;
+  display: inline;
+  margin-left: 10px;
+}
+
+label .invalid-feedback {
+  display: none !important;
+}
+
+.form-control-error {
+  color: #db4437;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+
+  > {
+    invalid-feedback {
+      margin: 0;
+    }
+
+    i {
+      float: right;
+      font-size: 16px;
+      margin-left: 3px;
+    }
+  }
+}
+
+.form-text {
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 10px;
+
+  .indent {
+    margin-left: 31px;
+  }
+}
+
+.form-group .form-state-icon {
+  top: 45px;
+}
+
+.form-actions {
+  display: flex;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+
+  > div {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.personal-name .form-group, .address .form-group {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}

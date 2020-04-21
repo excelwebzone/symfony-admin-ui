@@ -53,6 +53,8 @@ html {
 @import "~odometer/themes/odometer-theme-default.css";
 @import "~antiscroll/antiscroll.css";
 
+@import "./error";
+
 // Layouts
 body.security_login,
 body.resetting_request,
@@ -71,7 +73,7 @@ body.two_factor_login {
     }
   }
 
-  @import "./auth/layout";
+  @import "./auth/index";
 }
 
 body.logged-in[class*="admin_"] {
@@ -82,68 +84,5 @@ body.logged-in[class*="admin_"] {
   font-family: Roboto,sans-serif;
   overflow: hidden;
 
-  @import "./backend/index";
-}
-
-/*-------------------
-    Error
---------------------*/
-
-.error-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  -webkit-font-smoothing: antialiased;
-}
-
-.error-wrapper .links {
-  margin-top: 40px;
-}
-
-.error-wrapper>p {
-  max-width: 380px;
-  color: #4a4a4a;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.error-wrapper .logo {
-  height: 30px;
-  margin-top: 32px;
-}
-
-.error-wrapper .jumbo {
-  margin-top: 67px;
-}
-
-.error-wrapper .status-code {
-  margin-top: 15px;
-  color: #aaa;
-  font-size: 76px;
-  font-weight: 100;
-}
-
-.error-wrapper .status {
-  color: #aaa;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.error-wrapper a {
-  display: inline-block;
-  padding: 0 18px;
-  border-radius: 2px;
-  background: #495ac6;
-  color: #fff !important;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  line-height: 36px;
-  text-decoration: none;
-  text-transform: uppercase;
-  box-shadow: 0 0 2px 0 rgba(0,0,0,0.12),0 2px 2px 0 rgba(0,0,0,0.24);
+  @import "./admin/index";
 }

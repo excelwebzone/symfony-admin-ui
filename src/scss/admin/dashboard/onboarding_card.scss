@@ -1,0 +1,143 @@
+.dashboard-onboarding {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 0;
+  margin-bottom: 40px;
+}
+
+.dashboard-onboarding-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  width: 33%;
+
+  &:hover {
+    .dashboard-onboarding-label {
+      visibility: hidden;
+    }
+
+    .dashboard-onboarding-instructions {
+      display: flex;
+    }
+  }
+
+  &.is-complete {
+    .dashboard-onboarding-icon-box > i {
+      &:first-child {
+        opacity: 0;
+      }
+
+      &:last-child {
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      .dashboard-onboarding-label {
+        visibility: visible;
+      }
+
+      .dashboard-onboarding-instructions {
+        display: none;
+      }
+    }
+  }
+}
+
+.dashboard-onboarding-icon-box {
+  background-color: #ccc;
+  border-radius: 50%;
+  color: #617e8b;
+  display: inline-block;
+  font-size: 38px;
+  height: 75px;
+  position: relative;
+  width: 75px;
+
+  > i {
+    bottom: 0;
+    height: 0;
+    left: 0;
+    line-height: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    &:first-child {
+      opacity: 1;
+    }
+  }
+}
+
+.dashboard-onboarding-text-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 60px;
+  width: 100%;
+}
+
+.dashboard-onboarding-label {
+  color: #363636;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.dashboard-onboarding-instructions {
+  position: absolute;
+  color: #888;
+  display: none;
+  font-size: 12px;
+  line-height: 16px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  max-width: 200px;
+}
+
+.dashboard-onboarding-button-step {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  width: 100%;
+
+  > a {
+    max-width: 200px;
+    width: 100%;
+  }
+}
+
+.dashboard-onboarding-complete-text {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 30px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767.98px) {
+  .dashboard-onboarding {
+    flex-direction: column;
+  }
+
+  .dashboard-onboarding-step {
+    width: 100%;
+
+    + .dashboard-onboarding-step {
+      margin-top: 10px;
+    }
+  }
+}

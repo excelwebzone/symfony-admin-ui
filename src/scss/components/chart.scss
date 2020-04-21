@@ -1,0 +1,75 @@
+.highchart-tooltip-title {
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.highchart-tooltip-small .highchart-tooltip-title {
+  max-width: 200px;
+}
+
+.highchart-pie-chart-label {
+  max-width: 100px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chart-container {
+  position: relative;
+  min-height: 150px;
+
+  &.chart-container-dashboard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.chart-loading-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.chart-container {
+  &.is-loading .chart-container-chart {
+    opacity: .1;
+  }
+
+  &.chart-container-dashboard .chart-container-chart {
+    height: 100%;
+  }
+}
+
+.chart-loading-overlay {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.chart-loading-overlay-spinner {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+}
+
+.chart-loading-overlay-subtext {
+  display: none;
+  color: #888;
+  font-size: 12px;
+}
+
+.chart-loading-overlay-errorIcon {
+  font-size: 48px;
+  color: #ccc;
+}

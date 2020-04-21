@@ -1,0 +1,35 @@
+.trial-expiration {
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  text-decoration: none;
+  align-self: center;
+  width: 200px;
+
+  .trial-expiration-duration {
+    display: inline-block;
+    max-width: 100px;
+    text-align: right;
+    color: #fff;
+    cursor: default;
+    font-size: 13px;
+    margin-right: 8px;
+  }
+
+  .trial-expiration-button {
+    align-self: center;
+    padding-top: 7px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .trial-expiration {
+    display: none;
+  }
+}

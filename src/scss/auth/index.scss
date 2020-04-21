@@ -1,0 +1,374 @@
+.links-container {
+  text-align: right;
+  right: 0;
+  position: absolute;
+
+  a {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 20px 20px 0 0;
+    display: inline-block;
+
+    &:last-child {
+      margin-right: 50px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .links-container {
+    display: none;
+  }
+}
+
+.alert-container {
+  text-align: center;
+  top: 17px;
+  position: absolute;
+  width: 100%;
+
+  .box {
+    font-weight: 400;
+    padding: 9px 24px;
+    border-radius: 2px;
+    min-height: 35px;
+    width: auto;
+    text-align: left;
+    display: inline-block;
+    height: auto;
+
+    .text {
+      display: block;
+
+      img {
+        display: none;
+      }
+    }
+  }
+
+  .icon {
+    width: 19px;
+    height: 19px;
+    float: left;
+    margin-right: 8px;
+  }
+
+  .close {
+    width: 9px;
+    height: 9px;
+    margin-left: 25px;
+    float: right;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+  }
+
+  .box {
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+    color: #363636;
+  }
+
+  .text {
+    font-size: 13px;
+    display: inline-block;
+    color: #363636;
+    font-weight: 500;
+  }
+}
+
+.authentication-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo {
+    margin-right: 85px;
+    margin: 30px 0 20px 0;
+
+    img {
+      width: 100px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .authentication-header .logo {
+    margin-top: 30px;
+  }
+}
+
+.authentication-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.authentication-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .instructions {
+    color: #888;
+    font-size: 13px;
+    line-height: 20px;
+    display: inline-block;
+    margin-bottom: 28px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .box {
+    text-align: left;
+    display: inline-block;
+    max-width: 420px;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 45px;
+    background: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+
+    &.no-footer {
+      margin-bottom: 140px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #363636;
+      margin-bottom: 15px;
+      margin-top: 10px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .title {
+      font-weight: 500;
+      color: #363636;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sub-title {
+      font-size: 13px;
+      color: #888;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: 0;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #fff;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #57585a;
+      font-weight: bold;
+      padding-left: 10px;
+      margin-bottom: 8px;
+      display: none;
+
+      // ??
+
+    }
+
+    .instructions {
+      font-size: 12px;
+      line-height: 20px;
+      color: #888;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      border-left: 1px solid #eee;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+
+    i {
+      position: absolute;
+      left: 5px;
+      top: 16px;
+      color: #ccc;
+      font-size: 16px;
+
+      &.zmdi-lock {
+        left: 8px;
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      height: 50px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+      color: #57585a;
+      font-size: 16px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    i + .form-control {
+      padding-left: 35px;
+    }
+
+    .form-control:focus {
+      border: none;
+      border-color: #2196F3;
+      box-shadow: inset 0 -2px 0 #2196F3;
+    }
+
+    &.is-invalid .form-control {
+      border-bottom: 1px solid #db4437;
+      outline: none;
+      box-shadow: inset 0 -2px 0 #db4437;
+      padding-right: 35px;
+    }
+
+    .form-text {
+      font-size: 12px;
+      color: #bbb !important;
+    }
+
+    .error-icon {
+      position: absolute;
+      right: 12px;
+      top: 11px;
+      display: none;
+    }
+
+    .form-state-icon {
+      top: 10px;
+    }
+
+    .invalid-feedback {
+      font-size: 11px;
+    }
+  }
+
+  .box .button-login {
+    width: 100%;
+    font-size: 13px;
+    background: #fff;
+    border-color: #fff;
+    color: #2196F3;
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: none;
+    -webkit-appearance: none;
+
+    &:hover {
+      color: #0c7cd5;
+    }
+
+    &:active, &:focus {
+      outline: none;
+      color: #0c7cd5;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
+  }
+
+  .button-submit {
+    margin-top: 20px;
+    padding: 11px;
+    width: 100%;
+    height: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    background: #2196F3;
+    border: 1px solid #2196F3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+
+    &:active {
+      outline: none;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    &:focus {
+      background: #0c7cd5;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
+  }
+
+  .orange-button {
+    background-color: #fdb736;
+    border-color: #e9aa30;
+    font-weight: normal;
+    font-size: 13px;
+
+    &:hover {
+      background-color: #e9aa30;
+      border-color: #e9aa30;
+    }
+  }
+
+  .footer-text {
+    text-align: center;
+    color: #363636;
+    font-size: 12px;
+    line-height: 24px;
+
+    a {
+      color: #2196F3;
+      font-weight: 500;
+    }
+  }
+
+  .link {
+    text-decoration: underline;
+    color: #656e78;
+    font-size: 13px;
+  }
+
+  .legal-footer {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    margin-top: 12px;
+    line-height: 16px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .authentication-page .box .divider {
+    border-left: none;
+  }
+}

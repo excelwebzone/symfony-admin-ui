@@ -1,0 +1,116 @@
+.dashboard-report {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+.dashboard-report-stats {
+  flex: 0 0 auto;
+}
+
+.dashboard-report-data-block {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 100px;
+  max-width: 30%;
+}
+
+.dashboard-report-data-label {
+  color: #888;
+  margin-bottom: 0;
+}
+
+.dashboard-report-data-value {
+  color: #363636;
+  font-size: 28px;
+  white-space: nowrap;
+}
+
+.dashboard-report-positive-data-value {
+  color: #49b04b;
+  font-size: 28px;
+
+  &::before {
+    content: '+';
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dashboard-report-data-block {
+    min-width: auto;
+  }
+
+  .dashboard-report-data-value, .dashboard-report-positive-data-value {
+    font-size: 18px;
+  }
+}
+
+.dashboard-report-chart {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  position: relative;
+}
+
+.report-filter {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 10px 10px 20px;
+}
+
+.report-filter-current-date {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  font-size: 20px;
+  padding-top: 10px;
+  white-space: nowrap;
+
+  > h4 {
+    color: #888;
+  }
+}
+
+.report-filter-filter-group {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  flex-flow: row-reverse nowrap;
+  justify-content: flex-start;
+}
+
+.report-filter-dropdown-group {
+  flex: 0 1 200px;
+  margin-left: 20px;
+  min-width: 150px;
+}
+
+.report-filter-dropdown-header {
+  color: #888;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.report-filter-filter-group .dropdown-selected {
+  font-weight: 700;
+}
+
+.report-card-filter {
+  float: right;
+  max-height: 24px;
+}
+
+.report-card-date-range-filter {
+  float: right;
+  width: 150px;
+  margin-left: 20px;
+
+  .dropdown-selected {
+    font-weight: 700;
+  }
+}
