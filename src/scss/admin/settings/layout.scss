@@ -107,7 +107,7 @@
   }
 }
 
-.settings-controls-table {
+.settings-content-table {
   overflow-x: auto;
   background-color: #fff;
   border-radius: 2px;
@@ -176,11 +176,14 @@
       font-size: 13px;
       font-weight: 400;
       line-height: 20px;
-      overflow: hidden;
       vertical-align: top;
       padding: 10px 0 0;
 
-      &:first-child {
+      .col-id {
+        width: 5%;
+      }
+
+      .col-name {
         color: #363636;
         font-weight: 500;
         width: 30%;
