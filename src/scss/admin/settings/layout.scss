@@ -179,11 +179,11 @@
       vertical-align: top;
       padding: 10px 0 0;
 
-      .col-id {
+      &.col-id {
         width: 5%;
       }
 
-      .col-name {
+      &.col-name {
         color: #363636;
         font-weight: 500;
         width: 30%;
