@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 export default class Rating {
   constructor(containerEl) {
-    this.$container = containerEl ? $(containerEl) : $('body');
+    this.$container = $(containerEl);
 
     this.bindEvents();
   }

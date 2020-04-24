@@ -5,7 +5,7 @@ const ADD_ANOTHER_LINK = '<a href="#" class="typed-property-add">__TEXT__</a>';
 
 export default class TypedProperty {
   constructor(containerEl) {
-    this.$container = containerEl ? $(containerEl) : $('body');
+    this.$container = $(containerEl);
 
     this.preloadData();
     this.bindEvents();

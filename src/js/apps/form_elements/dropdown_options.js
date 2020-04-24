@@ -11,7 +11,7 @@ $.expr[':'].filter = $.expr.createPseudo(function(arg) {
 
 export default class DropdownOptions {
   constructor(containerEl) {
-    this.$container = containerEl ? $(containerEl) : $('body');
+    this.$container = $(containerEl);
 
     this.preloadData();
     this.bindEvents();
