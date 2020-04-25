@@ -4,9 +4,9 @@ import TypedProperty from './typed_property';
 import DropdownOptions from './dropdown_options';
 import FileUpload from './file_upload';
 import DateRangePicker from './date_range_picker';
-import ScrollableTabs from './scrollable_tabs';
 import Rating from './rating';
 import EmberTable from '../components/ember_table';
+import ScrollableTabs from '../components/scrollable_tabs';
 
 export function initFormElements(containerEl) {
   const $container = containerEl ? $(containerEl) : $('body');
