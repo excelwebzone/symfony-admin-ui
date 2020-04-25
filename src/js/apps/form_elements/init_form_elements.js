@@ -7,6 +7,7 @@ import DateRangePicker from './date_range_picker';
 import Rating from './rating';
 import EmberTable from '../components/ember_table';
 import ScrollableTabs from '../components/scrollable_tabs';
+import SortableList from '../components/sortable_list';
 
 export function initFormElements(containerEl) {
   const $container = containerEl ? $(containerEl) : $('body');
@@ -66,5 +67,10 @@ export function initFormElements(containerEl) {
   // init scrollable-tabs elements
   for (let element of $container.find('.scrollable-tabs-drager>.tabs')) {
     new ScrollableTabs($(element));
+  }
+
+  // init sortable elements
+  for (let element of $container.find('.js-sortable-list')) {
+    new SortableList($(element));
   }
 }

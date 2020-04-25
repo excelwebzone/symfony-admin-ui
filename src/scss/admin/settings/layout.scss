@@ -199,6 +199,53 @@
       }
     }
   }
+
+  .sortable-item i.drag-handle {
+    color: #dce3e6;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  &.is-sortable {
+    background-color: #dce3e6;
+
+    th {
+      background-color: #fff;
+    }
+
+    .sortable-item {
+      background-color: #fff;
+      border-radius: 2px;
+      box-shadow: none;
+
+      &.is-dragging {
+        z-index: 100;
+        box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
+        cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+      }
+
+      i.drag-handle {
+        cursor: pointer;
+
+        &:hover {
+          color: #5269de;
+          cursor: -webkit-grab;
+        }
+      }
+
+      &.is-dragging {
+        > div, i {
+          cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+          cursor: -webkit-grabbing;
+          cursor: -moz-grabbing;
+          cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+        }
+      }
+    }
+  }
 }
 
 .settings-content-dropdown-width {
