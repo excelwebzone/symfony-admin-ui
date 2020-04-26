@@ -41,3 +41,15 @@ img#settings-content-account-owner-button {
     padding-top: 6px;
   }
 }
+
+.is-disabled {
+  .settings-content-company-user-text,
+  .settings-content-main-content,
+  .settings-content-secondary-content {
+    color: #DCE3E6;
+  }
+
+  .settings-content-company-user-picture {
+    opacity: 0.3;
+  }
+}

@@ -26,9 +26,11 @@ export default class SortableList {
       handle: this.dragHandleClass,
       items: this.sortableItemClass,
       start: (e, ui) => {
+        this.$list.addClass(this.isDraggingClass);
         ui.item.addClass(this.isDraggingClass);
       },
       stop: (e, ui) => {
+        this.$list.removeClass(this.isDraggingClass);
         ui.item.removeClass(this.isDraggingClass);
       },
       update: (e, ui) => {
