@@ -343,6 +343,25 @@
   }
 }
 
+.settings-content-table-empty {
+  color: #dce3e6;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.settings-content-roles-width {
+  &.is-header {
+    display: flex;
+  }
+
+  span,
+  .checkbox {
+    width: 33.33333%;
+  }
+}
+
 .settings-content-dropdown-width {
   min-width: 300px;
 }
