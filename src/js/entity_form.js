@@ -209,6 +209,17 @@ export default class EntityForm {
     const $formGroup = $target.closest('.form-group');
     let $element = $formGroup.find(':input');
 
+    if ($target.data('related-fields')) {
+      for (let e of $target.data('related-fields')) {
+        $element = $.merge(
+          $element,
+          $(e)
+            .closest('.form-group')
+            .find(':input')
+        );
+      }
+    }
+
     if ($target.is(':hidden') && !$target.hasClass('checkbox-input')) {
       $element = $target;
     }
