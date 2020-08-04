@@ -122,10 +122,10 @@ export default class ListPage {
 
       // automatically open single result (ignore under for multi block)
       if (self.showSingleRowInfo && data.page === 1 && data.total === 1
-        && !viewer.$container.hasClass('js-ember-table-block')
+        && !viewer.$container.hasClass('js-datagrid-block')
         && !viewer.$table.hasClass('activity-list')
       ) {
-        viewer.$table.find('.ember-table-body-container .ember-table-left-table-block>div .js-entity-drawer:eq(0)').click();
+        viewer.$table.find('.datagrid-body-container .datagrid-left-table-block>div .js-entity-drawer:eq(0)').click();
       }
 
       viewer.$table.trigger('data:loaded', data);
@@ -349,12 +349,12 @@ export default class ListPage {
         }
 
         for (let id of ids) {
-          const $emberRow = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
-          if ($emberRow.length) {
-            $emberRow.data('is-follow', !$emberRow.data('is-follow'));
-            $emberRow.find('.js-follow-item').prop('checked', !$emberRow.find('.js-follow-item').prop('checked'));
+          const $datagridRow = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
+          if ($datagridRow.length) {
+            $datagridRow.data('is-follow', !$datagridRow.data('is-follow'));
+            $datagridRow.find('.js-follow-item').prop('checked', !$datagridRow.find('.js-follow-item').prop('checked'));
 
-            const $drawer = $(`.drawer-frame[data-id="${$emberRow.data('id')}"]`);
+            const $drawer = $(`.drawer-frame[data-id="${$datagridRow.data('id')}"]`);
             if ($drawer.length) {
               $drawer.find('.js-follow-item>i')
                 .toggleClass('zmdi-star-outline')
@@ -379,17 +379,17 @@ export default class ListPage {
         }
 
         for (let id of ids) {
-          const $emberRowLeft = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
-          if ($emberRowLeft.length) {
-            $emberRowLeft.data('is-complete', !$emberRowLeft.data('is-complete'));
-            $emberRowLeft.find('.task-check-box-container').toggleClass('is-completed');
-            $emberRowLeft.find('.js-complete-item').prop('checked', !$emberRowLeft.find('.js-complete-item').prop('checked'));
-            $emberRowLeft.find('.table-cell-name').toggleClass('is-completed');
+          const $datagridRowLeft = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
+          if ($datagridRowLeft.length) {
+            $datagridRowLeft.data('is-complete', !$datagridRowLeft.data('is-complete'));
+            $datagridRowLeft.find('.task-check-box-container').toggleClass('is-completed');
+            $datagridRowLeft.find('.js-complete-item').prop('checked', !$datagridRowLeft.find('.js-complete-item').prop('checked'));
+            $datagridRowLeft.find('.table-cell-name').toggleClass('is-completed');
 
-            const $emberRowRight = $emberRowLeft.closest('.list-page-table').find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($emberRowLeft.index());
-            $emberRowRight.find('.table-cell-name').toggleClass('is-completed');
+            const $datagridRowRight = $datagridRowLeft.closest('.list-page-table').find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($datagridRowLeft.index());
+            $datagridRowRight.find('.table-cell-name').toggleClass('is-completed');
 
-            const $drawer = $(`.drawer-frame[data-id="${$emberRowLeft.data('id')}"]`);
+            const $drawer = $(`.drawer-frame[data-id="${$datagridRowLeft.data('id')}"]`);
             if ($drawer.length) {
               $drawer.toggleClass('is-complete');
               $drawer.find('.task-check-box-container').toggleClass('is-completed');
@@ -414,9 +414,9 @@ export default class ListPage {
         }
 
         for (let id of ids) {
-          const $emberRow = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
-          if ($emberRow.length) {
-            $emberRow.toggleClass('is-unread');
+          const $datagridRow = this.$container.find(`.js-entity-drawer[data-id="${id}"]`);
+          if ($datagridRow.length) {
+            $datagridRow.toggleClass('is-unread');
           }
         }
 

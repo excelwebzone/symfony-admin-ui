@@ -12,6 +12,10 @@
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.55, 0, 0, 1) 0.2s;
   transition: transform 0.5s cubic-bezier(0.55, 0, 0, 1) 0.2s;
 
+  &.fix-top {
+    top: 108px;
+  }
+
   &.show {
     -ms-transform: none;
     -webkit-transform: none;
@@ -29,7 +33,7 @@
   &.drawer-frame-profile {
     height: auto;
     min-width: 300px;
-    width: calc((100% - 60px) * .25);
+    width: calc((100% - 60px) * 0.25);
   }
 
   &.drawer-frame-reports {
@@ -42,4 +46,8 @@
   .drawer-frame.drawer-frame-list {
     width: 100% !important;
   }
+}
+
+.has-navigation .drawer-frame {
+  top: 108px;
 }

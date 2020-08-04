@@ -1,10 +1,10 @@
 .tabs {
   width: 100%;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #dce3e6;
 }
 
 .tab {
-  color: #999;
+  color: rgba(12, 13, 13, 0.64);
   cursor: pointer;
   display: inline-block;
   padding: 10px 20px;
@@ -15,9 +15,9 @@
   line-height: 20px;
 
   &:after {
-    background-color: #0D94F6;
+    background-color: #2b41b2;
     bottom: -1px;
-    content: "";
+    content: '';
     display: block;
     height: 3px;
     left: 0;
@@ -27,8 +27,11 @@
     transition: none;
   }
 
-  &.active, &:hover, &.tab-dashboard.active {
-    color: #000;
+  &.active,
+  &:hover,
+  &.tab-dashboard.active {
+    color: #0c0d0d;
+    text-decoration: none;
   }
 
   &.active:after {
@@ -45,6 +48,11 @@
   }
 }
 
+.tab-spacer {
+  display: flex;
+  flex: 0 1 100%;
+}
+
 .scrollable-tabs {
   .drager {
     overflow: hidden;
@@ -53,16 +61,41 @@
   .tabs {
     flex-wrap: nowrap;
     margin: 0 10px;
-    border-bottom: 1px solid #d5d8d8;
+    border-bottom: 1px solid #dce3e6;
 
     .tab {
       white-space: nowrap;
       padding: 6px 24px 18px;
 
       &.active {
-        color: #000;
+        color: #0c0d0d;
         font-weight: bold;
       }
+    }
+  }
+}
+
+.has-navigation .scrollable-tabs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 3px 5px 0.3px rgba(0, 0, 0, 0.24);
+  height: 48px;
+  overflow: visible;
+  visibility: visible;
+  transition: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 9;
+
+  .tabs {
+    border-bottom: none;
+
+    .tab {
+      padding-top: 10px;
     }
   }
 }

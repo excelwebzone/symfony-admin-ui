@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import _ from 'underscore';
 import Cookies from 'js-cookie';
 import bp from './breakpoints';
@@ -12,13 +13,11 @@ export default class ContextualSidebar {
     this.$page = $('.application-content');
     this.$sidebar = $('.sidebar');
     this.$overlay = $('.content-overlay');
-    this.$openSidebar = $('.toggle-nav');
-    this.$closeSidebar = $('.close-nav');
+    this.$toggleSidebar = $('.js-sidebar-toggle');
   }
 
   bindEvents() {
-    this.$openSidebar.on('click', () => this.toggleSidebarNav(true));
-    this.$closeSidebar.on('click', () => this.toggleSidebarNav(false));
+    this.$toggleSidebar.on('click', () => this.toggleSidebarNav());
     this.$overlay.on('click', () => this.toggleSidebarNav(false));
 
     $(window).on('resize', () => _.debounce(this.render(), 100));
@@ -32,6 +31,10 @@ export default class ContextualSidebar {
   }
 
   toggleSidebarNav(show) {
+    if (show === null) {
+      show = !this.$page.hasClass('sidebar-collapsed');
+    }
+
     this.$page.toggleClass('sidebar-collapsed', show);
 
     ContextualSidebar.setCollapsedCookie(show);
@@ -51,11 +54,11 @@ export default class ContextualSidebar {
   render() {
     const breakpoint = bp.getBreakpointSize();
 
-    if (breakpoint === 'sm' || breakpoint === 'md') {
-      this.toggleSidebarNav(false);
-    } else if (breakpoint === 'lg') {
+    if (breakpoint === 'lg') {
       const collapse = Cookies.get('sidebar_collapsed') === 'true';
       this.toggleSidebarNav(collapse);
+    } else {
+      this.toggleSidebarNav(false);
     }
   }
 }

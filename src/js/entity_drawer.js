@@ -19,6 +19,12 @@ export default class EntityDrawer {
     $(document).on('click', '.js-bulk-select', (e) => this.selectRow(e));
   }
 
+  fixTop() {
+    if (this.$drawer && $('.application-content').hasClass('has-navigation')) {
+      this.$drawer.addClass('fix-top');
+    }
+  }
+
   hide() {
     $('.drawer-frame.filter-options').collapse('hide');
 
@@ -35,7 +41,7 @@ export default class EntityDrawer {
 
   closeButton(e) {
     $('.js-entity-drawer-bulk-template').removeClass('active');
-    $('.ember-table-table-row.ember-table-selected').removeClass('ember-table-selected');
+    $('.datagrid-table-row.datagrid-selected').removeClass('datagrid-selected');
 
     this.hide();
   }
@@ -67,6 +73,8 @@ export default class EntityDrawer {
     this.$drawer = $('.drawer-frame:not(.filter-options)');
     this.$drawer.collapse('show');
     this.$drawer.find('.js-block-request').trigger('block:load');
+
+    this.fixTop();
 
     $target.trigger('drawer:shown', this.$drawer);
 
@@ -126,7 +134,7 @@ export default class EntityDrawer {
       return;
     }
 
-    $('.ember-table-table-row.ember-table-selected').removeClass('ember-table-selected');
+    $('.datagrid-table-row.datagrid-selected').removeClass('datagrid-selected');
 
     $target.addClass('active');
 
@@ -146,6 +154,8 @@ export default class EntityDrawer {
 
     this.$drawer = $('.drawer-frame:not(.filter-options)');
     this.$drawer.collapse('show');
+
+    this.fixTop();
 
     setTimeout(() => {
       this.$drawer.find('.bulk-edit-drawer-loading').hide();

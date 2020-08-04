@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Roboto', sans-serif;
-  text-align: center;
   -webkit-font-smoothing: antialiased;
+  text-align: center;
 
   .links {
     margin-top: 40px;
@@ -12,14 +12,15 @@
 
   > p {
     max-width: 380px;
-    color: #4a4a4a;
     font-size: 14px;
+    color: #4a4a4a;
     line-height: 24px;
   }
 
   .logo {
-    height: 30px;
     margin-top: 32px;
+    width: 82px;
+    height: auto;
   }
 
   .jumbo {
@@ -27,32 +28,57 @@
   }
 
   .status-code {
-    margin-top: 15px;
-    color: #aaa;
     font-size: 76px;
     font-weight: 100;
+    color: #aaa;
+    margin-top: 15px;
   }
 
   .status {
+    text-transform: uppercase;
+    font-weight: 700;
     color: #aaa;
     font-size: 14px;
-    font-weight: 700;
     letter-spacing: 1px;
-    text-transform: uppercase;
   }
 
   a {
-    display: inline-block;
-    padding: 0 18px;
-    border-radius: 2px;
-    background: #495ac6;
-    color: #fff !important;
-    font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.5px;
-    line-height: 36px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 6px 16px;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+    user-select: none;
+    vertical-align: middle;
+    transition: background-color 200mx, opacity 200mx;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: #2b41b2;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12);
+    color: #fff !important;
+
+    &:hover {
+      text-decoration: none;
+      opacity: 0.84;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+      color: #fff;
+    }
+
+    &:focus {
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+      background-color: #5269de;
+      color: #fff;
+    }
   }
 }

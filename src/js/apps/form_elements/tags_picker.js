@@ -46,7 +46,7 @@ export default class TagsPicker {
               <div class="tag-collection"></div>
             </div>
             <div>
-              <button type="button" class="apply-button value-range-apply button button-raised button-raised-primary"></button>
+              <button type="button" class="apply-button value-range-apply btn btn-primary"></button>
             </div>
           </div>
           <div class="range-select-nub"></div>

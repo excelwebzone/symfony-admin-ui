@@ -34,7 +34,7 @@
 
   .modal-table-selected-count {
     display: inline;
-    color: #0D94F6;
+    color: #0d94f6;
     font-size: 13px;
   }
 
@@ -48,7 +48,7 @@
       height: calc(100% - 50px) !important;
     }
 
-    .ember-table-table-row {
+    .datagrid-table-row {
       cursor: default;
     }
 
@@ -75,12 +75,21 @@
     }
 
     input {
-      &[type="text"], &[type="password"], &[type="email"], &[type="url"], &[type="number"], &[type="tel"], &[type="date"] {
+      &[type='text'],
+      &[type='password'],
+      &[type='email'],
+      &[type='url'],
+      &[type='number'],
+      &[type='tel'],
+      &[type='date'] {
         border-color: #fff;
       }
     }
 
-    .input-text, textarea, select, .dropdown {
+    .input-text,
+    textarea,
+    select,
+    .dropdown {
       border-color: #fff;
     }
   }

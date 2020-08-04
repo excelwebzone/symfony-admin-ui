@@ -1,0 +1,142 @@
+@import '../../components/reset';
+@import '../../components/buttons';
+@import '../../components/form/index';
+
+.links-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+
+  a {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 20px 20px 0 0;
+    display: inline-block;
+
+    &:last-child {
+      margin-right: 50px;
+    }
+  }
+}
+
+.alert-container {
+  width: 100%;
+  text-align: center;
+  margin: -20px 0 20px;
+
+  .alert {
+    font-weight: 400;
+    padding: 9px 24px;
+    border-radius: 2px;
+    min-height: 35px;
+    width: auto;
+    text-align: left;
+    display: inline-block;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+.authentication-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.authentication-left,
+.authentication-right {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.authentication-left {
+  background-color: #1350aa;
+  border-radius: 0 12px 12px 0;
+
+  .logo {
+    width: 82px;
+  }
+}
+
+.authentication-right {
+  overflow: auto;
+
+  .authentication-body {
+    max-width: 400px;
+    width: 80%;
+  }
+
+  .title {
+    font-size: 23px;
+    font-weight: 600;
+  }
+
+  form {
+    margin: 40px 0 80px;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .authentication-wrapper {
+    flex-direction: column;
+  }
+
+  .authentication-left,
+  .authentication-right {
+    width: 100%;
+  }
+
+  .authentication-left {
+    border-radius: unset;
+    height: 100px;
+
+    .logo {
+      width: 38px;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: transparent;
+      left: 0;
+      bottom: -50px;
+      height: 50px;
+      width: 25px;
+      border-top-left-radius: 25px;
+      box-shadow: 0 -25px 0 0 #1350aa;
+    }
+
+    &:after {
+      left: auto;
+      right: 0;
+      border-top-left-radius: unset;
+      border-top-right-radius: 25px;
+    }
+  }
+
+  .authentication-right {
+    align-items: unset;
+    padding-top: 40px;
+  }
+}

@@ -5,7 +5,7 @@ import DropdownOptions from './dropdown_options';
 import FileUpload from './file_upload';
 import DateRangePicker from './date_range_picker';
 import Rating from './rating';
-import EmberTable from '../components/ember_table';
+import Datagrid from '../components/datagrid';
 import ScrollableTabs from '../components/scrollable_tabs';
 import SortableList from '../components/sortable_list';
 
@@ -59,9 +59,9 @@ export function initFormElements(containerEl) {
     $(element).requiresInput();
   }
 
-  // init ember-table elements
-  for (let element of $container.find('.js-ember-table')) {
-    new EmberTable($(element));
+  // init datagrid elements
+  for (let element of $container.find('.js-datagrid')) {
+    new Datagrid($(element));
   }
 
   // init scrollable-tabs elements

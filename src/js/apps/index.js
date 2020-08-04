@@ -3,7 +3,7 @@ import EntityDrawer from '../entity_drawer';
 import EntityModal from '../entity_modal';
 import EntityForm from '../entity_form';
 import EntityView from '../entity_view';
-import EmberTable from './components/ember_table';
+import Datagrid from './components/datagrid';
 import BlockRequest from './components/block_request';
 import ToggleObject from './components/toggle_object';
 
@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   new ToggleObject();
 
   for (let element of $('.import-table-panel,.report-table-component')) {
-    new EmberTable($(element).find('.js-ember-table'));
+    new Datagrid($(element).find('.js-datagrid'));
   }
 });

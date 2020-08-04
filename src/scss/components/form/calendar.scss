@@ -50,14 +50,15 @@
       }
     }
 
-    .ui-datepicker-next, .ui-datepicker-prev {
-      -webkit-transition: background-color .3s;
-      transition: background-color .3s;
+    .ui-datepicker-next,
+    .ui-datepicker-prev {
+      -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s;
       background: 0 0;
       border: none;
       border-radius: 50%;
       cursor: pointer;
-      font-family: "Material-Design-Iconic-Font";
+      font-family: 'Material-Design-Iconic-Font';
       font-size: 24px;
       height: 30px;
       line-height: 30px;
@@ -66,7 +67,8 @@
       top: 0;
     }
 
-    .ui-datepicker-next .ui-icon, .ui-datepicker-prev .ui-icon {
+    .ui-datepicker-next .ui-icon,
+    .ui-datepicker-prev .ui-icon {
       display: none;
     }
 
@@ -138,8 +140,8 @@
         }
 
         &:not(.is-selected) span:hover {
-          -webkit-transition: background-color .3s;
-          transition: background-color .3s;
+          -webkit-transition: background-color 0.3s;
+          transition: background-color 0.3s;
           background: #ccc;
         }
 
@@ -165,18 +167,21 @@
             z-index: 1;
           }
 
-          &.is-from, &.is-to {
+          &.is-from,
+          &.is-to {
             border-radius: 50%;
           }
 
-          &.is-from span, &.is-to span {
+          &.is-from span,
+          &.is-to span {
             color: #fff;
             font-weight: 700;
             background: #0777c9;
           }
 
           &.is-from {
-            &.is-last:before, &.is-to:before {
+            &.is-last:before,
+            &.is-to:before {
               background: #fff;
             }
           }

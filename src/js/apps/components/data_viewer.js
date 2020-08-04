@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { getParameterValues, mergeUrlParams } from '../../lib/utils/url_utility';
 import Filter from './filter';
-import EmberTable from './ember_table';
+import Datagrid from './datagrid';
 import Pager from './pager';
 
 export default class DataViewer {
@@ -32,7 +32,7 @@ export default class DataViewer {
     if (this.$table.length === 0) {
       this.$table = this.$container.find('[data-list-page-table]');
     }
-    this.emberTable = new EmberTable(this.$table.find('.js-ember-table'));
+    this.datagrid = new Datagrid(this.$table.find('.js-datagrid'));
 
     const $column = this.$table.find('.table-header-cell-sortable.sortable.js-default-sort');
     if ($column.length) {
@@ -103,14 +103,14 @@ export default class DataViewer {
       } else {
         const $html = $(`<div>${data.html}</div>`);
 
-        this.$table.find('.ember-table-body-container .ember-table-left-table-block>div')
+        this.$table.find('.datagrid-body-container .datagrid-left-table-block>div')
           .append($html.find('.left-column').html());
 
-        this.$table.find('.ember-table-body-container .ember-table-right-table-block>div')
+        this.$table.find('.datagrid-body-container .datagrid-right-table-block>div')
           .append($html.find('.right-column').html());
 
-        this.emberTable.resizeTable();
-        this.emberTable.rebindEvents();
+        this.datagrid.resizeTable();
+        this.datagrid.rebindEvents();
       }
 
       if (typeof this.postCallback === 'function') {
@@ -125,8 +125,8 @@ export default class DataViewer {
     if (this.$table.hasClass('activity-list')) {
       this.$table.find('.activity-log-list').html('');
     } else {
-      this.$table.find('.ember-table-body-container .ember-table-left-table-block>div').html('');
-      this.$table.find('.ember-table-body-container .ember-table-right-table-block>div').html('');
+      this.$table.find('.datagrid-body-container .datagrid-left-table-block>div').html('');
+      this.$table.find('.datagrid-body-container .datagrid-right-table-block>div').html('');
     }
   }
 

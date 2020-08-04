@@ -1,0 +1,41 @@
+.reports-page {
+  height: 100%;
+}
+
+.report-table-component {
+  max-height: 100vh;
+
+  .datagrid-body-container .datagrid-table-row.datagrid-selected {
+    background-color: inherit;
+  }
+
+  .datagrid-table-row {
+    &.datagrid-selected {
+      .table-cell-date,
+      .table-cell-number,
+      .table-cell-text {
+        color: inherit;
+      }
+    }
+
+    &.datagrid-last-row {
+      cursor: default !important;
+      background-color: #fff !important;
+    }
+  }
+
+  .datagrid-header-cell.table-header-cell-sortable,
+  .datagrid-right-table-block .datagrid-header-cell.table-header-cell {
+    cursor: default;
+  }
+
+  &.report-table-component-activity {
+    .datagrid-table-row {
+      cursor: default;
+    }
+
+    .datagrid-body-container .datagrid-table-row.datagrid-hover {
+      background: #fff;
+    }
+  }
+}

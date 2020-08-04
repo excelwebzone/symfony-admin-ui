@@ -91,8 +91,8 @@ export default class DateRangePicker {
                 <b>Date Picked</b>&nbsp;<span>is any date.</span>
               </div>
               <div class="range-select-button-section">
-                <button type="button" class="apply-button calendar-action-button button-flat-primary button button-flat"></button>
-                <button type="button" class="cancel-button calendar-action-button button-flat-default button button-flat"></button>
+                <button type="button" class="apply-button calendar-action-button btn btn-flat-primary"></button>
+                <button type="button" class="cancel-button calendar-action-button btn btn-flat-secondary"></button>
               </div>
             </div>
           </div>
@@ -288,10 +288,10 @@ export default class DateRangePicker {
 
       let list = '<ul>';
       for (range in this.ranges) {
-        list += '<li><button type="button" class="button-raised-default button button-raised w-100" data-range-key="' + range + '">' + range + '</button></li>';
+        list += '<li><button type="button" class="btn btn-flat-secondary w-100" data-range-key="' + range + '">' + range + '</button></li>';
       }
       if (this.showCustomRangeLabel) {
-        list += '<li><button type="button" class="button-raised-default button button-raised w-100" data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</button></li>';
+        list += '<li><button type="button" class="btn btn-flat-secondary w-100" data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</button></li>'
       }
       list += '</ul>';
       this.$container.find('.ranges').prepend(list);
@@ -486,7 +486,7 @@ export default class DateRangePicker {
     this.renderCalendar('right');
 
     // highlight any predefined range matching the current start and end dates
-    this.$container.find('.ranges button').removeClass('button-raised-default').addClass('button-raised-default');
+    this.$container.find('.ranges button').removeClass('btn-primary').addClass('btn-flat-secondary');
     if (this.endDate === null) return;
 
     this.calculateChosenLabel();
@@ -747,7 +747,7 @@ export default class DateRangePicker {
       this.$container.find('button.apply-button').attr('disabled', 'disabled');
     }
 
-    let label = this.$container.find('.ranges button.button-raised-primary').data('range-key');
+    let label = this.$container.find('.ranges button.btn-primary').data('range-key');
     if (label === this.locale.customRangeLabel) {
       this.$container.find('.range-select-display-range>span').html('is from ' + this.startDate.format('MM/DD/YYYY') + ' to ' + this.endDate.format('MM/DD/YYYY') + '.');
     } else if (this.ranges[label]) {
@@ -1071,14 +1071,14 @@ export default class DateRangePicker {
 
   calculateChosenLabel() {
     // Remove selected button
-    this.$container.find('.ranges button').removeClass('button-raised-primary');
+    this.$container.find('.ranges button').removeClass('btn-primary');
 
     let customRange = true;
     let i = 0;
     for (let range in this.ranges) {
       if (this.startDate.format('YYYY-MM-DD') === this.ranges[range][0].format('YYYY-MM-DD') && this.endDate.format('YYYY-MM-DD') === this.ranges[range][1].format('YYYY-MM-DD')) {
         customRange = false;
-        this.chosenLabel = this.$container.find('.ranges button:eq(' + i + ')').removeClass('button-raised-default').addClass('button-raised-primary').html();
+        this.chosenLabel = this.$container.find('.ranges button:eq(' + i + ')').removeClass('btn-flat-secondary').addClass('btn-primary').html();
         break;
       }
 
@@ -1086,7 +1086,7 @@ export default class DateRangePicker {
     }
     if (customRange) {
       if (this.showCustomRangeLabel) {
-        this.chosenLabel = this.$container.find('.ranges button:last').removeClass('button-raised-default').addClass('button-raised-primary').html();
+        this.chosenLabel = this.$container.find('.ranges button:last').removeClass('btn-flat-secondary').addClass('btn-primary').html();
       } else {
         this.chosenLabel = null;
       }

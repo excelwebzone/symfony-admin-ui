@@ -1,17 +1,17 @@
 .banner-block {
-  background-color: #fff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  background-color: #fff;
   border-radius: 2px;
-  color: #888;
   margin-bottom: 20px;
   padding: 20px 25px;
+  color: #696e6f;
 
   .banner-block-cancel {
-    color: #888;
+    color: #696e6f;
   }
 
   .banner-block-content {
-    color: #888;
+    color: #696e6f;
     font-size: 12px;
     list-style: none;
     padding: 0;
@@ -25,13 +25,13 @@
   }
 
   .banner-block-title {
-    color: #363636;
+    color: #0c0d0d;
     font-size: 14px;
     font-weight: 500;
   }
 
   .banner-block-icon {
-    color: #0D94F6;
+    color: #2b41b2;
     font-size: 16px;
     font-weight: 400;
     margin-right: 5px;
@@ -42,7 +42,7 @@
   }
 
   &.banner-block-is-urgent {
-    background-color: #db4437;
+    background-color: #b50814;
     color: #fff;
 
     .banner-block-content {

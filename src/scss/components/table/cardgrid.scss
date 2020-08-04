@@ -1,19 +1,19 @@
-.card-table-component {
+.cardgrid-component {
   width: 100%;
   height: 100%;
   overflow: auto;
   max-width: 100%;
   position: relative;
 
-  .ember-table-header-container .ember-table-table-fixed-wrapper {
+  .datagrid-header-container .datagrid-table-fixed-wrapper {
     background-color: #fff;
   }
 
-  .ember-table-body-container .ember-table-table-row.ember-table-hover {
+  .datagrid-body-container .datagrid-table-row.datagrid-hover {
     background-color: transparent;
   }
 
-  .ember-table-table-row {
+  .datagrid-table-row {
     cursor: default;
   }
 
@@ -23,7 +23,8 @@
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
 
-    *, a {
+    *,
+    a {
       cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
       cursor: -webkit-grabbing;
       cursor: -moz-grabbing;
@@ -35,18 +36,19 @@
     padding: 10px 5% 10px 30px;
   }
 
-  .ember-table-header-row {
+  .datagrid-header-row {
     background-color: #fff;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #dce3e6;
+    border-bottom: 1px solid #dce3e6;
   }
 
-  .ember-table-header-cell.last .carrot {
+  .datagrid-header-cell.last .carrot {
     display: none;
   }
 
-  .ember-table-header-row .ember-table-header-cell {
-    .carrot.active, &.active .carrot {
+  .datagrid-header-row .datagrid-header-cell {
+    .carrot.active,
+    &.active .carrot {
       display: none;
     }
 
@@ -58,8 +60,8 @@
 
     &.active {
       z-index: 1;
-      background-color: #2B41B2;
-      border-color: #2B41B2;
+      background-color: #2b41b2;
+      border-color: #2b41b2;
 
       * {
         color: #fff;
@@ -72,14 +74,14 @@
       height: 100%;
       top: 0;
       right: -12px;
-      background: transparent url("../images/card-header-carrot.png") center right no-repeat;
+      background: transparent url('../../../images/card-header-carrot.png') center right no-repeat;
       width: 12px;
       height: 60px;
     }
 
     &.active .carrot.active {
       display: inline-block;
-      background: transparent url("../images/card-header-carrot-active.png") center right no-repeat;
+      background: transparent url('../../../images/card-header-carrot-active.png') center right no-repeat;
       width: 13px;
       height: 60px;
     }
@@ -101,7 +103,7 @@
       font-size: 13px;
       line-height: 24px;
       font-weight: 700;
-      color: #212121;
+      color: #0c0d0d;
       text-transform: uppercase;
       width: 100%;
       overflow: hidden;
@@ -113,12 +115,12 @@
     .total {
       font-size: 12px;
       line-height: 20px;
-      color: #757575;
+      color: #696e6f;
     }
   }
 }
 
-.card-table-component-model-cell {
+.cardgrid-component-model-cell {
   cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
   cursor: -webkit-grab;
   cursor: -moz-grab;
@@ -131,24 +133,25 @@
     height: 100%;
     position: relative;
     padding: 20px 30px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #dce3e6;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12);
     border-radius: 2px;
 
     &:hover {
-      background-color: rgba(33, 150, 243, 0.04);
+      background-color: rgba(12, 13, 13, 0.08);
     }
   }
 
   &.is-current .cell-content {
-    background: #e3f2fd;
+    background: rgba(12, 13, 13, 0.08);
   }
 
   &.hide {
     opacity: 0;
   }
 
-  &.animating-drag-shadow.drag-shadow .shadow-model-cover, &.shadow-model.drag-shadow .shadow-model-cover {
+  &.animating-drag-shadow.drag-shadow .shadow-model-cover,
+  &.shadow-model.drag-shadow .shadow-model-cover {
     display: none;
   }
 
@@ -180,16 +183,18 @@
       -ms-transform: none;
       -webkit-transform: none;
       transform: none;
-      -webkit-transition: -webkit-transform .2s;
-      transition: transform .2s;
+      -webkit-transition: -webkit-transform 0.2s;
+      transition: transform 0.2s;
     }
   }
 
-  &.animating-drag-shadow .cell-content, &.shadow-model .cell-content {
+  &.animating-drag-shadow .cell-content,
+  &.shadow-model .cell-content {
     border: 2px dashed rgba(43, 65, 178, 0.16);
   }
 
-  &.animating-drag-shadow .shadow-model-cover, &.shadow-model .shadow-model-cover {
+  &.animating-drag-shadow .shadow-model-cover,
+  &.shadow-model .shadow-model-cover {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -199,7 +204,7 @@
   }
 
   &.animating-drag-shadow .cell-content {
-    background-color: #e3f2fd;
+    background-color: #dee3ff;
   }
 
   .click-area {
@@ -232,7 +237,7 @@
     font-weight: 700;
     font-size: 13px;
     line-height: 24px;
-    color: #212121;
+    color: #0c0d0d;
     cursor: pointer;
     max-width: -webkit-calc(100% - 25px);
     max-width: calc(100% - 25px);
@@ -243,26 +248,28 @@
     }
   }
 
-  .account-assignee, .monetary-value {
+  .account-assignee,
+  .monetary-value {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 12px;
     line-height: 20px;
-    color: #757575;
+    color: #696e6f;
   }
 
-  .account-assignee.monetary-value, .monetary-value.monetary-value {
+  .account-assignee.monetary-value,
+  .monetary-value.monetary-value {
     min-height: 14px;
   }
 }
 
-.card-table-component {
-  .ember-table-cell {
+.cardgrid-component {
+  .datagrid-cell {
     border: none;
   }
 
-  .ember-table-tables-container .ember-table-table-row {
+  .datagrid-tables-container .datagrid-table-row {
     border: none;
     border-bottom: none;
   }

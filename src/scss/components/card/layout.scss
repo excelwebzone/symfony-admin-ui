@@ -1,9 +1,12 @@
 .card {
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
   background-color: #fff;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
-  border-radius: 2px;
+  border-radius: 8px;
+  border: none;
   position: relative;
   overflow: initial;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .card-body {
@@ -16,7 +19,7 @@
 }
 
 .card-subheader {
-  color: #888;
+  color: #696e6f;
 }
 
 .card-content {

@@ -43,7 +43,9 @@
 }
 
 .entity-field {
-  .bulk-edit-drawer-dot, .form-group, .accordion-groups {
+  .bulk-edit-drawer-dot,
+  .form-group,
+  .accordion-groups {
     display: none;
   }
 
@@ -52,7 +54,9 @@
       display: none;
     }
 
-    .entity-field-edit-icon, .form-group, .accordion-groups {
+    .entity-field-edit-icon,
+    .form-group,
+    .accordion-groups {
       display: block;
     }
 

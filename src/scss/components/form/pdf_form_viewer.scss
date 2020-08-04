@@ -3,7 +3,7 @@
   overflow-x: auto;
 
   input {
-    &[type="text"] {
+    &[type='text'] {
       background-color: #e5e5e5;
       border: 1px solid #f4f3ea;
       padding: 0;
@@ -45,7 +45,7 @@
     position: absolute;
     margin: auto;
 
-    &[type="checkbox"] {
+    &[type='checkbox'] {
       margin: 0px;
     }
   }

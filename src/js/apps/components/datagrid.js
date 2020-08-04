@@ -9,7 +9,7 @@ document.addEventListener('beforeunload', () => {
   $('.js-antiscroll').antiscroll('destroy');
 });
 
-export default class EmberTable {
+export default class Datagrid {
   constructor(tableEl) {
     if ($(tableEl).length === 0) {
       return;
@@ -20,7 +20,7 @@ export default class EmberTable {
     this.resizeTable();
     this.bindEvents();
 
-    $(window).on('resize.embertable', () => this.resizeTable());
+    $(window).on('resize.datagrid', () => this.resizeTable());
   }
 
   initDomElements(tableEl) {
@@ -29,13 +29,13 @@ export default class EmberTable {
   }
 
   bindEvents() {
-    this.$table.find('.ember-table-body-container .ember-table-table-row').on('mouseover', (e) => this.mouseover(e));
-    this.$table.find('.ember-table-body-container .ember-table-table-row').on('mouseout', (e) => this.mouseout(e));
-    this.$table.find('.ember-table-body-container .ember-table-table-row').on('click', (e) => this.selectRow(e));
-    this.$table.find('.ember-table-body-container .ember-table-table-row').on('dblclick', (e) => this.openFullPage(e));
+    this.$table.find('.datagrid-body-container .datagrid-table-row').on('mouseover', (e) => this.mouseover(e));
+    this.$table.find('.datagrid-body-container .datagrid-table-row').on('mouseout', (e) => this.mouseout(e));
+    this.$table.find('.datagrid-body-container .datagrid-table-row').on('click', (e) => this.selectRow(e));
+    this.$table.find('.datagrid-body-container .datagrid-table-row').on('dblclick', (e) => this.openFullPage(e));
 
     if (this.$table.data('resizable')) {
-      this.$table.find('.ember-table-header-container .ember-table-header-cell:not(.table-header-cell-empty):not(.table-header-cell-select)').resizable({
+      this.$table.find('.datagrid-header-container .datagrid-header-cell:not(.table-header-cell-empty):not(.table-header-cell-select)').resizable({
         handles: 'e',
         resize: this.onColumnResize.bind(this),
         stop: this.onColumnResize.bind(this)
@@ -43,18 +43,18 @@ export default class EmberTable {
     }
 
     if (this.$table.data('sortable')) {
-      this.$sortableIndicator = this.$table.find('.ember-table-column-sortable-indicator');
+      this.$sortableIndicator = this.$table.find('.datagrid-column-sortable-indicator');
       if (this.$sortableIndicator.length === 0) {
-        this.$table.append('<div class="ember-table-column-sortable-indicator"></div>');
-        this.$sortableIndicator = this.$table.find('.ember-table-column-sortable-indicator');
+        this.$table.append('<div class="datagrid-column-sortable-indicator"></div>');
+        this.$sortableIndicator = this.$table.find('.datagrid-column-sortable-indicator');
       }
 
-      this.$table.find('.ember-table-header-container .ember-table-right-table-block .ember-table-header-row>div').sortable({
+      this.$table.find('.datagrid-header-container .datagrid-right-table-block .datagrid-header-row>div').sortable({
         axis: 'x',
         containment: 'parent',
         cursor: 'move',
         helper: 'clone',
-        items: '.ember-table-header-cell',
+        items: '.datagrid-header-cell',
         opacity: 0.9,
         placeholder: 'ui-state-highlight',
         scroll: true,
@@ -68,17 +68,17 @@ export default class EmberTable {
   }
 
   rebindEvents() {
-    this.$table.find('.ember-table-body-container .ember-table-table-row').off('mouseover');
-    this.$table.find('.ember-table-body-container .ember-table-table-row').off('mouseout');
-    this.$table.find('.ember-table-body-container .ember-table-table-row').off('click');
-    this.$table.find('.ember-table-body-container .ember-table-table-row').off('dblclick');
+    this.$table.find('.datagrid-body-container .datagrid-table-row').off('mouseover');
+    this.$table.find('.datagrid-body-container .datagrid-table-row').off('mouseout');
+    this.$table.find('.datagrid-body-container .datagrid-table-row').off('click');
+    this.$table.find('.datagrid-body-container .datagrid-table-row').off('dblclick');
 
     if (this.$table.data('resizable')) {
-      this.$table.find('.ember-table-header-container .ember-table-header-cell:not(.table-header-cell-empty):not(.table-header-cell-select)').resizable('destroy');
+      this.$table.find('.datagrid-header-container .datagrid-header-cell:not(.table-header-cell-empty):not(.table-header-cell-select)').resizable('destroy');
     }
 
     if (this.$table.data('sortable')) {
-      this.$table.find('.ember-table-header-container .ember-table-right-table-block .ember-table-header-row>div').sortable('destroy');
+      this.$table.find('.datagrid-header-container .datagrid-right-table-block .datagrid-header-row>div').sortable('destroy');
     }
 
     this.bindEvents();
@@ -90,7 +90,7 @@ export default class EmberTable {
       minWidth: ui.element.find('.table-header-cell-content>span').width() + 50,
       maxWidth: null
     });
-    if (ui.element.closest('.ember-table-header-block').hasClass('ember-table-left-table-block')) {
+    if (ui.element.closest('.datagrid-header-block').hasClass('datagrid-left-table-block')) {
       ui.element.resizable('option', 'maxWidth', 500);
     }
 
@@ -114,8 +114,8 @@ export default class EmberTable {
   }
 
   onColumnSortChange(e, ui) {
-    const left = ui.placeholder.offset().left - ui.placeholder.closest('.ember-table-tables-container').offset().left;
-    const height = ui.placeholder.closest('.ember-table-tables-container').height();
+    const left = ui.placeholder.offset().left - ui.placeholder.closest('.datagrid-tables-container').offset().left;
+    const height = ui.placeholder.closest('.datagrid-tables-container').height();
 
     this.$sortableIndicator.show();
     this.$sortableIndicator.css({
@@ -125,16 +125,16 @@ export default class EmberTable {
   }
 
   onColumnSortDone(e, ui) {
-    const $rows = this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row>div');
+    const $rows = this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row>div');
     for (let row of $rows) {
       const $row = $(row);
-      let index = $row.find('.ember-table-cell:eq(0)').data('index');
+      let index = $row.find('.datagrid-cell:eq(0)').data('index');
 
-      $row.find(`.ember-table-cell[data-index="${ui.item.data('index')}"]`).insertAfter(
-        $row.find(`.ember-table-cell[data-index="${ui.item.prev().data('index')}"]`)
+      $row.find(`.datagrid-cell[data-index="${ui.item.data('index')}"]`).insertAfter(
+        $row.find(`.datagrid-cell[data-index="${ui.item.prev().data('index')}"]`)
       );
 
-      const $columns = $row.find('.ember-table-cell');
+      const $columns = $row.find('.datagrid-cell');
       for (let column of $columns) {
         const $column = $(column);
 
@@ -153,7 +153,7 @@ export default class EmberTable {
     const columns = {};
 
     for (let key of ['left', 'right']) {
-      const $columns = this.$table.find(`.ember-table-${key}-table-block .ember-table-header-cell`);
+      const $columns = this.$table.find(`.datagrid-${key}-table-block .datagrid-header-cell`);
       if ($columns.length) {
         columns[key] = [];
 
@@ -192,8 +192,8 @@ export default class EmberTable {
   resizeTable() {
     const useDynamicWidth = this.$table.data('dynamic-width');
     const defaultColumnWidth = this.$table.data('default-column-width');
-    const totalColumns = this.$table.find('.ember-table-header-container .ember-table-header-cell').length;
-    const totalRows = this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').length;
+    const totalColumns = this.$table.find('.datagrid-header-container .datagrid-header-cell').length;
+    const totalRows = this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').length;
     const headerHeight = this.$table.data('header-height');
     const rowHeight = this.$table.data('row-height');
     const tableWidth = this.$table.get(0).offsetWidth;
@@ -206,7 +206,7 @@ export default class EmberTable {
     let rowWidth = 0;
     let leftBlockWidth = 0;
     for (let key of ['left', 'right']) {
-      const $columns = this.$table.find(`.ember-table-${key}-table-block .ember-table-header-cell:visible`);
+      const $columns = this.$table.find(`.datagrid-${key}-table-block .datagrid-header-cell:visible`);
       for (let column of $columns) {
         let columnWidth = $(column).data('column-width') || defaultColumnWidth;
         if (useDynamicWidth && dynamicColumnWidth > columnWidth) {
@@ -219,7 +219,7 @@ export default class EmberTable {
           leftBlockWidth += columnWidth;
         }
 
-        this.$table.find(`.js-ember-table-column-width[data-index=${$(column).data('index')}]`).css('width', columnWidth);
+        this.$table.find(`.js-datagrid-column-width[data-index=${$(column).data('index')}]`).css('width', columnWidth);
       }
     }
 
@@ -228,18 +228,18 @@ export default class EmberTable {
       rightBlockWidth += tableWidth - rowWidth;
     }
 
-    this.$table.find('.js-ember-column-left-width').css('width', leftBlockWidth + 'px');
-    this.$table.find('.js-ember-column-right-width').css('width', (tableWidth - leftBlockWidth) + 'px');
+    this.$table.find('.js-datagrid-column-left-width').css('width', leftBlockWidth + 'px');
+    this.$table.find('.js-datagrid-column-right-width').css('width', (tableWidth - leftBlockWidth) + 'px');
 
-    this.$table.find('.js-ember-row-left-width').css('width', leftBlockWidth + 'px');
-    this.$table.find('.js-ember-row-right-width').css('width', rightBlockWidth + 'px');
+    this.$table.find('.js-datagrid-row-left-width').css('width', leftBlockWidth + 'px');
+    this.$table.find('.js-datagrid-row-right-width').css('width', rightBlockWidth + 'px');
 
     this.$table.css('height', 'auto');
-    this.$table.find('.js-ember-table-width').css('width', tableWidth + 'px');
-    this.$table.find('.js-ember-table-height').css('height', tableHeight + 'px');
-    this.$table.find('.js-ember-table-max-height').css('height', maxHeight + 'px');
-    this.$table.find('.js-ember-table-header-height').css('height', headerHeight + 'px');
-    this.$table.find('.js-ember-table-row-height').css('height', rowHeight + 'px');
+    this.$table.find('.js-datagrid-width').css('width', tableWidth + 'px');
+    this.$table.find('.js-datagrid-height').css('height', tableHeight + 'px');
+    this.$table.find('.js-datagrid-max-height').css('height', maxHeight + 'px');
+    this.$table.find('.js-datagrid-header-height').css('height', headerHeight + 'px');
+    this.$table.find('.js-datagrid-row-height').css('height', rowHeight + 'px');
 
     // if has related object that need width change
     const $relatedObject = $(this.$table.data('related-object'));
@@ -248,8 +248,8 @@ export default class EmberTable {
     }
 
     // main scrollbar
-    this.$table.find('.ember-table-body-container .antiscroll-box').css('width', tableWidth + 'px');
-    this.$table.find('.ember-table-body-container .antiscroll-box').css('height', maxHeight + 'px');
+    this.$table.find('.datagrid-body-container .antiscroll-box').css('width', tableWidth + 'px');
+    this.$table.find('.datagrid-body-container .antiscroll-box').css('height', maxHeight + 'px');
 
     if (!this.isLoaded) {
       this.isLoaded = true;
@@ -263,20 +263,20 @@ export default class EmberTable {
   mouseover(e) {
     const $currentTarget = $(e.currentTarget);
 
-    if (this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($currentTarget.index()).hasClass('ember-table-selected')) {
+    if (this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($currentTarget.index()).hasClass('datagrid-selected')) {
       e.stopPropagation();
       return;
     }
 
-    this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($currentTarget.index()).addClass('ember-table-hover');
-    this.$table.find('.ember-table-body-container .ember-table-left-table-block .ember-table-table-row').eq($currentTarget.index()).addClass('ember-table-hover');
+    this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($currentTarget.index()).addClass('datagrid-hover');
+    this.$table.find('.datagrid-body-container .datagrid-left-table-block .datagrid-table-row').eq($currentTarget.index()).addClass('datagrid-hover');
   }
 
   mouseout(e) {
     const $currentTarget = $(e.currentTarget);
 
-    this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($currentTarget.index()).removeClass('ember-table-hover');
-    this.$table.find('.ember-table-body-container .ember-table-left-table-block .ember-table-table-row').eq($currentTarget.index()).removeClass('ember-table-hover');
+    this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($currentTarget.index()).removeClass('datagrid-hover');
+    this.$table.find('.datagrid-body-container .datagrid-left-table-block .datagrid-table-row').eq($currentTarget.index()).removeClass('datagrid-hover');
   }
 
   selectRow(e) {
@@ -291,21 +291,21 @@ export default class EmberTable {
       return;
     }
 
-    if (this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($currentTarget.index()).hasClass('ember-table-selected')) {
+    if (this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($currentTarget.index()).hasClass('datagrid-selected')) {
       e.stopPropagation();
       return;
     }
 
-    this.$table.find('.ember-table-table-row').removeClass('ember-table-selected').removeClass('ember-table-hover');
+    this.$table.find('.datagrid-table-row').removeClass('datagrid-selected').removeClass('datagrid-hover');
 
-    this.$table.find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($currentTarget.index()).addClass('ember-table-selected');
-    this.$table.find('.ember-table-body-container .ember-table-left-table-block .ember-table-table-row').eq($currentTarget.index()).addClass('ember-table-selected');
-    this.$table.find('.ember-table-body-container .ember-table-left-table-block .ember-table-table-row').eq($currentTarget.index()).trigger('row:selected');
+    this.$table.find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($currentTarget.index()).addClass('datagrid-selected');
+    this.$table.find('.datagrid-body-container .datagrid-left-table-block .datagrid-table-row').eq($currentTarget.index()).addClass('datagrid-selected');
+    this.$table.find('.datagrid-body-container .datagrid-left-table-block .datagrid-table-row').eq($currentTarget.index()).trigger('row:selected');
   }
 
   openFullPage(e) {
     const $currentTarget = $(e.currentTarget);
-    const $row = this.$table.find('.ember-table-body-container .ember-table-left-table-block .ember-table-table-row').eq($currentTarget.index());
+    const $row = this.$table.find('.datagrid-body-container .datagrid-left-table-block .datagrid-table-row').eq($currentTarget.index());
     if ($row.data('link')) {
       location.href = $row.data('link');
     }

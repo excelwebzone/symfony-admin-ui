@@ -3,18 +3,24 @@
   display: inline-block;
   height: 25px;
   width: 25px;
-  font-size: 25px;
   margin: 10px 36px 10px 0;
 
-  .checked, .unchecked {
+  .checked,
+  .unchecked {
     display: none !important;
   }
 
-  .checkbox-display, .radio-button {
+  .checkbox-display,
+  .radio-button {
     color: #363636;
   }
 
-  .checkbox-input:checked + .checkbox-display, .radio-input:checked + .radio-button {
+  .checkbox-input:checked + .checkbox-display,
+  .radio-input:checked + .radio-button {
     color: #0d94f6;
+  }
+
+  .zmdi {
+    font-size: 25px;
   }
 }

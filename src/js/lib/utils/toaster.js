@@ -21,7 +21,7 @@ const hideToaster = (toasterEl, fadeTransition = true) => {
 const createAction = config => `
   <a
     href="${config.href || 'javascript:void(0)'}"
-    class="button button-flat-primary button-toaster-button ${config.class || ''}"
+    class="btn btn-flat-secondary ${config.class || ''}"
     target="${config.target || '_self'}"
     ${config.href ? '' : 'role="button"'}
     ${config.data || ''}

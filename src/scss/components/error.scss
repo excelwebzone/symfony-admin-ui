@@ -1,11 +1,11 @@
 .error-takeover {
-  background: #f2f2f2;
+  background: #eaf0f2;
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   z-index: 5;
-  transition: margin-left .3s,width .3s;
+  transition: margin-left 0.3s, width 0.3s;
 
   .error-page-container {
     margin-top: 200px;
@@ -16,19 +16,18 @@
     .error-message {
       .error-message-title {
         margin-bottom: 30px;
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 32px;
-        color: #424242;
+        font-size: 48px;
+        font-weight: 300;
+        color: #0c0d0d;
       }
 
       .error-message-body {
         margin-bottom: 40px;
         font-size: 16px;
-        color: #757575;
+        color: #696e6f;
       }
 
-      .button {
+      .btn {
         margin: 0 5px;
       }
     }
@@ -44,7 +43,7 @@
   }
 
   .unauthorized-content {
-    color: #363636;
+    color: #0c0d0d;
     font-weight: 500;
     font-size: 20px;
     margin-top: 20px;
@@ -57,10 +56,10 @@
   }
 
   .unauthorized-icon {
-    color: #888;
+    color: #696e6f;
 
     .unauthorized-large-icon {
-      background-color: #ccc;
+      background-color: #dce3e6;
       font-size: 90px;
       border-radius: 50%;
       padding: 19px 0;
@@ -74,7 +73,7 @@
       border-radius: 50%;
       height: 32px;
       width: 32px;
-      background-color: #ccc;
+      background-color: #dce3e6;
       padding: 7px 0;
       position: absolute;
       margin-top: 20px;

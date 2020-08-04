@@ -1,8 +1,10 @@
 .option-list {
-  background-color: #FFF;
+  background-color: #fff;
+  color: #0c0d0d;
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+  padding: 8px 0;
 
   &.overflow-visible {
     overflow: visible;
@@ -13,40 +15,41 @@
   overflow: hidden;
   cursor: pointer;
   line-height: 20px;
+  padding: 10px 20px;
   position: relative;
   white-space: nowrap;
-  padding: 10px 20px;
-
-  //text-overflow: ellipsis;
+  text-overflow: ellipsis;
   font-size: 13px;
   font-weight: 400;
-  color: #363636;
 
   &.option-list-item-has-overflow {
     overflow: visible;
   }
 
   &.is-highlighted {
-    background-color: #e9e9e9;
-    text-decoration: none;
+    background-color: #dce3e6;
   }
 
   &.is-selected {
-    color: #0D94F6;
+    color: #2b41b2;
   }
 
   &.is-disabled {
-    color: #bdbdbd;
-    background-color: #FFF;
+    color: #dce3e6;
+    background-color: #fff;
 
     &.is-highlighted {
-      color: #bdbdbd;
+      color: #dce3e6;
     }
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 }
 
 .option-list-item-icon {
-  color: #888;
+  color: #696e6f;
   font-size: 22px !important;
   vertical-align: top;
   margin-right: 15px;
@@ -66,25 +69,25 @@
   }
 
   .highlight-matched-text .highlighted {
-    color: #0D94F6;
+    color: #5269de;
   }
 }
 
 .option-list-item-title {
   font-weight: 500;
   font-size: 13px;
-  color: #363636;
+  color: #0c0d0d;
+}
+
+.option-list-item-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .option-list-item-subtext {
-  color: #888;
+  color: #696e6f;
   font-size: 12px;
-}
-
-.option-list-info-item-abbreviation {
-  color: #888;
-  width: 35px;
-  display: inline-block;
 }
 
 .option-list-info-item-text {
@@ -92,8 +95,14 @@
   display: inline-block;
 }
 
+.option-list-info-item-abbreviation {
+  color: #696e6f;
+  width: 35px;
+  display: inline-block;
+}
+
 .option-list-item-link {
-  color: #0D94F6;
+  color: #5269de;
   font-size: 12px;
   float: right;
 }
@@ -110,14 +119,14 @@
 }
 
 .option-list-item-help-text {
-  color: #696E6F;
+  color: #696e6f;
   font-size: 11px;
   white-space: normal;
   line-height: 13px;
 }
 
 .option-list-item-disabled {
-  color: #9e9e9e;
+  color: #dce3e6;
 }
 
 .option-list-item-right-content {
@@ -129,25 +138,27 @@
 }
 
 .option-list-item {
-  &.option-list-item-active, &.option-list-item-create {
+  &.option-list-item-active,
+  &.option-list-item-create {
     font-weight: 500;
   }
 }
 
 .option-list-item-right-content .zmdi-icon {
-  color: #888;
+  color: #696e6f;
 
   &:hover {
-    color: #888;
+    color: #696e6f;
   }
 
-  &.zmdi-lock, &.md-lock:hover {
-    color: #ccc;
+  &.zmdi-lock,
+  &.md-lock:hover {
+    color: #dce3e6;
   }
 }
 
 .option-list-item .zmdi-star {
-  color: #fbc02d;
+  color: #f2bf58;
 }
 
 .option-list-item-hover-content {
@@ -160,12 +171,12 @@
   }
 
   &.option-list-item-action-button {
-    color: #0D94F6;
+    color: #2b41b2;
     cursor: pointer;
   }
 
   &.option-list-item-divider {
-    border-top: 1px solid #e9e9e9;
+    border-top: 1px solid #dce3e6;
   }
 
   &.option-list-filter {
@@ -184,7 +195,7 @@
 }
 
 .option-list-label {
-  color: #888;
+  color: #696e6f;
   font-size: 12px;
   font-weight: 700;
   margin-top: 5px;
@@ -192,7 +203,7 @@
   line-height: 24px;
 
   &.option-list-label-empty {
-    color: #888;
+    color: #696e6f;
     cursor: default;
     font-size: 13px;
     font-weight: 400;
@@ -209,7 +220,8 @@
   }
 }
 
-.option-list-item.option-list-filter .option-list-item-text, .option-list-label.option-list-label-empty .option-list-label-label {
+.option-list-item.option-list-filter .option-list-item-text,
+.option-list-label.option-list-label-empty .option-list-label-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

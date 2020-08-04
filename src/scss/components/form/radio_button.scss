@@ -55,15 +55,18 @@
   font-weight: 700;
 }
 
-.radio-button.is-checked > i, .radio-input:checked + .radio-button > i {
-  color: #0D94F6;
+.radio-button.is-checked > i,
+.radio-input:checked + .radio-button > i {
+  color: #0d94f6;
 }
 
-.radio-button.is-checked .checked, .radio-input:checked + .radio-button .checked {
+.radio-button.is-checked .checked,
+.radio-input:checked + .radio-button .checked {
   display: inline-block;
 }
 
-.radio-button.is-checked .unchecked, .radio-input:checked + .radio-button .unchecked {
+.radio-button.is-checked .unchecked,
+.radio-input:checked + .radio-button .unchecked {
   display: none;
 }
 

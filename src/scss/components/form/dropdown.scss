@@ -1,16 +1,17 @@
-.dropdown, .dropdown-selected {
+.dropdown,
+.dropdown-selected {
   position: relative;
   vertical-align: top;
 }
 
 .dropdown {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgba(12, 13, 13, 0.16);
   display: inline-block;
   width: 100%;
 
   &:focus {
-    border-color: #0D94F6;
-    box-shadow: inset 0 -2px 0 #0D94F6;
+    border-color: #2b41b2;
+    box-shadow: inset 0 -1px 0 #2b41b2;
     outline: 0;
   }
 
@@ -33,29 +34,31 @@
     max-height: 220px;
   }
 
-  &.dropdown-global-add-new .option-list {
-    max-height: none;
+  &.dropdown-global-add-new {
+    border-bottom: none;
+
+    .option-list {
+      max-height: none;
+    }
   }
 
   &.popup-more-bulk-actions {
-    width: auto;
+    width: 36px;
 
     .option-list {
       max-height: none;
     }
 
-    color: #888;
+    color: #696e6f;
   }
 }
 
 .dropdown-placeholder {
-  color: rgba(0, 0, 0, 0.38);
-  font-family: "Roboto",arial,sans-serif;
-  font-weight: 300;
+  color: #dce3e6;
 }
 
 .dropdown-selected {
-  color: #363636;
+  color: #0c0d0d;
   cursor: pointer;
   font-size: 13px;
   font-weight: 400;
@@ -69,7 +72,7 @@
 }
 
 .dropdown-selected-icon {
-  color: #888;
+  color: #696e6f;
   font-size: 22px !important;
   vertical-align: top;
   margin-right: 2px;
@@ -78,15 +81,18 @@
 .dropdown-options {
   border-radius: 2px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+  left: -20px;
   overflow: hidden;
   padding: 0;
   margin-bottom: 5px;
   position: absolute;
-  z-index: 2;
+  right: -20px;
+  top: -8px;
+  z-index: 10;
 }
 
 .dropdown-indicator {
-  color: #888;
+  color: #696e6f;
   font-size: 16px;
   font-weight: 400;
   position: absolute;
@@ -124,11 +130,12 @@
 
   &.is-disabled {
     .dropdown-selected {
-      color: #888;
+      color: #696e6f;
       cursor: default;
     }
 
-    .dropdown-indicator, .dropdown-selected-icon {
+    .dropdown-indicator,
+    .dropdown-selected-icon {
       display: none;
     }
   }
@@ -156,10 +163,6 @@
 }
 
 .is-invalid .dropdown {
-  border-color: #eb4536;
-  box-shadow: inset 0 -2px 0 #eb4536;
-
-  .dropdown-filter > input {
-    border-color: #e0e0e0;
-  }
+  border-color: #b50814;
+  box-shadow: inset 0 -1px 0 #b50814;
 }

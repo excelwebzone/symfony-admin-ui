@@ -40,7 +40,7 @@
 
 .chart-container {
   &.is-loading .chart-container-chart {
-    opacity: .1;
+    opacity: 0.1;
   }
 
   &.chart-container-dashboard .chart-container-chart {
@@ -65,11 +65,11 @@
 
 .chart-loading-overlay-subtext {
   display: none;
-  color: #888;
+  color: #696e6f;
   font-size: 12px;
 }
 
-.chart-loading-overlay-errorIcon {
+.chart-loading-overlay-error-icon {
   font-size: 48px;
-  color: #ccc;
+  color: #dce3e6;
 }

@@ -1,12 +1,12 @@
 .circle-spinner {
   position: relative;
-  border: 1px solid #0d94f6;
+  border: 1px solid #2b41b2;
   border-left-color: transparent !important;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-animation: circle-spinner .8s infinite linear;
-  animation: circle-spinner .8s infinite linear;
+  -webkit-animation: circle-spinner 0.8s infinite linear;
+  animation: circle-spinner 0.8s infinite linear;
   border-radius: 50%;
   height: 80%;
   width: 80%;
@@ -57,7 +57,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #DCE3E6;
+  background-color: #dce3e6;
   display: inline-block;
   -webkit-animation: list-spinner-dot 1.4s infinite ease-in-out;
   animation: list-spinner-dot 1.4s infinite ease-in-out;
@@ -65,13 +65,13 @@
   animation-fill-mode: both;
 
   &:nth-child(1) {
-    -webkit-animation-delay: -.32s;
-    animation-delay: -.32s;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
   }
 
   &:nth-child(2) {
-    -webkit-animation-delay: -.12s;
-    animation-delay: -.12s;
+    -webkit-animation-delay: -0.12s;
+    animation-delay: -0.12s;
   }
 
   + .list-spinner-dot {
@@ -80,7 +80,9 @@
 }
 
 @-webkit-keyframes list-spinner-dot {
-  0%,100%,80% {
+  0%,
+  100%,
+  80% {
     -webkit-transform: scale(0);
   }
 
@@ -90,7 +92,9 @@
 }
 
 @keyframes list-spinner-dot {
-  0%,100%,80% {
+  0%,
+  100%,
+  80% {
     transform: scale(0);
   }
 

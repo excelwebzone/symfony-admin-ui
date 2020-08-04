@@ -1,4 +1,5 @@
 .entity-summary {
+  cursor: pointer;
   min-height: 64px;
   padding: 10px 25px;
   position: relative;
@@ -6,7 +7,7 @@
   transition: background-color 0.3s cubic-bezier(0.55, 0, 0, 1);
 
   &:hover {
-    background-color: rgba(242, 242, 242, 0.5);
+    background-color: rgba(234, 240, 242, 0.5);
 
     .entity-summary-button-container {
       display: block;
@@ -19,7 +20,8 @@
   }
 }
 
-.entity-summary-subtitle-group > span, .entity-summary-subtitle-name {
+.entity-summary-subtitle-group > span,
+.entity-summary-subtitle-name {
   white-space: nowrap;
   display: inline-block;
   overflow: hidden;
@@ -27,15 +29,21 @@
 }
 
 .entity-summary-title {
-  color: #363636;
+  color: #0c0d0d;
   font-weight: 500;
+  line-height: 24px;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-grow: 2;
 
   > a {
-    color: #363636;
+    color: #0c0d0d;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &:last-child {
@@ -44,7 +52,7 @@
 }
 
 .entity-summary-subtitle {
-  color: #888;
+  color: #696e6f;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -76,7 +84,7 @@
 }
 
 .entity-summary-detail {
-  color: #888;
+  color: #696e6f;
   float: right;
   line-height: 24px;
   max-width: 100px;
@@ -86,40 +94,36 @@
 }
 
 .entity-summary-icon {
-  color: #fff;
   float: left;
-  font-size: 18px;
-  height: 34px;
-  line-height: 18px;
   margin: 5px 10px 5px 0;
-  width: 34px;
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 18px;
 }
 
 .entity-summary-button-container {
   display: none;
-  float: right;
-  font-size: 0;
   margin: -6px -10px -2px 0;
-  text-align: right;
+  float: right;
 }
 
 .entity-summary-button {
-  color: #888;
+  color: #696e6f;
   display: inline-block;
   font-size: 16px;
-  height: 32px;
   margin-left: -6px;
   text-align: center;
-  width: 32px;
 
   &:hover {
-    color: #363636;
+    color: #0c0d0d;
   }
 }
 
 .entity-summary.entity-summary-task {
   .entity-summary-icon {
-    color: #363636;
+    color: #0c0d0d;
     cursor: pointer;
     line-height: 34px;
     text-align: center;
@@ -127,16 +131,26 @@
 
   &.is-complete {
     .entity-summary-icon {
-      color: #0D94F6;
+      color: #5269de;
     }
 
     .entity-summary-title {
-      color: #ccc;
+      color: #3b3e3f;
       text-decoration: line-through;
     }
   }
 
   &.is-overdue .entity-summary-detail {
-    color: #db4437;
+    color: #b50814;
+  }
+}
+
+.entity-summary.has-large-icon {
+  min-height: 74px;
+
+  .entity-summary-icon {
+    width: 60px;
+    height: 60px;
+    margin-top: -3px;
   }
 }

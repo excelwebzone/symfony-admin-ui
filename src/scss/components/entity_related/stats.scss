@@ -42,24 +42,24 @@
       }
 
       &:hover .entity-stats-detail {
-        animation: fade .2s;
+        animation: fade 0.2s;
         display: block;
       }
     }
 
     .entity-stats-primary {
-      background-color: #0D94F6;
+      background-color: #0d94f6;
 
       .entity-stats-detail-label {
-        color: #0D94F6;
+        color: #0d94f6;
       }
     }
 
     .entity-stats-success {
-      background-color: #49B04B;
+      background-color: #49b04b;
 
       .entity-stats-detail-label {
-        color: #49B04B;
+        color: #49b04b;
       }
 
       .entity-stats-detail {

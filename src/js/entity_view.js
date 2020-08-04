@@ -76,7 +76,7 @@ export default class EntityView {
       }
     });
 
-    $tip.find('.button').on('click', (e) => {
+    $tip.find('.btn').on('click', (e) => {
       if ($(e.currentTarget).hasClass('popover-submit')) {
         _post(objectToFormData($tip.find(':input').serializeObject()));
       }
@@ -209,11 +209,11 @@ export default class EntityView {
             }
           }
 
-          const $emberRow = $button.closest('.js-entity-drawer');
-          if ($emberRow.length) {
-            $emberRow.data('is-follow', !$emberRow.data('is-follow'));
+          const $datagridRow = $button.closest('.js-entity-drawer');
+          if ($datagridRow.length) {
+            $datagridRow.data('is-follow', !$datagridRow.data('is-follow'));
 
-            const $drawer = $(`.drawer-frame[data-id="${$emberRow.data('id')}"]`);
+            const $drawer = $(`.drawer-frame[data-id="${$datagridRow.data('id')}"]`);
             if ($drawer.length) {
               $drawer.find('.js-follow-item>i')
                 .toggleClass('zmdi-star-outline')
@@ -253,27 +253,27 @@ export default class EntityView {
           if ($drawer.length) {
             $drawer.toggleClass('is-complete');
 
-            const $emberRowLeft = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
-            if ($emberRowLeft.length) {
-              $emberRowLeft.data('is-complete', !$emberRowLeft.data('is-complete'));
-              $emberRowLeft.find('.task-check-box-container').toggleClass('is-completed');
-              $emberRowLeft.find('.js-complete-item').prop('checked', !$emberRowLeft.find('.js-complete-item').prop('checked'));
-              $emberRowLeft.find('.table-cell-name').toggleClass('is-completed');
+            const $datagridRowLeft = $(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+            if ($datagridRowLeft.length) {
+              $datagridRowLeft.data('is-complete', !$datagridRowLeft.data('is-complete'));
+              $datagridRowLeft.find('.task-check-box-container').toggleClass('is-completed');
+              $datagridRowLeft.find('.js-complete-item').prop('checked', !$datagridRowLeft.find('.js-complete-item').prop('checked'));
+              $datagridRowLeft.find('.table-cell-name').toggleClass('is-completed');
 
-              const $emberRowRight = $emberRowLeft.closest('.list-page-table').find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($emberRowLeft.index());
-              $emberRowRight.find('.table-cell-name').toggleClass('is-completed');
+              const $datagridRowRight = $datagridRowLeft.closest('.list-page-table').find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($datagridRowLeft.index());
+              $datagridRowRight.find('.table-cell-name').toggleClass('is-completed');
             }
           }
 
-          const $emberRowLeft = $button.closest('.js-entity-drawer');
-          if ($emberRowLeft.length) {
-            $emberRowLeft.data('is-complete', !$emberRowLeft.data('is-complete'));
-            $emberRowLeft.find('.table-cell-name').toggleClass('is-completed');
+          const $datagridRowLeft = $button.closest('.js-entity-drawer');
+          if ($datagridRowLeft.length) {
+            $datagridRowLeft.data('is-complete', !$datagridRowLeft.data('is-complete'));
+            $datagridRowLeft.find('.table-cell-name').toggleClass('is-completed');
 
-            const $emberRowRight = $emberRowLeft.closest('.list-page-table').find('.ember-table-body-container .ember-table-right-table-block .ember-table-table-row').eq($emberRowLeft.index());
-            $emberRowRight.find('.table-cell-name').toggleClass('is-completed');
+            const $datagridRowRight = $datagridRowLeft.closest('.list-page-table').find('.datagrid-body-container .datagrid-right-table-block .datagrid-table-row').eq($datagridRowLeft.index());
+            $datagridRowRight.find('.table-cell-name').toggleClass('is-completed');
 
-            const $drawer = $(`.drawer-frame[data-id="${$emberRowLeft.data('id')}"]`);
+            const $drawer = $(`.drawer-frame[data-id="${$datagridRowLeft.data('id')}"]`);
             if ($drawer.length) {
               $drawer.toggleClass('is-complete');
               $drawer.find('.task-check-box-container').toggleClass('is-completed');

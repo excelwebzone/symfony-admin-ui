@@ -1,11 +1,4 @@
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="url"],
-input[type="number"],
-input[type="tel"],
-input[type="date"],
-input[type="color"],
+.form-control,
 .input-text,
 textarea,
 select {
@@ -15,10 +8,10 @@ select {
   border-radius: 0;
   box-shadow: none;
   color: #424242;
-  font-family: "Roboto",arial,sans-serif;
+  font-family: 'Roboto', arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   margin-bottom: 0;
   max-width: 100%;
   outline: 0;
@@ -26,30 +19,16 @@ select {
   width: 100%;
 }
 
-input[type="text"]::placeholder,
-input[type="password"]::placeholder,
-input[type="email"]::placeholder,
-input[type="url"]::placeholder,
-input[type="number"]::placeholder,
-input[type="tel"]::placeholder,
-input[type="date"]::placeholder,
-input[type="color"]::placeholder,
+.form-control::placeholder,
 .input-text::placeholder,
 textarea::placeholder,
 select::placeholder {
-  color: rgba(0,0,0,.38);
-  font-family: "Roboto",arial,sans-serif;
+  color: rgba(0, 0, 0, 0.38);
+  font-family: 'Roboto', arial, sans-serif;
   font-weight: 300;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="number"]:focus,
-input[type="tel"]:focus,
-input[type="date"]:focus,
-input[type="color"]:focus,
+.form-control:focus,
 .input-text:focus,
 textarea:focus,
 select:focus {
@@ -57,69 +36,21 @@ select:focus {
   box-shadow: inset 0 -2px 0 #0d94f6;
 }
 
-label+input[type="text"]:focus,
-label+input[type="password"]:focus,
-label+input[type="email"]:focus,
-label+input[type="url"]:focus,
-label+input[type="number"]:focus,
-label+input[type="tel"]:focus,
-label+input[type="date"]:focus,
-label+input[type="color"]:focus,
-label+.input-text:focus,
-label+textarea:focus,
-label+select:focus {
+label + .form-control:focus,
+label + .input-text:focus,
+label + textarea:focus,
+label + select:focus {
   color: #4285f4;
 }
 
-label.form-label-floating+input[type="text"]:focus,
-label.form-label-floating+input[type="text"].is-filled,
-label.form-label-floating+input[type="password"]:focus,
-label.form-label-floating+input[type="password"].is-filled,
-label.form-label-floating+input[type="email"]:focus,
-label.form-label-floating+input[type="email"].is-filled,
-label.form-label-floating+input[type="url"]:focus,
-label.form-label-floating+input[type="url"].is-filled,
-label.form-label-floating+input[type="number"]:focus,
-label.form-label-floating+input[type="number"].is-filled,
-label.form-label-floating+input[type="tel"]:focus,
-label.form-label-floating+input[type="tel"].is-filled,
-label.form-label-floating+input[type="date"]:focus,
-label.form-label-floating+input[type="date"].is-filled,
-label.form-label-floating+input[type="color"]:focus,
-label.form-label-floating+input[type="color"].is-filled,
-label.form-label-floating+.input-text:focus,
-label.form-label-floating+.input-text.is-filled,
-label.form-label-floating+textarea:focus,
-label.form-label-floating+textarea.is-filled,
-label.form-label-floating+select:focus,
-label.form-label-floating+select.is-filled {
-  font-size: 13px;
-  top: 0;
-  visibility: visible;
-}
-
-.is-invalid input[type="text"],
-.is-invalid input[type="password"],
-.is-invalid input[type="email"],
-.is-invalid input[type="url"],
-.is-invalid input[type="number"],
-.is-invalid input[type="tel"],
-.is-invalid input[type="date"],
-.is-invalid input[type="color"],
+.is-invalid .form-control,
 .is-invalid .input-text,
 .is-invalid textarea,
 .is-invalid select {
   border-color: #eb4536;
 }
 
-.is-invalid input[type="text"]:focus,
-.is-invalid input[type="password"]:focus,
-.is-invalid input[type="email"]:focus,
-.is-invalid input[type="url"]:focus,
-.is-invalid input[type="number"]:focus,
-.is-invalid input[type="tel"]:focus,
-.is-invalid input[type="date"]:focus,
-.is-invalid input[type="color"]:focus,
+.is-invalid .form-control:focus,
 .is-invalid .input-text:focus,
 .is-invalid textarea:focus,
 .is-invalid select:focus {
@@ -127,14 +58,7 @@ label.form-label-floating+select.is-filled {
   box-shadow: inset 0 -2px 0 #eb4536;
 }
 
-input[type="text"][readonly],
-input[type="password"][readonly],
-input[type="email"][readonly],
-input[type="url"][readonly],
-input[type="number"][readonly],
-input[type="tel"][readonly],
-input[type="date"][readonly],
-input[type="color"][readonly],
+.form-control[readonly],
 .input-text[readonly],
 textarea[readonly],
 select[readonly] {
@@ -142,14 +66,7 @@ select[readonly] {
   padding-right: 0.25rem;
 }
 
-input[type="text"][disabled],
-input[type="password"][disabled],
-input[type="email"][disabled],
-input[type="url"][disabled],
-input[type="number"][disabled],
-input[type="tel"][disabled],
-input[type="date"][disabled],
-input[type="color"][disabled],
+.form-control[disabled],
 .input-text[disabled],
 textarea[disabled],
 select[disabled] {
@@ -173,7 +90,7 @@ select {
     -webkit-appearance: none;
     appearance: none;
 
-    background: transparent url("../images/arrow-dropdown-black-18dp.png") center right no-repeat;
+    background: transparent url('../../../images/arrow-dropdown-black-18dp.png') center right no-repeat;
     border-radius: 0;
     color: #bdbdbd;
     font-weight: 400;
@@ -192,7 +109,8 @@ select {
   position: relative;
 
   &.is-required > {
-    label::after, .col-form-label::after {
+    label::after,
+    .col-form-label::after {
       content: '•';
       font-size: 14px;
       line-height: 14px;
@@ -202,7 +120,8 @@ select {
   }
 
   &.is-disabled > {
-    label::after, .col-form-label::after {
+    label::after,
+    .col-form-label::after {
       margin-left: 4px;
       content: 'lock';
       font-family: 'Material Icons';
@@ -221,6 +140,12 @@ select {
       -moz-osx-font-smoothing: grayscale;
       font-feature-settings: 'liga';
     }
+  }
+
+  &.has-icon > i {
+    float: left;
+    margin: 3px 8px 3px 0;
+    color: #ccc;
   }
 
   .input-group-text {
@@ -251,7 +176,7 @@ select {
   }
 }
 
-[class*="col-"] .form-group .dropdown-selected {
+[class*='col-'] .form-group .dropdown-selected {
   height: 34px;
   padding: 4px 0;
 }
@@ -274,7 +199,8 @@ select {
   top: 4px;
 }
 
-label, .col-form-label {
+label,
+.col-form-label {
   position: relative;
   color: #888;
   font-size: 12px;
@@ -288,7 +214,8 @@ label, .col-form-label {
   white-space: nowrap;
 }
 
-label:empty, .col-form-label:empty {
+label:empty,
+.col-form-label:empty {
   display: none;
 }
 
@@ -350,7 +277,8 @@ label .invalid-feedback {
   }
 }
 
-.personal-name .form-group, .address .form-group {
+.personal-name .form-group,
+.address .form-group {
   padding-top: 2px !important;
   padding-bottom: 2px !important;
 }

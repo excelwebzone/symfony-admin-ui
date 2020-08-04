@@ -471,6 +471,18 @@ export default class Filter {
     this.$saveButton.toggle(!isSameFilter);
     this.$updateButton.toggle(!isSameFilter && !this.getActiveFilter().hasClass('is-locked'));
 
+    if (this.$updateButton.is(':visible')) {
+      this.$saveButton
+        .removeClass('btn-primary')
+        .addClass('btn-flat-primary')
+        .text('Save New Filter');
+    } else {
+      this.$saveButton
+        .removeClass('btn-flat-primary')
+        .addClass('btn-primary')
+        .text('Save Filter');
+    }
+
     return this.filters;
   }
 }

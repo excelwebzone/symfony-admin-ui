@@ -28,61 +28,52 @@ html {
 }
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,600,700,900");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Extended");
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,600,700,900');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Extended');
 
 .material-icons-extended-pseudo:after {
-  font-family: "Material Icons Extended";
+  font-family: 'Material Icons Extended';
   font-size: 24px;
   font-style: normal;
   line-height: 1;
   text-rendering: optimizeLegibility;
   text-transform: none;
-  -ms-font-feature-settings: "liga" 1;
-  -o-font-feature-settings: "liga" 1;
-  -moz-font-feature-settings: "liga" 1;
-  -webkit-font-feature-settings: "liga" 1;
-  font-feature-settings: "liga" 1;
+  -ms-font-feature-settings: 'liga' 1;
+  -o-font-feature-settings: 'liga' 1;
+  -moz-font-feature-settings: 'liga' 1;
+  -webkit-font-feature-settings: 'liga' 1;
+  font-feature-settings: 'liga' 1;
 }
 
 // Core librararies
-@import "~bootstrap/scss/bootstrap";
-@import "~material-design-iconic-font/scss/material-design-iconic-font";
-@import "~odometer/themes/odometer-theme-default.css";
-@import "~antiscroll/antiscroll.css";
+@import '~bootstrap/scss/bootstrap';
+@import '~material-design-iconic-font/dist/css/material-design-iconic-font.css';
+@import '~odometer/themes/odometer-theme-default.css';
+@import '~antiscroll/antiscroll.css';
 
-@import "./error";
+@import './error';
 
 // Layouts
-body.security_login,
-body.resetting_request,
-body.resetting_reset,
-body.two_factor_login {
-  margin: 0;
-  padding: 0;
-  background-color: #f2f2f2;
-
-  a {
-    color: #2196f3;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  @import "./auth/index";
-}
-
-body.logged-in[class*="admin_"] {
+body {
   position: fixed;
   width: 100%;
   height: 100%;
-  color: #363636;
-  font-family: Roboto,sans-serif;
+  background-color: #fff;
+  color: #0c0d0d;
+  font-family: Roboto, sans-serif;
   overflow: hidden;
+}
 
-  @import "./admin/index";
+body[class*='security_login'],
+body[class*='resetting_request'],
+body[class*='resetting_reset'] {
+  @import './layout/auth/index';
+}
+
+body.logged-in[class*='admin_'] {
+  background-color: #eaf0f2;
+
+  @import './layout/admin/index';
 }

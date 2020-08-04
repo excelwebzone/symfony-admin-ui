@@ -73,21 +73,26 @@
 }
 
 .form-upload-remove-picture {
-  color: #0D94F6;
+  color: #0d94f6;
   cursor: pointer;
 }
 
-.form-upload-picture-loaded, .form-upload-picture-empty, .form-upload-loading-overlay, .form-upload-remove-picture {
+.form-upload-picture-loaded,
+.form-upload-picture-empty,
+.form-upload-loading-overlay,
+.form-upload-remove-picture {
   display: none;
 }
 
 .form-upload {
-  &.is-empty .form-upload-picture-empty, &.is-uploading .form-upload-loading-overlay {
+  &.is-empty .form-upload-picture-empty,
+  &.is-uploading .form-upload-loading-overlay {
     display: block;
   }
 
   &.is-photo-loaded {
-    .form-upload-picture-loaded, .form-upload-remove-picture {
+    .form-upload-picture-loaded,
+    .form-upload-remove-picture {
       display: block;
     }
 

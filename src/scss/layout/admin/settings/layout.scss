@@ -1,66 +1,16 @@
-.settings-left-column {
-  bottom: 0;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
-  left: 60px;
-  position: fixed;
-  top: 60px;
-  width: 250px;
-  transition: left .3s;
-  z-index: 1;
-}
-
-.sidebar-collapsed .settings-left-column {
-  left: 280px;
-}
-
-.nav-is-open .settings-left-column {
-  top: 108px;
-}
-
-@media (max-width: 991.98px) {
-  .settings-left-column {
-    left: 0;
-    margin-left: 0;
-  }
-}
-
-.settings-right-column {
-  bottom: 0;
-  left: 250px;
-  position: absolute;
-  top: 0;
-  overflow-y: auto;
-  width: -webkit-calc(100% - 250px);
-  width: calc(100% - 250px);
-}
-
 .settings-content-main {
-  height: 100%;
-  line-height: 20px;
-  max-height: 100%;
-  overflow-y: auto;
+  position: absolute;
   padding: 40px 40px 0;
-  position: relative;
+  width: 100%;
+  height: calc(100% - 48px);
+  max-height: calc(100% - 48px);
+  overflow-y: auto;
 }
 
 @media (max-width: 767.98px) {
-  .settings-left-column {
-    display: none;
-  }
-
-  .settings-right-column {
-    left: 0;
-    width: 100%;
-  }
-
   .settings-content-main {
-    padding: 20px 20px 0;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .settings-content-main {
-    padding-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -93,8 +43,9 @@
     color: #888;
   }
 
-  .zmdi-delete:hover, &.zmdi-delete:hover {
-    color: #DD4330;
+  .zmdi-delete:hover,
+  &.zmdi-delete:hover {
+    color: #dd4330;
   }
 }
 
@@ -108,20 +59,16 @@
 }
 
 .settings-content-table {
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 2px;
   margin: -25px -30px;
 }
 
 .settings-content-table-block {
-  background-color: #DCE3E6;
+  background-color: #dce3e6;
 
   .settings-content-table-header {
-    border-bottom: 1px solid #DCE3E6;
-
-    .settings-content-table-item {
-      background-color: #EEE;
-    }
+    border-bottom: 1px solid #dce3e6;
   }
 
   .sortable-list {
@@ -133,9 +80,9 @@
 
     .sortable-item {
       position: relative;
-      background-color: #FFF;
+      background-color: #fff;
       border: none;
-      border-bottom: 1px solid #DCE3E6;
+      border-bottom: 1px solid #dce3e6;
       border-radius: 0;
 
       &.is-dragging {
@@ -149,7 +96,7 @@
   }
 
   &.is-bordered .settings-content-table-item {
-    border-bottom: 1px solid #DCE3E6;
+    border-bottom: 1px solid #dce3e6;
 
     &:last-of-type {
       border-bottom: none;
@@ -164,13 +111,13 @@
   flex-direction: row;
   align-items: center;
   padding: 12px 5px;
-  background-color: #FFF;
+  background-color: #fff;
   cursor: default;
   box-shadow: none;
   font-size: 13px;
 
   &:hover {
-    background-color: #FCFEFF;
+    background-color: #fcfeff;
   }
 
   > div {
@@ -192,7 +139,7 @@
 
     &.is-header .settings-content-table-item-label-content {
       font-weight: 400;
-      color: #696E6F;
+      color: #696e6f;
     }
   }
 
@@ -210,7 +157,7 @@
 
     &.is-header {
       font-weight: 400;
-      color: #696E6F;
+      color: #696e6f;
     }
 
     &.is-narrow {
@@ -254,28 +201,41 @@
     width: 37px;
     display: flex;
     justify-content: flex-end;
+    margin-left: auto;
 
-    &[data-colspan="5"] {width: 185px}
-    &[data-colspan="4"] {width: 148px}
-    &[data-colspan="3"] {width: 111px}
-    &[data-colspan="2"] {width: 74px}
+    &[data-colspan='5'] {
+      width: 185px;
+    }
+    &[data-colspan='4'] {
+      width: 148px;
+    }
+    &[data-colspan='3'] {
+      width: 111px;
+    }
+    &[data-colspan='2'] {
+      width: 74px;
+    }
   }
 
-  .settings-content-table-item-action-icon, .settings-content-table-item-drag-icon, .settings-content-table-item-icon {
+  .settings-content-table-item-action-icon,
+  .settings-content-table-item-drag-icon,
+  .settings-content-table-item-icon {
     height: 22px;
     width: 22px;
     margin-right: 15px;
   }
 
-  .settings-content-table-item-action-icon i, .settings-content-table-item-drag-icon i, .settings-content-table-item-icon i {
+  .settings-content-table-item-action-icon i,
+  .settings-content-table-item-drag-icon i,
+  .settings-content-table-item-icon i {
     font-size: 22px;
-    color: #DCE3E6;
+    color: #dce3e6;
   }
 
   .settings-content-table-item-drag-icon {
     margin-left: 15px;
 
-    +.settings-content-table-item-label {
+    + .settings-content-table-item-label {
       margin-left: 0;
     }
 
@@ -285,31 +245,36 @@
   }
 
   .settings-content-table-item-icon i {
-    color: #0C0D0D;
+    color: #0c0d0d;
   }
 
   .settings-content-table-item-action-icon i {
     cursor: grab;
+    color: #909799;
   }
 
-  .settings-content-table-item-action-icon i:hover, .settings-content-table-item-drag-icon i:hover {
+  .settings-content-table-item-action-icon i:hover,
+  .settings-content-table-item-drag-icon i:hover {
     color: inherit;
   }
 
-  .settings-content-table-item-action-icon i.drag-handle, .settings-content-table-item-drag-icon i.drag-handle {
+  .settings-content-table-item-action-icon i.drag-handle,
+  .settings-content-table-item-drag-icon i.drag-handle {
     cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
     cursor: -webkit-grab;
     cursor: -moz-grab;
     cursor: -webkit-grab, -moz-grab, url(https://mail.google.com/mail/images/2/openhand.cur), move;
   }
 
-  .settings-content-table-item-action-icon i.zmdi-lock, .settings-content-table-item-drag-icon i.zmdi-lock {
+  .settings-content-table-item-action-icon i.zmdi-lock,
+  .settings-content-table-item-drag-icon i.zmdi-lock {
     cursor: inherit;
     color: inherit;
   }
 
-  .settings-content-table-item-action-icon i.is-disabled, .settings-content-table-item-drag-icon i.is-disabled {
-    color: #DCE3E6;
+  .settings-content-table-item-action-icon i.is-disabled,
+  .settings-content-table-item-drag-icon i.is-disabled {
+    color: #dce3e6;
   }
 
   .settings-content-table-item-image {
@@ -321,7 +286,7 @@
     .settings-content-table-item-label,
     .settings-content-table-item-icon i,
     .settings-content-table-item-action-icon {
-      color: #DCE3E6;
+      color: #dce3e6;
     }
 
     .settings-content-table-item-column,
@@ -358,5 +323,17 @@
 @media (max-width: 991.98px) {
   .settings-content-dropdown-width {
     min-width: 250px;
+  }
+}
+
+.settings-content-available-on {
+  display: flex;
+  margin-right: 20px;
+  font-size: 22px;
+  height: 22px;
+  color: #dce3e6;
+
+  > i {
+    margin-right: 8px;
   }
 }

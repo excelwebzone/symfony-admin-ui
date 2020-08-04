@@ -1,10 +1,12 @@
-.profile-left, .profile-right {
+.profile-left,
+.profile-right {
   min-width: 300px;
   width: 25%;
   height: 100%;
 }
 
-.profile-left, .profile-center .profile-right {
+.profile-left,
+.profile-center .profile-right {
   display: flex;
   flex-flow: column nowrap;
 }
@@ -28,7 +30,8 @@
     width: 45%;
   }
 
-  .profile-right, .profile-center {
+  .profile-right,
+  .profile-center {
     float: none;
     width: auto;
     height: 50%;
@@ -58,7 +61,7 @@
 }
 
 .profile-image-component-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(12, 13, 13, 0.48);
   bottom: 0;
   color: #fff;
   display: none;
@@ -86,8 +89,8 @@
   }
 
   &:active .profile-image-component-overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #f9f9f9;
+    background-color: rgba(12, 13, 13, 0.64);
+    color: #fcfeff;
   }
 }
 
@@ -109,14 +112,16 @@
   height: 100%;
   overflow: hidden;
   text-align: center;
-  background-color: #ccc;
-  color: #fff;
+  background-color: #dce3e6;
+  color: rgba(12, 13, 13, 0.64);
   position: relative;
   font-size: 0;
   line-height: 0;
 }
 
-.profile-image-component-icon, .profile-image-component-initials, .profile-image-component-placeholder {
+.profile-image-component-icon,
+.profile-image-component-initials,
+.profile-image-component-placeholder {
   left: 0;
   position: absolute;
   right: 0;
@@ -153,7 +158,7 @@
 }
 
 .profile-image-component-loading-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(12, 13, 13, 0.48);
   bottom: 0;
   left: 0;
   position: absolute;
@@ -173,20 +178,24 @@
   width: 32px;
 }
 
-.profile-image-component-image, .profile-image-component-icon, .profile-image-component-loading-overlay {
+.profile-image-component-image,
+.profile-image-component-icon,
+.profile-image-component-loading-overlay {
   display: none;
 }
 
 .profile-image-component {
-  &.is-empty .profile-image-component-icon, &.is-uploading .profile-image-component-loading-overlay, &.is-photo-loaded .profile-image-component-image {
+  &.is-empty .profile-image-component-icon,
+  &.is-uploading .profile-image-component-loading-overlay,
+  &.is-photo-loaded .profile-image-component-image {
     display: block;
   }
 
   &.profile-image-component-circle {
-    border-radius: 50%;
+    border-radius: 8px;
 
     .profile-image-component-image {
-      border-radius: 50%;
+      border-radius: 8px;
     }
   }
 }
@@ -195,12 +204,12 @@
   height: 40px;
 
   .profile-images-carousel-picture {
-    border-radius: 50%;
+    border-radius: 8px;
     float: left;
     margin-right: -10px;
     height: 40px;
     width: 40px;
-    border: 1px solid #e9e9e9;
+    border: 1px solid #dce3e6;
 
     img {
       width: 100%;

@@ -19,7 +19,8 @@
   display: none;
 }
 
-.checkbox-display, .checkbox-text {
+.checkbox-display,
+.checkbox-text {
   cursor: pointer;
   display: inline-block;
 }
@@ -50,7 +51,7 @@
   line-height: 18px;
 
   &:focus .unchecked {
-    color: #0D94F6;
+    color: #0d94f6;
   }
 
   .unchecked {
@@ -59,7 +60,7 @@
 
   .checked {
     display: none;
-    color: #0D94F6;
+    color: #0d94f6;
   }
 
   &.is-checked .checked {
@@ -72,49 +73,56 @@
 }
 
 .checkbox.is-locked .checkbox-display {
-  .checked, .unchecked {
+  .checked,
+  .unchecked {
     display: none;
   }
 }
 
-.checkbox-display.is-checked .unchecked, .checkbox-input:checked + .checkbox-display .unchecked {
+.checkbox-display.is-checked .unchecked,
+.checkbox-input:checked + .checkbox-display .unchecked {
   display: none;
 }
 
 .checkbox.is-disabled .checkbox-display {
   cursor: default;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .checkbox-input {
-  &:checked:disabled + .checkbox-display, &:disabled + .checkbox-display {
+  &:checked:disabled + .checkbox-display,
+  &:disabled + .checkbox-display {
     cursor: default;
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
 .checkbox.is-disabled .checkbox-display {
-  .checked, .unchecked {
+  .checked,
+  .unchecked {
     color: #ccc;
   }
 }
 
 .checkbox-input {
   &:checked:disabled + .checkbox-display {
-    .checked, .unchecked {
+    .checked,
+    .unchecked {
       color: #ccc;
     }
   }
 
   &:disabled + .checkbox-display {
-    .checked, .unchecked {
+    .checked,
+    .unchecked {
       color: #ccc;
     }
   }
 }
 
-.checkbox.is-disabled .checkbox-text, .checkbox-input:disabled + .checkbox-text {
-  opacity: .5;
+.checkbox.is-disabled .checkbox-text,
+.checkbox-input:disabled + .checkbox-text {
+  opacity: 0.5;
 }
 
 .checkbox.is-locked .checkbox-display {

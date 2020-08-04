@@ -1,5 +1,7 @@
 .card-team {
-  height: 200px;
+  position: relative;
+  display: inline-block;
+  height: 300px;
   width: 300px;
   margin-right: 10px;
   margin-top: 20px;
@@ -8,8 +10,6 @@
   vertical-align: top;
   border-radius: 2px;
   background-color: #fff;
-  position: relative;
-  display: inline-block;
   box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
 
   .card-team-info {
@@ -19,32 +19,32 @@
       font-size: 12px;
       font-weight: 600;
       margin: 20px 0 8px;
-      color: #888;
+      color: #696e6f;
     }
 
     .card-team-member-text {
       font-size: 13px;
       font-weight: 600;
-      color: #ccc;
+      color: #dce3e6;
       margin-bottom: 40px;
     }
 
     .card-team-title {
       font-weight: 600;
       margin-bottom: 10px;
-      color: #363636;
+      color: #0c0d0d;
       font-size: 16px;
     }
   }
 
   .card-team-footer {
+    padding: 5px;
     background-color: #fff;
-    border-top: 1px solid #e9e9e9;
+    border-top: 1px solid #dce3e6;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px;
     text-align: right;
   }
 }
@@ -55,38 +55,29 @@
   }
 }
 
-.card-team-empty-group {
-  border: 2px dashed #ccc;
+.card-team-empty {
+  background-color: #eaf0f2;
+  border: 2px dashed #dce3e6;
   text-align: center;
   cursor: pointer;
   box-shadow: none;
-  background-color: #f2f2f2;
 
   &:hover {
-    background-color: #efefef;
+    background-color: #eaf0f2;
   }
 
   .add-cta {
     position: absolute;
-    color: #0D94F6;
     top: 50%;
     left: 50%;
-    width: 300px;
-    height: 100px;
     transform: translate(-50%, -50%);
 
     .add-cta-icon {
       font-size: 36px;
     }
-
-    .add-cta-copy {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
   }
 
-  &.card-team-empty-group-maximum-reached {
+  &.card-team-empty-maximum-reached {
     cursor: default;
 
     &:hover {
@@ -94,11 +85,11 @@
     }
 
     .add-cta {
-      color: #888;
+      color: #696e6f;
     }
 
     .add-cta-icon {
-      color: #ccc;
+      color: #dce3e6;
     }
   }
 }

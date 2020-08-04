@@ -18,11 +18,15 @@
     left: 60px;
     width: calc(100% - 60px);
     z-index: 3;
-    transition: margin-left .3s,width .3s;
+    transition: margin-left 0.3s, width 0.3s;
     background-color: #f2f2f2;
     box-shadow: 0 3px 5px 0.3px rgba(0, 0, 0, 0.24);
     padding-top: 12px;
   }
+}
+
+.has-navigation .dashboard-content {
+  padding-top: 30px;
 }
 
 @media (max-width: 575.98px) {
@@ -32,7 +36,7 @@
 }
 
 .sidebar-collapsed .dashboard-content .scrollable-tabs {
-  margin-left: 220px;
+  left: 280px;
 }
 
 @media (max-width: 991.98px) {
@@ -71,7 +75,7 @@
   }
 
   &.is-ftue .card {
-    opacity: .5;
+    opacity: 0.5;
     pointer-events: none;
 
     &.card-ftue {
@@ -118,7 +122,10 @@
 }
 
 @media (min-width: 992px) {
-  .col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12 {
+  .col-lg-4,
+  .col-lg-6,
+  .col-lg-8,
+  .col-lg-12 {
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -144,25 +151,67 @@
   }
 }
 
-.row-1, .row-2, .row-3, .row-4, .row-5,
-.row-6, .row-7, .row-8, .row-9, .row-10,
-.row-11, .row-12, .row-13, .row-14, .row-15 {
+.row-1,
+.row-2,
+.row-3,
+.row-4,
+.row-5,
+.row-6,
+.row-7,
+.row-8,
+.row-9,
+.row-10,
+.row-11,
+.row-12,
+.row-13,
+.row-14,
+.row-15 {
   overflow: hidden;
   margin-bottom: 20px;
 }
 
-.row-1 { height: 150px; }
-.row-2 { height: 320px; }
-.row-3 { height: 490px; }
-.row-4 { height: 660px; }
-.row-5 { height: 830px; }
-.row-6 { height: 1000px; }
-.row-7 { height: 1170px; }
-.row-8 { height: 1340px; }
-.row-9 { height: 1510px; }
-.row-10 { height: 1680px; }
-.row-11 { height: 1850px; }
-.row-12 { height: 2020px; }
-.row-13 { height: 2190px; }
-.row-14 { height: 2360px; }
-.row-15 { height: 2530px; }
+.row-1 {
+  height: 150px;
+}
+.row-2 {
+  height: 320px;
+}
+.row-3 {
+  height: 490px;
+}
+.row-4 {
+  height: 660px;
+}
+.row-5 {
+  height: 830px;
+}
+.row-6 {
+  height: 1000px;
+}
+.row-7 {
+  height: 1170px;
+}
+.row-8 {
+  height: 1340px;
+}
+.row-9 {
+  height: 1510px;
+}
+.row-10 {
+  height: 1680px;
+}
+.row-11 {
+  height: 1850px;
+}
+.row-12 {
+  height: 2020px;
+}
+.row-13 {
+  height: 2190px;
+}
+.row-14 {
+  height: 2360px;
+}
+.row-15 {
+  height: 2530px;
+}

@@ -28,15 +28,6 @@
   }
 }
 
-.toast-action, .toast-close, .toast-message {
-  vertical-align: middle;
-}
-
-.toast, .toast-message {
-  line-height: 48px;
-  display: inline-block;
-}
-
 .toaster {
   position: fixed;
   max-width: 700px;
@@ -44,15 +35,14 @@
 }
 
 .toast {
-  -moz-animation: toast-in .3s;
-  -webkit-animation: toast-in .3s;
-  animation: toast-in .3s;
-  background-color: #363636;
+  -moz-animation: toast-in 0.3s;
+  -webkit-animation: toast-in 0.3s;
+  animation: toast-in 0.3s;
+  background-color: #0c0d0d;
   border-radius: 2px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
-  color: #fff;
-  font-size: 0;
   height: 48px;
+  line-height: 48px;
   margin: 10px 0 0;
   padding: 0 20px;
   position: relative;
@@ -60,47 +50,42 @@
   -ms-transform: translatex(0);
   -webkit-transform: translatex(0);
   transform: translatex(0);
+  color: #fff;
 
   // override bootstrap
   opacity: 1;
-  max-width: auto;
-  background-clip: none;
+  max-width: 100%;
+  background-clip: unset;
   border: none;
+}
 
-  .button.button-toaster-button {
-    background-color: #363636;
-    margin: 0 6px;
-    font-weight: 700;
-    font-size: 13px;
+.toast-action,
+.toast-message {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: middle;
+}
 
-    &:hover {
-      color: #0777c9;
-    }
-  }
-
-  a {
-    color: #fff;
-  }
-
-  &.is-closed {
-    pointer-events: none;
-    -webkit-transition: -webkit-transform 1s;
-    transition: transform 1s;
-    -ms-transform: translatey(500%);
-    -webkit-transform: translatey(500%);
-    transform: translatey(500%);
-  }
+.toast.is-closed {
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
+  -ms-transform: translatey(500%);
+  -webkit-transform: translatey(500%);
+  transform: translatey(500%);
 }
 
 .toast-message {
-  font-size: 13px;
   font-weight: 400;
+  line-height: 48px;
   max-width: 460px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.toast-action {
-  display: inline-block;
-  font-size: 13px;
+.toast-action button {
+  margin: 0 5px 0 10px;
 }
 
 .toast-close {
@@ -108,7 +93,7 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 22px;
-  margin-left: 15px;
+  vertical-align: middle;
 
   &:hover {
     cursor: pointer;
@@ -116,8 +101,8 @@
 }
 
 .toast.toast-error {
-  background-color: #f4b400;
-  border-color: #f4b400;
+  background-color: #db9e22;
+  border-color: #db9e22;
   color: #fff;
   line-height: 20px;
 
@@ -128,27 +113,6 @@
 
   .toast-close {
     margin-left: 12px;
-  }
-
-  .button {
-    &.button-toast-icon {
-      font-size: 20px;
-      margin-left: 12px;
-      display: flex;
-      align-items: center;
-    }
-
-    &.button-toaster-button {
-      background-color: #f4b400;
-      color: inherit;
-      margin: 0 6px;
-      font-weight: 700;
-
-      &:hover {
-        background-color: #f2f2f2;
-        color: #363636;
-      }
-    }
   }
 }
 
@@ -162,14 +126,14 @@
   &.toaster-error {
     bottom: 35px;
     left: 50%;
-    transform: translatex(-50%);
+    margin-left: -266px;
 
     .toast.is-closed {
       -ms-transform: translatex(0);
       -webkit-transform: translatex(0);
       transform: translatex(0);
-      -webkit-transition: opacity .5s;
-      transition: opacity .5s;
+      -webkit-transition: opacity 0.5s;
+      transition: opacity 0.5s;
       opacity: 0;
     }
 
@@ -181,9 +145,14 @@
 
 @media (max-width: 575.98px) {
   .toaster {
-    &.toaster-default, &.toaster-error {
+    &.toaster-default,
+    &.toaster-error {
       left: 20px;
       transform: none;
     }
+  }
+
+  .toast-message {
+    max-width: 260px;
   }
 }

@@ -1,10 +1,10 @@
 .entity-details {
   position: relative;
   height: 100%;
-  color: #363636;
+  color: #0c0d0d;
   font-size: 13px;
   line-height: 24px;
-  padding: 0 25px 85px;
+  padding: 25px 25px 85px;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
@@ -18,8 +18,8 @@
 
 .entity-details-boxes {
   height: 100%;
-  background-color: #f2f2f2;
-  color: #363636;
+  background-color: #eaf0f2;
+  color: #0c0d0d;
   font-size: 13px;
   line-height: 24px;
   flex-grow: 1;
@@ -46,7 +46,7 @@
 
 .entity-details-loading-icon {
   bottom: 0;
-  fill: #0D94F6;
+  fill: #5269de;
   height: 32px;
   left: 0;
   margin: auto;
@@ -59,13 +59,15 @@
   transition: opacity 0.3s cubic-bezier(0.55, 0, 0, 1);
 }
 
-.entity-details.is-loading .entity-details-loading-box, .entity-list.is-loading .entity-details-loading-box {
+.entity-details.is-loading .entity-details-loading-box,
+.entity-list.is-loading .entity-details-loading-box {
   -ms-transform: scaleY(1);
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
 }
 
-.entity-details.is-loading .entity-details-loading-icon, .entity-list.is-loading .entity-details-loading-icon {
+.entity-details.is-loading .entity-details-loading-icon,
+.entity-list.is-loading .entity-details-loading-icon {
   opacity: 1;
 }
 
@@ -76,37 +78,65 @@
 
   &:not(.simple-form-style) {
     input {
-      &[type="text"], &[type="password"], &[type="email"], &[type="url"], &[type="number"], &[type="tel"], &[type="date"] {
+      &[type='text'],
+      &[type='password'],
+      &[type='email'],
+      &[type='url'],
+      &[type='number'],
+      &[type='tel'],
+      &[type='date'] {
         border-color: #fff;
       }
     }
 
-    .input-text, textarea, select, .dropdown {
+    .input-text,
+    textarea,
+    select,
+    .dropdown {
       border-color: #fff;
     }
 
     input {
-      &[type="text"]:hover, &[type="password"]:hover, &[type="email"]:hover, &[type="url"]:hover, &[type="number"]:hover, &[type="tel"]:hover, &[type="date"]:hover {
+      &[type='text']:hover,
+      &[type='password']:hover,
+      &[type='email']:hover,
+      &[type='url']:hover,
+      &[type='number']:hover,
+      &[type='tel']:hover,
+      &[type='date']:hover {
         border-color: #e0e0e0 !important;
       }
     }
 
-    .input-text:hover, textarea:hover, select:hover, .dropdown:hover {
+    .input-text:hover,
+    textarea:hover,
+    select:hover,
+    .dropdown:hover {
       border-color: #e0e0e0 !important;
     }
 
     input {
-      &[type="text"][disabled], &[type="password"][disabled], &[type="email"][disabled], &[type="url"][disabled], &[type="number"][disabled], &[type="tel"][disabled], &[type="date"][disabled] {
+      &[type='text'][disabled],
+      &[type='password'][disabled],
+      &[type='email'][disabled],
+      &[type='url'][disabled],
+      &[type='number'][disabled],
+      &[type='tel'][disabled],
+      &[type='date'][disabled] {
         border-color: #fff !important;
       }
     }
 
-    .input-text[disabled], textarea[disabled], select[disabled], .dropdown.is-disabled {
+    .input-text[disabled],
+    textarea[disabled],
+    select[disabled],
+    .dropdown.is-disabled {
       border-color: #fff !important;
     }
   }
 
-  .address .form-group, .personal-name .form-group {
+  .address .form-group,
+  .personal-name .form-group {
     padding-bottom: 0;
   }
 

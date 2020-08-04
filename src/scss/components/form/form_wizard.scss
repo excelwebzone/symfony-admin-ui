@@ -14,7 +14,7 @@
 
     > div:before {
       border-top: 4px solid #c8c7cc;
-      content: "";
+      content: '';
       display: block;
       font-size: 0;
       height: 1px;
@@ -35,8 +35,9 @@
     }
 
     > div {
-      &.selected:before, &.done:before {
-        border-color: #007AFF;
+      &.selected:before,
+      &.done:before {
+        border-color: #007aff;
       }
     }
   }
@@ -58,12 +59,12 @@
   .step {
     > div {
       &.selected .step-number {
-        border-color: #007AFF;
+        border-color: #007aff;
       }
 
       &.done .step-number {
-        border-color: #007AFF;
-        background-color: #007AFF;
+        border-color: #007aff;
+        background-color: #007aff;
         color: #fff;
         text-indent: -9999px;
       }
@@ -76,10 +77,10 @@
 
     > div.done {
       .step-number:before {
-        content: "\f26b";
+        content: '\f26b';
         display: inline;
         float: right;
-        font-family: "Material-Design-Iconic-Font";
+        font-family: 'Material-Design-Iconic-Font';
         font-weight: 300;
         height: auto;
         text-shadow: none;
@@ -88,12 +89,12 @@
       }
 
       &.wait .step-number {
-        background-color: #F6F6F6 !important;
+        background-color: #f6f6f6 !important;
         color: #ccc !important;
         text-indent: -0px !important;
 
         &:before {
-          content: "" !important;
+          content: '' !important;
         }
       }
     }
@@ -110,8 +111,9 @@
     }
 
     > div {
-      &.selected .step-desc, &.done .step-desc {
-        color: #2B3D53;
+      &.selected .step-desc,
+      &.done .step-desc {
+        color: #2b3d53;
       }
 
       &:hover {

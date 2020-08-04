@@ -4,8 +4,8 @@
 }
 
 .filter-options-header {
-  border-bottom: 1px solid #e9e9e9;
-  color: #363636;
+  border-bottom: 1px solid #dce3e6;
+  color: #0c0d0d;
   font-size: 18px;
   height: 53px;
   left: 0;
@@ -18,7 +18,7 @@
 
 .filter-options-close-button {
   bottom: 0;
-  color: #363636;
+  color: #0c0d0d;
   font-size: 20px;
   line-height: 53px;
   position: absolute;
@@ -29,8 +29,9 @@
   width: 60px;
 }
 
-.filter-options-clear-button, .filter-options-title {
-  color: #363636;
+.filter-options-clear-button,
+.filter-options-title {
+  color: #0c0d0d;
   text-align: left;
   position: absolute;
   bottom: 0;
@@ -61,26 +62,19 @@
 
 .filter-options-footer {
   background-color: #fff;
-  border-top: 1px solid #e9e9e9;
+  border-top: 1px solid #dce3e6;
   bottom: 0;
   height: 66px;
   left: 0;
   line-height: 30px;
-  padding: 18px 30px;
+  padding: 18px;
   position: absolute;
   right: 0;
   text-align: center;
 
   > button {
-    color: #fff;
-    border: 1px solid #2196f3;
-    background-color: #2196f3;
-
-    &:hover {
-      color: #fff;
-      border: 1px solid #2196f3;
-      background-color: #2196f3;
-    }
+    margin-right: 8px;
+    float: left;
   }
 }
 
@@ -91,7 +85,7 @@
 }
 
 .filter-options-content {
-  color: #57585a;
+  color: #696e6f;
   height: 100%;
   padding: 0;
   overflow-x: hidden;
@@ -110,7 +104,15 @@
   .filter-empty {
     height: 44px;
     padding: 12px 30px;
-    color: #888;
+    color: #696e6f;
+  }
+
+  .filter-separator {
+    border-bottom: 1px solid #dce3e6;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .filter-item {
@@ -118,7 +120,7 @@
     height: 44px;
     padding: 12px 30px;
     cursor: pointer;
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid #dce3e6;
 
     > div {
       display: block;
@@ -137,7 +139,7 @@
     .filter-actions {
       right: 0;
       cursor: pointer;
-      color: #888;
+      color: #696e6f;
       font-size: 12px;
       top: 15px;
 
@@ -178,8 +180,8 @@
 }
 
 .filter-header {
-  color: #363636;
   cursor: pointer;
+  color: #0c0d0d;
   font-weight: 500;
   height: 44px;
   line-height: 44px;
@@ -189,7 +191,7 @@
 
   > i {
     bottom: 0;
-    color: #888;
+    color: #696e6f;
     font-size: 15px;
     height: 18px;
     line-height: 18px;
@@ -200,8 +202,8 @@
     -ms-transform: rotate(0);
     -webkit-transform: rotate(0);
     transform: rotate(0);
-    -webkit-transition: -webkit-transform .25s;
-    transition: transform .25s;
+    -webkit-transition: -webkit-transform 0.25s;
+    transition: transform 0.25s;
   }
 }
 
@@ -236,7 +238,6 @@
   height: 44px;
 
   a {
-    color: #0d94f6;
     font-size: 12px;
   }
 }

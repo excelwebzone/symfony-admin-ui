@@ -1,7 +1,7 @@
 .entity-activity {
   height: 100%;
-  background-color: #eee;
-  color: #212121;
+  background-color: #eaf0f2;
+  color: #0c0d0d;
   font-size: 13px;
   line-height: 24px;
   flex-grow: 1;
@@ -12,7 +12,8 @@
   box-shadow: inset 0 1px 3.5px 0 rgba(0, 0, 0, 0.12);
 
   &.entity-activity-compact {
-    .activity-item-label, .dropdown-selected {
+    .activity-item-label,
+    .dropdown-selected {
       font-size: 12px;
     }
 

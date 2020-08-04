@@ -80,7 +80,7 @@ export default class FileUpload {
               $('.profile-icon .image img').prop('src', json.filename);
             }
 
-            if (self.$selector.data('update-ember-table-avatar')) {
+            if (self.$selector.data('update-datagrid-avatar')) {
               const $row = $(`.js-entity-drawer[data-id="${self.$selector.data('id')}"]`);
               if ($row) {
                 $row.data('photo', json.filename);

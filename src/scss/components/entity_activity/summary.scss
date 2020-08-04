@@ -5,11 +5,10 @@
 }
 
 .activity-summary-summary-items {
+  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
   background-color: #fff;
-  clear: both;
   display: flex;
   flex-flow: row nowrap;
-  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
 }
 
 .activity-summary-summary-item {
@@ -26,7 +25,7 @@
   }
 
   + .activity-summary-summary-item {
-    border-left: 1px solid #e0e0e0;
+    border-left: 1px solid #dce3e6;
   }
 
   .activity-summary-summary-item-number {

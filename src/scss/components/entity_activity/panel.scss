@@ -1,12 +1,12 @@
 .activity-panel {
-  margin: 20px 0 0;
+  margin: 20px 0 5px;
   padding: 0;
   background-color: #fff;
   box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
 }
 
 .activity-panel-header-tabs {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #dce3e6;
   text-align: left;
   margin-bottom: 10px;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .activity-panel-tab {
-  color: #757575;
+  color: #696e6f;
   cursor: pointer;
   display: inline-block;
   font-size: 12px;
@@ -31,16 +31,17 @@
   -webkit-transition: color 0.2s cubic-bezier(0.55, 0, 0, 1);
   transition: color 0.2s cubic-bezier(0.55, 0, 0, 1);
 
-  &:after, &:before {
+  &:after,
+  &:before {
     -ms-transform-origin: 50% 100%;
     -moz-transform-origin: 50% 100%;
     -webkit-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
     -webkit-transition: opacity 0s 0.2s, -webkit-transform 0.2s cubic-bezier(0.55, 0, 0, 1);
     transition: opacity 0s 0.2s, transform 0.2s cubic-bezier(0.55, 0, 0, 1);
-    -ms-transform: scaley(0) translatey(-1px);
-    -webkit-transform: scaley(0) translatey(-1px);
-    transform: scaley(0) translatey(-1px);
+    -ms-transform: scaleY(0) translateY(-1px);
+    -webkit-transform: scaleY(0) translateY(-1px);
+    transform: scaleY(0) translateY(-1px);
     width: 0;
     height: 0;
     border-left: 7px solid transparent;
@@ -61,15 +62,16 @@
   }
 
   &:before {
-    border-bottom: 7px solid #d3d3d3;
+    border-bottom: 7px solid #cdd7db;
     bottom: 0;
   }
 
   &.active {
-    color: #2196f3;
+    color: #5269de;
     font-weight: 500;
 
-    &:after, &:before {
+    &:after,
+    &:before {
       -webkit-transition: opacity 0s, -webkit-transform 0.2s cubic-bezier(0.55, 0, 0, 1);
       transition: opacity 0s, transform 0.2s cubic-bezier(0.55, 0, 0, 1);
       -ms-transform: none;

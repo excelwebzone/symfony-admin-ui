@@ -1,12 +1,12 @@
 import $ from 'jquery';
 import axios from '../../lib/utils/axios_utils';
 import toaster from '../../lib/utils/toaster';
-import EmberTable from './ember_table';
+import Datagrid from './datagrid';
 import { modifiedValues } from '../../lib/utils/modified_values';
 
-const EMPTY_CELL = index => `<div class="ember-table-cell is-empty text-left js-ember-table-column-width js-draggable-cell" data-index="${index}"></div>`;
+const EMPTY_CELL = index => `<div class="datagrid-cell is-empty text-left js-datagrid-column-width js-draggable-cell" data-index="${index}"></div>`;
 
-export default class CardTable {
+export default class Cardgrid {
   /**
    * {
    *   onFieldChange: (field, value, $cell) => {..},
@@ -26,16 +26,16 @@ export default class CardTable {
     this.dragTargetEl = null;
 
     this.$table = $('.list-page-table');
-    this.emberTable = new EmberTable(this.$table.find('.js-ember-table'));
+    this.datagrid = new Datagrid(this.$table.find('.js-datagrid'));
   }
 
   bindEvents() {
     this.$table.on('data:loaded', (e, data) => this.listLoaded(e, data));
 
     $(document).on('click', '.js-drawer-close', (e) => this.unselectItem(e));
-    $(document).on('click', '.card-table-component-model-cell', (e) => this.selectItem(e));
-    $(document).on('modal:shown', '.js-card-table-delete-item', (e, modal) => this.deleteItem(e, modal));
-    $(document).on('field:updated', '.js-card-table-form', (e, data) => this.fieldUpdated(e, data));
+    $(document).on('click', '.cardgrid-component-model-cell', (e) => this.selectItem(e));
+    $(document).on('modal:shown', '.js-cardgrid-delete-item', (e, modal) => this.deleteItem(e, modal));
+    $(document).on('field:updated', '.js-cardgrid-form', (e, data) => this.fieldUpdated(e, data));
 
     $(document).on('dragstart', '.js-draggable-cell:not(.is-empty)', (e) => this.dragStart(e));
     $(document).on('dragenter', '.js-draggable-cell', (e) => this.dragEnter(e));
@@ -47,24 +47,24 @@ export default class CardTable {
       && typeof data.columns === 'object'
     ) {
       for (let [key, value] of Object.entries(data.columns)) {
-        this.$table.find(`.ember-table-header-cell[data-value="${key}"]`)
+        this.$table.find(`.datagrid-header-cell[data-value="${key}"]`)
           .find('.total>span.counter')
           .text(`${value}`);
       }
     }
 
-    for (let column of this.$table.find('.ember-table-header-container .ember-table-header-cell')) {
+    for (let column of this.$table.find('.datagrid-header-container .datagrid-header-cell')) {
       const index = $(column).data('index');
 
-      for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
+      for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
         const $row = $(row);
-        const $rowCell = $row.find(`.ember-table-cell[data-index="${index}"]`);
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
         if ($rowCell.length) {
           if ($rowCell.hasClass('is-empty')) {
-            for (let subRow of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
+            for (let subRow of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
               const $subRow = $(subRow);
               if ($row.index() < $subRow.index()) {
-                const $subRowCell = $subRow.find(`.ember-table-cell[data-index="${index}"]:not(.is-empty)`);
+                const $subRowCell = $subRow.find(`.datagrid-cell[data-index="${index}"]:not(.is-empty)`);
                 if ($subRowCell.length) {
                   $rowCell.replaceWith($subRowCell.clone(true));
                   $subRowCell.replaceWith(EMPTY_CELL(index));
@@ -74,7 +74,7 @@ export default class CardTable {
               }
             }
           } else {
-            const $duplicateCells = this.$table.find(`.ember-table-cell[data-index="${index}"][data-id="${$rowCell.data('id')}"]`);
+            const $duplicateCells = this.$table.find(`.datagrid-cell[data-index="${index}"][data-id="${$rowCell.data('id')}"]`);
             let i = 0;
             for (let dupCell of $duplicateCells) {
               if (i++ > 0) {
@@ -87,17 +87,17 @@ export default class CardTable {
     }
 
     this.removeLastRow();
-    this.emberTable.resizeTable();
-    this.emberTable.rebindEvents();
+    this.datagrid.resizeTable();
+    this.datagrid.rebindEvents();
   }
 
   removeLastRow() {
     let $lastRow, cells, emptyCells;
     do {
-      $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
+      $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
 
-      cells = $lastRow.find('.ember-table-cell').length;
-      emptyCells = $lastRow.find('.ember-table-cell.is-empty').length;
+      cells = $lastRow.find('.datagrid-cell').length;
+      emptyCells = $lastRow.find('.datagrid-cell.is-empty').length;
 
       if (cells === emptyCells) {
         $lastRow.remove();
@@ -106,7 +106,7 @@ export default class CardTable {
   }
 
   unselectItem(e) {
-    this.$table.find('.card-table-component-model-cell.is-current').removeClass('is-current');
+    this.$table.find('.cardgrid-component-model-cell.is-current').removeClass('is-current');
   }
 
   selectItem(e) {
@@ -116,7 +116,7 @@ export default class CardTable {
       return;
     }
 
-    this.$table.find('.card-table-component-model-cell').removeClass('is-current');
+    this.$table.find('.cardgrid-component-model-cell').removeClass('is-current');
 
     $(e.currentTarget).addClass('is-current');
     $(e.currentTarget)
@@ -126,7 +126,7 @@ export default class CardTable {
 
   deleteItem(e, modal) {
     const $target = $(e.currentTarget);
-    const $cell = this.$table.find('.card-table-component-model-cell.is-current').closest('.js-entity-drawer');
+    const $cell = this.$table.find('.cardgrid-component-model-cell.is-current').closest('.js-entity-drawer');
 
     $(modal).on('modal:hidden', (e, data) => {
       $(modal).off('modal:hidden');
@@ -147,14 +147,14 @@ export default class CardTable {
     // set as empty
     $cell.replaceWith($emptyCell);
 
-    let $prevRow = $emptyCell.closest('.ember-table-table-row');
+    let $prevRow = $emptyCell.closest('.datagrid-table-row');
 
-    for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
+    for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
       const $row = $(row);
 
       if ($row.index() > $prevRow.index()) {
-        const $prevCell = $prevRow.find(`.ember-table-cell[data-index="${index}"]`);
-        const $rowCell = $row.find(`.ember-table-cell[data-index="${index}"]`);
+        const $prevCell = $prevRow.find(`.datagrid-cell[data-index="${index}"]`);
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
 
         if (!$rowCell.hasClass('js-entity-drawer')) {
           break;
@@ -171,16 +171,16 @@ export default class CardTable {
       this.removeLastRow();
     }
 
-    this.emberTable.resizeTable();
-    this.emberTable.rebindEvents();
+    this.datagrid.resizeTable();
+    this.datagrid.rebindEvents();
 
-    const $counter = this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).find('.total>span.counter');
+    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('.total>span.counter');
     $counter.text(parseInt($counter.text()) - 1);
   }
 
   moveCell($cell, value) {
     let $column = null;
-    for (let column of this.$table.find('.ember-table-header-container .ember-table-header-cell')) {
+    for (let column of this.$table.find('.datagrid-header-container .datagrid-header-cell')) {
       if (value === $(column).data('value')) {
         $column = $(column);
       }
@@ -196,19 +196,19 @@ export default class CardTable {
     this.deleteCell($cell, false);
 
     // add empty cells
-    let $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
-    if (!$lastRow.find(`.ember-table-cell[data-index="${index}"]`).hasClass('is-empty')) {
+    let $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
+    if (!$lastRow.find(`.datagrid-cell[data-index="${index}"]`).hasClass('is-empty')) {
       $lastRow.after($lastRow.clone(true));
-      $lastRow = this.$table.find('.ember-table-body-container .ember-table-table-row:last-child');
-      for (let cell of $lastRow.find('.ember-table-cell')) {
+      $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
+      for (let cell of $lastRow.find('.datagrid-cell')) {
         $(cell).replaceWith(EMPTY_CELL($(cell).data('index')));
       }
     }
 
     // move and replace
-    for (let row of this.$table.find('.ember-table-body-container .ember-table-table-row')) {
+    for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
       const $row = $(row);
-      const $rowCell = $row.find(`.ember-table-cell[data-index="${index}"]`);
+      const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
       if ($rowCell.hasClass('is-empty')) {
         $rowCell.replaceWith($cloneCell);
         $cloneCell.data('index', $rowCell.data('index'));
@@ -219,15 +219,15 @@ export default class CardTable {
     }
 
     this.removeLastRow();
-    this.emberTable.resizeTable();
-    this.emberTable.rebindEvents();
+    this.datagrid.resizeTable();
+    this.datagrid.rebindEvents();
 
-    const $counter = this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).find('.total>span.counter');
+    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('.total>span.counter');
     $counter.text(parseInt($counter.text()) + 1);
   }
 
   fieldUpdated(e, data) {
-    const $cell = this.$table.find('.card-table-component-model-cell.is-current').closest('.js-entity-drawer');
+    const $cell = this.$table.find('.cardgrid-component-model-cell.is-current').closest('.js-entity-drawer');
 
     if (data.fields) {
       for (let [field, value] of Object.entries(data.fields)) {
@@ -253,7 +253,7 @@ export default class CardTable {
   dragStart(e) {
     this.dragSourceEl = $(e.currentTarget);
 
-    this.$table.find('.card-table-component').addClass('is-dragging');
+    this.$table.find('.cardgrid-component').addClass('is-dragging');
 
     const $clone = this.dragSourceEl.clone(true);
     $clone
@@ -261,7 +261,7 @@ export default class CardTable {
       .css('border', 'none')
       .css('height', 'auto')
       .addClass('is-clone')
-      .find('.card-table-component-model-cell')
+      .find('.cardgrid-component-model-cell')
       .addClass('drag-shadow')
       .css('width', '300px')
       .css('height', '120px');
@@ -272,15 +272,15 @@ export default class CardTable {
     e.originalEvent.dataTransfer.setDragImage($clone.get(0), 0, 0);
 
     this.dragSourceEl
-      .find('.card-table-component-model-cell')
+      .find('.cardgrid-component-model-cell')
       .addClass('shadow-model');
   }
 
   dragEnter(e) {
     this.dragTargetEl = $(e.currentTarget);
     const index = this.dragTargetEl.data('index');
-    this.$table.find('.ember-table-header-cell.active').removeClass('active');
-    this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).addClass('active');
+    this.$table.find('.datagrid-header-cell.active').removeClass('active');
+    this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).addClass('active');
   }
 
   dragEnd(e) {
@@ -288,15 +288,15 @@ export default class CardTable {
       e.stopPropagation();
     }
 
-    this.$table.find('.card-table-component').removeClass('is-dragging');
-    this.$table.find('.ember-table-header-cell').removeClass('active');
-    this.$table.find('.card-table-component-model-cell').removeClass('shadow-model');
+    this.$table.find('.cardgrid-component').removeClass('is-dragging');
+    this.$table.find('.datagrid-header-cell').removeClass('active');
+    this.$table.find('.cardgrid-component-model-cell').removeClass('shadow-model');
     this.$table.find('.js-draggable-cell.is-clone').remove();
 
     // don't do anything if we're dropping on the same column we're dragging.
     if (this.dragSourceEl !== this.dragTargetEl) {
       const index = this.dragTargetEl.data('index');
-      const newValue = this.$table.find(`.ember-table-header-cell[data-index="${index}"]`).data('value');
+      const newValue = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).data('value');
 
       const params = {};
       params[this.dragSourceEl.data('target-field')] = newValue;
