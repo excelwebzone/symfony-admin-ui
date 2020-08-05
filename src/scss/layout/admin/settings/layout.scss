@@ -56,12 +56,15 @@
   &.is-condensed {
     margin: 20px 0;
   }
-}
 
-.settings-content-table {
-  background-color: #fff;
-  border-radius: 2px;
-  margin: -25px -30px;
+  &.is-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  &.no-marign {
+    margin: 5px 0 0;
+  }
 }
 
 .settings-content-table-block {
@@ -69,6 +72,11 @@
 
   .settings-content-table-header {
     border-bottom: 1px solid #dce3e6;
+  }
+
+  .settings-content-table-rows {
+    overflow-y: auto;
+    max-height: 387px;
   }
 
   .sortable-list {
