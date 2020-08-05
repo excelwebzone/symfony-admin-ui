@@ -4,6 +4,7 @@ import TypedProperty from './typed_property';
 import DropdownOptions from './dropdown_options';
 import FileUpload from './file_upload';
 import DateRangePicker from './date_range_picker';
+import SwitchButton from './switch_button';
 import Rating from './rating';
 import Datagrid from '../components/datagrid';
 import ScrollableTabs from '../components/scrollable_tabs';
@@ -18,6 +19,11 @@ export function initFormElements(containerEl) {
   // init form related object
   new TypedProperty($container);
   new DropdownOptions($container);
+
+  // init switch elements
+  for (let element of $container.find('.js-switch-button')) {
+    new SwitchButton($(element));
+  }
 
   // init rating elements
   for (let element of $container.find('.rating:not(.is-readonly)')) {

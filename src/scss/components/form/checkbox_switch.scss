@@ -46,3 +46,33 @@
     }
   }
 }
+
+.switch-button-container {
+  margin-right: auto;
+  height: 20px;
+  padding-left: 5px;
+
+  &.is-disabled {
+    opacity: 0.3;
+
+    .switch-label {
+      cursor: default;
+    }
+  }
+
+  .checkbox {
+    height: 20px;
+  }
+
+  .switch-button-text {
+    font-size: 12px;
+    color: #909799;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &.is-active {
+      color: #5269de;
+    }
+  }
+}
