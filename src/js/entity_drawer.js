@@ -20,7 +20,10 @@ export default class EntityDrawer {
   }
 
   fixTop() {
-    if (this.$drawer && $('.application-content').hasClass('has-navigation')) {
+    if (this.$drawer
+      && ($('.application-content').hasClass('has-navigation')
+        || $('.application-content').hasClass('has-tabs'))
+    ) {
       this.$drawer.addClass('fix-top');
     }
   }

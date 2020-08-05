@@ -9,7 +9,8 @@ header {
   z-index: 10;
 }
 
-.has-navigation header {
+.has-navigation header,
+.has-tabs header {
   box-shadow: none !important;
 }
 
