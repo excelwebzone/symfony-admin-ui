@@ -201,15 +201,12 @@
 }
 
 .profile-images-carousel-component {
-  height: 40px;
-
   .profile-images-carousel-picture {
     border-radius: 8px;
     float: left;
-    margin-right: -10px;
-    height: 40px;
-    width: 40px;
-    border: 1px solid #dce3e6;
+    height: 58px;
+    width: 58px;
+    margin: 0 16px 16px 0;
 
     img {
       width: 100%;
