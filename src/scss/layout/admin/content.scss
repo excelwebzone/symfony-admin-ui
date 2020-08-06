@@ -93,12 +93,16 @@
 
 .container-block-body {
   background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
-  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+  padding: 8px 0;
 
   &:empty {
     display: none;
+  }
+
+  &.has-padding {
+    padding: 25px 30px;
   }
 }
 
