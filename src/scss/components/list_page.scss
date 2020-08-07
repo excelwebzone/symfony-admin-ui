@@ -435,7 +435,7 @@
   background: #fff;
   display: inline-block;
   float: left;
-  border-top: 1px solid #eee;
+  padding: 0 24px;
 }
 
 .list-page-fake-drawer {
@@ -447,7 +447,7 @@
   border: 0;
   background: 0 0;
   position: absolute;
-  top: 300px;
+  top: 250px;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
