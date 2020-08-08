@@ -100,10 +100,10 @@
   &:empty {
     display: none;
   }
+}
 
-  &.has-padding {
-    padding: 25px 30px;
-  }
+.container-block.has-padding .container-block-body {
+  padding: 25px 30px;
 }
 
 .page-title {
