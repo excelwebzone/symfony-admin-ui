@@ -29,7 +29,7 @@ Highcharts.theme = {
     layout: 'horizontal',
     symbolHeight: 12,
     symbolWidth: 12,
-    symbolRadius: 6,
+    symbolRadius: 4,
     borderWidth: 0,
     itemStyle: {
       overflow: 'hidden',
@@ -64,6 +64,7 @@ Highcharts.theme = {
     useHTML: !0,
     backgroundColor: '#ffffff',
     borderWidth: 0,
+    borderRadius: 8,
     crosshairs: {
       dashStyle: 'solid',
       width: 1,
@@ -72,7 +73,8 @@ Highcharts.theme = {
     itemMarginBottom: 10,
     style: {
       padding: '15px',
-      lineHeight: '22px'
+      lineHeight: '22px',
+      boxShadow: '10px 10px 35px 0 rgba(0, 0, 0, 0.08)',
     }
   }
 };
@@ -159,10 +161,9 @@ function addTooltipRow(point, data = {}) {
     .append(
       $('<td>').append(
         $('<h5 class="font-weight-bold pr-2">').css({
-          color: point.series.color,
           'max-width': '300px'
         })
-          .text(`${point.series.name}:`)
+          .html(`<div style="background-color:${point.series.color}"></div> ${point.series.name}:`)
       )
     ).append(
       $('<td>').append(
@@ -176,7 +177,7 @@ function addTooltipRow(point, data = {}) {
 function getTooltipFormatter(data) {
   data = data || {};
   return function() {
-    const $table = $(`<table class="${data.className ? data.className : ''}">`);
+    const $table = $(`<table class="highchart-tooltip-table ${data.className ? data.className : ''}">`);
 
     const $header = addTooltipHeader(getTooltipTitle(this.key, data.titleFormatter), 2);
 
@@ -191,7 +192,7 @@ function getTooltipFormatter(data) {
 function getSharedTooltipFormatter(data) {
   data = data || {};
   return function() {
-    const $table = $('<table>');
+    const $table = $('<table class="highchart-tooltip-table">');
 
     const $header = addTooltipHeader(getTooltipTitle(this.points[0].key, data.titleFormatter), 2);
 

@@ -1,3 +1,17 @@
+.highchart-tooltip-table {
+  h5 {
+    display: flex;
+    align-items: center;
+
+    div {
+      width: 13px;
+      height: 13px;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+  }
+}
+
 .highchart-tooltip-title {
   max-width: 400px;
   white-space: nowrap;

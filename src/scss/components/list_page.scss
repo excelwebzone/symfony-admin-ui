@@ -296,11 +296,13 @@
 .list-page-chart {
   position: relative;
   overflow: auto;
-  height: -webkit-calc(100% - 64px);
-  height: calc(100% - 64px);
+  height: -webkit-calc(100% - 112px);
+  height: calc(100% - 112px);
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
   background-color: #fff;
-  border-top: 1px solid #eee;
+  border-radius: 8px;
   padding: 10px 20px 20px;
+  margin: 24px;
   z-index: 1;
 }
 
@@ -311,9 +313,13 @@
 }
 
 .list-chart-summary {
+  position: sticky;
+  top: -10px;
+  background-color: #fff;
   color: #0c0d0d;
   font-size: 16px;
   line-height: 28px;
+  z-index: 1;
 }
 
 .list-chart-summary-number-item {
