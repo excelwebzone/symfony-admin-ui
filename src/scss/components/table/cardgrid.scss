@@ -4,6 +4,9 @@
   overflow: auto;
   max-width: 100%;
   position: relative;
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border-radius: 8px;
 
   .datagrid-header-container .datagrid-table-fixed-wrapper {
     background-color: #fff;
