@@ -297,13 +297,13 @@
 .list-page-chart {
   position: relative;
   overflow: auto;
-  height: -webkit-calc(100% - 112px);
-  height: calc(100% - 112px);
+  height: -webkit-calc(100% - 88px);
+  height: calc(100% - 88px);
   box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
   background-color: #fff;
   border-radius: 8px;
   padding: 10px 20px 20px;
-  margin: 24px;
+  margin: 0 24px 24px;
   z-index: 1;
 }
 
