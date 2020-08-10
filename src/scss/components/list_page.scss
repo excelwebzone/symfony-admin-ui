@@ -68,29 +68,27 @@
     width: 34px;
   }
 
-  .btn-group {
-    .btn {
-      overflow: unset;
-    }
+  .toggle-button-group {
+    margin-left: auto;
 
-    .btn-primary:hover {
-      opacity: 1;
-    }
+    .toggle-button {
+      color: #696e6f;
+      font-size: 24px;
+      border: 1px solid #dce3e6;
+      margin: 0 1px 0 0;
 
-    button {
-      margin-right: 0;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+      &:first-child {
+        border-radius: 8px 0 0 8px;
+      }
 
-    .side-button {
-      margin-left: 0;
-      border-radius: 0 16px 16px 0;
+      &:last-child {
+        border-radius: 0 8px 8px 0;
+        margin-right: 0;
+      }
 
-      i {
-        position: relative;
-        right: 8px;
-        line-height: unset;
+      &:hover,
+      &.active {
+        background-color: #dce3e6;
       }
     }
   }
@@ -176,6 +174,10 @@
     .bulk-buttons-container .selection-count,
     .list-page-stats {
       display: none !important;
+    }
+
+    .toggle-button-group {
+      margin-left: 0;
     }
 
     .list-buttons-container.has-toggle {
