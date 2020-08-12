@@ -19,15 +19,6 @@ export default class EntityDrawer {
     $(document).on('click', '.js-bulk-select', (e) => this.selectRow(e));
   }
 
-  fixTop() {
-    if (this.$drawer
-      && ($('.application-content').hasClass('has-navigation')
-        || $('.application-content').hasClass('has-tabs'))
-    ) {
-      this.$drawer.addClass('fix-top');
-    }
-  }
-
   hide() {
     $('.drawer-frame.filter-options').collapse('hide');
 
@@ -76,8 +67,6 @@ export default class EntityDrawer {
     this.$drawer = $('.drawer-frame:not(.filter-options)');
     this.$drawer.collapse('show');
     this.$drawer.find('.js-block-request').trigger('block:load');
-
-    this.fixTop();
 
     $target.trigger('drawer:shown', this.$drawer);
 
@@ -157,8 +146,6 @@ export default class EntityDrawer {
 
     this.$drawer = $('.drawer-frame:not(.filter-options)');
     this.$drawer.collapse('show');
-
-    this.fixTop();
 
     setTimeout(() => {
       this.$drawer.find('.bulk-edit-drawer-loading').hide();

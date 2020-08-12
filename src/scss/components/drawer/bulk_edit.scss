@@ -15,17 +15,7 @@
 .bulk-edit-drawer-header {
   color: #0c0d0d;
   line-height: 64px;
-  height: 140px;
-}
-
-.bulk-edit-drawer-close {
-  font-size: 24px;
-  height: 100%;
-  line-height: 24px;
-  padding: 14px;
-  text-align: center;
-  width: 64px;
-  float: left;
+  height: 100px;
 }
 
 .bulk-edit-drawer-title {
@@ -33,14 +23,13 @@
   font-weight: 500;
   position: relative;
   line-height: 32px;
-  top: 50px;
-  left: -40px;
+  top: 25px;
+  left: 25px;
   overflow: hidden;
 }
 
 .bulk-edit-drawer-content,
 .bulk-edit-drawer-footer {
-  background-color: #fff;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -61,11 +50,29 @@
 
 .bulk-edit-drawer-footer {
   border-top: 1px solid #dce3e6;
-  height: 66px;
+  height: 56px;
   left: 0;
-  line-height: 30px;
-  padding: 18px 30px;
   text-align: center;
+
+  > .btn {
+    height: 56px;
+    margin: 0;
+    border-radius: 0;
+    float: left;
+
+    &:first-child {
+      border-radius: 0 0  0 16px;
+
+      &:nth-last-child(1) {
+        width: 100%;
+      }
+
+      &:nth-last-child(2),
+      &:nth-last-child(2) ~ .btn {
+        width: 50%;
+      }
+    }
+  }
 }
 
 .bulk-edit-drawer-wrapper {
