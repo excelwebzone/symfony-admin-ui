@@ -16,19 +16,6 @@
   top: 0;
 }
 
-.filter-options-close-button {
-  bottom: 0;
-  color: #0c0d0d;
-  font-size: 20px;
-  line-height: 53px;
-  position: absolute;
-  left: 0;
-  text-align: center;
-  top: 0;
-  vertical-align: middle;
-  width: 60px;
-}
-
 .filter-options-clear-button,
 .filter-options-title {
   color: #0c0d0d;
@@ -39,15 +26,11 @@
   top: 0;
 }
 
-.filter-options-close-button > i {
-  cursor: pointer;
-}
-
 .filter-options-title {
   cursor: default;
   font-size: 20px;
   line-height: 53px;
-  left: 60px;
+  left: 30px;
   right: 70px;
 }
 
@@ -61,20 +44,32 @@
 }
 
 .filter-options-footer {
-  background-color: #fff;
   border-top: 1px solid #dce3e6;
   bottom: 0;
-  height: 66px;
+  height: 56px;
   left: 0;
-  line-height: 30px;
-  padding: 18px;
   position: absolute;
   right: 0;
   text-align: center;
 
-  > button {
-    margin-right: 8px;
+  > .btn:not([style*="display: none"]) {
+    height: 56px;
+    margin: 0;
+    border-radius: 0;
     float: left;
+
+    &:first-child {
+      border-radius: 0 0  0 16px;
+
+      &:nth-last-child(1) {
+        width: 100%;
+      }
+
+      &:nth-last-child(2),
+      &:nth-last-child(2) ~ .btn {
+        width: 50%;
+      }
+    }
   }
 }
 
