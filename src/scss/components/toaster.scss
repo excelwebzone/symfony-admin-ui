@@ -38,9 +38,9 @@
   -moz-animation: toast-in 0.3s;
   -webkit-animation: toast-in 0.3s;
   animation: toast-in 0.3s;
-  background-color: #0c0d0d;
-  border-radius: 2px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+  background: #44a762;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.24);
   height: 48px;
   line-height: 48px;
   margin: 10px 0 0;
@@ -84,8 +84,9 @@
   text-overflow: ellipsis;
 }
 
-.toast-action button {
-  margin: 0 5px 0 10px;
+.toast-action .btn {
+  margin: 0 20px;
+  color: #fff;
 }
 
 .toast-close {
@@ -101,8 +102,7 @@
 }
 
 .toast.toast-error {
-  background-color: #db9e22;
-  border-color: #db9e22;
+  background-color: #cb1a42;
   color: #fff;
   line-height: 20px;
 
@@ -117,17 +117,11 @@
 }
 
 .toaster {
-  &.toaster-default {
-    bottom: 35px;
-    left: 50%;
-    transform: translatex(-50%);
-  }
+  bottom: 0;
+  left: 50%;
+  transform: translatex(-50%);
 
   &.toaster-error {
-    bottom: 35px;
-    left: 50%;
-    margin-left: -266px;
-
     .toast.is-closed {
       -ms-transform: translatex(0);
       -webkit-transform: translatex(0);
