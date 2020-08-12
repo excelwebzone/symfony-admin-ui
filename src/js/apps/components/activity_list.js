@@ -22,7 +22,6 @@ export default class ActivityList {
     $(document).on('reload:list', '.js-activity-log-form', (e) => this.reloadList(e));
 
     // handle actions
-    $(document).on('click', '.js-activity-log-form-reset', (e) => this.resetForm(e));
     $(document).on('modal:shown', '.js-activity-item-action-delete', (e, modal) => this.removeItem(e, modal));
     $(document).on('click', '.js-activity-item-action-edit', (e) => this.openItemForm(e));
     $(document).on('click', '.js-activity-item-action-cancel', (e) => this.closeItemForm(e));
@@ -167,9 +166,7 @@ export default class ActivityList {
 
   reloadList(e) {
     const $target = $(e.target);
-    const $container = $target.data('target')
-      ? $($target.data('target')).find('.entity-activity')
-      : $target.closest('.entity-activity');
+    const $container = $($target.data('target')).find('.entity-activity');
 
     const $dropdown = $container.find('.activity-list .dropdown');
     if ($dropdown.length === 0) {
@@ -181,15 +178,6 @@ export default class ActivityList {
     } else {
       $dropdown.find('.option-list-item.is-selected').click();
     }
-  }
-
-  resetForm(e) {
-    const $form = $(e.currentTarget).closest('form');
-    const $body = $form.find('[id$="_body"]');
-    $body.val('')
-      .trigger('change')
-      .trigger('content-changed');
-    $form.find('button[type=submit]').disable();
   }
 
   toggleExtraField(e) {
