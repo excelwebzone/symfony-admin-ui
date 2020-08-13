@@ -2,10 +2,12 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  left: 60px;
+  left: 0;
+  padding-left: 60px;
   min-height: 60px;
   transition: margin 0.3s, width 0.3s;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+  background-color: #fff;
   z-index: 10;
 }
 
@@ -15,13 +17,12 @@ header {
 }
 
 .sidebar-collapsed header {
-  margin-left: 220px;
+  padding-left: 280px;
 }
 
 @media (max-width: 991.98px) {
   header {
-    left: 0 !important;
-    margin-left: 0 !important;
+    padding-left: 0 !important;
   }
 }
 
@@ -30,7 +31,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
   color: #0c0d0d;
   min-height: 60px;
 }
