@@ -11,11 +11,32 @@
 }
 
 .typed-property-item {
+  position: relative;
   margin-bottom: 15px;
 
   .typed-property-key-dropdown {
     border-bottom: none;
     box-shadow: none;
+
+    .dropdown-text {
+      padding-right: 20px;
+    }
+  }
+
+  &.with-floating-label {
+    .typed-property-key-dropdown {
+      position: absolute;
+      top: 0;
+      left: 7px;
+      transform: translateY(-50%) scale(0.9);
+      background-color: #fff;
+      padding: 0 6px;
+      z-index: 1;
+    }
+
+    .has-floating-label {
+      padding-bottom: 0;
+    }
   }
 }
 
@@ -27,4 +48,8 @@
   bottom: -22px;
   right: 0;
   z-index: 1;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
