@@ -117,8 +117,8 @@
     margin: -25px -30px;
 
     .settings-content-table-rows {
-      overflow-y: hidden !important;
-      max-height: 100% !important;
+      overflow-y: unset;
+      max-height: unset;
     }
   }
 }
