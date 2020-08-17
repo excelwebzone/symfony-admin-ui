@@ -39,10 +39,19 @@
 .activity-item {
   -webkit-transition: margin 0.3s;
   transition: margin 0.3s;
+  background-color: #fff;
   position: relative;
   min-height: 84px;
   border-top: 1px solid #dce3e6;
-  padding: 0 24px 24px;
+  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
+
+  &:first-child {
+    box-shadow: 0 -0.5px 1.5px 0 rgba(0, 0, 0, 0.12), 0 -0.5px 6px rgba(0, 0, 0, 0.12);
+  }
+
+  &:last-child {
+    box-shadow: 0 2.5px 1.5px 0 rgba(0, 0, 0, 0.12), 0 2.5px 6px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .activity-item-container {
@@ -51,7 +60,8 @@
 
 .activity-item-profile-section {
   flex: none;
-  padding-right: 16px;
+  width: 89px;
+  padding-right: 5px;
 }
 
 .activity-item-profile-image {
@@ -240,12 +250,17 @@
 }
 
 .activity-item {
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
   &.is-expanded {
     border-top: none;
-    margin: 15px;
+    margin: 15px 0;
     padding-bottom: 50px;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.19), 0 1px 6px rgba(0, 0, 0, 0.12);
     border-radius: 8px;
-    box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
 
     .activity-item-content {
       padding-top: 10px;
@@ -260,11 +275,18 @@
     .activity-item-subject {
       display: block;
     }
+
+    &+ .activity-item {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
   }
 
   &.is-labeled {
     border-top: none;
     margin-top: 44px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
     &.is-expanded {
       border-top: none;
@@ -276,13 +298,9 @@
       color: #696e6f;
       font-weight: 500;
       left: 0;
-      margin: 10px 20px 0;
+      margin: 10px 5px;
       position: absolute;
       top: -44px;
-    }
-
-    &.is-expanded .activity-item-label {
-      left: -15px;
     }
   }
 
@@ -377,13 +395,9 @@
 
 .activity-log-list {
   display: inline-block;
-  border-radius: 8px;
-  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
-  background-color: #fff;
   width: 100%;
   font-size: 13px;
   line-height: 24px;
-  margin-top: 24px;
 
   .activity-log-list-empty-message {
     font-size: 16px;
