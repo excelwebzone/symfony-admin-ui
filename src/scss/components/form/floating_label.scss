@@ -17,6 +17,7 @@
   }
 
   > .form-control,
+  > .input-text,
   > .dropdown {
     font-size: 14px;
     outline: none;
@@ -76,6 +77,7 @@
   }
 
   &.is-invalid > .form-control:focus,
+  &.is-invalid > .input-text:focus,
   &.is-invalid > .dropdown:focus {
     border-color: #eb4536;
     box-shadow: none;
@@ -90,6 +92,7 @@
     }
 
     > .form-control,
+    > .input-text,
     > .dropdown {
       padding-left: 45px !important;
     }
