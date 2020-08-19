@@ -19,48 +19,6 @@
     margin: 22px 10px;
   }
 
-  .list-page-stats-value {
-    height: 64px;
-    float: left;
-    display: inline-block;
-    margin-left: 27px;
-    padding-top: 15px;
-    text-align: center;
-
-    .label {
-      color: #696e6f;
-      font-size: 12px;
-    }
-
-    .value {
-      font-weight: 700;
-      color: #0c0d0d;
-      font-size: 20px;
-      margin: 0;
-    }
-  }
-
-  .odometer-currency {
-    display: inline-block;
-    float: left;
-    font-size: 13px;
-    font-weight: 500;
-    color: #0c0d0d;
-    margin: 24px 5px 0;
-    cursor: default;
-
-    .odometer {
-      position: relative;
-      top: -2px;
-      left: -6px;
-    }
-  }
-
-  .odometer-currency-odometer {
-    font-family: inherit;
-    margin-bottom: 1px;
-  }
-
   .button.dropdown-button {
     font-size: 24px;
     padding: 4px;
@@ -182,8 +140,7 @@
 
 @media (max-width: 1199.98px) {
   .list-page-header {
-    .bulk-buttons-container .selection-count,
-    .list-page-stats {
+    .bulk-buttons-container .selection-count {
       display: none !important;
     }
   }
@@ -457,6 +414,59 @@
   }
 }
 
+.list-page-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border-radius: 8px 8px 0 0;
+  z-index: 0;
+
+  .list-page-stats-value {
+    height: 64px;
+    display: inline-block;
+    margin-left: 27px;
+    padding-top: 15px;
+    text-align: center;
+
+    .label {
+      color: #696e6f;
+      font-size: 12px;
+    }
+
+    .value {
+      font-weight: 700;
+      color: #0c0d0d;
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  .odometer-currency {
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0c0d0d;
+    margin: 24px 5px 0;
+    cursor: default;
+
+    .odometer {
+      position: relative;
+      top: -2px;
+      left: -6px;
+    }
+  }
+
+  .odometer-currency-odometer {
+    font-family: inherit;
+    margin-bottom: 1px;
+  }
+}
+
 .list-page-table {
   height: -webkit-calc(100% - 64px);
   height: calc(100% - 64px);
@@ -466,6 +476,17 @@
   display: inline-block;
   float: left;
   padding: 0 24px;
+
+  &.has-stats {
+    height: -webkit-calc(100% - 128px);
+    height: calc(100% - 128px);
+
+    .datagrid-tables-container {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      box-shadow: 10px 10px 35px -15px rgba(0, 0, 0, 0.08);
+    }
+  }
 }
 
 .list-page-fake-drawer {
