@@ -154,6 +154,7 @@
     align-items: center;
     align-content: center;
     width: 50%;
+    height: 64px;
   }
 
   .list-dropdown-container {
@@ -223,6 +224,7 @@
   border-bottom: 1px solid #dce3e6;
   display: inline-block;
   position: relative;
+  z-index: 1;
 
   &:focus {
     border-color: #5269de;
@@ -515,6 +517,16 @@
 
 .has-navigation .list-page-empty-content {
   top: 350px;
+}
+
+@media (max-width: 991.98px) {
+  .list-page-empty-content {
+    top: 350px;
+  }
+
+  .has-navigation .list-page-empty-content {
+    top: 400px;
+  }
 }
 
 .list-page-loading-popup {
