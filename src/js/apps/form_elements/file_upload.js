@@ -77,7 +77,7 @@ export default class FileUpload {
             self.$selector.find('img').prop('src', json.filename);
 
             if (self.$selector.data('update-profile-avatar')) {
-              $('.profile-icon .image img').prop('src', json.filename);
+              $('.profile-avatar img').prop('src', json.filename);
             }
 
             if (self.$selector.data('update-datagrid-avatar')) {
@@ -198,7 +198,7 @@ export default class FileUpload {
             self.$selector.find('img').prop('src', self.$selector.data('default-avatar'));
 
             if (self.$selector.data('update-profile-avatar')) {
-              $('.profile-icon .image img').prop('src', self.$selector.data('default-avatar'));
+              $('.profile-avatar img').prop('src', self.$selector.data('default-avatar'));
             }
           }
         } else {
