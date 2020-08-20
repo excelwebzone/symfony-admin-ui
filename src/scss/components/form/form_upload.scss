@@ -3,7 +3,9 @@
 }
 
 .form-upload-picture {
-  border-radius: 50%;
+  float: left;
+  margin: 0 24px 24px 0;
+  border-radius: 8px;
   display: inline-block;
   height: 80px;
   overflow: hidden;
@@ -18,7 +20,7 @@
 }
 
 .form-upload-picture-empty {
-  border-radius: 50%;
+  border-radius: 8px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -29,17 +31,41 @@
   font-size: 50px;
   height: 80px;
   line-height: 80px;
-  text-align: center;
   width: 80px;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-upload-controls {
   display: inline-block;
-  margin-left: 30px;
   vertical-align: bottom;
 }
 
+.form-upload.large-picture {
+  .form-upload-picture,
+  .form-upload-picture-empty {
+    height: 160px;
+    width: 160px;
+  }
+
+  .form-upload-controls {
+    margin-top: 40px;
+  }
+}
+
 @media (max-width: 575.98px) {
+  .form-upload.large-picture {
+    .form-upload-picture,
+    .form-upload-picture-empty {
+      height: 80px;
+      width: 80px;
+    }
+
+    .form-upload-controls {
+      margin-top: 0;
+    }
+  }
+
   .form-upload-controls {
     display: block;
     margin: 10px 0;
@@ -48,7 +74,7 @@
 
 .form-upload-loading-overlay {
   background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
+  border-radius: 8px;
   bottom: 0;
   left: 0;
   position: absolute;
@@ -70,11 +96,15 @@
 
 .form-upload-instruction {
   display: block;
+  font-size: 13px;
 }
 
 .form-upload-remove-picture {
-  color: #0d94f6;
+  float: right;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.38);
   cursor: pointer;
+  margin-left: 24px;
 }
 
 .form-upload-picture-loaded,
@@ -87,17 +117,13 @@
 .form-upload {
   &.is-empty .form-upload-picture-empty,
   &.is-uploading .form-upload-loading-overlay {
-    display: block;
+    display: flex;
   }
 
   &.is-photo-loaded {
     .form-upload-picture-loaded,
     .form-upload-remove-picture {
       display: block;
-    }
-
-    .form-upload-instruction {
-      display: none;
     }
   }
 }
