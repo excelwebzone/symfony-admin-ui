@@ -23,7 +23,7 @@
     outline: none;
     border: 1px solid #dcdcdc;
     border-radius: 8px;
-    padding: 16px;
+    padding: 22px 16px 10px;
     transition: 0.1s ease-out;
     height: 56px;
 
@@ -57,18 +57,16 @@
 
       + label {
         color: #1350aa;
-        top: 0;
+        top: 16px;
         left: 0;
         transform: translateY(-50%) scale(0.9);
-        background-color: #fff;
       }
     }
 
     &:not(:placeholder-shown) + label {
-      top: 0;
+      top: 16px;
       left: 0;
       transform: translateY(-50%) scale(0.9);
-      background-color: #fff;
     }
   }
 
@@ -94,11 +92,20 @@
     > .form-control,
     > .input-text,
     > .dropdown {
-      padding-left: 45px !important;
+      padding-left: 50px !important;
+
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        left: 35px;
+      }
     }
 
     > label {
       left: 35px;
     }
+  }
+
+  > .dropdown .dropdown-selected {
+    padding: 0;
   }
 }
