@@ -411,3 +411,34 @@
 .counter-toggle-button-text:hover {
   color: #2b41b2;
 }
+
+.toggle-button-group {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  .toggle-button {
+    color: #696e6f;
+    font-size: 24px;
+    border: 1px solid #dce3e6;
+    padding: 6px 12px;
+    margin: 0;
+
+    &:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    &:last-child {
+      border-radius: 0 8px 8px 0;
+      margin-right: 0;
+    }
+
+    &:hover,
+    &.active {
+      background-color: #dce3e6;
+    }
+  }
+}
