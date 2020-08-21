@@ -67,15 +67,20 @@
   }
 }
 
+.settings-content-table {
+  overflow-x: auto;
+}
+
 .settings-content-table-block {
-  background-color: #dce3e6;
+  width: 100%;
 
   .settings-content-table-header {
     border-bottom: 1px solid #dce3e6;
   }
 
   .settings-content-table-rows {
-    overflow-y: auto;
+    height: auto !important;
+    overflow-y: visible !important;
     max-height: 387px;
   }
 
@@ -88,7 +93,6 @@
 
     .sortable-item {
       position: relative;
-      background-color: #fff;
       border: none;
       border-bottom: 1px solid #dce3e6;
       border-radius: 0;
@@ -112,6 +116,10 @@
   }
 }
 
+.ignore-header-border .settings-content-table-header {
+  border-bottom: none;
+}
+
 .settings-content-table-item {
   padding: 5px;
   height: 56px;
@@ -119,7 +127,6 @@
   flex-direction: row;
   align-items: center;
   padding: 12px 5px;
-  background-color: #fff;
   cursor: default;
   box-shadow: none;
   font-size: 13px;
@@ -135,15 +142,10 @@
   .settings-content-table-item-label {
     overflow: hidden;
     font-weight: 500;
-    flex: 1 1;
     white-space: nowrap;
     display: flex;
     margin-left: 15px;
-
-    &.is-fixed {
-      width: 30%;
-      flex: none;
-    }
+    width: 200px;
 
     &.is-header .settings-content-table-item-label-content {
       font-weight: 400;
@@ -152,7 +154,7 @@
   }
 
   .settings-content-table-item-column {
-    width: 20%;
+    width: 200px;
     margin: 4px 0;
 
     &.is-desktop {
@@ -169,7 +171,11 @@
     }
 
     &.is-narrow {
-      width: 10%;
+      width: 100px;
+    }
+
+    &.is-long {
+      width: 400px;
     }
 
     .form-group {
@@ -222,6 +228,14 @@
     }
     &[data-colspan='2'] {
       width: 74px;
+    }
+
+    .dropdown {
+      border-bottom: none;
+
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
 
