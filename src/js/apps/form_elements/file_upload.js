@@ -19,6 +19,10 @@ export default class FileUpload {
       e.stopPropagation();
     });
 
+    $('.js-reload-file').on('click', () => {
+      self.removeClass('is-file-loaded');
+    });
+
     let options = {
       previewTemplate: '<div style="display:none"></div>',
       init: function() {
@@ -110,7 +114,7 @@ export default class FileUpload {
           }
 
           self.clearIsClasses();
-          self.addClass('is-photo-loaded');
+          self.addClass('is-file-loaded');
         });
 
         this.on('error', (file, message) => {

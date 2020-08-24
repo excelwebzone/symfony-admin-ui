@@ -63,7 +63,7 @@
   }
 
   &.no-marign {
-    margin: 5px 0 0;
+    margin: 10px 0 0;
   }
 }
 
@@ -148,7 +148,7 @@
     width: 200px;
 
     &.is-header .settings-content-table-item-label-content {
-      font-weight: 400;
+      font-weight: 600;
       color: #696e6f;
     }
   }
@@ -166,7 +166,7 @@
     }
 
     &.is-header {
-      font-weight: 400;
+      font-weight: 600;
       color: #696e6f;
     }
 
@@ -236,6 +236,10 @@
       &:focus {
         box-shadow: none;
       }
+    }
+
+    a:hover {
+      text-decoration: none;
     }
   }
 
@@ -314,6 +318,10 @@
     .settings-content-table-item-column,
     .settings-content-table-item-drag-icon {
       display: none;
+    }
+
+    .settings-content-table-item-drag-icon + .settings-content-table-item-label {
+      margin-left: 15px;
     }
   }
 }

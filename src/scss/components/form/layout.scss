@@ -4,13 +4,13 @@ textarea,
 select {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #d3d3d3;
   border-radius: 0;
   box-shadow: none;
-  color: #424242;
+  color: #555;
   font-family: 'Roboto', arial, sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.5px;
   margin-bottom: 0;
   max-width: 100%;
@@ -32,30 +32,30 @@ select::placeholder {
 .input-text:focus,
 textarea:focus,
 select:focus {
-  border-color: #0d94f6;
-  box-shadow: inset 0 -2px 0 #0d94f6;
+  border-color: #979797;
+  box-shadow: inset 0 -2px 0 #979797;
 }
 
 label + .form-control:focus,
 label + .input-text:focus,
 label + textarea:focus,
 label + select:focus {
-  color: #4285f4;
+  color: #007d99;
 }
 
 .is-invalid .form-control,
 .is-invalid .input-text,
 .is-invalid textarea,
 .is-invalid select {
-  border-color: #eb4536;
+  border-color: #cb1a42;
 }
 
 .is-invalid .form-control:focus,
 .is-invalid .input-text:focus,
 .is-invalid textarea:focus,
 .is-invalid select:focus {
-  color: #ea4335;
-  box-shadow: inset 0 -2px 0 #eb4536;
+  color: #cb1a42;
+  box-shadow: inset 0 -2px 0 #cb1a42;
 }
 
 .form-control[readonly],
@@ -70,7 +70,7 @@ select[readonly] {
 .input-text[disabled],
 textarea[disabled],
 select[disabled] {
-  background-color: #f8f8f8;
+  background-color: #d3d3d3;
 }
 
 textarea {
@@ -79,7 +79,7 @@ textarea {
   overflow: hidden;
   resize: none;
   border: 0 #000;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #d3d3d3;
   line-height: 18px;
   padding: 5px 0;
 }
@@ -114,7 +114,7 @@ select {
       content: '•';
       font-size: 14px;
       line-height: 14px;
-      color: #db4437;
+      color: #ea4335;
       margin-left: 4px;
     }
   }

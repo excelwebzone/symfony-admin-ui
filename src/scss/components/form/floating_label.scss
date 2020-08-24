@@ -8,7 +8,7 @@
     left: 0;
     top: 28px;
     transform: translateY(-50%);
-    color: #dcdcdc;
+    color: #8d8d8d;
     padding: 0 6px;
     margin: 0 10px;
     transition: 0.1s ease-out;
@@ -21,7 +21,8 @@
   > .dropdown {
     font-size: 14px;
     outline: none;
-    border: 1px solid #dcdcdc;
+    background-color: #fff;
+    border: 2px solid #d3d3d3;
     border-radius: 8px;
     padding: 22px 16px 10px;
     transition: 0.1s ease-out;
@@ -52,11 +53,11 @@
     }
 
     &:focus {
-      border-color: #1350aa;
+      border-color: #007d99;
       box-shadow: none;
 
       + label {
-        color: #1350aa;
+        color: #007d99;
         top: 16px;
         left: 0;
         transform: translateY(-50%) scale(0.9);
@@ -74,11 +75,19 @@
     color: #ea4335 !important;
   }
 
-  &.is-invalid > .form-control:focus,
-  &.is-invalid > .input-text:focus,
-  &.is-invalid > .dropdown:focus {
-    border-color: #eb4536;
+  &.is-invalid > .form-control,
+  &.is-invalid > .input-text,
+  &.is-invalid > .dropdown {
+    border-color: #cb1a42;
     box-shadow: none;
+    color: inherit;
+  }
+
+  &.is-disabled > .form-control,
+  &.is-disabled > .input-text,
+  &.is-disabled > .dropdown {
+    background-color: #f9f9f9;
+    border-color: #f9f9f9;
   }
 
   &.has-icon {

@@ -1,6 +1,7 @@
 .entity-details {
   position: relative;
   height: 100%;
+  background-color: #fcfcfc;
   color: #0c0d0d;
   font-size: 13px;
   line-height: 24px;
@@ -69,97 +70,6 @@
 .entity-details.is-loading .entity-details-loading-icon,
 .entity-list.is-loading .entity-details-loading-icon {
   opacity: 1;
-}
-
-.entity-details {
-  > form {
-    padding-bottom: 25px;
-  }
-
-  &:not(.simple-form-style) {
-    input {
-      &[type='text'],
-      &[type='password'],
-      &[type='email'],
-      &[type='url'],
-      &[type='number'],
-      &[type='tel'],
-      &[type='date'] {
-        border-color: #fff;
-      }
-    }
-
-    .input-text,
-    textarea,
-    select,
-    .dropdown {
-      border-color: #fff;
-    }
-
-    input {
-      &[type='text']:hover,
-      &[type='password']:hover,
-      &[type='email']:hover,
-      &[type='url']:hover,
-      &[type='number']:hover,
-      &[type='tel']:hover,
-      &[type='date']:hover {
-        border-color: #e0e0e0 !important;
-      }
-    }
-
-    .input-text:hover,
-    textarea:hover,
-    select:hover,
-    .dropdown:hover {
-      border-color: #e0e0e0 !important;
-    }
-
-    input {
-      &[type='text'][disabled],
-      &[type='password'][disabled],
-      &[type='email'][disabled],
-      &[type='url'][disabled],
-      &[type='number'][disabled],
-      &[type='tel'][disabled],
-      &[type='date'][disabled] {
-        border-color: #fff !important;
-      }
-    }
-
-    .input-text[disabled],
-    textarea[disabled],
-    select[disabled],
-    .dropdown.is-disabled {
-      border-color: #fff !important;
-    }
-  }
-
-  .address .form-group,
-  .personal-name .form-group {
-    padding-bottom: 0;
-  }
-
-  label {
-    max-width: 100%;
-    padding: 0;
-    line-height: 15px;
-  }
-
-  .col-form-label {
-    max-width: 100%;
-    padding: 0;
-    line-height: 15px;
-    padding: 10px 0 10px;
-  }
-
-  .form-control {
-    padding-top: 0;
-  }
-
-  .typed-property-item:last-child {
-    margin-bottom: 0;
-  }
 }
 
 @media (min-width: 768px) {
