@@ -68,6 +68,7 @@
 }
 
 .settings-content-table {
+  overflow: hidden;
   overflow-x: auto;
 }
 
@@ -79,8 +80,9 @@
   }
 
   .settings-content-table-rows {
-    height: auto !important;
-    overflow-y: visible !important;
+    display: block;
+    height: auto;
+    overflow-y: auto;
     max-height: 387px;
   }
 
