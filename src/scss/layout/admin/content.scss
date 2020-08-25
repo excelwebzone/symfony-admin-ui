@@ -116,6 +116,10 @@
   .zmdi-arrow-left {
     vertical-align: bottom;
   }
+
+  .toggle-button-group {
+    left: 45%;
+  }
 }
 
 .page-title-description {
@@ -133,6 +137,16 @@
     font-size: 12px;
     line-height: 14px;
     margin-bottom: 13px;
+
+    &.is-bold {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &.is-dark,
+    &.is-dark > a {
+      color: #363636;
+    }
   }
 
   .page-title-help-link {
