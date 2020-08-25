@@ -6,7 +6,6 @@
 
 .list-page-header {
   position: relative;
-  background: #fff;
   height: 64px;
   width: 100%;
   padding: 0 25px;
@@ -140,7 +139,11 @@
     .add-buttons-container {
       float: left;
       display: flex;
-      width: 33.33333%;
+      width: 25%;
+    }
+
+    .toggle-button-group {
+      width: 50%;
     }
   }
 }
@@ -460,6 +463,18 @@
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       box-shadow: 10px 10px 35px -15px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+@media (max-width: 991.98px) {
+  .list-page-table {
+    height: -webkit-calc(100% - 128px);
+    height: calc(100% - 128px);
+
+    &.has-stats {
+      height: -webkit-calc(100% - 192px);
+      height: calc(100% - 192px);
     }
   }
 }
