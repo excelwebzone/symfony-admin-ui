@@ -56,6 +56,15 @@ header {
   }
 }
 
+@media (max-width: 575.98px) {
+  .header-global-nav .global-nav {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+}
+
 .header-action-bar {
   position: absolute;
   right: 24px;
