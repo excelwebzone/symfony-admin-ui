@@ -174,7 +174,7 @@
 .drawer-item {
   line-height: 20px;
   min-height: 80px;
-  padding: 15px 15px 15px 80px;
+  padding: 15px 15px 15px 85px;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.24);
 }
@@ -185,7 +185,7 @@
 
 .drawer-item-icon {
   height: 50px;
-  left: 15px;
+  left: 20px;
   position: absolute;
   top: 15px;
   width: 50px;
@@ -207,31 +207,35 @@
       text-decoration: none;
     }
   }
+
+  .highlight-matched-text .highlighted {
+    color: #5269de;
+  }
 }
 
 .drawer-item-details {
-  float: right;
-  text-align: right;
-  min-width: 30px;
-  min-height: 30px;
-  padding: 0 0 0 10px;
-}
-
-.drawer-item-date {
   font-size: 12px;
+  opacity: 0.72;
 }
 
 .drawer-item-unread-toggle {
+  position: absolute;
+  top: 35px;
+  left: 5px;
   display: none;
   font-size: 11px;
   line-height: 11px;
-  margin: 20px 0 0;
+  color: #cb1a42;
 }
 
 .drawer-item {
   &.is-unread {
     .drawer-item-unread-toggle {
       display: inline-block;
+    }
+
+    .drawer-item-content {
+      font-weight: 600;
     }
   }
 
