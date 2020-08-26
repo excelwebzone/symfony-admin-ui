@@ -122,6 +122,10 @@
   border-bottom: none;
 }
 
+.ignore-rows-overflow .settings-content-table-rows {
+  overflow: hidden;
+}
+
 .settings-content-table-item {
   padding: 5px;
   height: 56px;
