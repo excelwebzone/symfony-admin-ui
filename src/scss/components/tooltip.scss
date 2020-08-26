@@ -1,20 +1,22 @@
-.tooltip .tooltip-inner {
-  max-width: none;
-  z-index: 1000;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: none;
-  line-height: 14px;
-  color: #fff;
-  background-color: #0c0d0d;
-  width: auto;
-  padding: 8px;
-  border-radius: 4px;
-  text-align: center;
-  white-space: nowrap;
-}
+.tooltip {
+  .arrow {
+    display: none !important;
+  }
 
-.tooltip-invese .tooltip-inner {
-  color: #0c0d0d;
-  background-color: #fff;
+  .tooltip-inner {
+    max-width: none;
+    z-index: 1000;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: none;
+    line-height: 14px;
+    color: #fff;
+    background-color: #5c5c5c;
+    opacity: 0.95;
+    width: auto;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
