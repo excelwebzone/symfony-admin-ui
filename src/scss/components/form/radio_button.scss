@@ -3,7 +3,7 @@
 }
 
 .radio-button {
-  color: #888;
+  color: #696E6F;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -45,19 +45,19 @@
   }
 
   &.is-checked {
-    color: #363636;
+    color: #0C0D0D;
     font-weight: 700;
   }
 }
 
 .radio-input:checked + .radio-button {
-  color: #363636;
+  color: #0C0D0D;
   font-weight: 700;
 }
 
 .radio-button.is-checked > i,
 .radio-input:checked + .radio-button > i {
-  color: #0d94f6;
+  color: #2B41B2;
 }
 
 .radio-button.is-checked .checked,
@@ -71,10 +71,10 @@
 }
 
 .radio-button.is-disabled {
-  color: #ccc;
+  color: rgba(12,13,13,0.32);
 
   > i {
-    color: #ccc;
+    color: rgba(12,13,13,0.32);
   }
 }
 
