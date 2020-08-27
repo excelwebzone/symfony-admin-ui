@@ -10,7 +10,7 @@
   }
 
   &.checkbox-settings {
-    color: #363636;
+    color: #0c0d0d;
     font-size: 13px;
   }
 }
@@ -55,7 +55,7 @@
   }
 
   .unchecked {
-    color: #888;
+    color: #696e6f;
   }
 
   .checked {
@@ -100,7 +100,7 @@
 .checkbox.is-disabled .checkbox-display {
   .checked,
   .unchecked {
-    color: #ccc;
+    color: #dce3e6;
   }
 }
 
@@ -108,14 +108,14 @@
   &:checked:disabled + .checkbox-display {
     .checked,
     .unchecked {
-      color: #ccc;
+      color: #dce3e6;
     }
   }
 
   &:disabled + .checkbox-display {
     .checked,
     .unchecked {
-      color: #ccc;
+      color: #dce3e6;
     }
   }
 }
@@ -131,7 +131,7 @@
 
   &:after {
     background: 0 0;
-    color: #888;
+    color: #696e6f;
     content: '\e819';
     display: inline-block;
     font-family: fontello;

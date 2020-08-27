@@ -145,14 +145,14 @@ select {
   &.has-icon > i {
     float: left;
     margin: 3px 8px 3px 0;
-    color: #ccc;
+    color: #dce3e6;
   }
 
   .input-group-text {
     position: absolute;
     left: 5px;
     top: 2px;
-    color: #ccc;
+    color: #dce3e6;
     font-size: 16px;
   }
 
@@ -202,7 +202,7 @@ select {
 label,
 .col-form-label {
   position: relative;
-  color: #888;
+  color: #696e6f;
   font-size: 12px;
   font-weight: 500;
   line-height: 20px;
@@ -251,7 +251,7 @@ label .invalid-feedback {
 }
 
 .form-text {
-  color: #888;
+  color: #696e6f;
   font-size: 12px;
   margin-bottom: 10px;
 

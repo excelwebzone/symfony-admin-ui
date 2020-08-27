@@ -15,32 +15,32 @@
 }
 
 .settings-content-title {
-  color: #363636;
+  color: #0c0d0d;
   display: block;
   font-size: 24px;
   margin-bottom: 15px;
 }
 
 .settings-content-description {
-  color: #888;
+  color: #696e6f;
   font-size: 12px;
   margin-bottom: 10px;
   overflow: hidden;
 }
 
 .settings-content-hr {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #dce3e6;
   margin: 35px 0;
 }
 
 .settings-content-action-icon {
-  color: #ccc;
+  color: #dce3e6;
   cursor: pointer;
   font-size: 24px;
   margin-left: 10px;
 
   &:hover {
-    color: #888;
+    color: #696e6f;
   }
 
   .zmdi-delete:hover,
@@ -50,7 +50,7 @@
 }
 
 .settings-content-tab-container {
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid #dce3e6;
   margin: 32px 0;
 
   &.is-condensed {
@@ -83,7 +83,7 @@
     display: block;
     height: auto;
     overflow-y: auto;
-    max-height: 387px;
+    max-height: 440px;
   }
 
   .sortable-list {

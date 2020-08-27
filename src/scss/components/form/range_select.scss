@@ -1,6 +1,6 @@
 .range-select-container {
   background-color: #fff;
-  border: 1px solid #e9e9e9;
+  border: 1px solid #dce3e6;
   border-radius: 2px;
   box-shadow: 0 1px 4px 0 rgba(191, 191, 191, 0.5);
   margin-right: 12px;
@@ -26,7 +26,7 @@
       top: -7px;
       border-right: 7px solid transparent;
       border-left: 7px solid transparent;
-      border-bottom: 7px solid #ccc;
+      border-bottom: 7px solid #dce3e6;
     }
 
     &:after {
@@ -74,7 +74,7 @@
         top: initial;
         bottom: -7px;
         border-bottom: initial;
-        border-top: 7px solid #ccc;
+        border-top: 7px solid #dce3e6;
       }
 
       &:after {
@@ -113,7 +113,7 @@
       border: 12px solid transparent;
       border-bottom-width: 6px;
       border-top-width: 6px;
-      border-left-color: #e9e9e9;
+      border-left-color: #dce3e6;
       top: -6px;
     }
   }
@@ -133,7 +133,7 @@
       }
 
       > .calendar {
-        border: 1px solid #e9e9e9;
+        border: 1px solid #dce3e6;
         border-radius: 2px;
       }
     }
@@ -166,12 +166,12 @@
     font-size: 12px;
     align-items: center;
     padding-left: 10px;
-    color: #888;
+    color: #696e6f;
   }
 
   .range-select-range-field {
     font-size: 12px;
-    color: #888;
+    color: #696e6f;
     font-weight: 400;
     margin: 14px 20px 5px 5px;
 
@@ -234,7 +234,7 @@
     display: flex;
     bottom: 0;
     height: 60px;
-    border-top: 1px solid #e9e9e9;
+    border-top: 1px solid #dce3e6;
 
     .range-select-display-range {
       width: 38em;
