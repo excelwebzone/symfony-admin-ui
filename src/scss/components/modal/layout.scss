@@ -13,7 +13,6 @@
     .modal-body {
       height: -webkit-calc(100% - 144px);
       height: calc(100% - 144px);
-      box-shadow: inset 0 7px 9px -10px #000;
       overflow: hidden !important;
       overflow-y: auto !important;
 
@@ -163,9 +162,11 @@
     display: block;
   }
 
+/*
   &.modal-slim-footer {
     border: none;
   }
+*/
 
   .btn {
     height: 56px;
