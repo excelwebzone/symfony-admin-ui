@@ -21,7 +21,6 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
-  color: #616161;
   background-color: #fcfcfc;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.08);
   height: 48px;
@@ -146,8 +145,8 @@
 
       &.is-active {
         background: transparent;
-        border-bottom: 3px solid #4a4060;
-        color: #000;
+        border-bottom: 4px solid #4a4060;
+        border-radius: 2px;
 
         > a {
           font-weight: 600;
