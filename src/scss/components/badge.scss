@@ -1,0 +1,53 @@
+.badge {
+  border: 2px solid transparent;
+}
+
+.badge-primary,
+.badge-secondary,
+.badge-success,
+.badge-danger,
+.badge-warning,
+.badge-info,
+.badge-light,
+.badge-dark {
+  background-color: transparent;
+}
+
+.badge-primary {
+  color: #007bff;
+  border-color: rgba(0, 123, 255, 0.2);
+}
+
+.badge-secondary {
+  color: #6c757d;
+  border-color: rgba(108, 117, 125, 0.2);
+}
+
+.badge-success {
+  color: #28a745;
+  border-color: rgba(40, 167, 69, 0.2);
+}
+
+.badge-danger {
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.2);
+}
+
+.badge-warning {
+  border-color: rgba(255, 193, 7, 0.2);
+}
+
+.badge-info {
+  color: #17a2b8;
+  border-color: rgba(23, 162, 184, 0.2);
+}
+
+.badge-light {
+  border-color: rgba(248, 249, 250, 0.2);
+}
+
+.badge-dark {
+  color: #343a40;
+  border-color: rgba(52, 58, 64, 0.2);
+}
+
