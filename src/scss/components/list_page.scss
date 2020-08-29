@@ -277,19 +277,33 @@
   top: -10px;
   background-color: #fff;
   color: #0c0d0d;
-  font-size: 16px;
-  line-height: 28px;
+  padding: 20px 0;
   z-index: 1;
 }
 
+.list-chart-summary-number-list {
+  display: flex;
+}
+
 .list-chart-summary-number-item {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin-right: 60px;
   position: relative;
 
   > div:first-child {
-    font-size: 42px;
-    line-height: 80px;
+    order: 2;
+    font-size: 29px;
+    font-weight: 500;
+    line-height: 0.72;
+    opacity: 0.64;
+  }
+
+  > div:last-child {
+    order: 1;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.48;
   }
 
   .list-chart-summary-tooltip-info {
