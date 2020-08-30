@@ -149,10 +149,16 @@
 }
 
 .list-search {
-  margin: 0 24px 24px;
+  &.has-floating-label .input-text {
+    padding-top: 10px;
+  }
 
-  .input-text {
+  &:not(.has-floating-label) .input-text {
     border-width: 2px;
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 }
 
