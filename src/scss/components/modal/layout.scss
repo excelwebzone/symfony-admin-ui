@@ -34,9 +34,10 @@
 
 .modal-dialog {
   height: 100%;
+  max-width: 720px;
 
-  &:not(.modal-lg) {
-    max-width: 600px;
+  &.modal-lg {
+    max-width: 992px;
   }
 }
 
@@ -222,6 +223,7 @@
   width: 30px;
   line-height: 40px;
   text-align: center;
+  z-index: 1;
 
   &:active {
     background: #EAF0F2;
