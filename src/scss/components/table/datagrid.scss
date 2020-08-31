@@ -743,6 +743,24 @@ i.zmdi-square-o:hover {
   background-color: rgba(144, 151, 153, 0.08);
 }
 
+.datagrid-body-container .datagrid-table-row.is-unread .datagrid-cell:first-child {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 7px;
+    width: 7px;
+    background: currentColor;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 7px;
+    transform: translateY(-50%);
+    color: #dc3545;
+  }
+}
+
 /*------------------------------------*\
   Table Cell
 \*------------------------------------*/
