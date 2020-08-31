@@ -24,18 +24,18 @@
   &.drawer-frame-list {
     height: auto;
     margin-top: 0;
-    width: 360px;
+    width: 500px;
   }
 
   &.drawer-frame-profile {
     height: auto;
-    min-width: 300px;
+    min-width: 500px;
     width: calc((100% - 60px) * 0.25);
   }
 
   &.drawer-frame-reports {
     height: auto;
-    width: 360px;
+    width: 500px;
   }
 }
 
