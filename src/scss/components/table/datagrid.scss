@@ -493,6 +493,7 @@
 }
 
 .datagrid-header-cell.table-header-cell-select i.zmdi-check-square,
+.datagrid-header-cell.table-header-cell-select i.zmdi-check-circle
 .datagrid-header-cell.table-header-cell-select i.select,
 .datagrid-header-cell.table-header-cell-select i:hover {
   color: #2b41b2;
@@ -549,6 +550,7 @@
 }
 
 .datagrid-left-table-block .datagrid-cell.table-cell-select i.zmdi-check-square,
+.datagrid-left-table-block .datagrid-cell.table-cell-select i.zmdi-check-circle
 .datagrid-left-table-block .datagrid-cell.table-cell-select i:hover {
   color: #2b41b2;
 }
@@ -577,10 +579,12 @@
 }
 
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-square-o,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-circle-o,
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-star-outline,
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-edit,
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-delete,
 .datagrid-left-table-block .datagrid-table-row:hover .zmdi-square-o,
+.datagrid-left-table-block .datagrid-table-row:hover .zmdi-circle-o,
 .datagrid-left-table-block .datagrid-table-row:hover .zmdi-star-outline,
 .datagrid-left-table-block .datagrid-table-row:hover .zmdi-edit,
 .datagrid-left-table-block .datagrid-table-row:hover .zmdi-delete {
@@ -645,9 +649,11 @@
 .datagrid-table-row.datagrid-selected
 .datagrid-cell.table-cell-select
 i.zmdi-check-square,
-.datagrid-table-row.datagrid-selected
-.datagrid-cell.table-cell-select
-i.zmdi-square-o:hover {
+i.zmdi-check-circle,
+.datagrid-table-row.datagrid-selected,
+.datagrid-cell.table-cell-select,
+i.zmdi-square-o:hover,
+i.zmdi-circle-o:hover {
   color: #0c0d0d;
 }
 */
@@ -707,6 +713,7 @@ i.zmdi-square-o:hover {
 .datagrid-table-row.datagrid-selected .table-cell-assignee > a,
 .datagrid-table-row.datagrid-selected .table-cell-checkbox i,
 .datagrid-table-row.datagrid-selected .table-cell-checkbox i.zmdi-check-square,
+.datagrid-table-row.datagrid-selected .table-cell-checkbox i.zmdi-check-circle,
 .datagrid-table-row.datagrid-selected .table-cell-checkbox i:hover,
 .datagrid-table-row.datagrid-selected .table-cell-contact-group,
 .datagrid-table-row.datagrid-selected .table-cell-contact-group > a {
