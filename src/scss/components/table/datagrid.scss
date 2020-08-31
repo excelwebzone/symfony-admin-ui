@@ -602,34 +602,6 @@
   width: 36px;
 }
 
-.datagrid-left-table-block .datagrid-table-row.datagrid-selected .datagrid-cell.table-cell-task .task-check-box-container {
-  background: #fff;
-}
-
-.datagrid-left-table-block .datagrid-table-row.datagrid-selected .datagrid-cell.table-cell-task .task-check-box-activity-icon {
-  color: #2b41b2;
-}
-
-.datagrid-left-table-block .datagrid-table-row:hover .datagrid-cell.table-cell-task .task-check-box-container,
-.datagrid-left-table-block .datagrid-table-row.datagrid-selected:hover .datagrid-cell.table-cell-task .task-check-box-container {
-  background: #2b41b2;
-}
-
-.datagrid-left-table-block .datagrid-table-row:hover .datagrid-cell.table-cell-task .task-check-box-container.is-completed,
-.datagrid-left-table-block .datagrid-table-row.datagrid-selected:hover .datagrid-cell.table-cell-task .task-check-box-container.is-completed {
-  background: #07a661;
-}
-
-.datagrid-left-table-block .datagrid-table-row:hover .datagrid-cell.table-cell-task .task-check-box-container .task-check-box-checkbox,
-.datagrid-left-table-block .datagrid-table-row.datagrid-selected:hover .datagrid-cell.table-cell-task .task-check-box-container .task-check-box-checkbox {
-  display: inline-flex;
-}
-
-.datagrid-left-table-block .datagrid-table-row:hover .datagrid-cell.table-cell-task .task-check-box-container .zmdi-square-o,
-.datagrid-left-table-block .datagrid-table-row.datagrid-selected:hover .datagrid-cell.table-cell-task .task-check-box-container .zmdi-square-o {
-  color: #fff;
-}
-
 .datagrid-left-table-block .datagrid-cell.table-cell-name,
 .datagrid-right-table-block .datagrid-cell.table-cell-name {
   font-size: 13px;

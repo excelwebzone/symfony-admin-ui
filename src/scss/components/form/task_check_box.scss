@@ -5,9 +5,8 @@
     line-height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    background: #dce3e6;
     font-size: 25px;
-    color: #fff;
+    color: #dce3e6;
     outline: 0;
 
     .task-check-box-activity-icon,
@@ -15,7 +14,6 @@
       height: 100%;
       align-items: center;
       justify-content: center;
-      color: #fff;
     }
 
     .task-check-box-activity-icon > i,
@@ -34,7 +32,6 @@
     }
 
     .task-check-box-checkbox {
-      color: #fff;
       display: none;
       width: 200%;
       transition: transform 0.15s ease-in-out, background 0.15s ease-in-out;
@@ -43,7 +40,7 @@
     }
 
     &:hover {
-      background: #2b41b2;
+      color: #2b41b2;
 
       .task-check-box-activity-icon {
         display: none;
@@ -55,22 +52,20 @@
     }
 
     &.is-completed {
-      background: #20d486;
+      color: #20d486;
 
       .task-check-box-checkbox {
         color: #20d486;
-        background: #dce3e6;
         transform: translateX(-50%);
       }
 
       &:hover {
         color: #dce3e6;
-        background: #2b41b2;
       }
     }
 
     &.is-loading {
-      background: #eaf0f2;
+      color: #eaf0f2;
     }
   }
 
@@ -78,6 +73,6 @@
     width: 36px;
     height: 36px;
     line-height: 36px;
-    font-size: 19px;
+    font-size: 24px;
   }
 }
