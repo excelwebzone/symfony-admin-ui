@@ -73,13 +73,18 @@ export default class EntityModal {
 
     this.createNewModal($target.data('modal-name'), $target.data('modal-class'));
 
+    this.$modal.addClass('is-loading');
+
     axios.get($target.data('endpoint'))
       .then(({ data }) => {
+        this.$modal.removeClass('is-loading');
+
         this.loadContent(data.html);
 
         $target.trigger('modal:shown', this.$modal);
       })
       .catch((e) => {
+        this.$modal.removeClass('is-loading');
         this.$modal.modal('hide');
         this.$modal = null;
 

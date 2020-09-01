@@ -117,7 +117,7 @@
 }
 
 .modal-body {
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
 
   .settings-content-table {
     margin: -25px -30px;
@@ -127,6 +127,10 @@
       max-height: unset;
     }
   }
+}
+
+.modal.is-loading .modal-body {
+  border-radius: 16px;
 }
 
 .modal-subheader {
