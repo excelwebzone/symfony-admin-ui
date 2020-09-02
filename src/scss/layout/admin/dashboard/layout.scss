@@ -15,8 +15,8 @@
   .scrollable-tabs {
     position: fixed;
     top: 60px;
-    left: 60px;
-    width: calc(100% - 60px);
+    left: 72px;
+    width: calc(100% - 72px);
     z-index: 3;
     transition: margin-left 0.3s, width 0.3s;
     background-color: #fcfcfc;

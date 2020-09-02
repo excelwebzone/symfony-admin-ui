@@ -59,12 +59,12 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 75px;
+  width: 87px;
 
   .content {
     background-color: #1350aa;
     border-radius: 0 8px 8px 0;
-    width: 60px;
+    width: 72px;
     height: 100%;
   }
 
@@ -106,18 +106,6 @@
     width: 100%;
     height: 44px;
     right: 10px;
-
-    &.selected {
-      a::after {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        border-left: 4px solid #dce3e6;
-        height: 44px;
-        transition: right 0.2s ease;
-        left: 0;
-      }
-    }
 
     .nav-action i,
     a {
@@ -213,7 +201,7 @@
     position: relative;
     cursor: pointer;
     float: left;
-    width: 60px;
+    width: 72px;
     height: 100%;
     font-size: 24px;
     color: rgba(255, 255, 255, 0.48);
@@ -286,7 +274,7 @@
 
 .sidebar-brand-icon {
   height: 30px;
-  left: 15px;
+  left: 22px;
   bottom: 1px;
   position: relative;
   transition: opacity 0.3s;
