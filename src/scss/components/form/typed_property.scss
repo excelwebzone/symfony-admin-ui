@@ -25,13 +25,12 @@
 
   &.with-floating-label {
     .typed-property-key-dropdown {
-      position: absolute;
-      top: 0;
-      left: 7px;
-      transform: translateY(-50%) scale(0.9);
       background-color: #fff;
       padding: 0 6px;
-      z-index: 1;
+    }
+
+    .typed-property-value-field {
+      padding-top: 10px;
     }
 
     .has-floating-label {
