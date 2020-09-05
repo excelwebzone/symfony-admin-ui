@@ -176,6 +176,15 @@
   color: #696e6f;
 }
 
+.btn-flat-default:focus,
+.btn-flat-default:hover {
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.btn-flat-default:before {
+  background-color: rgba(43, 65, 178, 0.2);
+}
+
 .btn-brand-primary:focus,
 .btn-brand-primary:hover {
   color: #ff3465;
