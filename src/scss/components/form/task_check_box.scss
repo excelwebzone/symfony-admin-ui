@@ -26,6 +26,10 @@
       cursor: pointer;
     }
 
+    &:not(.is-completed) .task-check-box-activity-icon > i::before {
+      content: '\F26C'; // zmdi-circle-o
+    }
+
     .task-check-box-activity-icon {
       display: inline-flex;
       width: 100%;
