@@ -13,7 +13,7 @@
     width: 1%;
 
     > div:before {
-      border-top: 4px solid #c8c7cc;
+      border-top: 2px dotted #f0f0f0;
       content: '';
       display: block;
       font-size: 0;
@@ -37,42 +37,44 @@
     > div {
       &.selected:before,
       &.done:before {
-        border-color: #007aff;
+        border-color: #1350aa;
+      }
+
+      &.done:before {
+        border-style: solid;
+        border-width: 1px;
       }
     }
   }
 
   .step-number {
-    background-color: #fff;
-    border: 5px solid #c8c7cc;
+    background-color: #f0f0f0;
+    border: 1px solid #f0f0f0;
     border-radius: 100% 100% 100% 100%;
-    color: #546474;
+    color: rgba(0, 0, 0, 0.32);
     display: inline-block;
-    font-size: 15px;
-    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 32px;
     line-height: 30px;
     position: relative;
     text-align: center;
-    width: 40px;
+    width: 32px;
   }
 
   .step {
     > div {
       &.selected .step-number {
-        border-color: #007aff;
+        border-color: #1350aa;
+        color: #1350aa;
       }
 
       &.done .step-number {
-        border-color: #007aff;
-        background-color: #007aff;
+        border-color: #1350aa;
+        background-color: #1350aa;
         color: #fff;
         text-indent: -9999px;
       }
-    }
-
-    &:last-child > div.done .step-number {
-      border-color: #5cb85c;
-      background-color: #5cb85c;
     }
 
     > div.done {
@@ -100,9 +102,10 @@
     }
 
     .step-desc {
-      color: #8e8e93;
+      color: #f0f0f0;
       display: block;
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: 600;
       margin-top: 4px;
       max-width: 100%;
       table-layout: fixed;
@@ -113,7 +116,7 @@
     > div {
       &.selected .step-desc,
       &.done .step-desc {
-        color: #2b3d53;
+        color: #1350aa;
       }
 
       &:hover {
