@@ -30,69 +30,43 @@
   }
 
   .entity-stats-stacked-bar-graph {
-    color: #fff;
-    display: flex;
     position: relative;
 
-    .entity-stats-bar {
-      padding-left: 5px;
+    .entity-stats-stacked-bar-graph-track {
+      background-color: #f0f0f0;
+      height: 32px;
+      overflow: hidden;
+      border-radius: 4px;
 
-      &:not(:first-child) {
-        margin-left: 2px;
-      }
-
-      &:hover .entity-stats-detail {
-        animation: fade 0.2s;
-        display: block;
-      }
-    }
-
-    .entity-stats-primary {
-      background-color: #0d94f6;
-
-      .entity-stats-detail-label {
-        color: #0d94f6;
-      }
-    }
-
-    .entity-stats-success {
-      background-color: #49b04b;
-
-      .entity-stats-detail-label {
-        color: #49b04b;
-      }
-
-      .entity-stats-detail {
-        position: absolute;
-        left: 5px;
-        right: auto;
+      .entity-stats-stacked-bar-graph-bar {
+        background-color: #1350aa;
+        height: 100%;
+        -ms-transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -ms-transform-origin: left;
+        -webkit-transform-origin: left;
+        transform-origin: left;
+        -webkit-transition: -webkit-transform .2s;
+        transition: transform .2s;
       }
     }
 
-    .entity-stats-detail {
-      background: #fff;
-      border-radius: 2px;
-      border: 1px solid #dce3e6;
-      box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.24);
-      color: #000;
-      display: none;
-      font-weight: 700;
-      padding: 16px 10px;
+    .entity-stats-stacked-bar-graph-surplus-line {
+      width: 1px;
+      height: 40px;
       position: absolute;
-      top: -40px;
-      width: 144px;
-      z-index: 2;
-      -webkit-font-smoothing: subpixel-antialiased;
+      top: 0;
+      background-color: #1350aa;
+      display: inline-block;
+    }
 
-      .entity-stats-detail-label {
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .entity-stats-detail-number {
-        float: right;
-        color: #000;
-      }
+    .entity-stats-stacked-bar-graph-surplus-value {
+      position: absolute;
+      bottom: -23px;
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 12px;
+      font-weight: 600;
     }
   }
 }
