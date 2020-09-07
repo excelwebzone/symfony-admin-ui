@@ -9,8 +9,9 @@
   position: relative;
 }
 
-.entity-related-starched {
-  padding-top: 25px;
+.entity-details .entity-related-starched {
+  margin: -25px -25px -85px;
+  height: calc(100% + 85px);
 }
 
 .entity-related-loading-box {
