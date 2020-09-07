@@ -23,9 +23,7 @@ export default class ActivityList {
 
     // handle actions
     $(document).on('modal:shown', '.js-activity-item-action-delete', (e, modal) => this.removeItem(e, modal));
-    $(document).on('click', '.js-activity-item-action-edit', (e) => this.openItemForm(e));
-    $(document).on('click', '.js-activity-item-action-cancel', (e) => this.closeItemForm(e));
-    $(document).on('click', '.js-activity-item-action-save', (e) => this.saveItemForm(e));
+    $(document).on('modal:shown', '.js-activity-item-action-edit', (e, modal) => this.openItem(e, modal));
     $(document).on('input keydown change', '.js-activity-log-form [id$="_body"]', (e) => this.toggleExtraField(e));
 
     // toggle item
@@ -213,107 +211,82 @@ export default class ActivityList {
     });
   }
 
-  openItemForm(e) {
+  openItem(e, modal) {
+    const $modal = $(modal);
     const $container = $(e.target).closest('.activity-item-note');
-    $container.addClass('is-editable');
 
-    const $textarea = $container.find('textarea');
-    $textarea.trigger('keydown');
+    const $textarea = $modal.find('textarea');
+    $textarea.val($container.find('.activity-item-body-field').val());
 
     if ($textarea.hasClass('js-text-editor')) {
-      $textarea.trigger('init-text-editor');
-    }
-  }
-
-  closeItemForm(e) {
-    const $container = $(e.target).closest('.activity-item-note');
-    $container.removeClass('is-editable');
-
-    const $textarea = $container.find('textarea');
-    $textarea
-      .val($container.find('.activity-item-body').html())
-      .trigger('keydown');
-
-    if ($textarea.hasClass('js-text-editor')) {
-      $textarea.trigger('update-text-editor');
-    }
-  }
-
-  saveItemForm(e) {
-    const $button = $(e.target);
-    const $cancelButton = $(e.target).prev('.js-activity-item-action-cancel');
-    const $container = $button.closest('.activity-item-note');
-    const $formGroup = $container.find('.form-group');
-    const $error = $formGroup.find('.form-control-error');
-    const $textarea = $formGroup.find('textarea');
-
-    // wait until done..
-    if ($formGroup.hasClass('is-loading')) {
-      return;
+      $textarea.trigger('content-changed');
     }
 
-    // remove old error
-    $error.find('.invalid-feedback').remove();
+    $modal.find('.js-activity-item-action-save').on('click', (e, data) => {
+      const $button = $(e.target);
+      const $formGroup = $modal.find('.form-group');
+      const $error = $formGroup.find('.form-control-error');
 
-    // remove all classes
-    $formGroup.removeClass('is-loading is-invalid successed');
+      // wait until done..
+      if ($formGroup.hasClass('is-loading')) {
+        return;
+      }
 
-    // ignore empty parameters
-    if (_.isEmpty($textarea.val())) {
-      $textarea.focus();
+      // remove old error
+      $error.find('.invalid-feedback').remove();
 
-      return;
-    }
+      // remove all classes
+      $formGroup.removeClass('is-loading is-invalid successed');
 
-    // add loading
-    $formGroup.addClass('is-loading');
+      // ignore empty parameters
+      if (_.isEmpty($textarea.val())) {
+        $textarea.focus();
 
-    $button.disable();
-    $cancelButton.disable();
+        return;
+      }
 
-    const params = {};
-    params[$textarea.data('field') || 'note'] = $textarea.val();
+      // add loading
+      $formGroup.addClass('is-loading');
 
-    axios.put($button.data('endpoint'), params)
-      .then(({ data }) => {
-        $button.enable();
-        $cancelButton.enable();
+      const params = {};
+      params[$textarea.data('field') || 'note'] = $textarea.val();
 
-        // remove loading
-        $formGroup.removeClass('is-loading');
+      axios.put($button.data('endpoint'), params)
+        .then(({ data }) => {
+          // remove loading
+          $formGroup.removeClass('is-loading');
 
-        if (data.ok) {
-          $formGroup.addClass('successed');
+          if (data.ok) {
+            $formGroup.addClass('successed');
 
-          $container.click();
-          $container.find('.activity-item-body').html($textarea.val());
+            $container.click();
+            $container.find('.activity-item-body').html($textarea.val());
+            $container.find('.activity-item-body-field').val($textarea.val());
 
-          toaster('Updated');
-        } else {
-          $textarea.focus();
-          $formGroup.addClass('is-invalid');
+            $modal.modal('hide');
 
-          $error.append(`<div class="invalid-feedback ${data.error.message.length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
-        }
-      })
-      .catch(() => {
-        $button.enable();
-        $cancelButton.enable();
+            toaster('Updated Note');
+          } else {
+            $textarea.focus();
+            $formGroup.addClass('is-invalid');
 
-        // remove loading
-        $formGroup.removeClass('is-loading');
-      });
+            $error.append(`<div class="invalid-feedback ${data.error.message.length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
+          }
+        })
+        .catch(() => {
+          // remove loading
+          $formGroup.removeClass('is-loading');
+        });
+    });
   }
 
   toggleActivityItemNote(e) {
-    if ($(e.target).closest('.activity-item-content').length
-      || $(e.target).closest('.activity-item-footer').length
-    ) {
+    if ($(e.target).closest('.activity-item-content').length) {
       e.stopPropagation();
       return;
     }
 
-    $(e.currentTarget).removeClass('is-editable').removeClass('is-replying');
+    $(e.currentTarget).removeClass('is-replying');
     $(e.currentTarget).toggleClass('is-expanded');
     $(e.currentTarget).find('.activity-item-expand-arrow>i')
       .toggleClass('zmdi-chevron-down')
