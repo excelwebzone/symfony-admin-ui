@@ -55,9 +55,12 @@ export default class EntityModal {
     this.$modal.find('.modal-content').html(html);
     this.$modal.find('[autofocus]').focus();
 
-    if (this.$modal.find('.modal-form').data('size-large')) {
-      this.$modal.find('.modal-dialog').addClass('modal-lg');
+    if (this.$modal.find('.modal-form').data('modal-class')) {
+      this.$modal.find('.modal-dialog').addClass(
+        this.$modal.find('.modal-form').data('modal-class')
+      );
     }
+
     if (this.$modal.find('.modal-form').data('vertically-responsive')) {
       this.$modal.addClass('modal-vertically-responsive');
     }
