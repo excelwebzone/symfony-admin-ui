@@ -78,10 +78,10 @@
 }
 
 .activity-item-header {
-  color: #0c0d0d;
+  color: #dce3e6;
   font-size: 13px;
   line-height: 20px;
-  padding: 19px 35px 0 0;
+  padding: 20px 50px 0 0;
 
   > .activity-item-header-content {
     font-size: 13px;
@@ -370,20 +370,24 @@
   }
 }
 
-.activity-item-tools {
-  flex: none;
-  width: 50px;
-  padding-left: 5px;
-  margin: 20px auto auto;
-  border-bottom: none;
+.activity-item-actions-section {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  display: flex;
 
-  .toggle-button {
-    width: 36;
-    height: 36px;
-  }
+  .dropdown {
+    border-bottom: none;
 
-  ul {
-    margin: 0 !important;
+    .button-icon {
+      font-size: 24px;
+      height: 36px;
+      align-items: center;
+    }
+
+    ul {
+      margin: 0 !important;
+    }
   }
 }
 
