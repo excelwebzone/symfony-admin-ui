@@ -70,6 +70,17 @@
   margin: 20px auto auto;
 }
 
+@media (max-width: 767.98px) {
+  .activity-item-profile-section {
+    width: 57px;
+  }
+
+  .activity-item-profile-image {
+    height: 32px;
+    width: 32px;
+  }
+}
+
 .activity-item-content-section {
   position: relative;
   flex: auto;
@@ -351,6 +362,13 @@
   }
 }
 
+@media (max-width: 767.98px) {
+  .activity-image-primary.profile-image-component {
+    height: 32px;
+    width: 32px;
+  }
+}
+
 .activity-image-secondary {
   position: absolute;
   top: 40px;
@@ -388,6 +406,12 @@
     ul {
       margin: 0 !important;
     }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .activity-item-actions-section {
+    right: 10px;
   }
 }
 
