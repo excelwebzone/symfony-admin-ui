@@ -34,13 +34,6 @@
 
 .modal-dialog {
   height: 100%;
-  max-width: 720px;
-}
-
-@media (min-width: 1200px) {
-  .modal-dialog.modal-lg {
-    max-width: 1140px;
-  }
 }
 
 .modal-vertically-responsive .modal-dialog {
