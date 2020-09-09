@@ -261,6 +261,7 @@ export default class ListPage {
   }
 
   toggleBulkTools(toggle) {
+    this.$container.find('.list-filter-selector').toggle(!toggle);
     this.$container.find('.bulk-buttons-container').toggle(toggle);
     this.$container.find('.bulk-buttons-container').find('.selection-count span').html(this.$container.find('.js-bulk-select:checked').length);
   }

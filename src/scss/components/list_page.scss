@@ -44,9 +44,9 @@
 
     .selection-count {
       margin-right: 20px;
-      font-size: 12px;
-      color: #2b41b2;
-      margin-bottom: 18px;
+      font-size: 16px;
+      color: #0c0d0d;
+      margin-bottom: 20px;
       vertical-align: middle;
       display: inline-block;
       cursor: default;
@@ -110,14 +110,6 @@
     font-size: 24px;
     margin-left: auto;
     width: 50%;
-  }
-}
-
-@media (max-width: 1199.98px) {
-  .list-page-header {
-    .bulk-buttons-container .selection-count {
-      display: none !important;
-    }
   }
 }
 
