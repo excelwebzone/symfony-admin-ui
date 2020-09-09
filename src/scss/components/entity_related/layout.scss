@@ -1,7 +1,7 @@
 .entity-related {
   height: 100%;
   padding-bottom: 65px;
-  background-color: #fff;
+  background-color: #fcfcfc;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
@@ -9,9 +9,9 @@
   position: relative;
 }
 
-.entity-details .entity-related-starched {
+.entity-details .entity-related {
   margin: -25px -25px -85px;
-  height: calc(100% + 85px);
+  height: calc(100% + 110px);
 }
 
 .entity-related-loading-box {
@@ -74,14 +74,14 @@
     bottom: 0;
     margin: auto;
     position: absolute;
-    right: 15px;
+    right: 24px;
     top: 0;
   }
 }
 
 .entity-association-group-title {
   color: #696e6f;
-  font-weight: 500;
+  font-weight: 600;
   overflow: hidden;
 }
 
@@ -107,23 +107,28 @@
 }
 
 .entity-association-group-empty-row {
-  padding: 0 25px 10px;
-  color: #c9d0d3;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  height: 64px;
-  line-height: 20px;
+  padding: 50px 0;
 
-  i {
-    background-color: #dce3e6;
-    color: rgba(12, 13, 13, 0.64);
-    height: 34px;
-    line-height: 34px;
-    margin: 5px;
+  .empty-icon {
+    height: 64px;
+    width: 64px;
+    color: #c9d0d3;
+    font-size: 64px;
+    margin: 10px auto;
     text-align: center;
-    width: 34px;
-    border-radius: 50%;
+  }
+
+  .empty-title {
+    color: #0c0d0d;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  .empty-button {
+    margin: 10px auto;
+    text-align: center;
   }
 }
 
@@ -150,7 +155,7 @@
 .entity-association-group-footer-link {
   font-size: 13px;
   font-weight: 600;
-  margin: 20px;
+  margin: 0 24px 24px;
 }
 
 .is-uploading {
