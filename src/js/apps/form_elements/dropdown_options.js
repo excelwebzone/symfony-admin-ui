@@ -35,7 +35,11 @@ export default class DropdownOptions {
           $text = $item.find('.option-list-info-item-text');
         }
 
-        $(dropdown).find('.dropdown-text').removeClass('dropdown-placeholder').html($text.html());
+        $(dropdown)
+          .addClass('has-value')
+          .find('.dropdown-text')
+            .removeClass('dropdown-placeholder')
+            .html($text.html());
       }
     }
 
@@ -53,8 +57,14 @@ export default class DropdownOptions {
         `);
       }
 
+      if ($(dropdown).find('.dropdown-tags .tag').length) {
+         $(dropdown).addClass('has-value');
+      }
+
       const $options = $(dropdown).find('.option-list').find('>ul');
-      if ($options.find('.option-list-item.is-selected').length === $options.find('.option-list-item').length) {
+      if ($options.find('.option-list-item.is-selected').length === $options.find('.option-list-item').length
+        && $options.find('.option-list-label-empty').length === 0
+      ) {
         $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Options Found</div></li>');
       }
     }
@@ -116,6 +126,7 @@ export default class DropdownOptions {
     }
 
     const $dropdown = $(this).closest('.dropdown');
+    $dropdown.addClass('has-value');
 
     if ($dropdown.hasClass('js-select-dropdown-multiple')) {
       $(this).addClass('is-selected').hide();
@@ -227,6 +238,7 @@ export default class DropdownOptions {
 
   resetValue() {
     const $dropdown = $(this).closest('.dropdown');
+    $dropdown.removeClass('has-value');
 
     if ($dropdown.find('.dropdown-text')) {
       $dropdown.find('.dropdown-text').addClass('dropdown-placeholder').html($dropdown.data('placeholder') || '');
@@ -343,5 +355,9 @@ export default class DropdownOptions {
     }
 
     $(this).closest('.tag').remove();
+
+    if ($dropdown.find('.dropdown-tags .tag').length === 0) {
+       $dropdown.removeClass('has-value');
+    }
   }
 }

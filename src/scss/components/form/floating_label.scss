@@ -29,9 +29,6 @@
     height: 56px;
 
     &.dropdown-multiple {
-      height: auto;
-      min-height: 56px;
-
       .dropdown-tags {
         width: calc(100% - 16px);
       }
@@ -52,7 +49,8 @@
       border-color: #979797;
     }
 
-    &:focus {
+    &:focus,
+    &.dropdown.show {
       border-color: #007d99;
       box-shadow: none;
 
@@ -64,7 +62,8 @@
       }
     }
 
-    &:not(:placeholder-shown) + label {
+    &.has-value + label,
+    &:not(:placeholder-shown):not(.dropdown) + label {
       top: 16px;
       left: 0;
       transform: translateY(-50%) scale(0.9);
@@ -104,7 +103,9 @@
       padding-left: 50px !important;
 
       &:focus + label,
-      &:not(:placeholder-shown) + label {
+      &.dropdown.show + label,
+      &.has-value + label,
+      &:not(:placeholder-shown):not(.dropdown) + label {
         left: 35px;
       }
     }
