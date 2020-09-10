@@ -473,13 +473,13 @@ export default class Filter {
 
     if (this.$updateButton.is(':visible')) {
       this.$saveButton
-        .removeClass('btn-primary')
+        .removeClass('btn-primary w-100')
         .addClass('btn-flat-primary')
         .text('Save New Filter');
     } else {
       this.$saveButton
         .removeClass('btn-flat-primary')
-        .addClass('btn-primary')
+        .addClass('btn-primary w-100')
         .text('Save Filter');
     }
 
