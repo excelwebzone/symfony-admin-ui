@@ -1,124 +1,3 @@
-.range-select-container {
-  background-color: #fff;
-  border: 1px solid #dce3e6;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px 0 rgba(191, 191, 191, 0.5);
-  margin-right: 12px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: none;
-  -webkit-transition: -webkit-transform 0.2s linear;
-  transition: transform 0.2s linear;
-  display: none;
-  z-index: 9999;
-
-  &:not(.has-nub) {
-    &:before,
-    &:after {
-      position: absolute;
-      display: inline-block;
-      border-bottom-color: rgba(0, 0, 0, 0.2);
-      content: '';
-    }
-
-    &:before {
-      top: -7px;
-      border-right: 7px solid transparent;
-      border-left: 7px solid transparent;
-      border-bottom: 7px solid #dce3e6;
-    }
-
-    &:after {
-      top: -6px;
-      border-right: 6px solid transparent;
-      border-bottom: 6px solid #fff;
-      border-left: 6px solid transparent;
-    }
-
-    &.opens-left {
-      &:before {
-        right: 9px;
-      }
-
-      &:after {
-        right: 10px;
-      }
-    }
-
-    &.opens-center {
-      &:before,
-      &:after {
-        left: 0;
-        right: 0;
-        width: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-    &.opens-right {
-      &:before {
-        left: 9px;
-      }
-
-      &:after {
-        left: 10px;
-      }
-    }
-
-    &.drop-up {
-      margin-top: -5px;
-
-      &:before {
-        top: initial;
-        bottom: -7px;
-        border-bottom: initial;
-        border-top: 7px solid #dce3e6;
-      }
-
-      &:after {
-        top: initial;
-        bottom: -6px;
-        border-bottom: initial;
-        border-top: 6px solid #fff;
-      }
-    }
-  }
-
-  &.has-nub .range-select-nub {
-    margin: 0;
-    position: absolute;
-    left: 100%;
-    top: 0;
-
-    &:after,
-    &:before {
-      content: '';
-      height: 0;
-      left: 0;
-      position: absolute;
-      width: 0;
-    }
-
-    &:after {
-      border: 10px solid transparent;
-      border-bottom-width: 5px;
-      border-top-width: 5px;
-      border-left-color: #fff;
-      top: -5px;
-    }
-
-    &:before {
-      border: 12px solid transparent;
-      border-bottom-width: 6px;
-      border-top-width: 6px;
-      border-left-color: #dce3e6;
-      top: -6px;
-    }
-  }
-}
-
 .range-select {
   display: flex;
   padding: 8px;
@@ -131,11 +10,6 @@
       &.to-date-selector {
         margin: 5px 8px;
       }
-
-      > .calendar {
-        border: 1px solid #dce3e6;
-        border-radius: 2px;
-      }
     }
   }
 
@@ -147,48 +21,11 @@
     margin: 10px 15px 0 0;
   }
 
-  .range-select-button-section {
-    margin: 10px 0 5px;
-    width: 162px;
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
-
-    .button.calendar-action-button {
-      float: right;
-      margin: 0;
-    }
-  }
-
-  .range-select-display-range {
-    display: none;
-    font-size: 12px;
-    align-items: center;
-    padding-left: 10px;
-    color: #696e6f;
-  }
-
   .range-select-range-field {
     font-size: 12px;
     color: #696e6f;
     font-weight: 400;
-    margin: 14px 20px 5px 5px;
-
-    .filter {
-      padding: 0;
-
-      > {
-        span {
-          display: block;
-          line-height: 14px;
-        }
-
-        .input-text {
-          padding-bottom: 2px;
-        }
-      }
-    }
+    margin-top: 24px;
   }
 }
 
@@ -229,24 +66,6 @@
   .range-select-content {
     display: flex;
   }
-
-  .range-select-footer {
-    display: flex;
-    bottom: 0;
-    height: 60px;
-    border-top: 1px solid #dce3e6;
-
-    .range-select-display-range {
-      width: 38em;
-
-      b {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        min-width: 0;
-      }
-    }
-  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -268,17 +87,12 @@
   .range-select-date-range .filter-calendar {
     display: block;
   }
-
-  .range-select .range-select-display-range {
-    display: flex;
-  }
 }
 
 .single {
   .range-select-date-range {
     .filter-calendar.to-date-selector,
-    .filter-calendar-button-panel,
-    .range-select-footer {
+    .filter-calendar-button-panel {
       display: none;
     }
   }
@@ -295,12 +109,7 @@
 }
 
 .range-select-tags-range {
-  .input-text {
-    width: 250px;
-  }
-
   .tag-collection {
-    width: 250px;
     height: 100px;
     overflow: hidden;
     overflow-y: scroll;
@@ -314,33 +123,15 @@
 }
 
 @media (max-width: 991.98px) {
-  .range-select-container {
-    position: relative;
-    margin: 0 -30px;
-    padding: 0 30px;
-    border: none;
-    box-shadow: none;
-
-    &:not(.has-nub) {
-      &:before,
-      &:after {
-        border: none;
-      }
-    }
-  }
-
   .range-select-date-range {
     .range-select-content {
       flex-direction: column;
     }
 
-    .range-select-footer {
-      display: block;
-      padding-top: 10px;
-    }
-
     .filter-calendar-button-panel {
       order: 0;
+      display: flex;
+      justify-content: center;
     }
 
     .filter-calendar {
@@ -355,18 +146,6 @@
       > .calendar {
         display: none;
       }
-    }
-  }
-
-  .range-select .range-select-button-section {
-    margin-top: 5px;
-    width: 100%;
-  }
-
-  .range-select-tags-range {
-    .input-text,
-    .tag-collection {
-      width: 170px;
     }
   }
 }

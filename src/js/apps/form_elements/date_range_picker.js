@@ -18,25 +18,17 @@ export default class DateRangePicker {
     this.linkedCalendars = false;
     this.autoUpdateInput = true;
     this.alwaysShowCalendars = false;
-    this.ignoreMove = false;
     this.ranges = {};
-
-    this.opens = 'right';
-    if (this.$picker.hasClass('float-right'))
-      this.opens = 'left';
-
-    this.drops = 'down';
-    if (this.$picker.hasClass('drop-up'))
-      this.drops = 'up';
 
     this.locale = {
       direction: 'ltr',
       format: moment.localeData().longDateFormat('L'),
       separator: ' - ',
       applyLabel: 'Apply',
+      clearLabel: 'Clear',
       cancelLabel: 'Cancel',
       customRangeLabel: 'Custom Range',
-      daysOfWeek: moment.weekdaysMin(),
+      daysOfWeek: moment.weekdaysShort(),
       monthNames: moment.monthsShort(),
       firstDay: moment.localeData().firstDayOfWeek()
     };
@@ -60,44 +52,45 @@ export default class DateRangePicker {
     // html template for the picker UI
     if (typeof options.template !== 'string' && !(options.template instanceof $))
       options.template = `
-        <div class="range-select-container">
-          <div class="range-select range-select-date-range">
-            <div class="range-select-content">
-              <div class="filter-calendar from-date-selector">
-                <div class="calendar left"></div>
-                <div class="range-select-range-field">
-                  <div class="filter">
-                    <span>From:</span>
-                    <input type="text" name="daterangepicker_start" class="input-text ignore-input" placeholder="mm/dd/yyyy" autocomplete="off" />
+        <div class="modal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="range-select range-select-date-range">
+                  <div class="range-select-content">
+                    <div class="filter-calendar from-date-selector">
+                      <div class="calendar left"></div>
+                      <div class="range-select-range-field">
+                        <div class="has-floating-label p-0">
+                          <input type="text" name="daterangepicker_start" class="input-text ignore-input" placeholder=" " autocomplete="off" />
+                          <label>From: (mm/dd/yyyy)</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="filter-calendar to-date-selector">
+                      <div class="calendar right"></div>
+                      <div class="range-select-range-field">
+                        <div class="has-floating-label p-0">
+                          <input type="text" name="daterangepicker_end" class="input-text ignore-input" placeholder=" " autocomplete="off" />
+                          <label>To: (mm/dd/yyyy)</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="filter-calendar-button-panel">
+                      <div class="ranges"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="filter-calendar to-date-selector">
-                <div class="calendar right"></div>
-                <div class="range-select-range-field">
-                  <div class="filter">
-                    <span>To:</span>
-                    <input type="text" name="daterangepicker_end" class="input-text ignore-input" placeholder="mm/dd/yyyy" autocomplete="off" />
-                  </div>
-                </div>
-              </div>
-              <div class="filter-calendar-button-panel">
-                <div class="ranges"></div>
-              </div>
-            </div>
-
-            <div class="range-select-footer">
-              <div class="range-select-display-range">
-                <b>Date Picked</b>&nbsp;<span>is any date.</span>
-              </div>
-              <div class="range-select-button-section">
-                <button type="button" class="apply-button calendar-action-button btn btn-flat-primary"></button>
-                <button type="button" class="cancel-button calendar-action-button btn btn-flat-secondary"></button>
+              <div class="modal-footer">
+                <button type="button" class="w-25 btn btn-flat-default cancel-button" data-dismiss="modal"></button>
+                <button type="button" class="w-25 btn btn-flat-secondary clear-button"></button>
+                <button type="button" class="w-50 btn btn-primary apply-button"></button>
               </div>
             </div>
           </div>
-          <div class="range-select-nub"></div>
         </div>
+
       `;
 
     this.parentEl = (options.parentEl && $(options.parentEl).length) ? $(options.parentEl) : $(this.parentEl);
@@ -128,6 +121,9 @@ export default class DateRangePicker {
 
       if (typeof options.locale.applyLabel === 'string')
         this.locale.applyLabel = options.locale.applyLabel;
+
+      if (typeof options.locale.clearLabel === 'string')
+        this.locale.clearLabel = options.locale.clearLabel;
 
       if (typeof options.locale.cancelLabel === 'string')
         this.locale.cancelLabel = options.locale.cancelLabel;
@@ -177,12 +173,6 @@ export default class DateRangePicker {
     if (typeof options.dateLimit === 'object')
       this.dateLimit = options.dateLimit;
 
-    if (typeof options.opens === 'string')
-      this.opens = options.opens;
-
-    if (typeof options.drops === 'string')
-      this.drops = options.drops;
-
     if (typeof options.showDropdowns === 'boolean')
       this.showDropdowns = options.showDropdowns;
 
@@ -212,9 +202,6 @@ export default class DateRangePicker {
 
     if (typeof options.alwaysShowCalendars === 'boolean')
       this.alwaysShowCalendars = options.alwaysShowCalendars;
-
-    if (typeof options.ignoreMove === 'boolean')
-      this.ignoreMove = options.ignoreMove;
 
     // update day names order to firstDay
     if (this.locale.firstDay !== 0) {
@@ -288,10 +275,10 @@ export default class DateRangePicker {
 
       let list = '<ul>';
       for (range in this.ranges) {
-        list += '<li><button type="button" class="btn btn-flat-secondary w-100" data-range-key="' + range + '">' + range + '</button></li>';
+        list += '<li><button type="button" class="btn btn-flat-default w-100" data-range-key="' + range + '">' + range + '</button></li>';
       }
       if (this.showCustomRangeLabel) {
-        list += '<li><button type="button" class="btn btn-flat-secondary w-100" data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</button></li>'
+        list += '<li><button type="button" class="btn btn-flat-default w-100" data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</button></li>'
       }
       list += '</ul>';
       this.$container.find('.ranges').prepend(list);
@@ -304,7 +291,7 @@ export default class DateRangePicker {
     if (this.autoApply && typeof options.ranges !== 'object') {
       this.$container.find('.ranges').hide();
     } else if (this.autoApply) {
-      this.$container.find('.apply-button, .cancel-button').hide();
+      this.$container.find('.apply-button, .clear-button').hide();
     }
 
     if (this.singleDatePicker) {
@@ -320,15 +307,9 @@ export default class DateRangePicker {
       this.$container.addClass('show-calendar');
     }
 
-    this.$container.addClass('opens-' + this.opens);
-
-    // swap the position of the predefined ranges if opens right
-    if (typeof options.ranges !== 'undefined' && this.opens === 'right') {
-      this.$container.find('.ranges').prependTo(this.$container.find('.calendar.left').parent());
-    }
-
     // apply labels to buttons
     this.$container.find('.apply-button').html(this.locale.applyLabel);
+    this.$container.find('.clear-button').html(this.locale.clearLabel);
     this.$container.find('.cancel-button').html(this.locale.cancelLabel);
 
     //
@@ -356,9 +337,9 @@ export default class DateRangePicker {
       .on('mouseenter.daterangepicker', 'button', (e) => this.hoverRange(e))
       .on('mouseleave.daterangepicker', 'button', () => this.updateFormInputs());
 
-    this.$container.find('.range-select-button-section')
+    this.$container
       .on('click.daterangepicker', 'button.apply-button', () => this.clickApply())
-      .on('click.daterangepicker', 'button.cancel-button', () => this.clickCancel());
+      .on('click.daterangepicker', 'button.clear-button', () => this.clickClear());
 
     if (this.$picker.is('input') || this.$picker.is('button')) {
       this.$picker.on({
@@ -486,7 +467,7 @@ export default class DateRangePicker {
     this.renderCalendar('right');
 
     // highlight any predefined range matching the current start and end dates
-    this.$container.find('.ranges button').removeClass('btn-primary').addClass('btn-flat-secondary');
+    this.$container.find('.ranges button').removeClass('btn-primary').addClass('btn-flat-default');
     if (this.endDate === null) return;
 
     this.calculateChosenLabel();
@@ -746,77 +727,6 @@ export default class DateRangePicker {
     } else {
       this.$container.find('button.apply-button').attr('disabled', 'disabled');
     }
-
-    let label = this.$container.find('.ranges button.btn-primary').data('range-key');
-    if (label === this.locale.customRangeLabel) {
-      this.$container.find('.range-select-display-range>span').html('is from ' + this.startDate.format('MM/DD/YYYY') + ' to ' + this.endDate.format('MM/DD/YYYY') + '.');
-    } else if (this.ranges[label]) {
-      this.$container.find('.range-select-display-range>span').html(this.ranges[label][2]);
-    }
-  }
-
-  move() {
-    if (this.ignoreMove) return;
-
-    let parentOffset = {
-      top: 0,
-      left: 0
-    };
-    let containerTop;
-    let parentRightEdge = $(window).width();
-
-    if (!this.parentEl.is('body')) {
-      parentOffset = {
-        top: this.parentEl.offset().top - this.parentEl.scrollTop(),
-        left: this.parentEl.offset().left - this.parentEl.scrollLeft()
-      };
-      parentRightEdge = this.parentEl[0].clientWidth + this.parentEl.offset().left;
-    }
-
-    if (this.drops === 'up')
-      containerTop = this.$picker.offset().top - this.$container.outerHeight() - parentOffset.top;
-    else
-      containerTop = this.$picker.offset().top + this.$picker.outerHeight() - parentOffset.top;
-    this.$container[this.drops === 'up' ? 'addClass' : 'removeClass']('drop-up');
-
-    if (this.opens === 'left') {
-      this.$container.css({
-        top: containerTop,
-        right: parentRightEdge - this.$picker.offset().left - this.$picker.outerWidth(),
-        left: 'auto'
-      });
-      if (this.$container.offset().left < 0) {
-        this.$container.css({
-          right: 'auto',
-          left: 9
-        });
-      }
-    } else if (this.opens === 'center') {
-      this.$container.css({
-        top: containerTop,
-        left: this.$picker.offset().left - parentOffset.left + this.$picker.outerWidth() / 2
-          - this.$container.outerWidth() / 2,
-        right: 'auto'
-      });
-      if (this.$container.offset().left < 0) {
-        this.$container.css({
-          right: 'auto',
-          left: 9
-        });
-      }
-    } else {
-      this.$container.css({
-        top: containerTop,
-        left: this.$picker.offset().left - parentOffset.left,
-        right: 'auto'
-      });
-      if (this.$container.offset().left + this.$container.outerWidth() > $(window).width()) {
-        this.$container.css({
-          left: 'auto',
-          right: 0
-        });
-      }
-    }
   }
 
   show() {
@@ -835,15 +745,11 @@ export default class DateRangePicker {
       // and also close when focus changes to outside the picker (eg. tabbing between controls)
       .on('focusin.daterangepicker', this._outsideClickProxy);
 
-    // Reposition the picker if the window is resized while it's open
-    $(window).on('resize.daterangepicker', this.move());
-
     this.oldStartDate = this.startDate.clone();
     this.oldEndDate = this.endDate.clone();
 
     this.updateView();
-    this.$container.show();
-    this.move();
+    this.$container.modal('show');
     this.$picker.trigger('show.daterangepicker', this);
     this.isShowing = true;
     this.isApply = false;
@@ -871,7 +777,7 @@ export default class DateRangePicker {
 
     $(document).off('.daterangepicker');
     $(window).off('.daterangepicker');
-    this.$container.hide();
+    this.$container.modal('hide');
     this.$picker.trigger('hide.daterangepicker', this);
     this.isShowing = false;
     this.isApply = false;
@@ -906,7 +812,6 @@ export default class DateRangePicker {
 
   showCalendars() {
     this.$container.addClass('show-calendar');
-    this.move();
     this.$picker.trigger('showCalendar.daterangepicker', this);
   }
 
@@ -1078,7 +983,7 @@ export default class DateRangePicker {
     for (let range in this.ranges) {
       if (this.startDate.format('YYYY-MM-DD') === this.ranges[range][0].format('YYYY-MM-DD') && this.endDate.format('YYYY-MM-DD') === this.ranges[range][1].format('YYYY-MM-DD')) {
         customRange = false;
-        this.chosenLabel = this.$container.find('.ranges button:eq(' + i + ')').removeClass('btn-flat-secondary').addClass('btn-primary').html();
+        this.chosenLabel = this.$container.find('.ranges button:eq(' + i + ')').removeClass('btn-flat-default').addClass('btn-primary').html();
         break;
       }
 
@@ -1086,7 +991,7 @@ export default class DateRangePicker {
     }
     if (customRange) {
       if (this.showCustomRangeLabel) {
-        this.chosenLabel = this.$container.find('.ranges button:last').removeClass('btn-flat-secondary').addClass('btn-primary').html();
+        this.chosenLabel = this.$container.find('.ranges button:last').removeClass('btn-flat-default').addClass('btn-primary').html();
       } else {
         this.chosenLabel = null;
       }
@@ -1100,11 +1005,11 @@ export default class DateRangePicker {
     this.$picker.trigger('apply.daterangepicker', this);
   }
 
-  clickCancel() {
+  clickClear() {
     this.startDate = this.oldStartDate;
     this.endDate = this.oldEndDate;
     this.hide();
-    this.$picker.trigger('cancel.daterangepicker', this);
+    this.$picker.trigger('clear.daterangepicker', this);
   }
 
   monthOrYearChanged(e) {

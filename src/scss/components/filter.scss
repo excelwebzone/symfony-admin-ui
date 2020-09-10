@@ -52,7 +52,8 @@
   right: 0;
   text-align: center;
 
-  > .btn:not([style*="display: none"]) {
+  > .btn {
+    width: 50%;
     height: 56px;
     margin: 0;
     border-radius: 0;
@@ -60,15 +61,6 @@
 
     &:first-child {
       border-radius: 0 0  0 16px;
-
-      &:nth-last-child(1) {
-        width: 100%;
-      }
-
-      &:nth-last-child(2),
-      &:nth-last-child(2) ~ .btn {
-        width: 50%;
-      }
     }
   }
 }
@@ -76,7 +68,7 @@
 .filter-options-scroll-wrapper {
   height: 100%;
   overflow: hidden;
-  padding: 53px 0 66px;
+  padding: 53px 0 56px;
 }
 
 .filter-options-content {
@@ -234,6 +226,10 @@
 
   a {
     font-size: 12px;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 

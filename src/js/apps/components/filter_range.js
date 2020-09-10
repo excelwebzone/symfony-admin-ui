@@ -2,7 +2,6 @@ import $ from 'jquery';
 import moment from 'moment';
 import DateRangePicker from '../form_elements/date_range_picker';
 import TagsPicker from '../form_elements/tags_picker';
-import bp from '../../breakpoints';
 
 export const dateRanges = {
   'Today': [moment(), moment(), 'is the current day.'],
@@ -31,15 +30,8 @@ export function initTagsPicker(pickerEl) {
   const $picker = $(pickerEl);
 
   const options = {
-    opens: 'left',
-    autoUpdateInput: false,
-    ignoreMove: true
+    autoUpdateInput: false
   };
-
-  let bootstrapBreakpoint = bp.getBreakpointSize();
-  if (['xs', 'sm'].indexOf(bootstrapBreakpoint) !== -1) {
-    options.parentEl = $picker.closest('.filter-range');
-  }
 
   const $field = $picker.find(`#${$picker.data('filter-field')}`);
 
@@ -55,8 +47,6 @@ export function initTagsPicker(pickerEl) {
   $picker.on('show.tagspicker', (e, tagsPicker) => {
     tagsPicker.setTags($field.val());
     tagsPicker.updateView();
-
-    repositionRangeSelect(tagsPicker, $picker[0]);
   });
 }
 
@@ -64,20 +54,10 @@ export function initDateRangePicker(pickerEl) {
   const $picker = $(pickerEl);
 
   const options = {
-    locale: {
-      cancelLabel: 'Clear'
-    },
-    opens: 'left',
     autoUpdateInput: false,
     alwaysShowCalendars: true,
-    ignoreMove: true,
     ranges: dateRanges
   };
-
-  let bootstrapBreakpoint = bp.getBreakpointSize();
-  if (['xs', 'sm'].indexOf(bootstrapBreakpoint) !== -1) {
-    options.parentEl = $picker.closest('.filter-range');
-  }
 
   const $unitDate = $picker.find(`#${$picker.data('filter-field')}_unit`);
   const $startDate = $picker.find(`#${$picker.data('filter-field')}_from`);
@@ -120,89 +100,13 @@ export function initDateRangePicker(pickerEl) {
     if ($endDate.val() || end) dateRangePicker.setEndDate(moment(end));
 
     dateRangePicker.updateView();
-
-    repositionRangeSelect(dateRangePicker, $picker[0]);
   });
 
-  $picker.on('cancel.daterangepicker', () => {
+  $picker.on('clear.daterangepicker', () => {
     $picker.find('.filter-range-label>a').html('Select Date Range');
 
     $unitDate.val('');
     $startDate.val('');
     $endDate.val('').trigger('change');
   });
-}
-
-// reposition container on the right side of the filter window
-function repositionRangeSelect(picker, elementEl) {
-  const $parentEl = $(elementEl).closest('.filter-range');
-
-  const parentRect = $parentEl[0].getBoundingClientRect();
-
-  const $container = $('.range-select-container:visible');
-
-  const frameRect = $parentEl.closest('.filter-options-content')[0].getBoundingClientRect();
-
-  let bootstrapBreakpoint = bp.getBreakpointSize();
-  if (['xs', 'sm'].indexOf(bootstrapBreakpoint) !== -1) {
-    $container
-      .removeClass('has-nub')
-      .css({
-        '-webkit-transform': '',
-        transform: ''
-      });
-
-    if ($container.closest('.filter-range').length === 0) {
-      $container.appendTo($parentEl);
-    }
-
-    picker.setParentEl($parentEl);
-
-    return;
-  }
-
-  // move picker to body
-  if ($container.closest('.filter-range').length) {
-    $container.appendTo($('body'));
-    picker.setParentEl($('body'));
-  }
-
-  // exit if already created
-  if ($container.hasClass('has-nub')) {
-    return;
-  }
-
-  if (!(parentRect.top + parentRect.height / 2 < frameRect.top || parentRect.bottom - parentRect.height / 2 > frameRect.bottom)) {
-    const containerRect = $container[0].getBoundingClientRect();
-
-    const top = parentRect.top + parentRect.height / 2 - containerRect.height / 2;
-
-    const bottom = top + containerRect.height;
-
-    let distance = 0;
-    if (top < frameRect.top) {
-      distance = frameRect.top - top;
-    } else if (bottom > frameRect.bottom) {
-      distance = frameRect.bottom - bottom;
-    }
-
-    let transform = `translateX(${frameRect.left - containerRect.width}px) translateY(${Math.floor(top + distance)}px)`;
-
-    $container
-      .addClass('has-nub')
-      .css({
-        '-webkit-transform': transform,
-        transform: transform
-      });
-
-    const $nub = $container.find('.range-select-nub');
-    if ($nub.length > 0) {
-      transform = `translateY(${Math.min(Math.max(parentRect.height / 2, (containerRect.height - 2) / 2 - distance), containerRect.height - 2 - $nub[0].getBoundingClientRect().height / 2)}px)`;
-
-      $nub.css({
-        '-webkit-transform': transform,
-        transform: transform
-      });
-    }
-  }
 }
