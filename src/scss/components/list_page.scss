@@ -532,7 +532,7 @@
   border: 0;
   background: 0 0;
   position: absolute;
-  top: 250px;
+  top: 350px;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -571,16 +571,16 @@
 }
 
 .has-navigation .list-page-empty-content {
-  top: 350px;
+  top: 400px;
 }
 
 @media (max-width: 991.98px) {
   .list-page-empty-content {
-    top: 350px;
+    top: 400px;
   }
 
   .has-navigation .list-page-empty-content {
-    top: 400px;
+    top: 450px;
   }
 }
 
