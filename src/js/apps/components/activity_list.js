@@ -125,11 +125,15 @@ export default class ActivityList {
       $list.append(data.html);
 
       let lastLabel = null;
+      let $lastGroup = null;
       for (let label of $list.find('.is-labeled>.activity-item-label')) {
         if (!lastLabel || lastLabel !== $(label).html()) {
           lastLabel = $(label).html();
+          $lastGroup = $(label).closest('.activity-item-group');
         } else {
           $(label).html('').parent('.is-labeled').removeClass('is-labeled');
+
+          $(label).closest('.activity-item-group').contents().appendTo($lastGroup);
         }
       }
 

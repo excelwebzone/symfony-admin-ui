@@ -36,26 +36,23 @@
   width: 32px;
 }
 
+.activity-item-group {
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+}
+
 .activity-item {
   -webkit-transition: margin 0.3s;
   transition: margin 0.3s;
-  background-color: #fff;
   position: relative;
   min-height: 84px;
   border-top: 1px solid #dce3e6;
-  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
-
-  &:first-child {
-    box-shadow: 0 -0.5px 1.5px 0 rgba(0, 0, 0, 0.12), 0 -0.5px 6px rgba(0, 0, 0, 0.12);
-  }
-
-  &:last-child {
-    box-shadow: 0 2.5px 1.5px 0 rgba(0, 0, 0, 0.12), 0 2.5px 6px rgba(0, 0, 0, 0.12);
-  }
 }
 
 .activity-item-container {
   display: flex;
+  position: relative;
 }
 
 .activity-item-profile-section {
@@ -224,11 +221,6 @@
 }
 
 .activity-item {
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-
   &.is-expanded {
     .activity-item-content {
       padding-top: 10px;
@@ -246,25 +238,20 @@
 
   &.is-labeled {
     border-top: none;
-    margin-top: 44px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    margin-top: 24px;
 
     .activity-item-label {
       color: #696e6f;
       font-weight: 500;
       left: 0;
       margin: 10px 5px;
-      position: absolute;
-      top: -44px;
+      position: relative;
+      top: 14px;
+      left: 20px;
     }
   }
 
   &.activity-item-note {
-    &:not(.is-expanded):hover {
-      background-color: #fcfeff;
-    }
-
     .activity-item-content > .activity-item-body {
       line-height: 18px;
       padding: 0;
