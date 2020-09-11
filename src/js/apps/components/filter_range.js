@@ -30,7 +30,10 @@ export function initTagsPicker(pickerEl) {
   const $picker = $(pickerEl);
 
   const options = {
-    autoUpdateInput: false
+    opens: 'left',
+    autoUpdateInput: false,
+    useModal: true,
+    ignoreMove: true
   };
 
   const $field = $picker.find(`#${$picker.data('filter-field')}`);
@@ -54,8 +57,11 @@ export function initDateRangePicker(pickerEl) {
   const $picker = $(pickerEl);
 
   const options = {
+    opens: 'left',
     autoUpdateInput: false,
     alwaysShowCalendars: true,
+    useModal: true,
+    ignoreMove: true,
     ranges: dateRanges
   };
 
