@@ -5,7 +5,6 @@ import { initFormElements } from './apps/form_elements/init_form_elements';
 export default class EntityDrawer {
   constructor() {
     this.$drawer = null;
-    this.isBulk = false;
 
     this.bindEvents();
   }
@@ -14,9 +13,6 @@ export default class EntityDrawer {
     $(document).on('click', '.js-drawer-close', (e) => this.closeButton(e));
     $(document).on('click', '.js-entity-drawer-bulk-template', (e) => this.createFromBulkTemplate(e));
     $(document).on('row:selected', '.js-entity-drawer', (e) => this.loadEntityData(e));
-
-    $('.js-bulk-select-all').on('click', (e) => this.selectAllRows(e));
-    $(document).on('click', '.js-bulk-select', (e) => this.selectRow(e));
   }
 
   hide() {
@@ -30,7 +26,6 @@ export default class EntityDrawer {
     }
 
     this.$drawer = null;
-    this.isBulk = false;
   }
 
   closeButton(e) {
@@ -73,45 +68,6 @@ export default class EntityDrawer {
     initFormElements(this.$drawer);
   }
 
-  selectAllRows(e) {
-    if (!this.isBulk || !this.$drawer) {
-      return;
-    }
-
-    $('.js-bulk-select').prop('checked', $(e.currentTarget).is(':checked'));
-
-    this.selectRow();
-  }
-
-  selectRow(e) {
-    if (!this.isBulk || !this.$drawer) {
-      return;
-    }
-
-    this.$drawer.find('[name="ids[]"]').remove();
-
-    let checked = 0;
-    for (let element of $('.js-bulk-select')) {
-      if ($(element).is(':checked')) {
-        this.$drawer.find('.bulk-edit-drawer-form').append(
-          `<input type="hidden" name="ids[]" value="${$(element).val()}" />`
-        );
-
-        checked++;
-      }
-    }
-
-    if (checked === 0) {
-      this.closeButton();
-      return;
-    }
-
-    this.$drawer.find('.bulk-edit-drawer-title>span:eq(0)').text(checked);
-
-    const $span = this.$drawer.find('.bulk-edit-drawer-title>span:eq(1)');
-    $span.text(checked === 1 ? $span.data('singular') : $span.data('plural'));
-  }
-
   createFromBulkTemplate(e) {
     this.hide();
 
@@ -146,13 +102,6 @@ export default class EntityDrawer {
 
     this.$drawer = $('.drawer-frame:not(.filter-options)');
     this.$drawer.collapse('show');
-
-    setTimeout(() => {
-      this.$drawer.find('.bulk-edit-drawer-loading').hide();
-      this.$drawer.find('.bulk-edit-drawer-fields').show();
-    }, 600);
-
-    this.isBulk = true;
 
     $target.trigger('drawer:shown', this.$drawer);
 

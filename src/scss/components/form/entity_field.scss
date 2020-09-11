@@ -42,8 +42,14 @@
   cursor: pointer;
 }
 
+.entity-field-dot {
+  color: #07a661;
+  margin-left: 5px;
+  font-size: 8px;
+}
+
 .entity-field {
-  .bulk-edit-drawer-dot,
+  .entity-field-dot,
   .form-group,
   .accordion-groups {
     display: none;
@@ -60,7 +66,7 @@
       display: block;
     }
 
-    .bulk-edit-drawer-dot {
+    .entity-field-dot {
       display: inline;
     }
   }

@@ -50,12 +50,12 @@ export default class EntityForm {
     const $field = $entityField.find(':input:not(.ignore-input)');
     $field.prop('disabled', !$field.prop('disabled'));
 
-    const $drawerContent = $entityField.closest('.bulk-edit-drawer-content');
-    const $submit = $drawerContent.find('button[type="submit"]');
+    const $form = $entityField.closest('form');
+    const $submit = $form.find('button[type="submit"]');
 
-    $submit.addClass('disabled-light').disable();
-    if ($drawerContent.find('.entity-field.is-active').length) {
-      $submit.removeClass('disabled-light').enable();
+    $submit.disable();
+    if ($form.find('.entity-field.is-active').length) {
+      $submit.enable();
     }
   }
 
