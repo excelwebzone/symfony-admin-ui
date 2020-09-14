@@ -27,6 +27,7 @@
     padding: 22px 16px 10px;
     transition: 0.1s ease-out;
     height: 56px;
+    min-height: 56px;
 
     &.dropdown-multiple {
       height: auto;
