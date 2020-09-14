@@ -63,8 +63,8 @@
 
     &.active {
       z-index: 1;
-      background-color: #2b41b2;
-      border-color: #2b41b2;
+      background-color: #7b7b7b;
+      border-color: #7b7b7b;
 
       * {
         color: #fff;
@@ -72,7 +72,7 @@
     }
 
     .carrot {
-      z-index: 1;
+      z-index: 2;
       position: absolute;
       height: 100%;
       top: 0;
@@ -135,10 +135,9 @@
   .cell-content {
     height: 100%;
     position: relative;
-    padding: 20px 30px;
+    padding: 16px 20px;
     border: 1px solid #dce3e6;
-    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12);
-    border-radius: 2px;
+    box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
 
     &:hover {
       background-color: rgba(12, 13, 13, 0.08);
