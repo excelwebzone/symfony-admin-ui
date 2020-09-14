@@ -84,6 +84,22 @@ export default class Cardgrid {
           }
         }
       }
+
+      let $preCell = null;
+      for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
+        const $row = $(row);
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
+        if ($rowCell.length) {
+          if (!$preCell) {
+            $preCell = $rowCell;
+          }
+          if (!$rowCell.hasClass('is-empty')) {
+            $preCell.removeClass('is-last');
+            $preCell = $rowCell;
+            $preCell.addClass('is-last');
+          }
+        }
+      }
     }
 
     this.removeLastRow();
@@ -215,6 +231,27 @@ export default class Cardgrid {
         $cloneCell.attr('data-index', $rowCell.data('index'));
 
         break;
+      }
+    }
+
+    // mark last cell
+    for (let column of this.$table.find('.datagrid-header-container .datagrid-header-cell')) {
+      const index = $(column).data('index');
+
+      let $preCell = null;
+      for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
+        const $row = $(row);
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
+        if ($rowCell.length) {
+          if (!$preCell) {
+            $preCell = $rowCell;
+          }
+          if (!$rowCell.hasClass('is-empty')) {
+            $preCell.removeClass('is-last');
+            $preCell = $rowCell;
+            $preCell.addClass('is-last');
+          }
+        }
       }
     }
 

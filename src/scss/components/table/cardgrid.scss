@@ -1,19 +1,20 @@
 .cardgrid-component {
   width: 100%;
   height: 100%;
-  overflow: auto;
   max-width: 100%;
   position: relative;
-  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
-  background-color: #fff;
-  border-radius: 8px;
 
-  .datagrid-header-container .datagrid-table-fixed-wrapper {
-    background-color: #fff;
-  }
-
+  .datagrid-header-container .datagrid-table-fixed-wrapper,
   .datagrid-body-container .datagrid-table-row.datagrid-hover {
     background-color: transparent;
+    box-shadow: none;
+    overflow: unset;
+  }
+
+  .datagrid-fixed-table-container.datagrid-header-container {
+    background-color: transparent;
+    box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 8px 8px 0px 0px;
   }
 
   .datagrid-table-row {
@@ -100,7 +101,7 @@
 
   .header-cell {
     overflow: hidden;
-    padding: 12px 5% 0 37px;
+    padding: 12px 5% 4px 37px;
 
     .title {
       font-size: 13px;
@@ -121,6 +122,53 @@
       color: #696e6f;
     }
   }
+
+  &.cardgrid-columns {
+    .datagrid-fixed-table-container.datagrid-header-container {
+      border: none;
+    }
+
+    .datagrid-header-row {
+      background-color: transparent;
+      border: none;
+
+      .datagrid-header-cell {
+        background-color: transparent;
+        padding-right: 16px;
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        .table-header-cell-content {
+          background-color: #fff;
+          box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+          border-radius: 8px 8px 0px 0px;
+        }
+
+        &.active .table-header-cell-content {
+          z-index: 1;
+          background-color: #7b7b7b;
+          border-color: #7b7b7b;
+
+          * {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.datagrid-cell {
+  :last-child .cardgrid-component-model-cell {
+    padding-right: 0 !important;
+  }
+
+  &.is-last .cell-content {
+    border-radius: 0 0 8px 8px;
+    border-bottom: none !important;
+  }
 }
 
 .cardgrid-component-model-cell {
@@ -129,15 +177,16 @@
   cursor: -moz-grab;
   cursor: -webkit-grab, -moz-grab, url(https://mail.google.com/mail/images/2/openhand.cur), move;
   position: relative;
-  padding: 5px 8px;
+  padding-right: 16px;
   height: 100%;
 
   .cell-content {
     height: 100%;
     position: relative;
     padding: 16px 20px;
-    border: 1px solid #dce3e6;
+    border-bottom: 1px solid rgba(12, 13, 13, 0.08);
     box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+    background-color: #fff;
 
     &:hover {
       background-color: rgba(12, 13, 13, 0.08);
