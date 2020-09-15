@@ -47,9 +47,17 @@ export default class Cardgrid {
       && typeof data.columns === 'object'
     ) {
       for (let [key, value] of Object.entries(data.columns)) {
-        this.$table.find(`.datagrid-header-cell[data-value="${key}"]`)
-          .find('.total>span.counter')
-          .text(`${value}`);
+        if (typeof value === 'object') {
+          for (let [k, v] of Object.entries(value)) {
+            this.$table.find(`.datagrid-header-cell[data-value="${key}"]`)
+              .find(`span.${k}`)
+              .text(`${v}`);
+          }
+        } else {
+          this.$table.find(`.datagrid-header-cell[data-value="${key}"]`)
+            .find('span.counter')
+            .text(`${value}`);
+        }
       }
     }
 
