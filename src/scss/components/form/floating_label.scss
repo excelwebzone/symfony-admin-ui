@@ -18,7 +18,8 @@
 
   > .form-control,
   > .input-text,
-  > .dropdown {
+  > .dropdown,
+  > .rating {
     font-size: 14px;
     outline: none;
     background-color: #fff;
@@ -80,7 +81,8 @@
 
   &.is-invalid > .form-control,
   &.is-invalid > .input-text,
-  &.is-invalid > .dropdown {
+  &.is-invalid > .dropdown,
+  &.is-invalid > .rating {
     border-color: #cb1a42;
     box-shadow: none;
     color: inherit;
@@ -88,7 +90,8 @@
 
   &.is-disabled > .form-control,
   &.is-disabled > .input-text,
-  &.is-disabled > .dropdown {
+  &.is-disabled > .dropdown,
+  &.is-disabled > .rating {
     background-color: rgba(144, 151, 153, 0.16);
     border-color: rgba(144, 151, 153, 0.16);
   }
@@ -103,7 +106,8 @@
 
     > .form-control,
     > .input-text,
-    > .dropdown {
+    > .dropdown,
+    > .rating {
       padding-left: 50px !important;
 
       &:focus + label,
@@ -121,5 +125,13 @@
 
   > .dropdown .dropdown-selected {
     padding: 0;
+  }
+
+  > .rating {
+    padding: 10px 13px;
+
+    .star {
+      font-size: 32px;
+    }
   }
 }
