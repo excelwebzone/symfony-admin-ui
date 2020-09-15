@@ -184,17 +184,17 @@
     height: 100%;
     position: relative;
     padding: 16px 20px;
-    border-bottom: 1px solid rgba(12, 13, 13, 0.08);
+    border-bottom: 1px solid rgba(144, 151, 153, 0.16);
     box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
     background-color: #fff;
 
     &:hover {
-      background-color: rgba(12, 13, 13, 0.08);
+      background-color: rgba(144, 151, 153, 0.16);
     }
   }
 
   &.is-current .cell-content {
-    background: rgba(12, 13, 13, 0.08);
+    background: rgba(144, 151, 153, 0.16);
   }
 
   &.hide {

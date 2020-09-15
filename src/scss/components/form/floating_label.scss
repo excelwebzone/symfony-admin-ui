@@ -89,8 +89,8 @@
   &.is-disabled > .form-control,
   &.is-disabled > .input-text,
   &.is-disabled > .dropdown {
-    background-color: #f9f9f9;
-    border-color: #f9f9f9;
+    background-color: rgba(144, 151, 153, 0.16);
+    border-color: rgba(144, 151, 153, 0.16);
   }
 
   &.has-icon {
