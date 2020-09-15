@@ -46,11 +46,7 @@
     border-bottom: 1px solid #dce3e6;
   }
 
-  .datagrid-header-cell.last .carrot {
-    display: none;
-  }
-
-  .datagrid-header-row .datagrid-header-cell {
+  .datagrid-header-cell {
     .carrot.active,
     &.active .carrot {
       display: none;
@@ -99,9 +95,15 @@
     }
   }
 
+  .table-header-cell-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   .header-cell {
     overflow: hidden;
-    padding: 12px 5% 4px 37px;
+    padding: 5px 5% 5px 40px;
 
     .title {
       font-size: 13px;
