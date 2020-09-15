@@ -687,6 +687,7 @@ i.zmdi-circle-o:hover {
 .datagrid-table-row.datagrid-selected .table-cell-integer,
 .datagrid-table-row.datagrid-selected .table-cell-number,
 .datagrid-table-row.datagrid-selected .table-cell-number-rounded,
+.datagrid-table-row.datagrid-selected .table-cell-bullet,
 .datagrid-table-row.datagrid-selected .table-cell-badge,
 .datagrid-table-row.datagrid-selected .table-cell-boolean,
 .datagrid-table-row.datagrid-selected .table-cell-text {
@@ -703,6 +704,7 @@ i.zmdi-circle-o:hover {
 .datagrid-table-row.datagrid-selected .table-cell-integer.is-overdue,
 .datagrid-table-row.datagrid-selected .table-cell-number.is-overdue,
 .datagrid-table-row.datagrid-selected .table-cell-number-rounded.is-overdue,
+.datagrid-table-row.datagrid-selected .table-cell-bullet.is-overdue,
 .datagrid-table-row.datagrid-selected .table-cell-badge.is-overdue,
 .datagrid-table-row.datagrid-selected .table-cell-boolean.is-overdue,
 .datagrid-table-row.datagrid-selected .table-cell-text.is-overdue {
@@ -797,6 +799,7 @@ i.zmdi-circle-o:hover {
 .table-cell-number,
 .table-cell-number-rounded,
 .table-cell-phone,
+.table-cell-bullet,
 .table-cell-badge,
 .table-cell-boolean,
 .table-cell-text {
@@ -820,6 +823,7 @@ i.zmdi-circle-o:hover {
 .table-cell-integer,
 .table-cell-number,
 .table-cell-number-rounded,
+.table-cell-bullet,
 .table-cell-badge,
 .table-cell-boolean,
 .table-cell-text {
@@ -836,6 +840,7 @@ i.zmdi-circle-o:hover {
 .table-cell-integer.is-overdue,
 .table-cell-number.is-overdue,
 .table-cell-number-rounded.is-overdue,
+.table-cell-bullet.is-overdue,
 .table-cell-badge.is-overdue,
 .table-cell-boolean.is-overdue,
 .table-cell-text.is-overdue {
