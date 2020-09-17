@@ -1,8 +1,9 @@
 .cardgrid-component {
-  width: 100%;
+  width: calc(100% + 32px);
   height: 100%;
   max-width: 100%;
   position: relative;
+  overflow: hidden;
 
   &.is-dragging {
     cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
@@ -21,41 +22,57 @@
 
   .datagrid-tables-container,
   .datagrid-header-container,
+  .datagrid-header-container .datagrid-table-fixed-wrapper,
+  .datagrid-header-container .datagrid-table-block,
   .datagrid-body-container .datagrid-table-row.datagrid-hover {
     background-color: transparent;
     box-shadow: none;
     border: none;
-  }
-
-  .datagrid-header-container {
-    overflow: hidden;
-    padding: 16px 16px 0;
-
-    .datagrid-table-fixed-wrapper {
-      background-color: #fff;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-      border-radius: 8px 8px 0px 0px;
-      border-bottom: 1px solid #dce3e6;
-    }
+    overflow: unset;
   }
 
   .datagrid-table-row {
     cursor: default;
-    overflow-x: hidden !important;
+
+    &.datagrid-header-row {
+      background-color: transparent;
+      overflow-x: unset;
+    }
   }
 
   .datagrid-header-cell {
-    background-color: #fff;
-    padding-bottom: 16px;
+    background-color: transparent;
+    padding: 16px 0 0;
 
-    &:hover {
+    &:first-child {
+      padding-left: 16px;
+
+      .table-header-cell-content {
+        border-top-left-radius: 8px;
+      }
+    }
+
+    &:last-child {
+      padding-right: 16px;
+
+      .table-header-cell-content {
+        border-top-right-radius: 8px;
+      }
+    }
+
+    .table-header-cell-content {
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    }
+
+    &:hover .table-header-cell-content {
       background-color: #fff;
     }
 
-    &.active {
+    &.active .table-header-cell-content {
       z-index: 1;
-      background-color: #7b7b7b;
-      border-color: #7b7b7b;
+      background-color: #9e9e9e;
+      border-color: #9e9e9e;
 
       * {
         color: #fff !important;
@@ -70,10 +87,10 @@
       z-index: 2;
       position: absolute;
       height: 100%;
-      top: 0;
+      top: 16px;
       right: -12px;
       background: transparent url('../../../images/card-header-carrot.png') center right no-repeat;
-      width: 12px;
+      width: 28px;
       height: 60px;
 
       &.active {
@@ -84,7 +101,7 @@
     &.active .carrot.active {
       display: inline-block;
       background: transparent url('../../../images/card-header-carrot-active.png') center right no-repeat;
-      width: 13px;
+      width: 29px;
       height: 60px;
     }
 
@@ -101,15 +118,6 @@
     height: 100%;
     display: flex;
     align-items: center;
-
-    .header-gradient {
-      position: absolute;
-      bottom: 16px;
-      width: 100%;
-      height: 8px;
-      opacity: 0.06;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
-    }
   }
 
   .header-cell {
@@ -141,29 +149,13 @@
   }
 
   &.cardgrid-columns {
-    .datagrid-header-container {
-      padding: 0;
-
-      .datagrid-table-fixed-wrapper {
-        background-color: transparent;
-        box-shadow: none;
-        border: none;
-      }
-    }
-
     .datagrid-header-cell {
-      background-color: transparent;
       padding: 16px 16px 0;
 
       .table-header-cell-content {
         background-color: #fff;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-        border-radius: 8px 8px 0px 0px;
-
-        .header-gradient {
-          bottom: 0;
-          width: calc(100% - 32px);
-        }
+        border-radius: 8px 8px 0 0;
       }
     }
   }
