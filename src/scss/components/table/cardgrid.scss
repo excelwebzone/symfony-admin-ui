@@ -278,6 +278,11 @@
     &:hover {
       text-decoration: underline;
     }
+
+    &.is-completed {
+      color: #9e9e9e;
+      text-decoration: line-through;
+    }
   }
 
   .account-assignee,
