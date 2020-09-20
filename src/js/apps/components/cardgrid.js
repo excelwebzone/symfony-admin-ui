@@ -354,6 +354,12 @@ export default class Cardgrid {
             return;
           }
 
+          if (data.fields) {
+            for (let [field, value] of Object.entries(data.fields)) {
+              this.dragSourceEl.find(`[data-value="${field}"]`).html(value);
+            }
+          }
+
           this.moveCell(this.dragSourceEl, newValue);
 
           const $drawer = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"]`);
