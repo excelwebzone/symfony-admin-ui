@@ -10,7 +10,8 @@ export default class Cardgrid {
   /**
    * {
    *   onFieldChange: (field, value, $cell) => {..},
-   *   onDragEnd: ($field, newValue) => {..}
+   *   onDragEnd: ($field, newValue) => {..},
+   *   prepareValue: (newValue) => {.. return newValue; }
    * }
    */
   constructor(callback, allowEmptyFields) {
@@ -341,7 +342,12 @@ export default class Cardgrid {
     // don't do anything if we're dropping on the same column we're dragging.
     if (this.dragSourceEl !== this.dragTargetEl) {
       const index = this.dragTargetEl.data('index');
-      const newValue = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).data('value');
+      const cellValue = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).data('value');
+
+      let newValue = cellValue;
+      if (typeof this.callback.prepareValue === 'function') {
+        newValue = this.callback.prepareValue(newValue);
+      }
 
       const params = {};
       params[this.dragSourceEl.data('target-field')] = newValue;
@@ -360,7 +366,7 @@ export default class Cardgrid {
             }
           }
 
-          this.moveCell(this.dragSourceEl, newValue);
+          this.moveCell(this.dragSourceEl, cellValue);
 
           const $drawer = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"]`);
           if ($drawer.length) {
@@ -382,7 +388,7 @@ export default class Cardgrid {
               }
               if ($field.length) {
                 if (typeof this.callback.onDragEnd === 'function') {
-                  this.callback.onDragEnd($field, newValue);
+                  this.callback.onDragEnd($field, cellValue);
                 } else {
                   $field.val(newValue);
                 }
