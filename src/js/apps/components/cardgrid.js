@@ -276,7 +276,15 @@ export default class Cardgrid {
     const $cell = this.$table.find('.cardgrid-component-model-cell.is-current').closest('.js-entity-drawer');
 
     if (data.fields) {
+      const fields = {};
       for (let [field, value] of Object.entries(data.fields)) {
+        if (field !== $cell.data('target-field')) {
+          fields[field] = value;
+        }
+      }
+      fields[$cell.data('target-field')] = data.fields[$cell.data('target-field')];
+
+      for (let [field, value] of Object.entries(fields)) {
         if (value || this.allowEmptyFields.indexOf(field) !== -1) {
           if (typeof this.callback.onFieldChange === 'function') {
             this.callback.onFieldChange(field, value, $cell);
