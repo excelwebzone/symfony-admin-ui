@@ -198,7 +198,7 @@ export default class Cardgrid {
     this.datagrid.resizeTable();
     this.datagrid.rebindEvents();
 
-    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('.total>span.counter');
+    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('span.counter');
     $counter.text(parseInt($counter.text()) - 1);
   }
 
@@ -267,7 +267,7 @@ export default class Cardgrid {
     this.datagrid.resizeTable();
     this.datagrid.rebindEvents();
 
-    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('.total>span.counter');
+    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('span.counter');
     $counter.text(parseInt($counter.text()) + 1);
   }
 
