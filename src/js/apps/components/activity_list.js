@@ -15,6 +15,20 @@ export default class ActivityList {
       e.stopPropagation();
     });
 
+    // toggle view
+    $(document).on('click', '.js-activity-view:not(.active)', (e) => {
+      $(e.currentTarget)
+        .closest('.toggle-button-group')
+          .find('.js-activity-view.active')
+          .removeClass('active');
+
+      $(e.currentTarget)
+        .addClass('active')
+        .closest('.activity-list')
+          .find('.activity-log-list')
+          .toggleClass('activity-timeline');
+    });
+
     // filter list
     $(document).on('click', '.js-activity-list-dropdown .option-list-item', (e) => this.selectSingleType(e));
     $(document).on('click', '.activity-list-filter .js-multi-select-all .checkbox-input', (e) => this.selectAllTypes(e));
