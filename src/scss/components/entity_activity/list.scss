@@ -3,18 +3,9 @@
   position: relative;
 
   .toggle-button-group {
-    left: 40%;
+    left: 50%;
+    transform: translate(-50%, 0);
     z-index: 1;
-
-    &.move-left {
-      left: 30%;
-    }
-  }
-}
-
-@media (max-width: 767.98px) {
-  .activity-list .toggle-button-group {
-    left: 0;
   }
 }
 
