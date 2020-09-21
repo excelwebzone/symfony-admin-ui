@@ -5,6 +5,10 @@
   .toggle-button-group {
     left: 40%;
     z-index: 1;
+
+    &.move-left {
+      left: 30%;
+    }
   }
 }
 
