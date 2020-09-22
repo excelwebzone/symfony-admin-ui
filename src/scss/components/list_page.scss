@@ -296,7 +296,6 @@
 }
 
 .list-chart-summary-control-row,
-.list-chart-summary-filter,
 .list-chart-summary-number-item > div {
   display: inline-block;
 }
@@ -395,6 +394,9 @@
 .list-chart-summary-filter {
   position: relative;
   vertical-align: bottom;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 
   .dropdown {
     width: 190px;
@@ -403,21 +405,15 @@
 
 .list-chart-summary-filter-label {
   color: #696e6f;
-  font-size: 12px;
-  font-weight: 500;
-  height: 21px;
-  line-height: 14px;
-  padding-top: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  margin-right: 5px;
 }
 
 .list-chart-summary-filter-content {
-  height: 30px;
-  line-height: 30px;
-  vertical-align: bottom;
-
-  > * {
-    vertical-align: middle;
-  }
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .list-chart-summary-filter:not(:last-child) {
