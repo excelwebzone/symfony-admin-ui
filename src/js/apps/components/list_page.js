@@ -41,7 +41,7 @@ export default class ListPage {
       this.dataViewer.getFilter().loadActiveFilter();
     });
 
-    this.$container.on('click', 'input[name=groupingType]', () => {
+    this.$container.on('click', '.js-grouping-type', () => {
       if (this.$chartContainer.length && !this.$chartContainer.data('reload-list')) {
         this.loadChartData(this.dataViewer.getFilter().getData());
         return;
@@ -169,9 +169,9 @@ export default class ListPage {
     const setFilterParams = (viewer) => {
       const params = {};
 
-      const groupingType = $('input[name=groupingType]:checked');
+      const groupingType = $('.js-grouping-type.is-selected');
       if (groupingType.length) {
-        params.groupingType = groupingType.val();
+        params.groupingType = groupingType.data('value');
       }
 
       if (viewer.$table.data('totals')) {
@@ -200,9 +200,9 @@ export default class ListPage {
       this.$chartContainer.html('');
 
       const params = { filters: filters };
-      const groupingType = $('input[name=groupingType]:checked');
+      const groupingType = $('.js-grouping-type.is-selected');
       if (groupingType.length) {
-        params.groupingType = groupingType.val();
+        params.groupingType = groupingType.data('value');
       }
 
       axios.get(this.$chartContainer.data('endpoint'), {
