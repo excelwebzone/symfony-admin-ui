@@ -8,4 +8,9 @@
   > .arrow::before {
     border-width: 0;
   }
+
+  .popover-header {
+    background-color: transparent;
+    border-bottom: none;
+  }
 }
