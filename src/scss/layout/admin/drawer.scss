@@ -228,6 +228,27 @@
   color: #cb1a42;
 }
 
+.drawer-item-actions {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  display: flex;
+
+  .dropdown {
+    border-bottom: none;
+
+    .button-icon {
+      font-size: 24px;
+      height: 36px;
+      align-items: center;
+    }
+
+    ul {
+      margin: 0 !important;
+    }
+  }
+}
+
 .drawer-item {
   &.is-unread {
     .drawer-item-unread-toggle {
