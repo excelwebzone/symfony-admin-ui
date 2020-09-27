@@ -444,7 +444,7 @@
   z-index: 0;
 
   .list-page-stats-value {
-    height: 64px;
+    height: 84px;
     display: inline-block;
     margin-left: 27px;
     padding-top: 15px;
@@ -452,13 +452,14 @@
 
     .label {
       color: #696e6f;
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .value {
-      font-weight: 700;
+      font-size: 29px;
+      font-weight: 500;
       color: #0c0d0d;
-      font-size: 20px;
       margin: 0;
     }
   }
@@ -495,8 +496,8 @@
   padding: 0 24px;
 
   &.has-stats {
-    height: -webkit-calc(100% - 128px);
-    height: calc(100% - 128px);
+    height: -webkit-calc(100% - 148px);
+    height: calc(100% - 148px);
 
     .datagrid-tables-container {
       border-top-left-radius: 0;
@@ -514,8 +515,8 @@
     padding-right: 16px;
 
     &.has-stats {
-      height: -webkit-calc(100% - 192px);
-      height: calc(100% - 192px);
+      height: -webkit-calc(100% - 212px);
+      height: calc(100% - 212px);
     }
   }
 }
