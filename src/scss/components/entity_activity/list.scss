@@ -474,6 +474,17 @@
 
   .activity-item {
     border-top: none;
+    min-height: 54px;
+
+    &:not(.is-labeled) {
+      .activity-item-profile-image {
+        margin-top: 0;
+      }
+
+      .activity-item-header {
+        padding-top: 0;
+      }
+    }
   }
 
   .activity-item-profile-section {
