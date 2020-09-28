@@ -162,6 +162,10 @@
   }
 }
 
+.datagrid-tables-container[data-ignore-row-select="1"] .datagrid-table-row {
+  cursor: default;
+}
+
 .datagrid-table-row > div {
   height: 100%;
   box-sizing: border-box;
