@@ -44,19 +44,26 @@ export default class ActivityList {
     $(document).on('click', '.activity-item-note', (e) => this.toggleActivityItemNote(e));
 
     // on block loaded
-    $(document).on('block:loaded', '.js-activity-block', (e) => {
-      const $target = $(e.currentTarget);
-      const $dropdown = $target.find('.activity-list .dropdown');
-      if ($dropdown.length === 0) {
-        this.getActivityList($target);
-        return;
-      }
-      if ($dropdown.hasClass('multi-select-dropdown')) {
-        this.updateSelectTypesText($dropdown);
-      } else {
-        $dropdown.find('.option-list-item.is-selected').click();
-      }
-    });
+    $(document).on('block:loaded', '.js-activity-block', (e) => this.onLoad(e));
+
+    // autoload
+    if ($('.js-activity-request').length) {
+      this.onLoad($('.js-activity-request').get(0));
+    }
+  }
+
+  onLoad(e) {
+    const $target = $(e.currentTarget);
+    const $dropdown = $target.find('.activity-list .dropdown');
+    if ($dropdown.length === 0) {
+      this.getActivityList($target);
+      return;
+    }
+    if ($dropdown.hasClass('multi-select-dropdown')) {
+      this.updateSelectTypesText($dropdown);
+    } else {
+      $dropdown.find('.option-list-item.is-selected').click();
+    }
   }
 
   selectSingleType(e) {
