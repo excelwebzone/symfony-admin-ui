@@ -197,8 +197,8 @@ export default class EntityView {
           }
 
           $icon
-            .toggleClass('zmdi-star-outline')
-            .toggleClass('zmdi-star');
+            .toggleClass('ledger-icon-star-outline')
+            .toggleClass('ledger-icon-star');
 
           const $drawer = $button.closest('.drawer-frame');
           if ($drawer.length) {
@@ -216,8 +216,8 @@ export default class EntityView {
             const $drawer = $(`.drawer-frame[data-id="${$datagridRow.data('id')}"]`);
             if ($drawer.length) {
               $drawer.find('.js-follow-item>i')
-                .toggleClass('zmdi-star-outline')
-                .toggleClass('zmdi-star');
+                .toggleClass('ledger-icon-star-outline')
+                .toggleClass('ledger-icon-star');
             }
           }
 

@@ -74,7 +74,7 @@ Highcharts.theme = {
     style: {
       padding: '15px',
       lineHeight: '22px',
-      boxShadow: '10px 10px 35px 0 rgba(0, 0, 0, 0.08)',
+      boxShadow: '10px 10px 35px 0 rgba(0, 0, 0, 0.08)'
     }
   }
 };

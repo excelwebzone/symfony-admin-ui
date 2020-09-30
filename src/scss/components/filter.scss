@@ -16,6 +16,23 @@
   top: 0;
 }
 
+.filter-options-close-button {
+  bottom: 0;
+  color: #363636;
+  font-size: 20px;
+  line-height: 53px;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  top: 0;
+  vertical-align: middle;
+  width: 60px;
+
+  > i {
+    cursor: pointer;
+  }
+}
+
 .filter-options-clear-button,
 .filter-options-title {
   color: #0c0d0d;
@@ -30,7 +47,7 @@
   cursor: default;
   font-size: 20px;
   line-height: 53px;
-  left: 30px;
+  left: 50px;
   right: 70px;
 }
 

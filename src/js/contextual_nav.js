@@ -24,7 +24,7 @@ export default class ContextualNav {
       .siblings()
       .removeClass('open opening');
 
-    if ($(this).find('ul').length == 0) {
+    if ($(this).find('ul').length === 0) {
       return;
     }
 
@@ -32,7 +32,7 @@ export default class ContextualNav {
   }
 
   mouseOut() {
-    if ($(this).find('ul').length == 0) {
+    if ($(this).find('ul').length === 0) {
       return;
     }
 
@@ -43,7 +43,7 @@ export default class ContextualNav {
 
   render() {
     const extraLiHide = parseInt(this.$menu.data('hideExtraLi')) || 0;
-    if (this.$menu.length == 0) {
+    if (this.$menu.length === 0) {
       return;
     }
 
@@ -85,7 +85,7 @@ export default class ContextualNav {
   }
 
   createWrapperLI() {
-    this.$menu.children('ul').append('<li class="is-more"><a href="javascript:void(0)"><span class="title"><i class="zmdi zmdi-more"></i></span></a><ul></ul></li>');
+    this.$menu.children('ul').append('<li class="is-more"><a href="javascript:void(0)"><span class="title"><i class="ledger-icons ledger-icon-more"></i></span></a><ul></ul></li>');
 
     return this.$menu.children('ul').children('li.is-more');
   }

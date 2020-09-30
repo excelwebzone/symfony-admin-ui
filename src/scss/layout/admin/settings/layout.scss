@@ -42,8 +42,8 @@
     color: #696e6f;
   }
 
-  .zmdi-delete:hover,
-  &.zmdi-delete:hover {
+  .ledger-icon-delete:hover,
+  &.ledger-icon-delete:hover {
     color: #dd4330;
   }
 }
@@ -300,8 +300,8 @@
     cursor: -webkit-grab, -moz-grab, url(https://mail.google.com/mail/images/2/openhand.cur), move;
   }
 
-  .settings-content-table-item-action-icon i.zmdi-lock,
-  .settings-content-table-item-drag-icon i.zmdi-lock {
+  .settings-content-table-item-action-icon i.ledger-icon-lock,
+  .settings-content-table-item-drag-icon i.ledger-icon-lock {
     cursor: inherit;
     color: inherit;
   }

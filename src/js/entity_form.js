@@ -164,7 +164,7 @@ export default class EntityForm {
             <div class="banner-block banner-block-is-urgent">
               <div class="banner-block-row media">
                 <div class="media-left">
-                  <i class="zmdi zmdi-info banner-block-icon"></i>
+                  <i class="ledger-icons ledger-icon-info banner-block-icon"></i>
                 </div>
                 <div class="media-body">
                   <div class="banner-block-title"></div>

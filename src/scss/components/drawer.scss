@@ -44,28 +44,3 @@
     width: 90% !important;
   }
 }
-
-.drawer-frame-close {
-  font-size: 24px;
-  line-height: 24px;
-  padding: 12px;
-  text-align: center;
-  display: none;
-  position: absolute;
-  top: -3px;
-  left: -30px;
-
-  .button-icon {
-    background-color: #fff;
-    box-shadow: 0 0 4px 0 rgba(12, 13, 13, 0.05), 0 2px 4px 0 rgba(12, 13, 13, 0.15);
-    color: #000;
-
-    &:active {
-      background-color: #fff;
-    }
-  }
-}
-
-.drawer-frame.show:hover .drawer-frame-close {
-  display: block;
-}

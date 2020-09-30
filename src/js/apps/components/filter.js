@@ -10,7 +10,7 @@ const filterItemLI = (id, title, filters) => `
   <li class="option-list-item option-list-item-filter option-list-item-has-overflow js-filter-item" data-id="${id}" data-filter='${filters}'>
     <div class="option-list-item-right-content">
       <div class="option-list-item-hover-content">
-        <i class="zmdi zmdi-icon zmdi-lock"></i>
+        <i class="ledger-icons ledger-icon ledger-icon-lock"></i>
       </div>
     </div>
     <div class="option-list-item-text">${title}</div>
@@ -134,8 +134,8 @@ export default class Filter {
     axios.post(url)
       .then(({ data }) => {
         this.$container.find('.js-filter-item .js-filter-item-default')
-          .removeClass('zmdi-star')
-          .addClass('zmdi-star-outline')
+          .removeClass('ledger-icon-star')
+          .addClass('ledger-icon-star-outline')
           .parent()
           .show();
 
@@ -146,12 +146,12 @@ export default class Filter {
           $(item).addClass('is-default');
 
           $(item).find('.js-filter-item-default')
-            .addClass('zmdi-star')
-            .removeClass('zmdi-star-outline')
+            .addClass('ledger-icon-star')
+            .removeClass('ledger-icon-star-outline')
             .parent()
             .hide();
 
-          $(item).find('.option-list-item-right-content').prepend('<i class="zmdi zmdi-star js-default-item-icon"></i>');
+          $(item).find('.option-list-item-right-content').prepend('<i class="ledger-icons ledger-icon-star js-default-item-icon"></i>');
         }
 
         toaster('Default Filter changed to ' + $filterItem.find('.option-list-item-text').text());
@@ -229,12 +229,12 @@ export default class Filter {
           $(item).addClass('is-default');
 
           $(item).find('.js-filter-item-default')
-            .addClass('zmdi-star')
-            .removeClass('zmdi-star-outline')
+            .addClass('ledger-icon-star')
+            .removeClass('ledger-icon-star-outline')
             .parent()
             .hide();
 
-          $(item).find('.option-list-item-right-content').prepend('<i class="zmdi zmdi-star js-default-item-icon"></i>');
+          $(item).find('.option-list-item-right-content').prepend('<i class="ledger-icons ledger-icon-star js-default-item-icon"></i>');
         }
       }
 
@@ -349,7 +349,7 @@ export default class Filter {
                   <div class="tag tag-interactive">
                     <div class="tag-display-name">${value.label ? value.label : value}</div>
                     <span class="tag-action" data-value="${key}">
-                      <i class="zmdi zmdi-close-circle"></i>
+                      <i class="ledger-icons ledger-icon-close-circle"></i>
                     </span>
                   </div>
                 `);

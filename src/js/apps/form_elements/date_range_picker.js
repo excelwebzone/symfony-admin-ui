@@ -64,8 +64,8 @@ export default class DateRangePicker {
 
     // html template for the picker UI
     if (typeof options.template !== 'string' && !(options.template instanceof $))
-        if (options.useModal)
-          options.template = `
+      if (options.useModal)
+        options.template = `
             <div class="modal">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -105,8 +105,8 @@ export default class DateRangePicker {
               </div>
             </div>
           `;
-        else
-          options.template = `
+      else
+        options.template = `
             <div class="range-select-container">
               <div class="range-select range-select-date-range">
                 <div class="range-select-content">
@@ -338,7 +338,7 @@ export default class DateRangePicker {
         list += '<li><button type="button" class="btn btn-flat-default w-100" data-range-key="' + range + '">' + range + '</button></li>';
       }
       if (this.showCustomRangeLabel) {
-        list += '<li><button type="button" class="btn btn-flat-default w-100" data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</button></li>'
+        list += '<li><button type="button" class="btn btn-flat-default w-100" data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</button></li>';
       }
       list += '</ul>';
       this.$container.find('.ranges').prepend(list);
@@ -877,7 +877,7 @@ export default class DateRangePicker {
       .on('focusin.daterangepicker', this._outsideClickProxy);
 
     // Reposition the picker if the window is resized while it's open
-    $(window).on('resize.daterangepicker', this.move())
+    $(window).on('resize.daterangepicker', this.move());
 
     this.oldStartDate = this.startDate.clone();
     this.oldEndDate = this.endDate.clone();

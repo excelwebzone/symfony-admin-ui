@@ -123,8 +123,8 @@ select {
     label::after,
     .col-form-label::after {
       margin-left: 4px;
-      content: 'lock';
-      font-family: 'Material Icons';
+      content: '\e93d';
+      font-family: 'Ledger';
       font-weight: 400;
       font-size: inherit;
       font-style: normal;

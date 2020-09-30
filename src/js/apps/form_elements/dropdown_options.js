@@ -38,8 +38,8 @@ export default class DropdownOptions {
         $(dropdown)
           .addClass('has-value')
           .find('.dropdown-text')
-            .removeClass('dropdown-placeholder')
-            .html($text.html());
+          .removeClass('dropdown-placeholder')
+          .html($text.html());
       }
     }
 
@@ -51,14 +51,14 @@ export default class DropdownOptions {
           <div class="tag tag-interactive">
             <div class="tag-display-name">${$(item).text()}</div>
             <span class="tag-action" data-value="${$(item).data('value')}">
-              <i class="zmdi zmdi-close-circle"></i>
+              <i class="ledger-icons ledger-icon-close-circle"></i>
             </span>
           </div>
         `);
       }
 
       if ($(dropdown).find('.dropdown-tags .tag').length) {
-         $(dropdown).addClass('has-value');
+        $(dropdown).addClass('has-value');
       }
 
       const $options = $(dropdown).find('.option-list').find('>ul');
@@ -135,7 +135,7 @@ export default class DropdownOptions {
         <div class="tag tag-interactive">
           <div class="tag-display-name">${$(this).text()}</div>
           <span class="tag-action" data-value="${$(this).data('value')}">
-            <i class="zmdi zmdi-close-circle"></i>
+            <i class="ledger-icons ledger-icon-close-circle"></i>
           </span>
         </div>
       `);
@@ -357,7 +357,7 @@ export default class DropdownOptions {
     $(this).closest('.tag').remove();
 
     if ($dropdown.find('.dropdown-tags .tag').length === 0) {
-       $dropdown.removeClass('has-value');
+      $dropdown.removeClass('has-value');
     }
   }
 }

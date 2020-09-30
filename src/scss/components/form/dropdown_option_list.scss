@@ -144,20 +144,19 @@
   }
 }
 
-.option-list-item-right-content .zmdi-icon {
+.option-list-item-right-content .ledger-icon {
   color: #696e6f;
 
   &:hover {
     color: #696e6f;
   }
 
-  &.zmdi-lock,
-  &.md-lock:hover {
+  &.ledger-icon-lock:hover {
     color: #dce3e6;
   }
 }
 
-.option-list-item .zmdi-star {
+.option-list-item .ledger-icon-star {
   color: #f2bf58;
 }
 

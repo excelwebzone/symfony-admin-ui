@@ -19,14 +19,14 @@ export default class ActivityList {
     $(document).on('click', '.js-activity-view:not(.active)', (e) => {
       $(e.currentTarget)
         .closest('.toggle-button-group')
-          .find('.js-activity-view.active')
-          .removeClass('active');
+        .find('.js-activity-view.active')
+        .removeClass('active');
 
       $(e.currentTarget)
         .addClass('active')
         .closest('.activity-list')
-          .find('.activity-log-list')
-          .toggleClass('activity-timeline');
+        .find('.activity-log-list')
+        .toggleClass('activity-timeline');
     });
 
     // filter list
@@ -314,7 +314,7 @@ export default class ActivityList {
     $(e.currentTarget).removeClass('is-replying');
     $(e.currentTarget).toggleClass('is-expanded');
     $(e.currentTarget).find('.activity-item-expand-arrow>i')
-      .toggleClass('zmdi-chevron-down')
-      .toggleClass('zmdi-chevron-up');
+      .toggleClass('ledger-icon-chevron-down')
+      .toggleClass('ledger-icon-chevron-up');
   }
 }

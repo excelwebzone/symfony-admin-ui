@@ -43,8 +43,8 @@ export default class TagsPicker {
 
     // html template for the picker UI
     if (typeof options.template !== 'string' && !(options.template instanceof $))
-        if (options.useModal)
-          options.template = `
+      if (options.useModal)
+        options.template = `
             <div class="modal">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -67,8 +67,8 @@ export default class TagsPicker {
               </div>
             </div>
           `;
-        else
-          options.template = `
+      else
+        options.template = `
             <div class="range-select-container">
               <div class="range-select range-select-tags-range d-block">
                 <div class="range-select-range-field">
@@ -220,7 +220,7 @@ export default class TagsPicker {
         <div class="tag tag-interactive">
           <div class="tag-display-name">${value}</div>
           <span class="tag-action" data-value="${value}">
-            <i class="zmdi zmdi-close-circle"></i>
+            <i class="ledger-icons ledger-icon-close-circle"></i>
           </span>
         </div>
       `);

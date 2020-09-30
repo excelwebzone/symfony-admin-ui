@@ -38,7 +38,7 @@ const createToasterEl = (message, type, closeButton) => `
           ${_.escape(message)}
         </div>
         <div class="toast-action">
-          ${closeButton ? '<i class="toast-close zmdi zmdi-close"></i>' : ''}
+          ${closeButton ? '<i class="toast-close ledger-icons ledger-icon-close"></i>' : ''}
         </div>
       </div>
     </div>

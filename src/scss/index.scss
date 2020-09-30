@@ -30,22 +30,7 @@ html {
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,600,700,900');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Extended');
-
-.material-icons-extended-pseudo:after {
-  font-family: 'Material Icons Extended';
-  font-size: 24px;
-  font-style: normal;
-  line-height: 1;
-  text-rendering: optimizeLegibility;
-  text-transform: none;
-  -ms-font-feature-settings: 'liga' 1;
-  -o-font-feature-settings: 'liga' 1;
-  -moz-font-feature-settings: 'liga' 1;
-  -webkit-font-feature-settings: 'liga' 1;
-  font-feature-settings: 'liga' 1;
-}
+@import './fonts/ledger';
 
 // Core librararies
 @import '~bootstrap/scss/bootstrap';

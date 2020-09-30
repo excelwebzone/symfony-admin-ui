@@ -45,7 +45,7 @@
   line-height: 60px;
 }
 
-.drawer-button,
+.drawer-buttons,
 .drawer-close {
   font-size: 24px;
   line-height: 24px;
@@ -54,26 +54,24 @@
 }
 
 .drawer-close {
-  display: none;
-  position: absolute;
-  left: -30px;
-
-  .button-icon {
-    background-color: #fff;
-    box-shadow: 0 0 4px 0 rgba(12, 13, 13, 0.05), 0 2px 4px 0 rgba(12, 13, 13, 0.15);
-    color: #000;
-
-    &:active {
-      background-color: #fff;
-    }
-  }
+  font-size: 24px;
+  height: 100%;
+  line-height: 24px;
+  padding: 12px;
+  text-align: center;
+  float: left;
+  width: 64px;
 }
 
-.drawer-button {
+.drawer-buttons {
   float: right;
 
   a {
     color: #fff;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -115,7 +113,7 @@
     }
   }
 
-  .zmdi {
+  .ledger-icons {
     font-size: 88px;
   }
 }
@@ -131,8 +129,7 @@
     }
 
     .drawer-close {
-      left: auto;
-      right: -30px;
+      float: right;
     }
 
     .drawer-container {

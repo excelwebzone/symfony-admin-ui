@@ -60,9 +60,9 @@
 
           &:before {
             font-size: 16px;
-            font-family: 'Material Icons Extended';
+            font-family: 'Ledger';
             height: auto;
-            content: 'arrow_right';
+            content: '\e90c';
             font-weight: 300;
             text-shadow: none;
             position: relative;
@@ -156,12 +156,6 @@
       > {
         a {
           padding: 0 20px;
-
-          > .arrow:before {
-            -webkit-transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-            transform: rotate(90deg);
-          }
         }
 
         ul {
@@ -235,6 +229,12 @@
               -webkit-justify-content: space-between;
               -ms-flex-pack: justify;
               justify-content: space-between;
+
+              > .arrow:before {
+                -webkit-transform: rotate(-90deg);
+                -ms-transform: rotate(-90deg);
+                transform: rotate(-90deg);
+              }
             }
 
             &:last-child > a {

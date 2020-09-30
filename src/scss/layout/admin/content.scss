@@ -65,7 +65,7 @@
   line-height: 40px;
   order: 1;
 
-  .zmdi-chevron-down {
+  .ledger-icon-chevron-down {
     font-size: 24px;
     margin: 0 5px 5px 0;
     transition: transform 0.3s ease;
@@ -73,7 +73,7 @@
     vertical-align: middle;
   }
 
-  &.open .zmdi-chevron-down {
+  &.open .ledger-icon-chevron-down {
     transform: rotate(0);
   }
 }
@@ -113,7 +113,7 @@
     margin-bottom: 14px;
   }
 
-  .zmdi-arrow-left {
+  .ledger-icon-arrow-back {
     vertical-align: bottom;
   }
 

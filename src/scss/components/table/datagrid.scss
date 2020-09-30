@@ -464,9 +464,9 @@
   cursor: pointer;
 }
 
-.datagrid-header-cell.table-header-cell.table-header-cell-sort-ascending .table-header-cell-content .zmdi-sort-amount-desc,
-.datagrid-header-cell.table-header-cell.table-header-cell-sort-descending .table-header-cell-content .zmdi-sort-amount-desc,
-.datagrid-header-cell.table-header-cell.table-header-cell-sortable .table-header-cell-content .zmdi-sort-amount-desc {
+.datagrid-header-cell.table-header-cell.table-header-cell-sort-ascending .table-header-cell-content .ledger-icon-sort-desc,
+.datagrid-header-cell.table-header-cell.table-header-cell-sort-descending .table-header-cell-content .ledger-icon-sort-desc,
+.datagrid-header-cell.table-header-cell.table-header-cell-sortable .table-header-cell-content .ledger-icon-sort-desc {
   position: relative;
   top: 2px;
   font-size: 18px;
@@ -496,8 +496,8 @@
   color: #696e6f;
 }
 
-.datagrid-header-cell.table-header-cell-select i.zmdi-check-square,
-.datagrid-header-cell.table-header-cell-select i.zmdi-check-circle
+.datagrid-header-cell.table-header-cell-select i.ledger-icon-check-square,
+.datagrid-header-cell.table-header-cell-select i.ledger-icon-check-circle
 .datagrid-header-cell.table-header-cell-select i.select,
 .datagrid-header-cell.table-header-cell-select i:hover {
   color: #2b41b2;
@@ -553,8 +553,8 @@
   color: transparent;
 }
 
-.datagrid-left-table-block .datagrid-cell.table-cell-select i.zmdi-check-square,
-.datagrid-left-table-block .datagrid-cell.table-cell-select i.zmdi-check-circle
+.datagrid-left-table-block .datagrid-cell.table-cell-select i.ledger-icon-check-square,
+.datagrid-left-table-block .datagrid-cell.table-cell-select i.ledger-icon-check-circle
 .datagrid-left-table-block .datagrid-cell.table-cell-select i:hover {
   color: #2b41b2;
 }
@@ -573,7 +573,7 @@
   color: transparent;
 }
 
-.datagrid-left-table-block .datagrid-cell.table-cell-follow i.zmdi-star,
+.datagrid-left-table-block .datagrid-cell.table-cell-follow i.ledger-icon-star,
 .datagrid-left-table-block .datagrid-cell.table-cell-follow i:hover {
   color: #f2bf58;
 }
@@ -582,16 +582,16 @@
   color: #696e6f;
 }
 
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-square-o,
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-circle-o,
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-star-outline,
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-edit,
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .zmdi-delete,
-.datagrid-left-table-block .datagrid-table-row:hover .zmdi-square-o,
-.datagrid-left-table-block .datagrid-table-row:hover .zmdi-circle-o,
-.datagrid-left-table-block .datagrid-table-row:hover .zmdi-star-outline,
-.datagrid-left-table-block .datagrid-table-row:hover .zmdi-edit,
-.datagrid-left-table-block .datagrid-table-row:hover .zmdi-delete {
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-square-o,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-circle-o,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-star-outline,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-edit,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-delete,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-square-o,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-circle-o,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-star-outline,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-edit,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-delete {
   color: rgba(12, 13, 13, 0.64);
 }
 
@@ -645,12 +645,12 @@
 /*
 .datagrid-table-row.datagrid-selected
 .datagrid-cell.table-cell-select
-i.zmdi-check-square,
-i.zmdi-check-circle,
+i.ledger-icon-check-square,
+i.ledger-icon-check-circle,
 .datagrid-table-row.datagrid-selected,
 .datagrid-cell.table-cell-select,
-i.zmdi-square-o:hover,
-i.zmdi-circle-o:hover {
+i.ledger-icon-square-o:hover,
+i.ledger-icon-circle-o:hover {
   color: #0c0d0d;
 }
 */
@@ -664,7 +664,6 @@ i.zmdi-circle-o:hover {
 }
 
 .datagrid-table-row.datagrid-selected,
-.datagrid-table-row.datagrid-selected .datagrid-cell.table-cell-name .zmdi-local-atm,
 .datagrid-table-row.datagrid-selected .datagrid-cell.table-cell-name > a,
 .datagrid-table-row.datagrid-selected .datagrid-cell.table-cell-name > div {
   color: #3b3e3f;
@@ -711,8 +710,8 @@ i.zmdi-circle-o:hover {
 .datagrid-table-row.datagrid-selected .table-cell-assignee,
 .datagrid-table-row.datagrid-selected .table-cell-assignee > a,
 .datagrid-table-row.datagrid-selected .table-cell-checkbox i,
-.datagrid-table-row.datagrid-selected .table-cell-checkbox i.zmdi-check-square,
-.datagrid-table-row.datagrid-selected .table-cell-checkbox i.zmdi-check-circle,
+.datagrid-table-row.datagrid-selected .table-cell-checkbox i.ledger-icon-check-square,
+.datagrid-table-row.datagrid-selected .table-cell-checkbox i.ledger-icon-check-circle,
 .datagrid-table-row.datagrid-selected .table-cell-checkbox i:hover,
 .datagrid-table-row.datagrid-selected .table-cell-contact-group,
 .datagrid-table-row.datagrid-selected .table-cell-contact-group > a {
@@ -902,7 +901,7 @@ i.zmdi-circle-o:hover {
   text-overflow: ellipsis;
 }
 
-.table-cell-checkbox i.zmdi-check,
+.table-cell-checkbox i.ledger-icon-check,
 .table-cell-checkbox i:hover {
   color: #2b41b2;
 }
