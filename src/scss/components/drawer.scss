@@ -41,6 +41,7 @@
 
 @media (max-width: 375px) {
   .drawer-frame.drawer-frame-list {
-    width: 90% !important;
+    width: 100% !important;
+    border-radius: 0 !important;
   }
 }
