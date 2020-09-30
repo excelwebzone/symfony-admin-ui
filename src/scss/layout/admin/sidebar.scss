@@ -27,31 +27,17 @@
 .sidebar-toggle {
   font-size: 24px;
   line-height: 24px;
-  padding: 12px;
+  padding: 5px;
   text-align: center;
-  display: none;
+  cursor: pointer;
   position: absolute;
-  right: -12px;
-
-  .button-icon {
-    background-color: #fff;
-    box-shadow: 0 0 4px 0 rgba(12, 13, 13, 0.05), 0 2px 4px 0 rgba(12, 13, 13, 0.15);
-    color: #000;
-
-    &:active {
-      background-color: #fff;
-    }
-  }
-}
-
-.sidebar:hover > .sidebar-toggle {
-  display: block;
-}
-
-.sidebar-collapsed .sidebar:hover > .sidebar-toggle i {
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
+  top: 50%;
+  right: -6px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 4px 0 rgba(12, 13, 13, 0.05), 0 2px 4px 0 rgba(12, 13, 13, 0.15);
+  border-radius: 0 4px 4px 0;
+  color: #000;
 }
 
 .sidebar {
@@ -81,23 +67,32 @@
 
     .nav-icons {
       display: none;
+      justify-content: flex-start;
+      width: 100%;
     }
 
     .nav-drawer {
       display: flex;
-      margin-left: 48px;
+      margin-left: 12px;
+      width: 100%;
 
       > div {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 48px;
+
+        &.sidebar-close {
+          flex: 1 1 auto;
+          justify-content: flex-end;
+          margin-right: 24px;
+        }
       }
     }
   }
 
   .nav-drawer-icons {
-    margin-bottom: 22px;
+    margin-bottom: 40px;
   }
 
   .nav-options {
@@ -285,6 +280,10 @@
   width: 295px;
   z-index: 12;
 
+  .sidebar-toggle {
+    display: none;
+  }
+
   .content {
     width: 280px;
     overflow-y: auto;
@@ -292,6 +291,7 @@
 
   .nav-header {
     height: 60px;
+    margin-bottom: 80px;
   }
 
   .nav-header,
