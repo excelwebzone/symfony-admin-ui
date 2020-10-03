@@ -139,7 +139,7 @@
 
 .activity-item-content {
   position: relative;
-  padding: 0 20px 30px 0;
+  padding: 0 52px 30px 0;
 
   &.is-restricted {
     color: #dce3e6;
@@ -266,7 +266,6 @@
 
     &.is-expanded .activity-item-content {
       max-height: none;
-      padding-right: 52px;
 
       > .activity-item-body {
         height: auto;
