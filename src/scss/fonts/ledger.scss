@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?w3alj1') format('truetype'),
-    url('../../fonts/Ledger.woff?w3alj1') format('woff'),
-    url('../../fonts/Ledger.svg?w3alj1#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?xl9be3') format('truetype'),
+    url('../../fonts/Ledger.woff?xl9be3') format('woff'),
+    url('../../fonts/Ledger.svg?xl9be3#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -290,6 +290,12 @@
 }
 .ledger-icon-money-pile:before {
   content: "\e942";
+}
+.ledger-icon-mood:before {
+  content: "\f214";
+}
+.ledger-icon-mood-bad:before {
+  content: "\f213";
 }
 .ledger-icon-more:before {
   content: "\f19c";
