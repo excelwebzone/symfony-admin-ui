@@ -328,5 +328,9 @@
 @media (min-width: 992px) {
   .sidebar {
     z-index: 12;
+
+   .nav-header .nav-drawer > div.sidebar-close {
+      display: none;
+    }
   }
 }
