@@ -123,9 +123,15 @@
   color: #979797;
   margin-top: 24px;
 
-  > div {
+  > div,
+  > a {
     display: flex;
     align-items: center;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
 
     &:not(:last-child) {
       margin-right: 24px;
