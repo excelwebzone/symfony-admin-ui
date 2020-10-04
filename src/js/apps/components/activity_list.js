@@ -306,7 +306,9 @@ export default class ActivityList {
   }
 
   toggleActivityItemNote(e) {
-    if ($(e.target).closest('.activity-item-content').length) {
+    if ($(e.target).closest('.activity-item-content').length
+      || $(e.target).closest('.activity-item-actions-section').length
+    ) {
       e.stopPropagation();
       return;
     }
