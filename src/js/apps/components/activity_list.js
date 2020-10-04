@@ -54,7 +54,7 @@ export default class ActivityList {
 
   onLoad(e) {
     const $target = $(e.currentTarget);
-    const $dropdown = $target.find('.activity-list .dropdown');
+    const $dropdown = $target.find('.activity-list .js-activity-list-dropdown');
     if ($dropdown.length === 0) {
       this.getActivityList($target);
       return;
@@ -68,7 +68,7 @@ export default class ActivityList {
 
   selectSingleType(e) {
     const $target = $(e.currentTarget);
-    const $dropdown = $target.closest('.dropdown');
+    const $dropdown = $target.closest('.js-activity-list-dropdown');
 
     // update text
     $dropdown.find('.dropdown-text').text($target.text());
@@ -129,7 +129,7 @@ export default class ActivityList {
       if ($sourceTarget.hasClass('dropdown')) {
         $container = $sourceTarget.closest('.activity-list');
       } else {
-        $container = $sourceTarget.closest('.entity-activity').find('.activity-list');
+        $container = $sourceTarget.find('.activity-list');
       }
     }
     if ($container.length === 0) {
@@ -189,9 +189,9 @@ export default class ActivityList {
 
   reloadList(e) {
     const $target = $(e.target);
-    const $container = $($target.data('target')).find('.entity-activity');
+    const $container = $($target.data('target'));
 
-    const $dropdown = $container.find('.activity-list .dropdown');
+    const $dropdown = $container.find('.activity-list .js-activity-list-dropdown');
     if ($dropdown.length === 0) {
       this.getActivityList($container);
       return;
