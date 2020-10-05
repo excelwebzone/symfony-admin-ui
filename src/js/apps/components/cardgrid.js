@@ -31,6 +31,7 @@ export default class Cardgrid {
   }
 
   bindEvents() {
+    this.$table.on('table:resized', (e) => this.tableResized(e));
     this.$table.on('data:loaded', (e, data) => this.listLoaded(e, data));
 
     $(document).on('click', '.js-drawer-close', (e) => this.unselectItem(e));
@@ -41,6 +42,18 @@ export default class Cardgrid {
     $(document).on('dragstart', '.js-draggable-cell:not(.is-empty)', (e) => this.dragStart(e));
     $(document).on('dragenter', '.js-draggable-cell', (e) => this.dragEnter(e));
     $(document).on('dragend', '.js-draggable-cell', (e) => this.dragEnd(e));
+  }
+
+  tableResized(e) {
+    const $container = this.$table.find('.datagrid-body-container');
+    const height = $container.height() + 16;
+
+    if ($(window).height() > $container.offset().top + height) {
+      $container.css('height', height + 'px');
+      $container.find('.antiscroll-box').css('height', height + 'px');
+      $container.find('.datagrid-right-table-block').css('height', height + 'px');
+      $container.find('.datagrid-left-table-block').css('height', height + 'px');
+    }
   }
 
   listLoaded(e, data) {

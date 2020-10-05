@@ -38,6 +38,11 @@
       background-color: transparent;
       overflow-x: unset;
     }
+
+    &.datagrid-hover,
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   .datagrid-header-cell {

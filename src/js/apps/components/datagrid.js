@@ -251,6 +251,8 @@ export default class Datagrid {
     this.$table.find('.datagrid-body-container .antiscroll-box').css('width', tableWidth + 'px');
     this.$table.find('.datagrid-body-container .antiscroll-box').css('height', maxHeight + 'px');
 
+    this.$table.trigger('table:resized');
+
     if (!this.isLoaded) {
       this.isLoaded = true;
 
