@@ -25,12 +25,6 @@
     width: 34px;
   }
 
-  .toggle-button-group {
-    position: inherit;
-    left: auto;
-    width: 25%;
-  }
-
   .list-settings {
     text-transform: none;
     text-align: left;
@@ -124,27 +118,17 @@
     }
 
     .list-dropdown-container,
-    .toggle-button-group,
     .add-buttons-container {
       display: flex;
       flex-wrap: nowrap;
+      float: left;
+      width: 50%;
     }
   }
 
   .list-page-container:not(.single-line-header) .list-page-header {
     display: block;
     height: 128px;
-
-    .list-dropdown-container,
-    .toggle-button-group,
-    .add-buttons-container {
-      float: left;
-      width: 25%;
-    }
-
-    .toggle-button-group {
-      width: 50%;
-    }
   }
 }
 
