@@ -17,16 +17,21 @@ export default class ActivityList {
 
     // toggle view
     $(document).on('click', '.js-activity-view:not(.active)', (e) => {
-      $(e.currentTarget)
+      const $target = $(e.currentTarget);
+
+      $target
         .closest('.toggle-button-group')
         .find('.js-activity-view.active')
         .removeClass('active');
 
-      $(e.currentTarget)
-        .addClass('active')
-        .closest('.activity-list')
-        .find('.activity-log-list')
-        .toggleClass('activity-timeline');
+      $target.addClass('active');
+
+      let $list = $($target.data('target'));
+      if ($list.length === 0) {
+        $list = $target.closest('.activity-list');
+      }
+
+      $list.find('.activity-log-list').toggleClass('activity-timeline');
     });
 
     // filter list
