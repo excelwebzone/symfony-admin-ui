@@ -317,11 +317,20 @@ export default class Filter {
     // populate form
     this.$form.deserialize(params);
 
+    // mark dropdown as empty
+    this.$form.find('.dropdown').removeClass('has-value');
+
+    // show and unselect all options
+    this.$form.find('.dropdown.js-select-dropdown-multiple')
+      .find('.option-list-item')
+      .removeClass('is-selected is-highlighted')
+      .show();
+
     // remove all preselected tags
     this.$form.find('.dropdown-tags').html('');
 
-    // show all options
-    this.$form.find('.dropdown.js-select-dropdown-multiple').find('.option-list-item').show();
+    // force "onload" event (update sync dropdown)
+    this.$form.find('.dropdown').find('input[type=hidden],select').trigger('onload');
 
     // auto select option items
     for (let option of this.$container.find('select option:selected', this.$form)) {
