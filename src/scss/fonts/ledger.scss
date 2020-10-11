@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?xl9be3') format('truetype'),
-    url('../../fonts/Ledger.woff?xl9be3') format('woff'),
-    url('../../fonts/Ledger.svg?xl9be3#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?s2vxg3') format('truetype'),
+    url('../../fonts/Ledger.woff?s2vxg3') format('woff'),
+    url('../../fonts/Ledger.svg?s2vxg3#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -40,7 +40,7 @@
 }
 
 .ledger-icon-activity:before {
-  content: "\e901";
+  content: "\e903";
 }
 .ledger-icon-alert-circle:before {
   content: "\f1f1";
@@ -256,7 +256,7 @@
   content: "\e93b";
 }
 .ledger-icon-local-florist:before {
-  content: "\e902";
+  content: "\e905";
 }
 .ledger-icon-lock:before {
   content: "\e93d";
@@ -318,6 +318,12 @@
 .ledger-icon-phone:before {
   content: "\e949";
 }
+.ledger-icon-pin:before {
+  content: "\f1ab";
+}
+.ledger-icon-pin-off:before {
+  content: "\f1aa";
+}
 .ledger-icon-play:before {
   content: "\f3aa";
 }
@@ -358,7 +364,7 @@
   content: "\f372";
 }
 .ledger-icon-restaurant:before {
-  content: "\e903";
+  content: "\e907";
 }
 .ledger-icon-search:before {
   content: "\e94f";
