@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?s2vxg3') format('truetype'),
-    url('../../fonts/Ledger.woff?s2vxg3') format('woff'),
-    url('../../fonts/Ledger.svg?s2vxg3#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?lsyjbb') format('truetype'),
+    url('../../fonts/Ledger.woff?lsyjbb') format('woff'),
+    url('../../fonts/Ledger.svg?lsyjbb#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -319,10 +319,7 @@
   content: "\e949";
 }
 .ledger-icon-pin:before {
-  content: "\f1ab";
-}
-.ledger-icon-pin-off:before {
-  content: "\f1aa";
+  content: "\f08d";
 }
 .ledger-icon-play:before {
   content: "\f3aa";
