@@ -127,11 +127,12 @@
     padding: 0;
   }
 
-  > .rating {
-    padding: 23px 13px;
-
-    .star {
-      font-size: 32px !important;
-    }
+  > .rating .star {
+    font-size: 32px !important;
   }
+}
+
+.modal .has-floating-label > .rating {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
