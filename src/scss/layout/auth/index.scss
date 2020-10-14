@@ -86,16 +86,16 @@
   }
 
   form {
-    margin: 40px 0 80px;
+    margin: 24px 0 80px;
   }
 
   footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 40px;
   }
 }
 
