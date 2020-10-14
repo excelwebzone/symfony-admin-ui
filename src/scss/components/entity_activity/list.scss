@@ -1,6 +1,10 @@
 .activity-list {
   padding: 0 0 15px;
   position: relative;
+
+  .toggle-button-group {
+    position: relative;
+  }
 }
 
 .activity-list-filter {
