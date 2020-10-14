@@ -80,7 +80,7 @@
 
     > div.done {
       .step-number:before {
-        content: '\f26b';
+        content: '\f26b'; // ledger-icon-check
         display: inline;
         float: right;
         font-family: 'Ledger';
