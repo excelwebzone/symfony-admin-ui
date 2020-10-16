@@ -126,6 +126,19 @@
     }
   }
 
+  .list-page-container.single-line-header.has-single-tool .list-page-header {
+    .list-dropdown-container,
+    .add-buttons-container {
+      width: auto;
+    }
+
+    .toggle-button-group {
+      transform: translateX(0);
+      left: auto;
+      right: 16px;
+    }
+  }
+
   .list-page-container:not(.single-line-header) .list-page-header {
     display: block;
     height: 128px;
