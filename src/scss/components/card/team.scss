@@ -39,18 +39,26 @@
 
   .card-team-actions {
     position: absolute;
-    top: 20px;
+    top: 12px;
     right: 20px;
     z-index: 1;
 
-    a {
-      font-size: 16px;
-      font-weight: 600;
-      color: #696e6f;
+    > a,
+    > .dropdown>.button-icon {
+      font-size: 22px;
+      color: #909799;
       margin-left: 16px;
 
       &:hover {
         text-decoration: none;
+      }
+    }
+
+    > .dropdown {
+      vertical-align: inherit;
+
+      .button-icon {
+        padding: 3px 6px;
       }
     }
   }
