@@ -69,7 +69,9 @@ export default class ContextualNav {
 
     let possibleLi = parseInt(menuRect.width / (liTotalWidth / liCount)) - 1;
     possibleLi = possibleLi - extraLiHide;
-    if (possibleLi < 0) {
+
+    // force at least one item
+    if (possibleLi <= 0) {
       possibleLi = 1;
     }
 
@@ -103,7 +105,7 @@ export default class ContextualNav {
       });
     } else {
       _.each(this.$menu.find('.navigation-item-button'), (element) => {
-        $(element).next().show();
+        $(element).next().css('display', '');
         $(element).parent().removeClass('is-expanded');
         $(element).off('click');
       });
