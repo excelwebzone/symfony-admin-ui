@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
+import bp from './breakpoints';
 
 export default class ContextualNav {
   constructor() {
@@ -42,10 +43,11 @@ export default class ContextualNav {
   }
 
   render() {
-    const extraLiHide = parseInt(this.$menu.data('hideExtraLi')) || 0;
     if (this.$menu.length === 0) {
       return;
     }
+
+    const extraLiHide = parseInt(this.$menu.data('hideExtraLi')) || 0;
 
     let menuRect = this.$menu[0].getBoundingClientRect();
     let liTotalWidth = 0;
@@ -53,7 +55,7 @@ export default class ContextualNav {
 
     this.$menu
       .children('ul')
-      .children('li.is-more')
+      .children('li.navigation-morenav')
       .remove();
 
     this.$menu
@@ -67,6 +69,9 @@ export default class ContextualNav {
 
     let possibleLi = parseInt(menuRect.width / (liTotalWidth / liCount)) - 1;
     possibleLi = possibleLi - extraLiHide;
+    if (possibleLi < 0) {
+      possibleLi = 1;
+    }
 
     if (liCount > possibleLi) {
       const wrapper = this.createWrapperLI();
@@ -77,16 +82,37 @@ export default class ContextualNav {
           .eq(i);
 
         const clone = currentLi.clone();
-        clone.children('ul').addClass('sub-menu');
+        clone.children('ul').addClass('navigation-subnav');
         wrapper.children('ul').append(clone);
         currentLi.hide();
       }
     }
+
+    const breakpoint = bp.getBreakpointSize();
+
+    if (breakpoint !== 'lg') {
+      _.each(this.$menu.find('.navigation-item-button'), (element) => {
+        const id = _.now();
+        $(element).next().prop('id', id).hide();
+
+        $(element).off('click');
+        $(element).on('click', () => {
+          $(element).next().toggle();
+          $(element).parent().toggleClass('is-expanded');
+        });
+      });
+    } else {
+      _.each(this.$menu.find('.navigation-item-button'), (element) => {
+        $(element).next().show();
+        $(element).parent().removeClass('is-expanded');
+        $(element).off('click');
+      });
+    }
   }
 
   createWrapperLI() {
-    this.$menu.children('ul').append('<li class="is-more"><a href="javascript:void(0)"><span class="title"><i class="ledger-icons ledger-icon-more"></i></span></a><ul></ul></li>');
+    this.$menu.children('ul').append('<li class="navigation-morenav"><a href="javascript:void(0)"><span class="title"><i class="ledger-icons ledger-icon-more"></i></span></a><ul></ul></li>');
 
-    return this.$menu.children('ul').children('li.is-more');
+    return this.$menu.children('ul').children('li.navigation-morenav');
   }
 }
