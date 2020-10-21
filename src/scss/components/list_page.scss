@@ -104,6 +104,20 @@
     font-size: 24px;
     margin-left: auto;
     width: 50%;
+
+    &.has-toggle > {
+      .list-buttons-toggle-content {
+        display: inline !important;
+
+        .dropdown-options {
+          z-index: 2 !important;
+        }
+      }
+
+      .list-buttons-toggle-button {
+        display: none !important;
+      }
+    }
   }
 }
 
@@ -142,6 +156,30 @@
   .list-page-container:not(.single-line-header) .list-page-header {
     display: block;
     height: 128px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .list-page-header .list-buttons-container.has-toggle {
+    position: absolute;
+    right: 16px;
+
+    &.is-expanded {
+      width: calc(100% - 32px);
+      background: #fcfcfc;
+
+      .toggle-button-group {
+        left: 48px;
+      }
+    }
+
+    &:not(.is-expanded) > .list-buttons-toggle-content {
+      display: none !important;
+    }
+
+    > .list-buttons-toggle-button {
+      display: inline !important;
+    }
   }
 }
 
