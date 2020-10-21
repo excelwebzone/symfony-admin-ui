@@ -31,7 +31,7 @@ export default class ContextualSidebar {
   }
 
   toggleSidebarNav(show) {
-    if (show === null) {
+    if (show === undefined) {
       show = !this.$page.hasClass('sidebar-collapsed');
     }
 
