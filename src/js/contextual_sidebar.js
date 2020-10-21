@@ -27,7 +27,7 @@ export default class ContextualSidebar {
     if (bp.getBreakpointSize() !== 'lg') {
       return;
     }
-    Cookies.set('sidebar_collapsed', value, { expires: 365 * 10 });
+    Cookies.set('sidebar_collapsed', value, { sameSite: 'none', expires: 365 * 10 });
   }
 
   toggleSidebarNav(show) {
