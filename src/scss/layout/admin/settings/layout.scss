@@ -80,8 +80,11 @@
 
   .settings-content-table-rows {
     height: auto;
-    overflow-y: auto;
     max-height: 440px;
+
+    &:not(.has-single-row) {
+      overflow-y: auto;
+    }
   }
 
   .sortable-list {
