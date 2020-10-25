@@ -446,6 +446,14 @@ export default class Filter {
 
     this.filters = JSON.stringify(params);
 
+    for (let element of this.$container.find('.js-filter-list .js-filter-item:not(.option-list-item-active):not(.is-hidden)')) {
+      if (_.isEqual(params, $(element).data('filter'))) {
+        $(element).click();
+
+        return;
+      }
+    }
+
     const isSameFilter = _.isEqual(params, this.currentFilter) && this.getActiveFilter().data('id') !== 'preload';
 
     // reset all label counts
