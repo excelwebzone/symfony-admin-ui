@@ -160,8 +160,18 @@ export default class Filter {
     e.stopPropagation();
   }
 
+  cleanFilterJSON(filters) {
+    filters = JSON.parse(filters);
+
+    for (let field of this.$form.data('ignore-fields') || []) {
+      delete filters[field];
+    }
+
+    return JSON.stringify(filters);
+  }
+
   createNew(e, modal) {
-    $(modal).find('[id$="_params"]').val(this.filters);
+    $(modal).find('[id$="_params"]').val(this.cleanFilterJSON(this.filters));
     $(modal).find('[id$="_report"]').val(this.$saveButton.data('report'));
     $(modal).find('[id$="_section"]').val(this.$saveButton.data('section'));
 
@@ -186,16 +196,18 @@ export default class Filter {
     const id = this.getActiveFilter().data('id');
     const url = $currentTarget.data('endpoint').replace('__ID__', id);
 
-    axios.put(url, { params: this.filters })
+    const filters = this.cleanFilterJSON(this.filters);
+
+    axios.put(url, { params: filters })
       .then(({ data }) => {
         this.$clearButton.hide();
         this.$saveButton.hide();
         this.$updateButton.hide();
 
-        this.currentFilter = JSON.parse(this.filters);
+        this.currentFilter = JSON.parse(filters);
 
         for (let item of this.$container.find(`.js-filter-item[data-id="${id}"]`)) {
-          $(item).attr('data-filter', this.filters);
+          $(item).attr('data-filter', filters);
           $(item).data('filter', this.currentFilter);
         }
 
@@ -455,14 +467,10 @@ export default class Filter {
 
     this.filters = JSON.stringify(params);
 
+    params = JSON.parse(this.cleanFilterJSON(this.filters));
+
     for (let element of this.$container.find('.js-filter-list .js-filter-item:not(.option-list-item-active):not(.is-hidden)')) {
-      const tmpParams = Object.assign({}, params);
-
-      for (let field of this.$form.data('ignore-fields') || []) {
-        delete tmpParams[field];
-      }
-
-      if (_.isEqual(tmpParams, $(element).data('filter'))) {
+      if (_.isEqual(params, $(element).data('filter'))) {
         $(element).click();
 
         return;
