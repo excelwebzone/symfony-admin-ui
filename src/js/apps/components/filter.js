@@ -321,7 +321,7 @@ export default class Filter {
     this.$form.find('.dropdown').removeClass('has-value');
 
     // show and unselect all options
-    this.$form.find('.dropdown.js-select-dropdown-multiple')
+    this.$form.find('.dropdown.js-select-dropdown,.dropdown.js-select-dropdown-multiple')
       .find('.option-list-item')
       .removeClass('is-selected is-highlighted')
       .show();
@@ -369,7 +369,7 @@ export default class Filter {
             }
           });
       } else {
-        this.$form.find('.dropdown-reset').click();
+        $(element).find('.dropdown-reset').click();
       }
     }
 
