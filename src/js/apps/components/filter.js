@@ -320,6 +320,15 @@ export default class Filter {
     // mark dropdown as empty
     this.$form.find('.dropdown').removeClass('has-value');
 
+    // reset regular dropdown
+    for (let element of this.$container.find('.dropdown.js-select-dropdown', this.$form)) {
+      $(element).find('.dropdown-reset').hide();
+
+      if ($(element).find('.dropdown-text')) {
+        $(element).find('.dropdown-text').addClass('dropdown-placeholder').html($(element).data('placeholder') || '');
+      }
+    }
+
     // show and unselect all options
     this.$form.find('.dropdown.js-select-dropdown,.dropdown.js-select-dropdown-multiple')
       .find('.option-list-item')
