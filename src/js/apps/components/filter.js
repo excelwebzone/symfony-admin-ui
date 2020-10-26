@@ -447,7 +447,13 @@ export default class Filter {
     this.filters = JSON.stringify(params);
 
     for (let element of this.$container.find('.js-filter-list .js-filter-item:not(.option-list-item-active):not(.is-hidden)')) {
-      if (_.isEqual(params, $(element).data('filter'))) {
+      const tmpParams = Object.assign({}, params);
+
+      for (let field of this.$form.data('ignore-fields') || []) {
+        delete tmpParams[field];
+      }
+
+      if (_.isEqual(tmpParams, $(element).data('filter'))) {
         $(element).click();
 
         return;
