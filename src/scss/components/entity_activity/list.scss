@@ -256,6 +256,10 @@
     }
   }
 
+  &.is-active .activity-item-container {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
   &.activity-item-note {
     .activity-item-content > .activity-item-body {
       line-height: 18px;
