@@ -66,6 +66,13 @@
   height: calc(100% - 64px);
 }
 
+@media (min-width: 992px) {
+  .has-search .list-page-container .entity-activity {
+    height: -webkit-calc(100% - 144px);
+    height: calc(100% - 144px);
+  }
+}
+
 @media (max-width: 991.98px) {
   .list-page-container .entity-activity {
     height: -webkit-calc(100% - 128px);

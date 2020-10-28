@@ -74,6 +74,29 @@ export default class ListPage {
         ? removeParams(['cardView'])
         : mergeUrlParams({ cardView: 1 }, window.location.href);
     });
+
+    // toggle search state
+    $(document).on('shown.bs.collapse', '.list-search', (e) => {
+      $('.application-content').addClass('has-search');
+
+      // focus on search field
+      $(e.currentTarget).find('.input-text').focus();
+
+      // resize table
+      if (this.dataViewer.getDatagrid().getTable()) {
+        this.dataViewer.getDatagrid().resizeTable();
+        this.dataViewer.getDatagrid().rebindEvents();
+      }
+    });
+    $(document).on('hidden.bs.collapse', '.list-search', (e) => {
+      $('.application-content').removeClass('has-search');
+
+      // resize table
+      if (this.dataViewer.getDatagrid().getTable()) {
+        this.dataViewer.getDatagrid().resizeTable();
+        this.dataViewer.getDatagrid().rebindEvents();
+      }
+    });
   }
 
   createDataViewer() {

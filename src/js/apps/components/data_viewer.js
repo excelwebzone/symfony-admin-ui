@@ -81,6 +81,10 @@ export default class DataViewer {
     }
   }
 
+  getDatagrid() {
+    return this.datagrid;
+  }
+
   createPager() {
     const callback = (data) => {
       if (typeof this.preCallback === 'function') {

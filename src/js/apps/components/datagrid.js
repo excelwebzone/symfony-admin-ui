@@ -67,6 +67,10 @@ export default class Datagrid {
     }
   }
 
+  getTable() {
+    return this.$table;
+  }
+
   rebindEvents() {
     this.$table.find('.datagrid-body-container .datagrid-table-row').off('mouseover');
     this.$table.find('.datagrid-body-container .datagrid-table-row').off('mouseout');
