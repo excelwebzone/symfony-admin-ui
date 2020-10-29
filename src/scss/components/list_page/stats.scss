@@ -1,0 +1,53 @@
+.list-page-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  border-radius: 8px 8px 0 0;
+  z-index: 0;
+
+  .list-page-stats-value {
+    height: 84px;
+    display: inline-block;
+    margin-left: 27px;
+    padding-top: 15px;
+    text-align: center;
+
+    .label {
+      color: #696e6f;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .value {
+      font-size: 29px;
+      font-weight: 500;
+      color: #0c0d0d;
+      margin: 0;
+    }
+  }
+
+  .odometer-currency {
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0c0d0d;
+    margin: 24px 5px 0;
+    cursor: default;
+
+    .odometer {
+      position: relative;
+      top: -2px;
+      left: -6px;
+    }
+  }
+
+  .odometer-currency-odometer {
+    font-family: inherit;
+    margin-bottom: 1px;
+  }
+}

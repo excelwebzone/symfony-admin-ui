@@ -1,0 +1,35 @@
+.list-page-loading-popup {
+  bottom: 0;
+  display: block;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 48px);
+  z-index: 10;
+  transition: left 0.3s;
+}
+
+.sidebar-collapsed .list-page-loading-popup {
+  left: 310px;
+}
+
+.list-loading-content {
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.24);
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 13px;
+  height: 48px;
+  line-height: 46px;
+  padding: 0 54px;
+}
+
+.list-loading-content-loading-spinner {
+  display: inline-block;
+  height: 20px;
+  margin: 0 auto;
+  vertical-align: middle;
+  width: 20px;
+}

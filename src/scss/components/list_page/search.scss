@@ -1,0 +1,28 @@
+.list-search {
+  &.has-floating-label .input-text {
+    padding-top: 10px;
+  }
+
+  &:not(.has-floating-label) .input-text {
+    border-width: 2px;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.list-page-container .list-search {
+  margin: 0 24px;
+}
+
+@media (max-width: 991.98px) {
+  .list-search {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .list-page-container .list-search {
+    display: none;
+  }
+}
