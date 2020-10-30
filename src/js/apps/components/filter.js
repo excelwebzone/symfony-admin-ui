@@ -22,6 +22,7 @@ export default class Filter {
     this.currentFilter = {};
     this.filters = '{}';
     this.isLoading = false;
+    this.compareCheck = true;
 
     this.initDomElements(containerEl);
     this.bindEvents();
@@ -469,13 +470,19 @@ export default class Filter {
 
     params = JSON.parse(this.cleanFilterJSON(this.filters));
 
-    for (let element of this.$container.find('.js-filter-list .js-filter-item:not(.option-list-item-active):not(.is-hidden)')) {
-      if (_.isEqual(params, $(element).data('filter'))) {
-        $(element).click();
+    if (this.compareCheck) {
+      for (let element of this.$container.find('.js-filter-list .js-filter-item:not(.option-list-item-active):not(.is-hidden)')) {
+        if (_.isEqual(params, $(element).data('filter'))) {
+          this.compareCheck = false;
 
-        return;
+          $(element).click();
+
+          return;
+        }
       }
     }
+
+    this.compareCheck = true;
 
     const isSameFilter = _.isEqual(params, this.currentFilter) && this.getActiveFilter().data('id') !== 'preload';
 
