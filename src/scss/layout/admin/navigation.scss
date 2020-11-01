@@ -148,6 +148,12 @@
         font-size: 24px;
       }
 
+      &:not(.navigation-has-secondary):not(.navigation-morenav) > ul {
+        max-height: 400px;
+        overflow: hidden;
+        overflow-y: auto;
+      }
+
       &.is-active {
         background: transparent;
         border-bottom: 4px solid #545454;
