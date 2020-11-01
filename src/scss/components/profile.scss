@@ -101,6 +101,8 @@
   position: absolute;
   top: 0;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 
   > img {
     height: 100%;
@@ -188,7 +190,7 @@
   &.is-empty .profile-image-component-icon,
   &.is-uploading .profile-image-component-loading-overlay,
   &.is-photo-loaded .profile-image-component-image {
-    display: block;
+    display: flex;
   }
 
   &.profile-image-component-circle {
