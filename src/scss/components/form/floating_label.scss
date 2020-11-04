@@ -31,8 +31,10 @@
     min-height: 56px;
 
     &.dropdown-multiple {
-      height: auto;
-      min-height: 56px;
+      &.has-value {
+        height: auto;
+        min-height: 56px;
+      }
 
       .dropdown-tags {
         width: calc(100% - 16px);
