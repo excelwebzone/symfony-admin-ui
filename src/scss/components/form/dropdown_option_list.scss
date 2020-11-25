@@ -12,6 +12,8 @@
 }
 
 .option-list-item {
+  display: flex;
+  align-items: center;
   overflow: hidden;
   cursor: pointer;
   line-height: 20px;
@@ -102,6 +104,16 @@
   color: #696e6f;
   width: 35px;
   display: inline-block;
+
+  + .option-list-info-item-abbreviation {
+    margin-right: 5px;
+  }
+
+  .profile-image-component {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+  }
 }
 
 .option-list-item-link {
