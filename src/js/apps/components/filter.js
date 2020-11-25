@@ -384,7 +384,12 @@ export default class Filter {
                     </span>
                   </div>
                 `);
+
+                if ($(element).find('.dropdown-tags .tag').length) {
+                  $(element).addClass('has-value');
+                }
               } else if (key === selectedVal) {
+                $(element).addClass('has-value');
                 $(element).find('.dropdown-reset').show();
                 $(element).find('.dropdown-text').removeClass('dropdown-placeholder').html(value.label ? value.label : value);
               }
