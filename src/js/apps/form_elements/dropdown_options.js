@@ -275,10 +275,19 @@ export default class DropdownOptions {
     const $options = $dropdown.find('.option-list').find('>ul');
 
     if ($dropdown.hasClass('js-autocomplete-dropdown') && $dropdown.data('endpoint')) {
+      const exclude = [];
+
+      if ($dropdown.hasClass('js-select-dropdown-multiple')) {
+        for (let tagAction of $dropdown.find('.dropdown-tags .tag-action')) {
+          exclude.push($(tagAction).data('value'));
+        }
+      }
+
       $options.html('<li class="option-list-loading"><div class="option-list-loading-spinner"><div class="circle-spinner"></div></div></li>');
       axios.get($dropdown.data('endpoint'), {
         params: {
-          search: this.value
+          search: this.value,
+          exclude: exclude
         }
       })
         .then(({ data }) => {
