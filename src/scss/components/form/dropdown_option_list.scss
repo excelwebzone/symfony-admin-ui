@@ -12,8 +12,6 @@
 }
 
 .option-list-item {
-  display: flex;
-  align-items: center;
   overflow: hidden;
   cursor: pointer;
   line-height: 20px;
@@ -110,6 +108,8 @@
   }
 
   .profile-image-component {
+    display: inline-block;
+    vertical-align: middle;
     width: 24px;
     height: 24px;
     margin-right: 5px;
