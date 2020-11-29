@@ -189,7 +189,7 @@ export default class Datagrid {
       }
     }
 
-    axios.post(this.$table.data('settings-endpoint'), objectToFormData({ columns: columns }))
+    axios.post(this.$table.data('update-columns-endpoint'), objectToFormData({ columns: columns }))
       .then(() => this.$table.trigger('column:sorted'));
   }
 
