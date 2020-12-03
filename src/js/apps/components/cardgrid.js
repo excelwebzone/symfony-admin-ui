@@ -290,12 +290,17 @@ export default class Cardgrid {
 
     if (data.fields) {
       const fields = {};
+      let found = false;
       for (let [field, value] of Object.entries(data.fields)) {
-        if (field !== $cell.data('target-field')) {
+        if (field === $cell.data('target-field')) {
+          found = true;
+        } else {
           fields[field] = value;
         }
       }
-      fields[$cell.data('target-field')] = data.fields[$cell.data('target-field')];
+      if (found) {
+        fields[$cell.data('target-field')] = data.fields[$cell.data('target-field')];
+      }
 
       for (let [field, value] of Object.entries(fields)) {
         if (value || this.allowEmptyFields.indexOf(field) !== -1) {
