@@ -379,6 +379,10 @@ export default class EntityView {
     $(modal).on('modal:hidden', (e, data) => {
       $(modal).off('modal:hidden');
 
+      if ($target.data('trigger')) {
+        $target.trigger($target.data('trigger'), data);
+      }
+
       const $container = $target.closest('.entity-association-group').find('.js-entity-related-container');
       const $counter = $target.closest('.entity-association-group').find('.entity-association-group-title>span');
 
