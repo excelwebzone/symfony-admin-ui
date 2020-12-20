@@ -116,7 +116,7 @@ export default class EntityForm {
             });
           }
           if ($form.data('trigger')) {
-            $form.trigger($form.data('trigger'));
+            $form.trigger($form.data('trigger'), data);
           }
           if ($form.data('show-target')) {
             $($form.data('show-target')).show();
