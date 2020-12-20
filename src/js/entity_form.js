@@ -187,7 +187,6 @@ export default class EntityForm {
           });
         }
 
-        // $form.trigger('ajax:complete');
         $('[type="submit"], .js-disable-on-submit', $form).enable();
       });
 
