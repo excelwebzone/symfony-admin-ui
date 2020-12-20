@@ -219,7 +219,7 @@ export default class ActivityList {
   }
 
   removeItem(e, modal) {
-    $(modal).find('form').on('remove:item', (e, data) => {
+    $(modal).find('form').on('remove:item', (e) => {
       const $item = $($(e.target).data('entity-item'));
       if ($item.hasClass('is-labeled')) {
         const $nextItem = $item.next('.activity-item');
@@ -252,7 +252,7 @@ export default class ActivityList {
       $textarea.trigger('content-changed');
     }
 
-    $modal.find('.js-activity-item-action-save').on('click', (e, data) => {
+    $modal.find('.js-activity-item-action-save').on('click', (e) => {
       const $button = $(e.target);
       const $formGroup = $modal.find('.form-group');
       const $error = $formGroup.find('.form-control-error');
