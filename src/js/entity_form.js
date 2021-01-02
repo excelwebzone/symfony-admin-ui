@@ -206,7 +206,7 @@ export default class EntityForm {
 
     const $form = $target.closest('form');
     const $formGroup = $target.closest('.form-group');
-    let $element = $formGroup.find(':input');
+    let $element = $formGroup.find(':input:not(.ignore-input)');
 
     if ($target.data('related-fields')) {
       for (let e of $target.data('related-fields')) {
@@ -214,7 +214,7 @@ export default class EntityForm {
           $element,
           $(e)
             .closest('.form-group')
-            .find(':input')
+            .find(':input:not(.ignore-input)')
         );
       }
     }
