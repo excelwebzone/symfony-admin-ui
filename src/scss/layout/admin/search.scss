@@ -1,18 +1,3 @@
-.search-back-button {
-  color: #0c0d0d;
-  font-size: 28px;
-  display: inline-block;
-  z-index: 104;
-
-  .button.button-toggle {
-    &:focus,
-    &:hover {
-      border-color: transparent;
-      box-shadow: none;
-    }
-  }
-}
-
 .search-results {
   overflow-y: scroll;
   position: relative;
