@@ -45,7 +45,7 @@ export default class ListPage {
   }
 
   bindEvents() {
-    $(document).on('click', '.list-page-header-toggle', (e) => {
+    this.$container.on('click', '.list-page-header-toggle', (e) => {
       this.$container.find('.list-page-container').toggleClass('is-collapsed');
 
       // resize table
