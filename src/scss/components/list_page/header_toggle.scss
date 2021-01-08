@@ -1,0 +1,68 @@
+.list-page-header-toggle {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .list-page-header {
+    border-bottom: 1px solid #eee;
+  }
+
+  .list-page-header-toggle {
+    z-index: 9;
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 14px;
+    top: -2px;
+    left: 50%;
+    margin-left: -20px;
+    background-color: #fff;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.08);
+    transition: all .1s linear;
+
+    &:hover {
+      background-color: #dce3e6;
+      cursor: pointer;
+    }
+
+    .ledger-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: initial;
+    }
+  }
+
+  .list-page-container.is-collapsed {
+    .list-page-header {
+      display: none !important;
+    }
+
+    .list-page-header-toggle {
+      position: absolute;
+
+      .ledger-icons:before {
+        -ms-transform: rotate(-180deg);
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+      }
+    }
+
+    .list-page-right-column,
+    .list-page-chart,
+    .list-page-table,
+    .entity-activity {
+      height: 100% !important;
+    }
+
+    .list-page-table.has-stats {
+      height: -webkit-calc(100% - 84px) !important;
+      height: calc(100% - 84px) !important;
+    }
+  }
+
+  .has-navigation .list-page-container.is-collapsed .list-page-header-toggle {
+    top: 48px;
+  }
+}

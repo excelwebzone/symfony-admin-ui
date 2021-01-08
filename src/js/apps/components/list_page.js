@@ -34,9 +34,27 @@ export default class ListPage {
         theme: 'default'
       });
     }
+
+    if (this.$container.find('.list-page-header').length) {
+      this.$container.find('.list-page-header').after(`
+        <div class="list-page-header-toggle">
+          <i class="ledger-icons ledger-icon-chevron-up"></i>
+        </div>
+      `);
+    }
   }
 
   bindEvents() {
+    $(document).on('click', '.list-page-header-toggle', (e) => {
+      this.$container.find('.list-page-container').toggleClass('is-collapsed');
+
+      // resize table
+      if (this.dataViewer.getDatagrid().getTable()) {
+        this.dataViewer.getDatagrid().resizeTable();
+        this.dataViewer.getDatagrid().rebindEvents();
+      }
+    });
+
     $(document).on('reload:list', '.js-list-page-activity-log-form', () => {
       this.dataViewer.getFilter().loadActiveFilter();
     });
