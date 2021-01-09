@@ -293,11 +293,16 @@ export default class Filter {
     this.currentFilter = $filterItem.data('filter') || {};
 
     // get url filters
-    const values = JSON.parse(getParameterValues('filters'));
+    let values = [];
+    try {
+      values = JSON.parse(getParameterValues('filters'));
+    } catch (e) {}
 
     // override fields
     for (let field of this.$form.data('ignore-fields') || []) {
-      this.currentFilter[field] = values[field];
+      if (typeof values[field] !== 'undefined') {
+        this.currentFilter[field] = values[field];
+      }
     }
 
     this.loadFilters();
