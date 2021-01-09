@@ -4,6 +4,7 @@ import moment from 'moment';
 import toaster from '../../lib/utils/toaster';
 import axios from '../../lib/utils/axios_utils';
 import { withoutEmpty } from '../../lib/utils/form_parsing';
+import { getParameterValues } from '../../lib/utils/url_utility';
 import { dateRanges, getDateRange, initTagsPicker, initDateRangePicker } from './filter_range';
 
 const filterItemLI = (id, title, filters) => `
@@ -290,6 +291,14 @@ export default class Filter {
     this.getActiveFilter().addClass('option-list-item-active');
 
     this.currentFilter = $filterItem.data('filter') || {};
+
+    // get url filters
+    const values = JSON.parse(getParameterValues('filters'));
+
+    // override fields
+    for (let field of this.$form.data('ignore-fields') || []) {
+      this.currentFilter[field] = values[field];
+    }
 
     this.loadFilters();
     this.toggleNoPrivateFilters();
