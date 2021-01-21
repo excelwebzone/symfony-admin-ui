@@ -56,7 +56,8 @@ export default class EntityDrawer {
       icon: $target.data('icon'),
       photo: $target.data('photo'),
       isFollow: $target.data('is-follow') || false,
-      isComplete: $target.data('is-complete') || false
+      isComplete: $target.data('is-complete') || false,
+      hideComplete: $target.data('hide-complete') || false
     }));
 
     this.$drawer = $('.drawer-frame:not(.filter-options)');
