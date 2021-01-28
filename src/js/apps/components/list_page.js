@@ -291,6 +291,11 @@ export default class ListPage {
       params.sort = this.dataViewer.getSortColumn();
     }
 
+    const groupingType = $('.js-grouping-type.is-selected');
+    if (groupingType.length) {
+      params.groupingType = groupingType.data('value');
+    }
+
     axios.get($(e.currentTarget).data('endpoint'), {
       params: params
     })
