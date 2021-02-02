@@ -308,6 +308,8 @@ export default class EntityForm {
               for (let [field, value] of Object.entries(data.fields)) {
                 const name = $e.prop('name');
                 if (name.indexOf(`[${field}]`) > -1 || name === field) {
+                  let doUpdate = true;
+
                   if ($element.prop('type') === 'color') {
                     value = `#${data.updatedValue}`;
                   }
@@ -322,14 +324,21 @@ export default class EntityForm {
                     }
 
                     // The result can be accessed through the `m`-variable.
-                    m.forEach((match, groupIndex) => {
+                    for (let [groupIndex, match] of Object.entries(m)) {
                       if (groupIndex > 0 && match && m[groupIndex - 1] === `[${match}]` && match !== field) {
+                        if (_.isUndefined(value[match])) {
+                          doUpdate = false;
+                          return false;
+                        }
+
                         value = value[match];
                       }
-                    });
+                    }
                   }
 
-                  $e.val(value);
+                  if (doUpdate) {
+                    $e.val(value);
+                  }
 
                   break;
                 }
