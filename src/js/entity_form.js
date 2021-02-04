@@ -328,7 +328,7 @@ export default class EntityForm {
                       if (groupIndex > 0 && match && m[groupIndex - 1] === `[${match}]` && match !== field) {
                         if (_.isUndefined(value[match])) {
                           doUpdate = false;
-                          return false;
+                          break;
                         }
 
                         value = value[match];
