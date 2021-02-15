@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?tka6vx') format('truetype'),
-    url('../../fonts/Ledger.woff?tka6vx') format('woff'),
-    url('../../fonts/Ledger.svg?tka6vx#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?yj0mld') format('truetype'),
+    url('../../fonts/Ledger.woff?yj0mld') format('woff'),
+    url('../../fonts/Ledger.svg?yj0mld#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -101,6 +101,9 @@
 }
 .ledger-icon-carat-up:before {
   content: "\f2f8";
+}
+.ledger-icon-card:before {
+  content: "\f129";
 }
 .ledger-icon-chat:before {
   content: "\e91d";
@@ -386,6 +389,9 @@
 }
 .ledger-icon-shield-security:before {
   content: "\f1c8";
+}
+.ledger-icon-smartphone:before {
+  content: "\f2d4";
 }
 .ledger-icon-sort-asc:before {
   content: "\f1cd";
