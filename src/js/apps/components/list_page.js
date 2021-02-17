@@ -35,8 +35,8 @@ export default class ListPage {
       });
     }
 
-    if (this.$container.find('.list-page-header').length) {
-      this.$container.find('.list-page-header').after(`
+    if (this.$container.find('.list-page-header.add-header-toggle').length) {
+      this.$container.find('.list-page-header.add-header-toggle').after(`
         <div class="list-page-header-toggle">
           <i class="ledger-icons ledger-icon-chevron-up"></i>
         </div>
