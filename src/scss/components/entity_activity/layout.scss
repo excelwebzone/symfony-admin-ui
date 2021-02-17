@@ -67,7 +67,7 @@
 }
 
 .has-columns .list-page-container .entity-activity {
-  height: 100%;
+  height: 100% !important;
 }
 
 @media (min-width: 992px) {
@@ -76,23 +76,13 @@
       height: -webkit-calc(100% - 144px);
       height: calc(100% - 144px);
     }
-
-    &.has-columns .list-page-container .entity-activity {
-      height: -webkit-calc(100% - 80px);
-      height: calc(100% - 80px);
-    }
   }
 }
 
 @media (max-width: 991.98px) {
-  .list-page-container .entity-activity {
+  .list-page-container:not(.single-line-header) .entity-activity {
     height: -webkit-calc(100% - 128px);
     height: calc(100% - 128px);
-  }
-
-  // @see line 69
-  .has-columns .list-page-container .entity-activity {
-    height: 100% !important;
   }
 }
 
