@@ -54,7 +54,7 @@ export default class Datagrid {
         containment: 'parent',
         cursor: 'move',
         helper: 'clone',
-        items: '.datagrid-header-cell',
+        items: '.datagrid-header-cell:not(.ui-sortable-ignore)',
         opacity: 0.9,
         placeholder: 'ui-state-highlight',
         scroll: true,
