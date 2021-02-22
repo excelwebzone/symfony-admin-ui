@@ -30,6 +30,13 @@
   }
 }
 
+@media (max-width: 575.98px) {
+  .content-wrapper {
+    height: calc(100vh - 114px);
+    max-height: calc(100vh - 114px);
+  }
+}
+
 .body-content {
   position: relative;
   margin: 0;
