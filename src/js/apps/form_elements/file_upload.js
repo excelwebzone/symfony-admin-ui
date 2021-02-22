@@ -81,14 +81,27 @@ export default class FileUpload {
             self.$selector.find('img').prop('src', json.filename);
 
             if (self.$selector.data('update-profile-avatar')) {
-              $('.profile-avatar img').prop('src', json.filename);
+              $('.profile-avatar').replaceWith(`
+                <div class="profile-image-component profile-image-component-circle is-photo-loaded profile-avatar">
+                  <div class="profile-image-component-image">
+                    <img src="${json.filename}" />
+                  </div>
+                </div>
+              `);
             }
 
             if (self.$selector.data('update-datagrid-avatar')) {
               const $row = $(`.js-entity-drawer[data-id="${self.$selector.data('id')}"]`);
               if ($row) {
                 $row.data('photo', json.filename);
-                $row.find('.table-cell-avatar').html(`<div class="profile-image-component profile-image-component-circle is-photo-loaded"><div class="profile-image-component-image"><img src="${json.filename}"></div></div>`);
+
+                $row.find('.table-cell-avatar').html(`
+                  <div class="profile-image-component profile-image-component-circle is-photo-loaded">
+                    <div class="profile-image-component-image">
+                      <img src="${json.filename}" />
+                    </div>
+                  </div>
+                `);
               }
             }
           }
@@ -202,7 +215,26 @@ export default class FileUpload {
             self.$selector.find('img').prop('src', self.$selector.data('default-avatar'));
 
             if (self.$selector.data('update-profile-avatar')) {
-              $('.profile-avatar img').prop('src', self.$selector.data('default-avatar'));
+              if (self.$selector.data('default-avatar')) {
+                $('.profile-avatar').replaceWith(`
+                  <div class="profile-image-component profile-image-component-circle is-photo-loaded profile-avatar">
+                    <div class="profile-image-component-image">
+                      <img src="${self.$selector.data('default-avatar')}" />
+                    </div>
+                  </div>
+                `);
+              }
+
+              // override with initials
+              if (self.$selector.data('default-initials')) {
+                $('.profile-avatar').replaceWith(`
+                  <div class="profile-image-component profile-image-component-circle profile-avatar">
+                    <div class="profile-image-component-initials">
+                      ${self.$selector.data('default-initials')}
+                    </div>
+                  </div>
+                `);
+              }
             }
           }
         } else {
