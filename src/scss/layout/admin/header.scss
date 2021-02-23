@@ -16,8 +16,10 @@ header {
   box-shadow: none !important;
 }
 
-.sidebar-collapsed header {
-  padding-left: 280px;
+@media (min-width: 992px) {
+  .sidebar-collapsed header {
+    padding-left: 280px;
+  }
 }
 
 @media (max-width: 991.98px) {

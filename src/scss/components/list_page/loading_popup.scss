@@ -1,17 +1,14 @@
 .list-page-loading-popup {
-  bottom: 0;
-  display: block;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(100% - 48px);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
   z-index: 10;
-  transition: left 0.3s;
-}
-
-.sidebar-collapsed .list-page-loading-popup {
-  left: 310px;
 }
 
 .list-loading-content {
