@@ -341,14 +341,20 @@
   .sidebar {
     z-index: 12;
 
-   .nav-header .nav-drawer > div.sidebar-close {
+    .nav-header .nav-drawer > div.sidebar-close {
       display: none;
     }
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-height: 650px) {
+  .sidebar .nav-logo-option {
+    position: relative;
+    bottom: 0;
+    margin-top: 44px;
+  }
+
   .sidebar-collapsed .sidebar .nav-header {
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
 }
