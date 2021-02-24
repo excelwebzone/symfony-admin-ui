@@ -1,6 +1,7 @@
 .content-wrapper {
   margin-left: 72px;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow-x: auto;
   overflow-y: hidden;
   transition: margin-left 0.3s;
