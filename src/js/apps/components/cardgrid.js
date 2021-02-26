@@ -216,7 +216,7 @@ export default class Cardgrid {
     $counter.text(parseInt($counter.text()) - 1);
   }
 
-  moveCell($cell, value) {
+  moveCell($cell, value, $targetCell = null) {
     let $column = null;
     for (let column of this.$table.find('.datagrid-header-container .datagrid-header-cell')) {
       if (value === $(column).data('value')) {
@@ -224,18 +224,20 @@ export default class Cardgrid {
       }
     }
 
-    if (!$column || $column.data('index') === $cell.data('index')) {
+    if (!$column || ($column.data('index') === $cell.data('index') && !$targetCell)) {
       return;
     }
 
-    const index = $column.data('index');
+    // get column index
+    const columnIndex = $column.data('index');
 
-    const $cloneCell = $cell.clone(true);
+    // clone and delete original cell
+    let $cloneCell = $cell.clone(true);
     this.deleteCell($cell, false);
 
     // add empty cells
     let $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
-    if (!$lastRow.find(`.datagrid-cell[data-index="${index}"]`).hasClass('is-empty')) {
+    if (!$lastRow.find(`.datagrid-cell[data-index="${columnIndex}"]`).hasClass('is-empty')) {
       $lastRow.after($lastRow.clone(true));
       $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
       for (let cell of $lastRow.find('.datagrid-cell')) {
@@ -243,36 +245,52 @@ export default class Cardgrid {
       }
     }
 
-    // move and replace
-    for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
-      const $row = $(row);
-      const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
-      if ($rowCell.hasClass('is-empty')) {
-        $rowCell.replaceWith($cloneCell);
-        $cloneCell.data('index', $rowCell.data('index'));
-        $cloneCell.attr('data-index', $rowCell.data('index'));
-
-        break;
+    // set target-cell to first empty cell
+    if (!$targetCell || $targetCell.hasClass('is-empty')) {
+      for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
+        const $row = $(row);
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${columnIndex}"]`);
+        if ($rowCell.hasClass('is-empty')) {
+          $targetCell = $rowCell;
+          break;
+        }
       }
     }
 
-    // mark last cell
-    for (let column of this.$table.find('.datagrid-header-container .datagrid-header-cell')) {
-      const index = $(column).data('index');
+    // set row index
+    const rowIndex = $targetCell.closest('.datagrid-table-row').index();
 
-      let $preCell = null;
-      for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
-        const $row = $(row);
-        const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
+    // sort column (replace with target or place last)
+    let $preCell = null;
+    for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
+      const $row = $(row);
+      if ($row.index() >= rowIndex) {
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${columnIndex}"]`);
         if ($rowCell.length) {
-          if (!$preCell) {
-            $preCell = $rowCell;
-          }
-          if (!$rowCell.hasClass('is-empty')) {
-            $preCell.removeClass('is-last');
-            $preCell = $rowCell;
-            $preCell.addClass('is-last');
-          }
+          $preCell = $rowCell.clone(true);
+
+          $rowCell.replaceWith($cloneCell);
+          $cloneCell.data('index', $rowCell.data('index'));
+          $cloneCell.attr('data-index', $rowCell.data('index'));
+
+          $cloneCell = $preCell;
+        }
+      }
+    }
+
+    // mark last cells
+    $preCell = null;
+    for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
+      const $row = $(row);
+      const $rowCell = $row.find(`.datagrid-cell[data-index="${columnIndex}"]`);
+      if ($rowCell.length) {
+        if (!$preCell) {
+          $preCell = $rowCell;
+        }
+        if (!$rowCell.hasClass('is-empty')) {
+          $preCell.removeClass('is-last');
+          $preCell = $rowCell;
+          $preCell.addClass('is-last');
         }
       }
     }
@@ -281,7 +299,7 @@ export default class Cardgrid {
     this.datagrid.resizeTable();
     this.datagrid.rebindEvents();
 
-    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).find('span.counter');
+    const $counter = this.$table.find(`.datagrid-header-cell[data-index="${columnIndex}"]`).find('span.counter');
     $counter.text(parseInt($counter.text()) + 1);
   }
 
@@ -336,7 +354,7 @@ export default class Cardgrid {
       .find('.cardgrid-component-model-cell')
       .addClass('drag-shadow')
       .css('width', '300px')
-      .css('height', '120px');
+      .css('height', this.dragSourceEl.css('height'));
 
     $('body').append($clone);
 
@@ -349,7 +367,11 @@ export default class Cardgrid {
   }
 
   dragEnter(e) {
+    this.$table.find('.cardgrid-component-model-cell').removeClass('is-hover');
+
     this.dragTargetEl = $(e.currentTarget);
+    this.dragTargetEl.find('.cardgrid-component-model-cell:not(.shadow-model)').addClass('is-hover');
+
     const index = this.dragTargetEl.data('index');
     this.$table.find('.datagrid-header-cell.active').removeClass('active');
     this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).addClass('active');
@@ -363,10 +385,10 @@ export default class Cardgrid {
     this.$table.find('.cardgrid-component').removeClass('is-dragging');
     this.$table.find('.datagrid-header-cell').removeClass('active');
     this.$table.find('.cardgrid-component-model-cell').removeClass('shadow-model');
-    this.$table.find('.js-draggable-cell.is-clone').remove();
+    $('body').find('.js-draggable-cell.is-clone').remove();
 
     // don't do anything if we're dropping on the same column we're dragging.
-    if (this.dragSourceEl !== this.dragTargetEl) {
+    if (this.dragSourceEl.data('id') !== this.dragTargetEl.data('id')) {
       const index = this.dragTargetEl.data('index');
       const cellValue = this.$table.find(`.datagrid-header-cell[data-index="${index}"]`).data('value');
 
@@ -377,6 +399,13 @@ export default class Cardgrid {
 
       const params = {};
       params[this.dragSourceEl.data('target-field')] = newValue;
+
+      // pass sorting value (target id)
+      if (this.dragSourceEl.data('target-sort-field')) {
+        params[this.dragSourceEl.data('target-sort-field')] = !this.dragTargetEl.hasClass('is-empty')
+          ? this.dragTargetEl.data('id')
+          : null;
+      }
 
       axios.put(this.dragSourceEl.data('update-fields-endpoint'), params)
         .then(({ data }) => {
@@ -392,7 +421,11 @@ export default class Cardgrid {
             }
           }
 
-          this.moveCell(this.dragSourceEl, cellValue);
+          if (this.dragSourceEl.data('target-sort-field')) {
+            this.moveCell(this.dragSourceEl, cellValue, this.dragTargetEl);
+          } else {
+            this.moveCell(this.dragSourceEl, cellValue);
+          }
 
           const $drawer = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"]`);
           if ($drawer.length) {
