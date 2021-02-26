@@ -36,10 +36,6 @@
 .search-results-list {
   width: 700px;
   margin: 16px auto;
-
-  > ul {
-    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.12);
-  }
 }
 
 .search-results-page-info {
@@ -55,10 +51,18 @@
   color: #696e6f;
   font-size: 12px;
   border-top: 1px solid #dce3e6;
+  box-shadow: 10px 10px 35px 0 rgba(0, 0, 0, 0.08);
   background-color: #fff;
 
   &:first-child {
     border-top: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   &:hover:not(.search-results-item-empty) {
