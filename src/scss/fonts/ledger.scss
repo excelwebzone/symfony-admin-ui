@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?yj0mld') format('truetype'),
-    url('../../fonts/Ledger.woff?yj0mld') format('woff'),
-    url('../../fonts/Ledger.svg?yj0mld#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?1gysp1') format('truetype'),
+    url('../../fonts/Ledger.woff?1gysp1') format('woff'),
+    url('../../fonts/Ledger.svg?1gysp1#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -204,6 +204,12 @@
 .ledger-icon-eye-off:before {
   content: "\e92f";
 }
+.ledger-icon-facebook:before {
+  content: "\f343";
+}
+.ledger-icon-facebook-box:before {
+  content: "\f342";
+}
 .ledger-icon-file:before {
   content: "\e931";
 }
@@ -230,6 +236,9 @@
 }
 .ledger-icon-full-page:before {
   content: "\e935";
+}
+.ledger-icon-full-page-small:before {
+  content: "\e93d";
 }
 .ledger-icon-globe:before {
   content: "\e92a";
@@ -258,8 +267,11 @@
 .ledger-icon-link:before {
   content: "\f18e";
 }
-.ledger-icon-link1:before {
-  content: "\e93d";
+.ledger-icon-linkedin:before {
+  content: "\f3f8";
+}
+.ledger-icon-linkedin-box:before {
+  content: "\f356";
 }
 .ledger-icon-local-florist:before {
   content: "\e92b";
@@ -470,6 +482,12 @@
 }
 .ledger-icon-transactions:before {
   content: "\e96d";
+}
+.ledger-icon-twitter:before {
+  content: "\f360";
+}
+.ledger-icon-twitter-box:before {
+  content: "\f35f";
 }
 .ledger-icon-unread:before {
   content: "\e96e";
