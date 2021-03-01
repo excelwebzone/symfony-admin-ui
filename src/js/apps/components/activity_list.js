@@ -130,12 +130,8 @@ export default class ActivityList {
 
   getActivityList($sourceTarget, types = null) {
     let $container = $sourceTarget.find('.activity-list');
-    if ($container.length === 0) {
-      if ($sourceTarget.hasClass('dropdown')) {
-        $container = $sourceTarget.closest('.activity-list');
-      } else {
-        $container = $sourceTarget.find('.activity-list');
-      }
+    if ($container.length === 0 && $sourceTarget.hasClass('dropdown')) {
+      $container = $sourceTarget.closest('.activity-list');
     }
     if ($container.length === 0) {
       $container = $('.activity-list');
@@ -166,10 +162,10 @@ export default class ActivityList {
       $list.trigger('data:loaded', data);
     };
 
-    const pager = new Pager($container, null, $('.activity-list-loading-row'), false, callback);
+    const pager = new Pager($container, null, $container.find('.activity-list-loading-row'), false, callback);
 
-    $(document).off('click', '.activity-list .js-load-more');
-    $(document).on('click', '.activity-list .js-load-more', (e) => {
+    $container.off('click', '.js-load-more');
+    $container.on('click', '.js-load-more', (e) => {
       $(e.currentTarget).remove();
 
       pager.getData();
@@ -212,9 +208,9 @@ export default class ActivityList {
     const $bodyField = $(e.currentTarget);
 
     if ($bodyField.val().length) {
-      $('.js-activity-log-form-extra').show();
+      $bodyField.closest('.js-activity-log-form-extra').show();
     } else {
-      $('.js-activity-log-form-extra').hide();
+      $bodyField.closest('.js-activity-log-form-extra').hide();
     }
   }
 
