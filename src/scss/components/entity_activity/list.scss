@@ -296,18 +296,19 @@
   min-height: 19px;
   overflow: hidden;
 
-  ul {
-    list-style-type: disc;
-    white-space: normal;
-  }
-
   ol {
-    list-style-type: decimal;
-    white-space: normal;
+    list-style: decimal;
   }
 
-  li {
-    padding-left: 10px;
+  ul {
+    list-style: disc;
+  }
+
+  ol, ul {
+    margin-left: 1.75em;
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
   hr {
