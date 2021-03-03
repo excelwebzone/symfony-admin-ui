@@ -1,3 +1,69 @@
+.form-property-container .has-floating-label {
+  position: relative;
+  padding-bottom: 24px;
+
+  > .col-form-label {
+    position: absolute;
+    font-size: 14px;
+    left: 0;
+    top: 16px;
+    transform: translateY(-50%);
+    color: #8d8d8d;
+    padding: 0 6px;
+    margin: 0 10px;
+    transition: 0.1s ease-out;
+    transform-origin: left top;
+    pointer-events: none;
+  }
+
+  > .typed-property-layout {
+    font-size: 14px;
+    outline: none;
+    background-color: #fff;
+    border: 2px solid #d3d3d3;
+    border-radius: 8px;
+    padding: 22px 16px 10px;
+    transition: 0.1s ease-out;
+    height: auto;
+    min-height: 56px;
+
+    &:hover {
+      border-color: #979797;
+    }
+
+    &:focus,
+    &:focus-within {
+      border-color: #007d99;
+      box-shadow: none;
+
+      + .col-form-label {
+        color: #007d99;
+        transform: translateY(-50%) scale(0.9);
+      }
+    }
+
+    .typed-property-add {
+      bottom: 6px !important;
+      right: 16px !important;
+    }
+  }
+
+  &.is-invalid > .col-form-label {
+    color: #ea4335 !important;
+  }
+
+  &.is-invalid > .typed-property-layout {
+    border-color: #cb1a42;
+    box-shadow: none;
+    color: inherit;
+  }
+
+  &.is-disabled > .typed-property-layout {
+    background-color: rgba(144, 151, 153, 0.16);
+    border-color: rgba(144, 151, 153, 0.16);
+  }
+}
+
 .typed-property-layout {
   position: relative;
 
@@ -42,7 +108,8 @@
 .typed-property-add {
   color: #0d94f6;
   display: none;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 500;
   position: absolute;
   bottom: -18px;
   right: 0;
