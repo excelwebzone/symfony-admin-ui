@@ -187,7 +187,8 @@
 .profile-image-component {
   &.is-empty .profile-image-component-icon,
   &.is-uploading .profile-image-component-loading-overlay,
-  &.is-photo-loaded .profile-image-component-image {
+  &.is-photo-loaded .profile-image-component-image,
+  &.is-file-loaded .profile-image-component-image {
     display: flex;
     justify-content: center;
     align-items: center;
