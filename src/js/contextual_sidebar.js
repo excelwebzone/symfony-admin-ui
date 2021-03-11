@@ -31,13 +31,17 @@ export default class ContextualSidebar {
   }
 
   toggleSidebarNav(show) {
+    const isCollapsed = this.$page.hasClass('sidebar-collapsed');
+
     if (show === undefined) {
-      show = !this.$page.hasClass('sidebar-collapsed');
+      show = !isCollapsed;
     }
 
-    this.$page.toggleClass('sidebar-collapsed', show);
+    if (show !== isCollapsed) {
+      this.$page.toggleClass('sidebar-collapsed', show);
 
-    ContextualSidebar.setCollapsedCookie(show);
+      ContextualSidebar.setCollapsedCookie(show);
+    }
 
     // hide when sidebar open
     for (let element of this.$sidebar.find('.icon-tooltip')) {
@@ -56,9 +60,7 @@ export default class ContextualSidebar {
 
     if (breakpoint === 'lg') {
       const collapse = Cookies.get('sidebar_collapsed') === 'true';
-      if (collapse !== this.$page.hasClass('sidebar-collapsed')) {
-        this.toggleSidebarNav(collapse);
-      }
+      this.toggleSidebarNav(collapse);
     } else {
       this.toggleSidebarNav(false);
     }
