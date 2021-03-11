@@ -170,7 +170,7 @@ export default class DropdownOptions {
     $dropdown.find('.option-list-item').removeClass('is-highlighted is-selected');
     $(this).addClass('is-selected is-highlighted');
 
-    if ($dropdown.find('.dropdown-text')) {
+    if ($dropdown.find('.dropdown-text') && !$dropdown.hasClass('ignore-dropdown-text-update')) {
       let $text = $(this).find('.option-list-item-text');
       if ($text.length === 0) {
         $text = $(this).find('.option-list-info-item-text');
