@@ -27,7 +27,7 @@ export default class ContextualSidebar {
     if (bp.getBreakpointSize() !== 'lg') {
       return;
     }
-    Cookies.set('sidebar_collapsed', value, { sameSite: 'none', expires: 365 * 10 });
+    Cookies.set('sidebar_collapsed', value, { sameSite: 'Lex', expires: 365 * 10 });
   }
 
   toggleSidebarNav(show) {
@@ -56,7 +56,9 @@ export default class ContextualSidebar {
 
     if (breakpoint === 'lg') {
       const collapse = Cookies.get('sidebar_collapsed') === 'true';
-      this.toggleSidebarNav(collapse);
+      if (collapse !== this.$page.hasClass('sidebar-collapsed')) {
+        this.toggleSidebarNav(collapse);
+      }
     } else {
       this.toggleSidebarNav(false);
     }
