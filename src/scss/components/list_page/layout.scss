@@ -213,13 +213,19 @@
   .list-page-header .list-buttons-container.has-toggle {
     position: absolute;
     right: 16px;
+    width: auto;
 
     &.is-expanded {
       width: calc(100% - 32px);
       background: #fcfcfc;
 
       .toggle-button-group {
-        left: 48px;
+        left: 0;
+        transform: inherit;
+      }
+
+      > .list-buttons-toggle-button {
+        padding-top: 8px;
       }
     }
 
