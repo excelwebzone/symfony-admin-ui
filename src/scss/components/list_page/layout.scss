@@ -157,8 +157,7 @@
 
     &.has-toggle > {
       .list-buttons-toggle-content {
-        display: flex !important;
-        justify-content: center;
+        display: inline !important;
 
         .dropdown-options {
           z-index: 2 !important;
@@ -233,7 +232,7 @@
     }
 
     > .list-buttons-toggle-button {
-      display: flex !important;
+      display: inline !important;
       padding-left: 8px;
     }
   }
