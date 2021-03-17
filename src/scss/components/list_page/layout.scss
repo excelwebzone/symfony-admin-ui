@@ -158,7 +158,7 @@
     &.has-toggle > {
       .list-buttons-toggle-content {
         display: flex !important;
-        justify-content: center;
+        align-items: center;
 
         .dropdown-options {
           z-index: 2 !important;
@@ -167,7 +167,7 @@
 
       .list-buttons-toggle-button {
         display: none !important;
-        justify-content: center;
+        align-items: center;
       }
     }
   }
@@ -214,7 +214,6 @@
 @media (max-width: 575.98px) {
   .list-page-header .list-buttons-container.has-toggle {
     position: absolute;
-    top: 16px;
     right: 16px;
     width: auto;
 
