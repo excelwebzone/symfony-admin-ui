@@ -157,7 +157,8 @@
 
     &.has-toggle > {
       .list-buttons-toggle-content {
-        display: inline !important;
+        display: flex !important;
+        justify-content: center;
 
         .dropdown-options {
           z-index: 2 !important;
@@ -166,6 +167,7 @@
 
       .list-buttons-toggle-button {
         display: none !important;
+        justify-content: center;
       }
     }
   }
@@ -212,6 +214,7 @@
 @media (max-width: 575.98px) {
   .list-page-header .list-buttons-container.has-toggle {
     position: absolute;
+    top: 16px;
     right: 16px;
     width: auto;
 
@@ -223,10 +226,6 @@
         left: 0;
         transform: inherit;
       }
-
-      > .list-buttons-toggle-button {
-        padding-top: 8px;
-      }
     }
 
     &:not(.is-expanded) > .list-buttons-toggle-content {
@@ -234,7 +233,8 @@
     }
 
     > .list-buttons-toggle-button {
-      display: inline !important;
+      display: flex !important;
+      padding-left: 8px;
     }
   }
 }
