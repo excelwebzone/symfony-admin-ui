@@ -307,8 +307,10 @@ export default class ActivityList {
   }
 
   toggleActivityItemNote(e) {
-    if ($(e.target).closest('.activity-item-content').length
+    if ($(e.target).closest('.activity-item-quick-actions').length
       || $(e.target).closest('.activity-item-actions-section').length
+      || $(e.target).closest('.activity-item-content').length
+      || $(e.target).closest('.activity-item-score').length
     ) {
       e.stopPropagation();
       return;

@@ -1,0 +1,58 @@
+.activity-item-quick-actions {
+  position: absolute;
+  display: none;
+  right: 10px;
+  top: 14px;
+  z-index: 1;
+  background-color: #FFF;
+  border-radius: 32px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.12);
+
+  .quick-actions {
+    display: flex;
+    margin: 0 10px;
+  }
+
+  button,
+  .quick-actions-overflow-button {
+    border: none;
+    background: 0 0;
+    cursor: pointer;
+    padding: 0;
+    color: #909799;
+    outline: 0;
+
+    i {
+      color: #909799;
+      height: 32px;
+      width: 32px;
+      line-height: 32px;
+      border-radius: 32px;
+      font-size: 20px;
+      text-align: center;
+      display: inline-block;
+
+      &:hover {
+        color: #0C0D0D;
+      }
+
+      &:active {
+        background-color: #DCE3E6;
+      }
+    }
+  }
+
+  .dropdown {
+    border-bottom: none;
+  }
+}
+
+.activity-item.activity-item-note:not(.is-expanded):hover .activity-item-quick-actions {
+  display: block;
+}
+
+.activity-item.is-expanded .activity-item-quick-actions {
+  display: block;
+  box-shadow: none;
+  top: 10px;
+}
