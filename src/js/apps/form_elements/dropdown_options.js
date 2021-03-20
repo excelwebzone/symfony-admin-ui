@@ -366,6 +366,7 @@ export default class DropdownOptions {
     $(this).closest('.tag').remove();
 
     if ($dropdown.find('.dropdown-tags .tag').length === 0) {
+      $dropdown.find('.dropdown-tags').html('');
       $dropdown.removeClass('has-value');
     }
   }

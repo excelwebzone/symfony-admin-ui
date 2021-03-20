@@ -98,7 +98,7 @@
 
 .dropdown-indicator {
   color: #696e6f;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   position: absolute;
   right: 0;
@@ -119,6 +119,7 @@
   transform: translateY(-50%);
   top: 50%;
   right: 15px;
+  cursor: pointer;
   z-index: 1;
 }
 

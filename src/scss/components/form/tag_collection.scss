@@ -12,27 +12,43 @@
 .tag {
   font-size: 13px;
   line-height: 13px;
-  padding: 6px 28px 6px 10px;
+  background: #DCE3E6;
+  padding: 6px 10px;
   cursor: pointer;
   position: relative;
   display: inline-block;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
+  max-width: 100%;
+  border-radius: 20px;
+  -webkit-transition: all .15s ease-in-out;
+  transition: all .15s ease-in-out;
   -webkit-transform-style: preserve-3d;
 
   > .tag-action {
     font-size: 18px;
     height: 18px;
     width: 18px;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
     position: absolute;
-    -webkit-transition: all 0.15s ease-in-out;
-    transition: all 0.15s ease-in-out;
     top: 5px;
     right: 5px;
-    color: #696e6f;
+    opacity: 0;
+    color: #696E6F;
 
     &:hover {
       color: #db4437;
+    }
+  }
+
+  &.tag-interactive:hover {
+    background: #FFF;
+    padding: 8px 28px 8px 12px;
+    margin: -2px -13px 3px -2px;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+
+    .tag-action {
+      opacity: 1;
     }
   }
 

@@ -30,24 +30,26 @@
     height: 56px;
     min-height: 56px;
 
-    &.dropdown-multiple {
-      &.has-value {
-        height: auto;
-        min-height: 56px;
+    &.dropdown {
+      padding-top: 14px;
+
+      &.has-value:not(.dropdown-multiple) {
+        padding-top: 22px;
       }
 
-      .dropdown-tags {
-        width: calc(100% - 16px);
+      .dropdown-reset {
+        top: 13px;
+        right: 13px;
       }
 
-      .dropdown-tags:not(:empty) + .dropdown-selected {
-        position: absolute;
-        top: 10px;
-        right: 16px;
-        width: 6px;
+      &.dropdown-multiple {
+        &.has-value {
+          height: auto;
+          min-height: 56px;
+        }
 
-        .dropdown-text {
-          display: none;
+        .dropdown-tags:not(:empty) {
+          padding-top: 16px;
         }
       }
     }
@@ -96,6 +98,10 @@
   &.is-disabled > .rating {
     background-color: rgba(144, 151, 153, 0.16);
     border-color: rgba(144, 151, 153, 0.16);
+  }
+
+  &.is-disabled > .dropdown .dropdown-selected {
+    display: none;
   }
 
   &.has-icon {
