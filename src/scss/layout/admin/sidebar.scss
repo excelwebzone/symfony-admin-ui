@@ -24,31 +24,6 @@
   }
 }
 
-.sidebar-toggle {
-  font-size: 24px;
-  line-height: 24px;
-  padding: 5px;
-  text-align: center;
-  cursor: pointer;
-  position: absolute;
-  bottom: -6px;
-  right: -39px;
-  width: 36px;
-  height: 36px;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0 0 4px 0 rgba(12, 13, 13, 0.05), 0 2px 4px 0 rgba(12, 13, 13, 0.15);
-  border-radius: 0 4px 4px 0;
-  color: #000;
-  z-index: 1;
-}
-
-@media (max-width: 991.98px) {
-  .sidebar-toggle {
-    display: none;
-  }
-}
-
 .sidebar {
   position: absolute;
   top: 0;
@@ -64,44 +39,22 @@
   }
 
   .nav-header {
-    transition: padding-left 0.2s;
+    transition: padding-left .2s;
     padding-left: 0;
     width: 100%;
-    height: 1px;
+    height: 60px;
     margin-bottom: 10px;
 
     .name {
       color: #fff;
     }
 
-    .nav-icons {
-      display: none;
-      justify-content: flex-start;
-      width: 100%;
+    .logo-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
-
-    .nav-drawer {
-      display: flex;
-      margin-left: 12px;
-      width: 100%;
-
-      > div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 48px;
-
-        &.sidebar-close {
-          flex: 1 1 auto;
-          justify-content: flex-end;
-          margin-right: 24px;
-        }
-      }
-    }
-  }
-
-  .nav-drawer-icons {
-    margin-bottom: 40px;
   }
 
   .nav-options {
@@ -181,34 +134,16 @@
     width: 100px;
   }
 
-  .nav-logo-option {
+  .nav-footer {
     position: absolute;
     bottom: 0;
     transition: padding-left 0.2s;
-    padding-left: 0;
+    padding: 0 15px 0 0;
     width: 100%;
-    height: 60px;
 
-    .option-text .text > div {
-      line-height: normal;
-    }
-
-    .sidebar-brand-logo,
-    .sidebar-brand-icon {
-      font-size: 24px;
-      color: #dce3e6;
-      transition: opacity 0.3s;
-      -webkit-transition: opacity 0.3s;
-    }
-
-    .sidebar-brand-logo {
-      font-size: 30px;
-      font-weight: 600;
-      opacity: 0;
-
-      small {
-        font-size: 11px;
-      }
+    .nav-options {
+      height: 60px;
+      background-color: rgba(0, 0, 0, 0.08);
     }
   }
 
@@ -294,17 +229,69 @@
   }
 }
 
+.sidebar-open,
+.sidebar-close {
+  display: none;
+  cursor: pointer;
+
+  i {
+    color: #fff;
+    font-size: 24px !important;
+    margin-right: 0 !important;
+    right: 10px !important;
+  }
+}
+
+.sidebar-open i {
+  font-size: 32px !important;
+}
+
+.sidebar-brand-logo,
+.sidebar-brand-icon {
+  font-size: 24px;
+  color: #dce3e6;
+  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.3s;
+}
+
+.sidebar-brand-logo {
+  font-size: 30px;
+  font-weight: 600;
+  opacity: 0;
+
+  small {
+    font-size: 11px;
+  }
+}
+
+:not(.sidebar-collapsed) .sidebar .nav-header:hover {
+  .sidebar-open {
+    display: block;
+  }
+
+  .sidebar-close {
+    display: none;
+  }
+
+  .logo-icon {
+    display: none !important;
+  }
+}
+
 .sidebar-collapsed .sidebar {
   width: 295px;
   z-index: 12;
 
-  .sidebar-toggle i:before {
-    content: '\e922'; // ledger-icon-close
-    font-family: 'Ledger';
-  }
-
   .sidebar-brand-logo {
     opacity: 1;
+  }
+
+  .sidebar-open {
+    display: none;
+  }
+
+  .sidebar-close {
+    display: block;
   }
 
   .content {
@@ -312,20 +299,10 @@
     overflow-y: auto;
   }
 
-  .nav-header {
-    height: 60px;
-    margin-bottom: 80px;
-  }
-
   .nav-header,
-  .nav-logo-option,
   .nav-options {
     transition: padding-left 0.2s;
     padding-left: 10px;
-  }
-
-  .nav-drawer-icons {
-    display: none;
   }
 
   .nav-text,
@@ -341,20 +318,17 @@
   .sidebar {
     z-index: 12;
 
-    .nav-header .nav-drawer > div.sidebar-close {
+    .content:not(:hover) .sidebar-close {
       display: none;
     }
   }
 }
 
 @media (max-height: 650px) {
-  .sidebar .nav-logo-option {
+  .sidebar .nav-footer {
     position: relative;
     bottom: 0;
     margin-top: 44px;
-  }
-
-  .sidebar-collapsed .sidebar .nav-header {
-    margin-bottom: 0;
+    padding-right: 0;
   }
 }
