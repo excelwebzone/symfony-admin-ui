@@ -69,7 +69,7 @@ export default class Cardgrid {
     for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row:eq(0) .datagrid-cell.is-empty')) {
       $(cell).addClass('is-last');
 
-      if (typeof this.callback.onFieldChange === 'function') {
+      if (typeof this.callback.setEmptyContent === 'function') {
         this.callback.setEmptyContent($(cell));
       }
     }
