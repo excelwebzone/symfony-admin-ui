@@ -59,17 +59,16 @@ export default class Cardgrid {
     // remove is-hover form cells
     $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row .datagrid-cell .cardgrid-component-model-cell.is-hover').removeClass('is-hover');
 
-    // reset empty cells
-    for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row .datagrid-cell.is-empty.is-last')) {
-      $(cell).removeClass('is-last');
-      $(cell).html('');
-    }
-
     // display empty cell content (icon + title)
-    for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row:eq(0) .datagrid-cell.is-empty')) {
-      $(cell).addClass('is-last');
+    if (typeof this.callback.setEmptyContent === 'function') {
+      for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row .datagrid-cell.is-empty.is-last')) {
+        $(cell).removeClass('is-last');
+        $(cell).html('');
+      }
 
-      if (typeof this.callback.setEmptyContent === 'function') {
+      for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row:eq(0) .datagrid-cell.is-empty')) {
+        $(cell).addClass('is-last');
+
         this.callback.setEmptyContent($(cell));
       }
     }
