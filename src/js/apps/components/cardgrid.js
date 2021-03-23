@@ -9,6 +9,7 @@ const EMPTY_CELL = index => `<div class="datagrid-cell is-empty text-left js-dat
 export default class Cardgrid {
   /**
    * {
+   *   setEmptyContent: ($cell) => {..},
    *   onFieldChange: (field, value, $cell) => {..},
    *   onDragEnd: ($field, newValue) => {..},
    *   prepareValue: (newValue) => {.. return newValue; }
@@ -53,6 +54,24 @@ export default class Cardgrid {
       $container.find('.antiscroll-box').css('height', height + 'px');
       $container.find('.datagrid-right-table-block').css('height', height + 'px');
       $container.find('.datagrid-left-table-block').css('height', height + 'px');
+    }
+
+    // remove is-hover form cells
+    $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row .datagrid-cell .cardgrid-component-model-cell.is-hover').removeClass('is-hover');
+
+    // reset empty cells
+    for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row .datagrid-cell.is-empty.is-last')) {
+      $(cell).removeClass('is-last');
+      $(cell).html('');
+    }
+
+    // display empty cell content (icon + title)
+    for (let cell of $(e.currentTarget).find('.datagrid-body-container .datagrid-table-row:eq(0) .datagrid-cell.is-empty')) {
+      $(cell).addClass('is-last');
+
+      if (typeof this.callback.onFieldChange === 'function') {
+        this.callback.setEmptyContent($(cell));
+      }
     }
   }
 

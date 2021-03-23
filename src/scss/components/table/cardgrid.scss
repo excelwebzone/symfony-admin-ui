@@ -321,3 +321,30 @@
     border-bottom: none;
   }
 }
+
+.datagrid-cell.is-empty {
+  .cardgrid-component-model-cell {
+    cursor: default;
+
+    .cell-content:hover {
+      background-color: #fff;
+    }
+  }
+
+  .empty-icon {
+    height: 64px;
+    width: 64px;
+    color: #c9d0d3;
+    font-size: 64px;
+    margin: -10px auto 10px;
+    text-align: center;
+  }
+
+  .empty-title {
+    color: #0c0d0d;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px auto;
+    text-align: center;
+  }
+}
