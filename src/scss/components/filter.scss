@@ -52,11 +52,14 @@
 }
 
 .filter-options-clear-button {
-  line-height: 50px;
+  display: flex;
+  align-items: center;
   right: 10px;
 
-  > button {
-    cursor: pointer;
+  .button-icon {
+    font-size: 24px;
+    height: 36px;
+    align-items: center;
   }
 }
 
