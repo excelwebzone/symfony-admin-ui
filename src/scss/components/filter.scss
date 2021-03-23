@@ -55,11 +55,13 @@
   display: flex;
   align-items: center;
   right: 10px;
+  color: #696e6f;
 
   .button-icon {
-    font-size: 24px;
-    height: 36px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    font-size: 24px;
   }
 }
 
