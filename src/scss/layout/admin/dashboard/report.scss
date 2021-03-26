@@ -27,6 +27,14 @@
   color: #0c0d0d;
   font-size: 28px;
   white-space: nowrap;
+
+  &.is-zero {
+    color: #696e6f;
+
+    i {
+      color: #696e6f !important;
+    }
+  }
 }
 
 .dashboard-report-positive-data-value {
