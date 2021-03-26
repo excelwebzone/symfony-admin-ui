@@ -1,0 +1,75 @@
+.activity-timeline {
+  .activity-item-group {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      width: 1px;
+      top: 50px;
+      bottom: 15px;
+      background-color: #696e6f;
+    }
+
+    &:first-child .activity-item:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .activity-item {
+    border-top: none;
+    min-height: 54px;
+
+    &.is-labeled .activity-item-label {
+      left: 0;
+    }
+
+    .activity-item-content {
+      padding: 0;
+
+      .activity-item-body:empty {
+        min-height: 0;
+      }
+    }
+  }
+
+  .activity-item-profile-section {
+    width: 20px;
+  }
+
+  .activity-item-profile-image {
+    height: 20px;
+    width: 20px;
+  }
+
+  .activity-image-primary {
+    height: 32px;
+    width: 32px;
+    margin-left: 36px;
+  }
+
+  .activity-image-secondary {
+    top: 6px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 6px;
+  }
+
+  .activity-item-content-section {
+    margin-left: 60px;
+  }
+
+  .activity-item-header {
+    padding-right: 0;
+
+    .activity-item-header-content {
+      color: #696e6f;
+    }
+  }
+
+  .activity-item-actions-section {
+    right: 10px;
+  }
+}
