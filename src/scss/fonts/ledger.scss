@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?c42511') format('truetype'),
-    url('../../fonts/Ledger.woff?c42511') format('woff'),
-    url('../../fonts/Ledger.svg?c42511#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?ia89ke') format('truetype'),
+    url('../../fonts/Ledger.woff?ia89ke') format('woff'),
+    url('../../fonts/Ledger.svg?ia89ke#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -168,9 +168,6 @@
 .ledger-icon-date-big:before {
   content: "\e928";
 }
-.ledger-icon-date-o:before {
-  content: "\e929";
-}
 .ledger-icon-delete:before {
   content: "\e968";
 }
@@ -237,9 +234,6 @@
 .ledger-icon-full-page:before {
   content: "\e935";
 }
-.ledger-icon-full-page-small:before {
-  content: "\e93d";
-}
 .ledger-icon-globe:before {
   content: "\e92a";
 }
@@ -247,10 +241,10 @@
   content: "\e936";
 }
 .ledger-icon-help:before {
-  content: "\e937";
+  content: "\f1f6";
 }
 .ledger-icon-info:before {
-  content: "\e938";
+  content: "\f1f8";
 }
 .ledger-icon-items:before {
   content: "\e939";
@@ -343,7 +337,7 @@
   content: "\f3aa";
 }
 .ledger-icon-play-circle:before {
-  content: "\f2f5";
+  content: "\f2f6";
 }
 .ledger-icon-plus:before {
   content: "\f278";
@@ -445,34 +439,25 @@
   content: "\e962";
 }
 .ledger-icon-tag-call:before {
-  content: "\e95e";
+  content: "\f2be";
 }
 .ledger-icon-tag-closed:before {
-  content: "\e95f";
+  content: "\f084";
 }
 .ledger-icon-tag-comment:before {
-  content: "\e960";
+  content: "\e929";
 }
 .ledger-icon-tag-email:before {
-  content: "\e961";
+  content: "\f15a";
 }
 .ledger-icon-tag-file:before {
-  content: "\e963";
-}
-.ledger-icon-tag-project:before {
-  content: "\e964";
+  content: "\f223";
 }
 .ledger-icon-tag-rating:before {
-  content: "\e965";
+  content: "\f27d";
 }
 .ledger-icon-tag-reopened:before {
-  content: "\e966";
-}
-.ledger-icon-tag-return:before {
-  content: "\e967";
-}
-.ledger-icon-tag-stream:before {
-  content: "\e969";
+  content: "\f052";
 }
 .ledger-icon-talk:before {
   content: "\e96a";
