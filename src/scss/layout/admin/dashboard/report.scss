@@ -29,10 +29,10 @@
   white-space: nowrap;
 
   &.is-zero {
-    color: #696e6f;
+    color: rgba(0, 0, 0, 0.32);
 
     i {
-      color: #696e6f !important;
+      color: rgba(0, 0, 0, 0.32) !important;
     }
   }
 }
