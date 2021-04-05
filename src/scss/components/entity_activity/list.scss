@@ -323,6 +323,18 @@
     white-space: normal;
     margin-left: 10px;
   }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+  }
 }
 
 .activity-log-list {
