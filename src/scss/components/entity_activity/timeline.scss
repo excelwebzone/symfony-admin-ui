@@ -5,7 +5,7 @@
     &:before {
       content: '';
       position: absolute;
-      left: 10px;
+      left: 20px;
       width: 1px;
       top: 50px;
       bottom: 15px;
@@ -21,12 +21,17 @@
     border-top: none;
     min-height: 54px;
 
+    &:last-child {
+      padding-bottom: 10px;
+    }
+
     &.is-labeled .activity-item-label {
       left: 0;
+      margin-left: 10px;
     }
 
     .activity-item-content {
-      padding: 0;
+      padding-bottom: 0;
 
       .activity-item-body:empty {
         min-height: 0;
@@ -35,7 +40,7 @@
   }
 
   .activity-item-profile-section {
-    width: 20px;
+    width: 40px;
   }
 
   .activity-item-profile-image {
@@ -61,7 +66,7 @@
   }
 
   .activity-item-content-section {
-    margin-left: 60px;
+    margin-left: 50px;
   }
 
   .activity-item-header {
