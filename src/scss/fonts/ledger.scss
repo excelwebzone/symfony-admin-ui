@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?ia89ke') format('truetype'),
-    url('../../fonts/Ledger.woff?ia89ke') format('woff'),
-    url('../../fonts/Ledger.svg?ia89ke#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?s4rbu9') format('truetype'),
+    url('../../fonts/Ledger.woff?s4rbu9') format('woff'),
+    url('../../fonts/Ledger.svg?s4rbu9#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -73,7 +73,7 @@
   content: "\e915";
 }
 .ledger-icon-attach:before {
-  content: "\e918";
+  content: "\e900";
 }
 .ledger-icon-attach-messages:before {
   content: "\e917";
@@ -148,7 +148,7 @@
   content: "\f235";
 }
 .ledger-icon-comment:before {
-  content: "\e900";
+  content: "\e903";
 }
 .ledger-icon-connect:before {
   content: "\e923";
@@ -220,10 +220,10 @@
   content: "\e91f";
 }
 .ledger-icon-flash:before {
-  content: "\e901";
+  content: "\e904";
 }
 .ledger-icon-flash-off:before {
-  content: "\e902";
+  content: "\e905";
 }
 .ledger-icon-forms-sales:before {
   content: "\e933";
@@ -278,6 +278,9 @@
 }
 .ledger-icon-logout:before {
   content: "\e940";
+}
+.ledger-icon-mention:before {
+  content: "\e901";
 }
 .ledger-icon-menu:before {
   content: "\e941";
@@ -415,13 +418,13 @@
   content: "\e95c";
 }
 .ledger-icon-star:before {
-  content: "\e903";
+  content: "\e929";
 }
 .ledger-icon-star-circle:before {
-  content: "\e905";
+  content: "\e937";
 }
 .ledger-icon-star-half:before {
-  content: "\e904";
+  content: "\e938";
 }
 .ledger-icon-star-outline:before {
   content: "\e95d";
@@ -445,7 +448,7 @@
   content: "\f084";
 }
 .ledger-icon-tag-comment:before {
-  content: "\e929";
+  content: "\e93d";
 }
 .ledger-icon-tag-email:before {
   content: "\f15a";
@@ -464,6 +467,9 @@
 }
 .ledger-icon-tax:before {
   content: "\e96b";
+}
+.ledger-icon-text-tool:before {
+  content: "\e902";
 }
 .ledger-icon-tickets:before {
   content: "\e96c";

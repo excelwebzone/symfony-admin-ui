@@ -29,7 +29,7 @@
     }
 
     &:before {
-      content: '\e903'; // ledger-icon-star
+      content: '\e929'; // ledger-icon-star
       padding-right: 5px;
       color: #696e6f;
     }
@@ -38,14 +38,14 @@
   &:not(.is-readonly) .star:hover {
     &:before,
     ~ .star:before {
-      content: '\e903'; // ledger-icon-star
+      content: '\e929'; // ledger-icon-star
       color: #f4b400;
     }
   }
 
   .star {
     &.is-selected:before {
-      content: '\e903'; // ledger-icon-star
+      content: '\e929'; // ledger-icon-star
       padding-right: 5px;
       color: #f4b400;
     }
