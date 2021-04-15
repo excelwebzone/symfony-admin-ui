@@ -254,11 +254,6 @@
   background: 0 0;
 }
 
-.datagrid-header-container .ui-sortable-helper,
-.datagrid-header-container .ui-sortable-helper .ui-resizable-handle {
-  background-color: #eaeaea;
-}
-
 .datagrid-header-container .ui-resizable-handle.ui-resizable-s:hover {
   cursor: row-resize;
 }
@@ -269,8 +264,8 @@
   position: relative;
 }
 
-.datagrid-header-container .ui-sortable-helper .datagrid-content-container {
-  display: none;
+.datagrid-header-container .ui-sortable-handle .table-header-cell-content:hover {
+  cursor: pointer;
 }
 
 .datagrid-header-container .datagrid-right-table-block .datagrid-table-row {
