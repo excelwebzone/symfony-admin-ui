@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?s4rbu9') format('truetype'),
-    url('../../fonts/Ledger.woff?s4rbu9') format('woff'),
-    url('../../fonts/Ledger.svg?s4rbu9#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?te8hta') format('truetype'),
+    url('../../fonts/Ledger.woff?te8hta') format('woff'),
+    url('../../fonts/Ledger.svg?te8hta#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -500,4 +500,7 @@
 }
 .ledger-icon-view-timeline:before {
   content: "\e975";
+}
+.ledger-icon-wrap-text:before {
+  content: "\f259";
 }
