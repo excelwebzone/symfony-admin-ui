@@ -121,7 +121,7 @@ export default class EntityView {
             }
           }
 
-          $button.trigger('item:action');
+          $button.trigger('item:action', data);
         });
     };
 
@@ -150,7 +150,7 @@ export default class EntityView {
             }
           }
 
-          $button.trigger('item:toggle');
+          $button.trigger('item:toggle', data);
         });
     };
 
@@ -177,7 +177,7 @@ export default class EntityView {
             }
           }
 
-          $button.trigger('item:unread');
+          $button.trigger('item:unread', data);
         });
     };
 
@@ -222,7 +222,7 @@ export default class EntityView {
             }
           }
 
-          $button.trigger('item:follow');
+          $button.trigger('item:follow', data);
         });
     };
 
@@ -282,7 +282,7 @@ export default class EntityView {
             }
           }
 
-          $button.trigger('item:complete');
+          $button.trigger('item:complete', data);
         });
     };
 
