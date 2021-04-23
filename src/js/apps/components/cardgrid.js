@@ -11,7 +11,7 @@ export default class Cardgrid {
    * {
    *   setEmptyContent: ($cell) => {..},
    *   onFieldChange: (field, value, $cell) => {..},
-   *   onDragEnd: ($field, newValue) => {..},
+   *   onDragEnd: ($field, newValue, data) => {..},
    *   prepareValue: (newValue) => {.. return newValue; }
    * }
    */
@@ -465,7 +465,7 @@ export default class Cardgrid {
               }
               if ($field.length) {
                 if (typeof this.callback.onDragEnd === 'function') {
-                  this.callback.onDragEnd($field, cellValue);
+                  this.callback.onDragEnd($field, cellValue, data);
                 } else {
                   $field.val(newValue);
                 }
