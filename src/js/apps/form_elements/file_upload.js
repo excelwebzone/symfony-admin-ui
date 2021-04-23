@@ -30,8 +30,10 @@ export default class FileUpload {
         this.on('dragleave', () => self.removeClass('is-dragging'));
 
         this.on('addedfile', (file) => {
-          while (this.files.length > this.options.maxFiles) {
-            this.removeFile(this.files[0]);
+          if (this.options.maxFiles) {
+            while (this.files.length > this.options.maxFiles) {
+              this.removeFile(this.files[0]);
+            }
           }
         });
 
@@ -141,6 +143,11 @@ export default class FileUpload {
     options.maxFiles = self.$selector.data('max-files') || 1;
     options.maxFilesize = self.$selector.data('max-filesize') || 5;
     options.timeout = self.$selector.data('timeout') || 3600000;
+
+    // unlimited
+    if (options.maxFiles === -1) {
+      options.maxFiles = null;
+    }
 
     if (self.$selector.data('accepted-files')) {
       options.acceptedFiles = self.$selector.data('accepted-files');
