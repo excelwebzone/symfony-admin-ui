@@ -30,7 +30,7 @@ export default class FileUpload {
         this.on('dragleave', () => self.removeClass('is-dragging'));
 
         this.on('addedfile', (file) => {
-          if (this.files.length > 1) {
+          while (this.files.length > this.options.maxFiles) {
             this.removeFile(this.files[0]);
           }
         });
