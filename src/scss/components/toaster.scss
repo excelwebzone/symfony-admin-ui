@@ -138,15 +138,25 @@
 }
 
 @media (max-width: 575.98px) {
-  .toaster {
-    &.toaster-default,
-    &.toaster-error {
-      left: 20px;
-      transform: none;
-    }
+  .toast {
+    height: auto;
+  }
+
+  .toast-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
   }
 
   .toast-message {
-    max-width: 260px;
+    max-width: 200px;
+    padding-right: 20px;
+  }
+
+  .toast-action {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    width: 100%;
   }
 }
