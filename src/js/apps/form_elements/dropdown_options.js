@@ -30,16 +30,11 @@ export default class DropdownOptions {
         $item.attr('selected', true);
       }
       if ($item.length) {
-        let $text = $item.find('.option-list-item-text');
-        if ($text.length === 0) {
-          $text = $item.find('.option-list-info-item-text');
-        }
-
         $(dropdown)
           .addClass('has-value')
           .find('.dropdown-text')
           .removeClass('dropdown-placeholder')
-          .html($text.html());
+          .html($item.data('label') || $item.text());
       }
     }
 
@@ -49,7 +44,7 @@ export default class DropdownOptions {
 
         $(dropdown).find('.dropdown-tags').append(`
           <div class="tag tag-interactive">
-            <div class="tag-display-name">${$(item).text()}</div>
+            <div class="tag-display-name">${$(item).data('label') || $(item).text()}</div>
             <span class="tag-action" data-value="${$(item).data('value')}">
               <i class="ledger-icons ledger-icon-close-circle"></i>
             </span>
@@ -133,7 +128,7 @@ export default class DropdownOptions {
 
       $dropdown.find('.dropdown-tags').append(`
         <div class="tag tag-interactive">
-          <div class="tag-display-name">${$(this).text()}</div>
+          <div class="tag-display-name">${$(this).data('label') || $(this).text()}</div>
           <span class="tag-action" data-value="${$(this).data('value')}">
             <i class="ledger-icons ledger-icon-close-circle"></i>
           </span>
@@ -171,12 +166,10 @@ export default class DropdownOptions {
     $(this).addClass('is-selected is-highlighted');
 
     if ($dropdown.find('.dropdown-text') && !$dropdown.hasClass('ignore-dropdown-text-update')) {
-      let $text = $(this).find('.option-list-item-text');
-      if ($text.length === 0) {
-        $text = $(this).find('.option-list-info-item-text');
-      }
-
-      $dropdown.find('.dropdown-text').removeClass('dropdown-placeholder').html($text.html());
+      $dropdown
+        .find('.dropdown-text')
+        .removeClass('dropdown-placeholder')
+        .html($(this).data('label') || $(this).text());
     }
 
     if ($dropdown.hasClass('js-select-dropdown')) {
