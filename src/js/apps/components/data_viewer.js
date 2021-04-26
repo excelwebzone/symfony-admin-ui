@@ -220,6 +220,10 @@ export default class DataViewer {
   }
 
   selectSortColumn(sortParam) {
+    if (!sortParam) {
+      return;
+    }
+
     const sortName = sortParam.split('-')[0];
     const sortDir = sortParam.split('-')[1];
 

@@ -71,6 +71,10 @@ export default class Filter {
   }
 
   preloadFilters(filters) {
+    if (!filters) {
+      return;
+    }
+
     if (this.getActiveFilter().data('id') === 'preload') {
       this.getActiveFilter().attr('data-filter', filters);
       this.getActiveFilter().data('filter', JSON.parse(filters));
