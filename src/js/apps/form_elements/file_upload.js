@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Dropzone from 'dropzone';
+import Cropper from 'cropperjs';
 import toaster from '../../lib/utils/toaster';
 import axios from '../../lib/utils/axios_utils';
 
@@ -26,6 +27,12 @@ export default class FileUpload {
     let options = {
       previewTemplate: '<div style="display:none"></div>',
       init: function() {
+        if (self.$selector.data('image-cropper')) {
+          this.options.transformFile = (file, done) => {
+            self.transformFile(this, file, done);
+          };
+        }
+
         this.on('dragover', () => self.addClass('is-dragging'));
         this.on('dragleave', () => self.removeClass('is-dragging'));
 
@@ -248,5 +255,74 @@ export default class FileUpload {
           toaster(data.error.message, 'error');
         }
       });
+  }
+
+  transformFile(dz, file, done) {
+    // create the image editor modal
+    $('body').append(`
+      <div class="modal" id="dropzone-cropper-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">Crop Image</div>
+            <div class="modal-body p-0">
+              <img src="${URL.createObjectURL(file)}" class="js-dropzone-cropper-img" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-flat-default js-dropzone-cropper-cancel" data-dismiss="modal">Keep</button>
+              <button type="button" class="btn btn-primary js-dropzone-cropper-crop">Crop</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `);
+
+    const $modal = $('#dropzone-cropper-modal');
+    $modal
+      .modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+      .modal('show');
+
+    $('.js-dropzone-cropper-cancel').off('click');
+    $('.js-dropzone-cropper-cancel').on('click', () => {
+      done(file);
+    });
+
+    $('.js-dropzone-cropper-crop').off('click');
+    $('.js-dropzone-cropper-crop').on('click', () => {
+      // get the canvas with image data from Cropper.js
+      const canvas = cropper.getCroppedCanvas({
+        width: 256,
+        height: 256
+      });
+
+      // turn the canvas into a Blob (file object without a name)
+      canvas.toBlob((blob) => {
+        // update the image thumbnail with the new image data
+        dz.createThumbnail(
+          blob,
+          dz.options.thumbnailWidth,
+          dz.options.thumbnailHeight,
+          dz.options.thumbnailMethod,
+          false,
+          (dataURL) => {
+            // update the Dropzone file thumbnail
+            dz.emit('thumbnail', file, dataURL);
+
+            // return modified file to dropzone
+            done(blob);
+          }
+        );
+      });
+
+      // remove the modal editor from view
+      $modal.modal('hide').remove();
+    });
+
+    // create Cropper.js
+    const cropper = new Cropper($modal.find('.js-dropzone-cropper-img').get(0), {
+      aspectRatio: 1
+    });
   }
 }
