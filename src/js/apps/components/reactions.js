@@ -10,6 +10,7 @@ export default class Reactions {
 
   bindEvents() {
     $(document).on('data:loaded', '.activity-log-list', (e, data) => this.dataLoaded(e, data));
+    $(document).on('click', '.activity-item-reactions-user.see-all', (e) => this.seeAll(e));
     $(document).on('click', '.activity-item-reactions-new-reaction', (e) => this.showOptions(e));
     $(document).on('click', '.activity-item-reactions-emoji', (e) => this.onClick(e));
 
@@ -36,6 +37,17 @@ export default class Reactions {
         $(button).prepend(emojiConvertor.replace_colons(`:${$(button).data('value')}:`));
       }
     }
+  }
+
+  seeAll(e) {
+    const $target = $(e.currentTarget);
+    $target.fadeOut('slow', () => {
+      $target.closest('.activity-item-reactions-users')
+        .find('.activity-item-reactions-user')
+        .removeClass('hide');
+
+      $target.remove();
+    });
   }
 
   showOptions(e) {

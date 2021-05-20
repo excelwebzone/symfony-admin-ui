@@ -80,7 +80,7 @@
 }
 
 .activity-item-reactions-users {
-  max-height: 100px;
+  max-height: 280px;
   overflow-y: auto;
 
   .activity-item-reactions-user {
@@ -91,6 +91,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 150px;
+
+    &.hide {
+      display: none;
+    }
+
+    &.see-all {
+      font-weight: bold;
+      cursor: pointer;
+    }
 
     .profile-image-component {
       width: 24px;
