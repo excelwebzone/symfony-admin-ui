@@ -282,12 +282,7 @@ export default class FileUpload {
     `);
 
     const $modal = $('#dropzone-cropper-modal');
-    $modal
-      .modal({
-        backdrop: 'static',
-        keyboard: false
-      })
-      .modal('show');
+    $modal.modal('show');
 
     $('.js-dropzone-cropper-crop').off('click');
     $('.js-dropzone-cropper-crop').on('click', () => {
