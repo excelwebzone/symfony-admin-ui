@@ -140,8 +140,14 @@ export default class FileUpload {
         });
 
         this.on('error', (file, message) => {
+          const hasFile = self.$selector.hasClass('is-file-loaded');
+
           self.clearIsClasses();
           self.showErrorMessage(message);
+
+          if (hasFile) {
+            self.addClass('is-file-loaded');
+          }
         });
       }
     };
@@ -258,6 +264,10 @@ export default class FileUpload {
   }
 
   transformFile(dz, file, done) {
+    if ($('#dropzone-cropper-modal').length) {
+      $('#dropzone-cropper-modal').remove();
+    }
+
     // create the image editor modal
     $('body').append(`
       <div class="modal" id="dropzone-cropper-modal">
@@ -281,11 +291,25 @@ export default class FileUpload {
       </div>
     `);
 
+    let croppedFile = false;
+
     const $modal = $('#dropzone-cropper-modal');
     $modal.modal('show');
 
+    // delete file from Dropzone list when upload was canceled
+    $modal.on('hidden.bs.modal', () => {
+      if (!croppedFile) {
+        dz.removeFile(file);
+      }
+
+      // force removal
+      $modal.remove();
+    });
+
     $('.js-dropzone-cropper-crop').off('click');
     $('.js-dropzone-cropper-crop').on('click', () => {
+      croppedFile = true;
+
       // get the canvas with image data from Cropper.js
       const canvas = cropper.getCroppedCanvas({
         width: 256,
@@ -311,8 +335,8 @@ export default class FileUpload {
         );
       });
 
-      // remove the modal editor from view
-      $modal.modal('hide').remove();
+      // hide the modal editor from view
+      $modal.modal('hide');
     });
 
     // create Cropper.js
