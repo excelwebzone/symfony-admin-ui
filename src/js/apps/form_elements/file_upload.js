@@ -268,8 +268,13 @@ export default class FileUpload {
               <img src="${URL.createObjectURL(file)}" class="js-dropzone-cropper-img" />
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-flat-default js-dropzone-cropper-cancel" data-dismiss="modal">Keep</button>
+              <button type="button" class="btn btn-flat-default" data-dismiss="modal">Cancel</button>
               <button type="button" class="btn btn-primary js-dropzone-cropper-crop">Crop</button>
+            </div>
+            <div class="modal-corner">
+              <div class="button-close" data-dismiss="modal">
+                <i class="ledger-icons ledger-icon-close"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -283,11 +288,6 @@ export default class FileUpload {
         keyboard: false
       })
       .modal('show');
-
-    $('.js-dropzone-cropper-cancel').off('click');
-    $('.js-dropzone-cropper-cancel').on('click', () => {
-      done(file);
-    });
 
     $('.js-dropzone-cropper-crop').off('click');
     $('.js-dropzone-cropper-crop').on('click', () => {
