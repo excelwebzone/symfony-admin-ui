@@ -140,14 +140,10 @@ export default class FileUpload {
         });
 
         this.on('error', (file, message) => {
-          const hasFile = self.$selector.hasClass('is-file-loaded');
+          self.removeClass('is-dragging');
+          self.removeClass('is-uploading');
 
-          self.clearIsClasses();
           self.showErrorMessage(message);
-
-          if (hasFile) {
-            self.addClass('is-file-loaded');
-          }
         });
       }
     };
