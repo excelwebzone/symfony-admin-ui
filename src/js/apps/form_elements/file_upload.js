@@ -271,7 +271,7 @@ export default class FileUpload {
           <div class="modal-content">
             <div class="modal-header">Crop Image</div>
             <div class="modal-body p-0">
-              <img src="${URL.createObjectURL(file)}" class="js-dropzone-cropper-img" />
+              <img src="${URL.createObjectURL(file)}" class="mw-100 js-dropzone-cropper-img" />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-flat-default" data-dismiss="modal">Cancel</button>
