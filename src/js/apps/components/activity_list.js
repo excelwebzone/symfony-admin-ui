@@ -238,8 +238,9 @@ export default class ActivityList {
   }
 
   openItem(e, modal) {
+    const $target = $(e.target);
     const $modal = $(modal);
-    const $container = $(e.target).closest('.activity-item-note');
+    const $container = $target.closest('.activity-item-note');
 
     const $textarea = $modal.find('textarea');
     $textarea.val($container.find('.activity-item-body-field').val());
@@ -288,6 +289,8 @@ export default class ActivityList {
             $container.click();
             $container.find('.activity-item-body').html($textarea.val());
             $container.find('.activity-item-body-field').val($textarea.val());
+
+            $target.trigger('data:updated', data);
 
             $modal.modal('hide');
 
