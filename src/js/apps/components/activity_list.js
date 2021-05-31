@@ -286,7 +286,6 @@ export default class ActivityList {
           if (data.ok) {
             $formGroup.addClass('successed');
 
-            $container.click();
             $container.find('.activity-item-body').html($textarea.val());
             $container.find('.activity-item-body-field').val($textarea.val());
 
