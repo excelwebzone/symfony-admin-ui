@@ -1,8 +1,8 @@
 .task-check-box {
   .task-check-box-container {
     width: 25px;
-    height: 25px;
-    line-height: 25px;
+    height: 50px;
+    line-height: 50px;
     border-radius: 50%;
     overflow: hidden;
     font-size: 25px;
@@ -75,8 +75,8 @@
 
   &.task-check-box-small .task-check-box-container {
     width: 24px;
-    height: 24px;
-    line-height: 24px;
+    height: 36px;
+    line-height: 36px;
     font-size: 24px;
   }
 }
