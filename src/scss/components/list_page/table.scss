@@ -27,10 +27,6 @@
 }
 
 @media (max-width: 991.98px) {
-  .list-page-table {
-    padding-top: 10px;
-  }
-
   .list-page-container:not(.single-line-header) .list-page-table {
     height: -webkit-calc(100% - 128px);
     height: calc(100% - 128px);
