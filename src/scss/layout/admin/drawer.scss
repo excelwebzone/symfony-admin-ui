@@ -333,11 +333,11 @@
     -webkit-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
     height: 56px;
-    border: none !important;
-    background-color: rgba(255, 255, 255, 0.24) !important;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.24);
     color: #fff;
-    border-radius: 8px !important;
-    padding: 0 20px 0 50px !important;
+    border-radius: 8px;
+    padding: 0 20px 0 50px;
 
     &::-webkit-input-placeholder {
       color: #fff;
@@ -368,7 +368,7 @@
     color: rgba(12, 13, 13, 0.32);
     font-weight: 700;
     position: absolute;
-    top: 15px;
+    top: 16px;
     right: 40px;
   }
 
