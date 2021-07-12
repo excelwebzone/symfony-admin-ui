@@ -573,13 +573,13 @@
   color: #696e6f;
 }
 
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-square-o,
-.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-circle-o,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-square-outline,
+.datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-circle-outline,
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-star-outline,
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-edit,
 .datagrid-left-table-block .datagrid-table-row.datagrid-hover .ledger-icon-delete,
-.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-square-o,
-.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-circle-o,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-square-outline,
+.datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-circle-outline,
 .datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-star-outline,
 .datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-edit,
 .datagrid-left-table-block .datagrid-table-row:hover .ledger-icon-delete {
@@ -640,8 +640,8 @@ i.ledger-icon-check-square,
 i.ledger-icon-check-circle,
 .datagrid-table-row.datagrid-selected,
 .datagrid-cell.table-cell-select,
-i.ledger-icon-square-o:hover,
-i.ledger-icon-circle-o:hover {
+i.ledger-icon-square-outline:hover,
+i.ledger-icon-circle-outline:hover {
   color: #0c0d0d;
 }
 */

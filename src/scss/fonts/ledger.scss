@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Ledger';
   src:
-    url('../../fonts/Ledger.ttf?te8hta') format('truetype'),
-    url('../../fonts/Ledger.woff?te8hta') format('woff'),
-    url('../../fonts/Ledger.svg?te8hta#Ledger') format('svg');
+    url('../../fonts/Ledger.ttf?bbzhyd') format('truetype'),
+    url('../../fonts/Ledger.woff?bbzhyd') format('woff'),
+    url('../../fonts/Ledger.svg?bbzhyd#Ledger') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -45,9 +45,6 @@
 .ledger-icon-alert-circle:before {
   content: "\e907";
 }
-.ledger-icon-alert-circle-o:before {
-  content: "\e908";
-}
 .ledger-icon-arrow-back:before {
   content: "\e90d";
 }
@@ -73,7 +70,7 @@
   content: "\e915";
 }
 .ledger-icon-attach:before {
-  content: "\e900";
+  content: "\e901";
 }
 .ledger-icon-attach-messages:before {
   content: "\e917";
@@ -132,7 +129,7 @@
 .ledger-icon-circle:before {
   content: "\e909";
 }
-.ledger-icon-circle-o:before {
+.ledger-icon-circle-outline:before {
   content: "\e90b";
 }
 .ledger-icon-clock:before {
@@ -280,7 +277,7 @@
   content: "\e940";
 }
 .ledger-icon-mention:before {
-  content: "\e901";
+  content: "\e902";
 }
 .ledger-icon-menu:before {
   content: "\e941";
@@ -348,7 +345,7 @@
 .ledger-icon-plus-circle:before {
   content: "\e94f";
 }
-.ledger-icon-plus-circle-o:before {
+.ledger-icon-plus-circle-outline:before {
   content: "\e950";
 }
 .ledger-icon-plus-square:before {
@@ -411,7 +408,7 @@
 .ledger-icon-sort-desc:before {
   content: "\f1ce";
 }
-.ledger-icon-square-o:before {
+.ledger-icon-square-outline:before {
   content: "\f279";
 }
 .ledger-icon-stage:before {
@@ -469,7 +466,7 @@
   content: "\e96b";
 }
 .ledger-icon-text-tool:before {
-  content: "\e902";
+  content: "\e908";
 }
 .ledger-icon-tickets:before {
   content: "\e96c";
@@ -486,17 +483,17 @@
 .ledger-icon-unread:before {
   content: "\e96e";
 }
-.ledger-icon-view-card:before {
-  content: "\e96f";
+.ledger-icon-view-cards:before {
+  content: "\e971";
 }
 .ledger-icon-view-chart:before {
   content: "\e970";
 }
-.ledger-icon-view-column:before {
-  content: "\e971";
-}
 .ledger-icon-view-list:before {
   content: "\e972";
+}
+.ledger-icon-view-rows:before {
+  content: "\e900";
 }
 .ledger-icon-view-timeline:before {
   content: "\e975";

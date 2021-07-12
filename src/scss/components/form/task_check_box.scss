@@ -27,7 +27,7 @@
     }
 
     &:not(.is-completed) .task-check-box-activity-icon > i::before {
-      content: '\e90b'; // ledger-icon-circle-o
+      content: '\e90b'; // ledger-icon-circle-outline
     }
 
     .task-check-box-activity-icon {
