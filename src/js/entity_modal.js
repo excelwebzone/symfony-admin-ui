@@ -106,7 +106,8 @@ export default class EntityModal {
     const template = $target.data('template');
     const args = $target.data('arguments') || {};
 
-    this.createNewModal();
+    this.createNewModal($target.data('modal-name'), $target.data('modal-class'));
+
     this.loadContent(_.template($(template).html())(args));
 
     $target.trigger('modal:shown', this.$modal);
@@ -130,7 +131,8 @@ export default class EntityModal {
       return;
     }
 
-    this.createNewModal();
+    this.createNewModal($target.data('modal-name'), $target.data('modal-class'));
+
     this.loadContent(_.template($(template).html())($.extend(args, { ids: ids })));
 
     $target.trigger('modal:shown', this.$modal);
