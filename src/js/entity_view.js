@@ -277,8 +277,8 @@ export default class EntityView {
             const $drawer = $(`.drawer-frame[data-id="${$datagridRowLeft.data('id')}"]`);
             if ($drawer.length) {
               $drawer.toggleClass('is-complete');
-              $drawer.find('.task-check-box-container').toggleClass('is-completed');
-              $drawer.find('.js-complete-item').prop('checked', !$drawer.find('.js-complete-item').prop('checked'));
+              $drawer.find('.entity-profile-frame-complete-toggle .task-check-box-container').toggleClass('is-completed');
+              $drawer.find('.entity-profile-frame-complete-toggle .js-complete-item').prop('checked', !$drawer.find('.entity-profile-frame-complete-toggle .js-complete-item').prop('checked'));
             }
           }
 
