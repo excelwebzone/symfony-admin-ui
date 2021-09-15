@@ -35,7 +35,7 @@ const createToasterEl = (message, type, closeButton) => `
     <div class="toaster-toast-wrapper">
       <div class="toast is-open">
         <div class="toast-message">
-          ${_.escape(message.replace(/<br\s*\/?>/gi,' ').replace(/<[^>]+>/g, ''))}
+          ${_.escape(message.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ''))}
         </div>
         <div class="toast-action">
           ${closeButton ? '<i class="toast-close ledger-icons ledger-icon-close"></i>' : ''}

@@ -29,7 +29,7 @@ export default class FileUpload {
       init: function() {
         if (self.$selector.data('image-cropper')) {
           this.options.transformFile = (file, done) => {
-            self.transformFile(this, file, done);
+            self.transformFile(this, file, done, self.$selector.data('static-cropper'));
           };
         }
 
@@ -259,7 +259,7 @@ export default class FileUpload {
       });
   }
 
-  transformFile(dz, file, done) {
+  transformFile(dz, file, done, staticModal) {
     if ($('#dropzone-cropper-modal').length) {
       $('#dropzone-cropper-modal').remove();
     }
@@ -270,7 +270,7 @@ export default class FileUpload {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">Crop Image</div>
-            <div class="modal-body p-0">
+            <div class="modal-body pt-0 px-0">
               <img src="${URL.createObjectURL(file)}" class="mw-100 js-dropzone-cropper-img" />
             </div>
             <div class="modal-footer">
@@ -290,7 +290,16 @@ export default class FileUpload {
     let croppedFile = false;
 
     const $modal = $('#dropzone-cropper-modal');
-    $modal.modal('show');
+
+    if (staticModal) {
+      $modal.modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: true
+      });
+    } else {
+      $modal.modal('show');
+    }
 
     // delete file from Dropzone list when upload was canceled
     $modal.on('hidden.bs.modal', () => {
