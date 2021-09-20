@@ -154,7 +154,9 @@ export default class DropdownOptions {
       }
 
       const $options = $dropdown.find('.option-list').find('>ul');
-      if ($options.find('li:visible').length === 0) {
+      if ($options.find('li:visible').length === 0
+        && $options.find('.option-list-label-empty').length === 0
+      ) {
         $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Options Found</div></li>');
       }
 
@@ -323,7 +325,9 @@ export default class DropdownOptions {
     $options.find(`li${ignore}`).show();
     $options.find(`li${ignore}:not(:filter("${this.value}"))`).hide();
 
-    if ($options.find('li:visible').length === 0) {
+    if ($options.find('li:visible').length === 0
+      && $options.find('.option-list-label-empty').length === 0
+    ) {
       $options.append('<li class="option-list-label option-list-label-empty"><div class="option-list-label-label">No Options Found</div></li>');
     }
   }
@@ -361,6 +365,7 @@ export default class DropdownOptions {
     if ($dropdown.find('.dropdown-tags .tag').length === 0) {
       $dropdown.find('.dropdown-tags').html('');
       $dropdown.removeClass('has-value');
+      $dropdown.find('.option-list-label-empty').remove();
     }
   }
 }
