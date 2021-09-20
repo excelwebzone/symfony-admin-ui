@@ -116,15 +116,19 @@ export default class Filter {
     this.$container.find('.js-filter-list .js-filter-item.is-default').click();
   }
 
-  toggleNoPrivateFilters() {
-    let $nextFilter = this.$noPrivateFilters.nextAll('.js-filter-item:not(.is-locked):not(.is-hidden)');
-    if ($nextFilter.length === 0) {
+  toggleNoFilters(filterId) {
+    const selector = filterId
+      ? `li:not(.is-hidden):not([data-id=${filterId}])`
+      : 'li:not(.is-hidden)';
+
+    let $nextFilter = this.$noPrivateFilters.nextAll(selector);
+    if ($nextFilter.length === 0 || $($nextFilter[0]).hasClass('js-public-filters')) {
       this.$noPrivateFilters.show();
     } else {
       this.$noPrivateFilters.hide();
     }
 
-    $nextFilter = this.$noPublicFilters.nextAll('.js-filter-item.is-locked:not(.is-hidden)');
+    $nextFilter = this.$noPublicFilters.nextAll(selector);
     if ($nextFilter.length === 0) {
       this.$noPublicFilters.show();
     } else {
@@ -184,14 +188,21 @@ export default class Filter {
     $(modal).on('modal:hidden', (e, data) => {
       $(modal).off('modal:hidden');
 
-      this.$noPrivateFilters.hide();
-
-      $(filterItemLI(
+      const li = filterItemLI(
         data.id,
         data.label,
         data.params
-      ))
-        .insertAfter(this.$noPrivateFilters);
+      );
+
+      if (data.isPublic || false) {
+        this.$noPublicFilters.hide();
+
+        this.$container.find('.js-filter-list>ul').append(li);
+      } else {
+        this.$noPrivateFilters.hide();
+
+        $(li).insertAfter(this.$noPrivateFilters);
+      }
 
       this.$container.find(`.js-filter-item[data-id="${data.id}"]`).click();
     });
@@ -256,7 +267,7 @@ export default class Filter {
         }
       }
 
-      this.toggleNoPrivateFilters();
+      this.toggleNoFilters(data.id);
 
       if (this.getActiveFilter().length === 0) {
         this.$container.find('.js-filter-active>ul').replaceWith('<li class="js-filter-item"></li>');
@@ -310,7 +321,7 @@ export default class Filter {
     }
 
     this.loadFilters();
-    this.toggleNoPrivateFilters();
+    this.toggleNoFilters();
 
     return true;
   }
