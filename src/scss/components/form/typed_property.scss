@@ -67,7 +67,9 @@
 .typed-property-layout {
   position: relative;
 
-  &:hover .typed-property-add {
+  &:hover .typed-property-add,
+  &:focus .typed-property-add,
+  &:focus-within .typed-property-add {
     display: block;
   }
 }

@@ -27,6 +27,7 @@ export default class TypedProperty {
 
     this.$container.on('click', '.typed-property-add', this.addRow);
     this.$container.on('blur', '.typed-property-item', this.removeRow);
+    this.$container.on('keyup', '.typed-property-value-field', this.removeRow);
   }
 
   addRow(e, collectionEl) {
@@ -84,8 +85,13 @@ export default class TypedProperty {
     // prevent the link from creating a "#" on the URL
     e && e.preventDefault();
 
+    // get the object item
+    const $currentRow = $(this).hasClass('typed-property-item')
+      ? $(this)
+      : $(this).closest('.typed-property-item');
+
     // get the object that holds the collection
-    const $collectionHolder = $(this).closest('.typed-property-layout');
+    const $collectionHolder = $currentRow.closest('.typed-property-layout');
 
     // get last row
     const $lastRow = $collectionHolder.find('.typed-property-item').last();
@@ -94,15 +100,15 @@ export default class TypedProperty {
     let totalRows = $collectionHolder.find('.typed-property-item').length;
 
     // get the row value length
-    const valueLength = $(this).find('.typed-property-value-field').val().length;
+    const valueLength = $currentRow.find('.typed-property-value-field').val().length;
 
     // remove the row for the form when more then 1 rows exists
     if (totalRows > 1
       && valueLength === 0
-      && !$(this).is($lastRow)
+      && !$currentRow.is($lastRow)
       && $collectionHolder.data('allow-remove')
     ) {
-      $(this).remove();
+      $currentRow.remove();
       totalRows--;
     }
 
@@ -116,7 +122,14 @@ export default class TypedProperty {
     }
 
     // remove `add another` link
-    if (totalRows && valueLength === 0 && !$(this).is($lastRow)) {
+    let found = false;
+    for (let row of $collectionHolder.find('.typed-property-item')) {
+      if ($(row).find('.typed-property-value-field').val().length) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
       $collectionHolder.find('.typed-property-add').remove();
     }
   }
