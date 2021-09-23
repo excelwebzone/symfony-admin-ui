@@ -17,6 +17,9 @@ select {
   outline: 0;
   padding: 4px 0;
   width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .form-control::placeholder,
