@@ -310,7 +310,7 @@ export default class EntityView {
         if ($table.length === 0) {
           $table = $('[data-list-page-table]');
         }
-        
+
         $table.trigger('load-filters');
 
         return;
@@ -344,7 +344,7 @@ export default class EntityView {
           }
 
           $table.trigger('load-filters');
-          
+
           return;
         }
 
