@@ -306,7 +306,13 @@ export default class EntityView {
           $drawer.find('.js-drawer-close').click();
         }
 
-        $('.list-page-table').trigger('load-filters');
+        let $table = $('.list-page-table');
+        if ($table.length === 0) {
+          $table = $('[data-list-page-table]');
+        }
+        
+        $table.trigger('load-filters');
+
         return;
       }
 
@@ -328,12 +334,17 @@ export default class EntityView {
       }
 
       if (data.redirect) {
-        if ($('.list-page-table').length) {
+        let $table = $('.list-page-table');
+        if ($table.length === 0) {
+          $table = $('[data-list-page-table]');
+        }
+        if ($table.length) {
           if ($drawer.length) {
             $drawer.find('.js-drawer-close').click();
           }
 
-          $('.list-page-table').trigger('load-filters');
+          $table.trigger('load-filters');
+          
           return;
         }
 

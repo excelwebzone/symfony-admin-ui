@@ -51,7 +51,7 @@ export default class DataViewer {
   }
 
   bindEvents() {
-    this.$table.on('load-filters', () => this.loadFilters());
+    this.$table.on('load-filters', () => this.filterData());
 
     this.$filterForm.on('change', ':input:not(.ignore-input)', () => this.filterData());
     this.$container.on('click', '.js-filter-item', (e) => this.selectFilter(e));
@@ -142,11 +142,6 @@ export default class DataViewer {
     if (this.filter.setCurrentFilter(e)) {
       this.filterData();
     }
-  }
-
-  loadFilters() {
-    this.filter.loadFilters();
-    this.filterData();
   }
 
   filterData() {
