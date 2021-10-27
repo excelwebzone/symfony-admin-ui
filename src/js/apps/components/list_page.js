@@ -70,15 +70,14 @@ export default class ListPage {
 
     this.$selectAllCheckbox.on('click', () => this.selectAllRows());
     this.$container.on('click', '.js-bulk-select', () => this.selectRow());
-
-    this.$container.find('.js-print-list').on('click', (e) => this.printList(e));
-    this.$container.find('.js-bulk-export,.js-bulk-print,.js-bulk-action').on('click', (e) => this.bulkGeneric(e));
-    this.$container.find('.js-bulk-email').on('click', (e) => this.bulkMailto(e));
-    this.$container.find('.js-bulk-follow').on('click', (e) => this.bulkFollow(e));
-    this.$container.find('.js-bulk-complete').on('click', (e) => this.bulkComplete(e));
-    this.$container.find('.js-bulk-unread').on('click', (e) => this.bulkUnread(e));
-    this.$container.find('.js-bulk-edit').on('drawer:shown', (e, drawer) => this.bulkEditDrawer(e, drawer));
-    this.$container.find('.js-bulk-delete').on('modal:shown', (e, modal) => this.bulkDeleteModal(e, modal));
+    this.$container.on('click', '.js-print-list', (e) => this.printList(e));
+    this.$container.on('click', '.js-bulk-export,.js-bulk-print,.js-bulk-action', (e) => this.bulkGeneric(e));
+    this.$container.on('click', '.js-bulk-email', (e) => this.bulkMailto(e));
+    this.$container.on('click', '.js-bulk-follow', (e) => this.bulkFollow(e));
+    this.$container.on('click', '.js-bulk-complete', (e) => this.bulkComplete(e));
+    this.$container.on('click', '.js-bulk-unread', (e) => this.bulkUnread(e));
+    this.$container.on('drawer:shown', '.js-bulk-edit', (e, drawer) => this.bulkEditDrawer(e, drawer));
+    this.$container.on('modal:shown', '.js-bulk-delete', (e, modal) => this.bulkDeleteModal(e, modal));
 
     // toggle between list and card view (reload page)
     this.$container.on('click', '.js-toggle-card-view', (e) => {

@@ -29,10 +29,10 @@ export default class Datagrid {
   }
 
   bindEvents() {
-    this.$table.find('.datagrid-body-container .datagrid-table-row').on('mouseover', (e) => this.mouseover(e));
-    this.$table.find('.datagrid-body-container .datagrid-table-row').on('mouseout', (e) => this.mouseout(e));
-    this.$table.find('.datagrid-body-container .datagrid-table-row').on('click', (e) => this.selectRow(e));
-    this.$table.find('.datagrid-body-container .datagrid-table-row').on('dblclick', (e) => this.openFullPage(e));
+    this.$table.on('mouseover', '.datagrid-body-container .datagrid-table-row', (e) => this.mouseover(e));
+    this.$table.on('mouseout', '.datagrid-body-container .datagrid-table-row', (e) => this.mouseout(e));
+    this.$table.on('click', '.datagrid-body-container .datagrid-table-row', (e) => this.selectRow(e));
+    this.$table.on('dblclick', '.datagrid-body-container .datagrid-table-row', (e) => this.openFullPage(e));
 
     if (this.$table.data('resizable')) {
       this.$table.find('.datagrid-header-container .datagrid-header-cell:not(.table-header-cell-empty):not(.table-header-cell-select)').resizable({
