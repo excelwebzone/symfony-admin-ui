@@ -145,10 +145,10 @@ export default class EntityForm {
               });
             }
 
-            if (!data.message) {
+            if (!data.message && !data.ignoreMessage) {
               toaster(data.label + ' deleted');
             }
-          } else if (!data.message) {
+          } else if (!data.message && !data.ignoreMessage) {
             toaster(data.label + ' updated');
           }
         } else if (data.error && data.error.message) {
