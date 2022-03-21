@@ -105,8 +105,8 @@ export function initFormElements(containerEl) {
     $picker.on('show.daterangepicker', (e, dateRangePicker) => {
       const dates = splitDateRange($picker.val());
 
-      dateRangePicker.setStartDate(moment(dates[0]));
-      dateRangePicker.setEndDate(moment(dates[1]));
+      if (dates[0]) dateRangePicker.setStartDate(moment(dates[0]));
+      if (dates[1]) dateRangePicker.setEndDate(moment(dates[1]));
 
       dateRangePicker.updateView();
     });
