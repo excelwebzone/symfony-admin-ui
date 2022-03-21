@@ -9,6 +9,7 @@ import Rating from './rating';
 import Datagrid from '../components/datagrid';
 import ScrollableTabs from '../components/scrollable_tabs';
 import SortableList from '../components/sortable_list';
+import { dateRanges } from '../components/filter_range';
 
 export function initFormElements(containerEl) {
   const $container = containerEl ? $(containerEl) : $('body');
@@ -40,23 +41,92 @@ export function initFormElements(containerEl) {
     new FileUpload($(element));
   }
 
-  // init datepicker elements
-  for (let element of $container.find('.js-datepicker')) {
-    const $dataField = $(element).prev();
-    const format = $(element).data('format');
+  // init daterangepicker elements
+  for (let element of $container.find('.js-daterangepicker:not([data-filter-field])')) {
+    const $picker = $(element);
 
-    new DateRangePicker($(element), {
-      singleDatePicker: true,
-      autoUpdateInput: true,
+    const options = {
       locale: {
-        format: format
+        format: $picker.data('format'),
+        separator: ' - '
       },
-      parentEl: $(element).closest('.form-group')
+      parentEl: $picker.data('parent') || $picker.closest('.form-group')
+    };
+
+    if ($picker.data('modal')) {
+      options.useModal = true;
+      options.ignoreMove = true;
+    }
+
+    if ($picker.data('locale-separator')) {
+      options.locale.separator = $picker.data('locale-separator');
+    }
+
+    if ($picker.data('single-date')) {
+      options.singleDatePicker = true;
+      options.autoApply = !$picker.data('time-picker');
+    } else {
+      options.opens = 'left';
+      options.alwaysShowCalendars = true;
+      options.ranges = dateRanges;
+    }
+
+    if ($picker.data('time-picker')) {
+      options.timePicker = true;
+    }
+
+    if ($picker.data('time-24hour')) {
+      options.timePicker24Hour = true;
+    }
+
+    if ($picker.data('time-increment')) {
+      options.timePickerIncrement = $picker.data('time-increment');
+    }
+
+    if ($picker.data('time-hours')) {
+      options.timePickerHours = $picker.data('time-hours');
+    }
+
+    // create picker
+    new DateRangePicker($picker, options);
+
+    // get start and end dates
+    const splitDateRange = (value) => {
+      let start, end;
+
+      if (value) {
+        start = value.split(options.locale.separator)[0];
+        end = value.split(options.locale.separator)[1];
+      }
+
+      return [start, end];
+    };
+
+    $picker.on('show.daterangepicker', (e, dateRangePicker) => {
+      const dates = splitDateRange($picker.val());
+
+      dateRangePicker.setStartDate(moment(dates[0]));
+      dateRangePicker.setEndDate(moment(dates[1]));
+
+      dateRangePicker.updateView();
     });
 
-    $(element).on('change', () => {
-      $dataField.val($(element).val() ? moment($(element).val()).format('YYYY-MM-DD') : null);
-      $dataField.trigger('change');
+    $picker.on('clear.daterangepicker', () => {
+      $picker.val('').trigger('change');
+    });
+
+    $picker.on('change', () => {
+      if (!$picker.val()) {
+        $picker.prev().val('').trigger('change');
+        return;
+      }
+
+      const dates = splitDateRange($picker.val());
+      const value = moment(dates[0]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD')
+        + options.locale.separator
+        + moment(dates[1]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD');
+
+      $picker.prev().val(value).trigger('change');
     });
   }
 

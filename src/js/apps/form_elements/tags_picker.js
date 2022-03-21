@@ -2,7 +2,6 @@ import $ from 'jquery';
 
 export default class TagsPicker {
   constructor(pickerEl, options, cb) {
-    // default settings for options
     this.parentEl = 'body';
     this.$picker = $(pickerEl);
     this.autoApply = false;
@@ -45,46 +44,52 @@ export default class TagsPicker {
     if (typeof options.template !== 'string' && !(options.template instanceof $))
       if (options.useModal)
         options.template = `
-            <div class="modal">
+            <div class="modal modal-tags">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-body">
-                    <div class="range-select range-select-tags-range d-block">
-                      <div class="range-select-range-field">
-                        <div class="has-floating-label p-0">
-                          <input type="text" name="tagpicker" class="input-text ignore-input" placeholder=" " autocomplete="off" />
-                          <label>Tag</label>
+                    <div class="range-select range-select-tags-range">
+                      <div class="range-select-content">
+                        <div class="range-select-range-field">
+                          <div class="has-floating-label">
+                            <input type="text" name="tagpicker" class="input-text ignore-input" placeholder=" " autocomplete="off" />
+                            <label>Tag</label>
+                          </div>
+                          <div class="tag-collection"></div>
                         </div>
-                        <div class="tag-collection"></div>
                       </div>
-                    </div>
                   </div>
-                  <div class="modal-footer">
+                </div>
+                <div class="modal-footer range-select-footer">
+                  <div class="range-select-button-section">
                     <button type="button" class="btn btn-flat-default cancel-button value-range-cancel" data-dismiss="modal"></button>
                     <button type="button" class="btn btn-primary apply-button value-range-apply"></button>
                   </div>
                 </div>
               </div>
             </div>
-          `;
+          </div>
+        `;
       else
         options.template = `
-            <div class="range-select-container">
-              <div class="range-select range-select-tags-range d-block">
-                <div class="range-select-range-field">
-                  <div class="has-floating-label p-0">
-                    <input type="text" name="tagpicker" class="input-text ignore-input" placeholder=" " autocomplete="off" />
-                    <label>Tag</label>
-                  </div>
-                  <div class="tag-collection"></div>
+          <div class="range-select-container">
+            <div class="range-select range-select-tags-range">
+              <div class="range-select-range-field">
+                <div class="has-floating-label">
+                  <input type="text" name="tagpicker" class="input-text ignore-input" placeholder=" " autocomplete="off" />
+                  <label>Tag</label>
                 </div>
-                <div class="range-select-footer">
+                <div class="tag-collection"></div>
+              </div>
+              <div class="range-select-footer">
+                <div class="range-select-button-section">
                   <button type="button" class="btn btn-primary apply-button value-range-apply"></button>
                 </div>
               </div>
-              <div class="range-select-nub"></div>
             </div>
-          `;
+            <div class="range-select-nub"></div>
+          </div>
+        `;
 
     this.parentEl = (options.parentEl && $(options.parentEl).length) ? $(options.parentEl) : $(this.parentEl);
     this.$container = $(options.template).appendTo(this.parentEl);
@@ -136,7 +141,7 @@ export default class TagsPicker {
 
     // if no tags set, check if an input element contains initial values
     if (typeof options.tags === 'undefined') {
-      if ($(this.$picker).is('input[type=text]')) {
+      if ($(this.$picker).is(':text')) {
         this.setTags($(this.$picker).val());
       }
     }
@@ -155,7 +160,7 @@ export default class TagsPicker {
       .on('click', '.tag-action', (e) => this.removeTag(e));
 
     this.$container.find('.range-select-range-field')
-      .on('keypress.tagspicker', 'input', (e) => this.formInputsKeypress(e));
+      .on('keydown.tagspicker', 'input', (e) => this.formInputsKeydown(e));
 
     this.$container
       .on('click.tagspicker', 'button.apply-button', () => this.clickApply());
@@ -171,18 +176,10 @@ export default class TagsPicker {
       this.$picker.on('keydown.tagspicker', () => this.toggle());
     }
 
-    //
     // if attached to a text input, set the initial value
-    //
-
-    if (this.$picker.is('input') && this.autoUpdateInput) {
-      this.$picker.val(this.tags.join('|'));
-      this.$picker.trigger('change');
+    if (this.$picker.val()) {
+      this.updateElement();
     }
-  }
-
-  setParentEl(parentEl) {
-    this.parentEl = parentEl;
   }
 
   setTags(tags) {
@@ -230,64 +227,102 @@ export default class TagsPicker {
   move() {
     if (this.ignoreMove || this.useModal) return;
 
-    var parentOffset = {
-      top: 0,
-      left: 0
-    };
+    let parentOffset = { top: 0, left: 0 };
+    let containerTop;
+    let drops = this.drops;
 
-    var containerTop;
-
-    var parentRightEdge = $(window).width();
-
+    let parentRightEdge = $(window).width();
     if (!this.parentEl.is('body')) {
       parentOffset = {
         top: this.parentEl.offset().top - this.parentEl.scrollTop(),
         left: this.parentEl.offset().left - this.parentEl.scrollLeft()
       };
+
       parentRightEdge = this.parentEl[0].clientWidth + this.parentEl.offset().left;
     }
 
-    if (this.drops === 'up')
-      containerTop = this.$picker.offset().top - this.$container.outerHeight() - parentOffset.top;
-    else
-      containerTop = this.$picker.offset().top + this.$picker.outerHeight() - parentOffset.top;
-    this.$container[this.drops === 'up' ? 'addClass' : 'removeClass']('drop-up');
+    switch (drops) {
+      case 'auto':
+        containerTop = this.$picker.offset().top + this.$picker.outerHeight() - parentOffset.top;
+        if (containerTop + this.$container.outerHeight() >= this.parentEl[0].scrollHeight) {
+          containerTop = this.$picker.offset().top - this.$container.outerHeight() - parentOffset.top;
+          drops = 'up';
+        }
+
+        break;
+
+      case 'up':
+        containerTop = this.$picker.offset().top - this.$container.outerHeight() - parentOffset.top;
+        break;
+
+      default:
+        containerTop = this.$picker.offset().top + this.$picker.outerHeight() - parentOffset.top;
+        break;
+    }
+
+    // force the container to it's actual width
+    this.$container.css({
+      top: 0,
+      left: 0,
+      right: 'auto'
+    });
+
+    let containerWidth = this.$container.outerWidth();
+
+    this.$container.toggleClass('drop-up', drops === 'up');
 
     if (this.opens === 'left') {
-      this.$container.css({
-        top: containerTop,
-        right: parentRightEdge - this.$picker.offset().left - this.$picker.outerWidth(),
-        left: 'auto'
-      });
-      if (this.$container.offset().left < 0) {
+      let containerRight = parentRightEdge - this.$picker.offset().left - this.$picker.outerWidth();
+
+      if (containerWidth + containerRight > $(window).width()) {
         this.$container.css({
+          top: containerTop,
           right: 'auto',
           left: 9
+        });
+      } else {
+        this.$container.css({
+          top: containerTop,
+          right: containerRight,
+          left: 'auto'
         });
       }
     } else if (this.opens === 'center') {
-      this.$container.css({
-        top: containerTop,
-        left: this.$picker.offset().left - parentOffset.left + this.$picker.outerWidth() / 2
-          - this.$container.outerWidth() / 2,
-        right: 'auto'
-      });
-      if (this.$container.offset().left < 0) {
+      let containerLeft = this.$picker.offset().left - parentOffset.left + this.$picker.outerWidth() / 2 - containerWidth / 2;
+
+      if (containerLeft < 0) {
         this.$container.css({
+          top: containerTop,
           right: 'auto',
           left: 9
         });
-      }
-    } else {
-      this.$container.css({
-        top: containerTop,
-        left: this.$picker.offset().left - parentOffset.left,
-        right: 'auto'
-      });
-      if (this.$container.offset().left + this.$container.outerWidth() > $(window).width()) {
+      } else if (containerLeft + containerWidth > $(window).width()) {
         this.$container.css({
+          top: containerTop,
           left: 'auto',
           right: 0
+        });
+      } else {
+        this.$container.css({
+          top: containerTop,
+          left: containerLeft,
+          right: 'auto'
+        });
+      }
+    } else {
+      let containerLeft = this.$picker.offset().left - parentOffset.left;
+
+      if (containerLeft + containerWidth > $(window).width()) {
+        this.$container.css({
+          top: containerTop,
+          left: 'auto',
+          right: 0
+        });
+      } else {
+        this.$container.css({
+          top: containerTop,
+          left: containerLeft,
+          right: 'auto'
         });
       }
     }
@@ -296,10 +331,10 @@ export default class TagsPicker {
   show() {
     if (this.isShowing) return;
 
-    // Create a click proxy that is private to this instance of datepicker, for unbinding
+    // create a click proxy that is private to this instance of datepicker, for unbinding
     this._outsideClickProxy = (e) => this.outsideClick(e);
 
-    // Bind global datepicker mousedown for hiding and
+    // bind global datepicker mousedown for hiding and
     $(document)
       .on('mousedown.tagspicker', this._outsideClickProxy)
       // also support mobile devices
@@ -309,8 +344,8 @@ export default class TagsPicker {
       // and also close when focus changes to outside the picker (eg. tabbing between controls)
       .on('focusin.tagspicker', this._outsideClickProxy);
 
-    // Reposition the picker if the window is resized while it's open
-    $(window).on('resize.tagspicker', this.move());
+    // reposition the picker if the window is resized while it's open
+    $(window).on('resize.daterangepicker', this.move());
 
     this.updateView();
 
@@ -328,9 +363,8 @@ export default class TagsPicker {
   hide() {
     if (!this.isShowing) return;
 
-    // if apply was clicked..
     if (this.isApply) {
-      // invoke the user callback function
+      // if a new tags was selected, invoke the user callback function
       this.callback(this.tags.join('|'));
 
       // if picker is attached to a text input, update it
@@ -364,7 +398,7 @@ export default class TagsPicker {
   }
 
   outsideClick(e) {
-    var target = $(e.target);
+    let target = $(e.target);
     // if the page is clicked anywhere except within the tagspicker/button
     // itself then call this.hide()
     if (
@@ -373,7 +407,9 @@ export default class TagsPicker {
       || target.closest(this.$picker).length
       || target.closest(this.$container).length
     ) return;
+
     this.hide();
+
     this.$picker.trigger('outsideClick.tagspicker', this);
   }
 
@@ -396,20 +432,16 @@ export default class TagsPicker {
     this.updateView();
   }
 
-  formInputsKeypress(e) {
-    // This function ensures that if the 'enter' key was pressed in the input, then
-    // updated with the tags.
-    // This behaviour is automatic in Chrome/Firefox/Edge but not in IE 11 hence why this exists.
-    // Other browsers and versions of IE are untested and the behaviour is unknown.
+  formInputsKeydown(e) {
+    // this function ensures that if the 'enter' key was pressed in the input, then the tags are updated.
+    // this behaviour is automatic in Chrome/Firefox/Edge but not in IE 11 hence why this exists.
+    // other browsers and versions of IE are untested and the behaviour is unknown.
     if (e.keyCode === 13) {
-      // Prevent from being updated twice on Chrome/Firefox/Edge
+      // prevent the tags from being updated twice on Chrome/Firefox/Edge
       e.preventDefault();
       this.formInputsChanged(e);
-      // Reset
-      $(e.currentTarget).val('');
 
-      if (this.autoApply)
-        this.clickApply();
+      this.reset();
     }
   }
 
@@ -438,8 +470,10 @@ export default class TagsPicker {
 
   updateElement() {
     if (this.$picker.is('input') && this.autoUpdateInput) {
-      this.$picker.val(this.tags.join('|'));
-      this.$picker.trigger('change');
+      let newValue = this.tags.join('|');
+
+      if (newValue !== this.$picker.val())
+        this.$picker.val(newValue).trigger('change');
     }
   }
 

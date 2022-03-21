@@ -3,6 +3,12 @@
   padding: 10px 0;
   position: relative;
 
+  select {
+    width: auto;
+    color: inherit;
+    border-bottom: none;
+  }
+
   table {
     border-spacing: 0;
   }
@@ -23,7 +29,7 @@
       padding: 0;
       position: relative;
       color: #0c0d0d;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       text-align: center;
     }
@@ -59,7 +65,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-family: 'Ledger';
-      font-size: 24px;
+      font-size: 14px;
       height: 30px;
       line-height: 30px;
       position: absolute;
@@ -124,7 +130,7 @@
         min-width: 32px;
         padding: 0;
         text-align: center;
-        color: #696e6f;
+        color: #7c7c7c;
         font-weight: 500;
       }
 
@@ -146,17 +152,7 @@
 
         &:not(.is-selected) span:hover {
           border-radius: 8px;
-          background-color: #dce3e6;
-        }
-
-        &.is-first:before {
-          border-top-left-radius: 8px;
-          border-bottom-left-radius: 8px;
-        }
-
-        &.is-last:before {
-          border-top-right-radius: 8px;
-          border-bottom-right-radius: 8px;
+          background-color: #e9f2ff;
         }
 
         &.is-in-range {
@@ -167,7 +163,8 @@
             bottom: 0;
             right: 0;
             left: 0;
-            background-color: #dce3e6;
+            background-color: rgba(0, 0, 0, 0.06);
+            color: #0f9dda;
             z-index: 1;
           }
 
@@ -180,7 +177,8 @@
           &.is-to span {
             color: #fff;
             font-weight: 700;
-            background: #234ba5;
+            background: #569aff;
+            border-radius: 8px;
           }
 
           &.is-from {
@@ -194,28 +192,14 @@
             background: #fff;
           }
 
-          &.is-from {
-            &:before {
-              width: 50%;
-              left: auto;
-            }
-
-            &.is-first:before {
-              border-top-left-radius: 0;
-              border-bottom-left-radius: 0;
-            }
+          &.is-from:before {
+            width: 50%;
+            left: auto;
           }
 
-          &.is-to {
-            &:before {
-              width: 50%;
-              right: auto;
-            }
-
-            &.is-last:before {
-              border-top-right-radius: 0;
-              border-bottom-right-radius: 0;
-            }
+          &.is-to:before {
+            width: 50%;
+            right: auto;
           }
         }
 
@@ -223,7 +207,7 @@
           cursor: default;
 
           span {
-            color: #dce3e6;
+            color: #c8c8c8;
 
             &:hover {
               background: transparent;
@@ -231,21 +215,30 @@
           }
         }
 
-        &.ui-datepicker-today span {
-          color: #234ba5;
-          font-weight: 700;
-          border-color: #696e6f;
-        }
-
-        &.is-selected span {
-          border-radius: 8px;
-          background: #234ba5;
-          color: #fff;
-          font-weight: 700;
-        }
-
         &.ui-datepicker-other-month span {
-          display: none;
+          color: #c8c8c8;
+        }
+
+        &.ui-datepicker-today span {
+          color: #0c0d0d;
+          font-weight: 700;
+          border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        &.is-selected {
+          &.is-from:not(.is-to) span {
+            border-radius: 8px 0 0 8px;
+          }
+
+          &.is-to:not(.is-from) span {
+            border-radius: 0 8px 8px 0;
+          }
+
+          span {
+            background: #569aff;
+            color: #fff;
+            font-weight: 700;
+          }
         }
       }
     }

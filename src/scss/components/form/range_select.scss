@@ -155,15 +155,30 @@
     clear: both;
   }
 
-  .value-range-apply {
-    margin: 10px 15px 0 0;
-  }
-
   .range-select-range-field {
     font-size: 12px;
     color: #696e6f;
     font-weight: 400;
     margin-top: 24px;
+
+    .has-floating-label {
+      padding: 0;
+
+      select {
+        position: absolute;
+        right: 16px;
+        border-bottom: none;
+        width: auto;
+        height: 56px;
+        min-height: 56px;
+        padding: 22px 16px 10px;
+        color: #696e6f;
+
+        &[disabled], option[disabled] {
+          color: #c8c8c8;
+        }
+      }
+    }
   }
 }
 
@@ -171,7 +186,6 @@
   flex-direction: column;
 
   .filter-calendar {
-    display: none;
     margin: 5px;
   }
 
@@ -194,7 +208,8 @@
     }
 
     .btn {
-      height: 28px;
+      width: 100%;
+      height: 31px;
       font-size: 11px;
       line-height: 12px;
       box-shadow: none;
@@ -229,8 +244,7 @@
 
     .filter-calendar-button-panel {
       order: 0;
-      display: flex;
-      justify-content: center;
+      margin: 0 auto;
     }
 
     .filter-calendar {
@@ -251,37 +265,54 @@
 
 .range-select-footer {
   height: 60px;
-  border-top: 1px solid #dce3e6;
-  padding: 15px 0 10px;
-  margin: 0 -8px;
+  border-top: 1px solid #dce3e6 !important;
+  padding: 0 16px !important;
 
-  .btn {
-    float: right;
-    margin: 0 10px;
+  .value-range-apply {
+    margin: 10px 15px 0 0;
+  }
+
+  .range-select-button-section {
+    margin: 10px 0 5px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    .btn {
+      float: right;
+      margin: 0 5px;
+    }
   }
 }
-
-@media (max-width: 991.98px) {
-  .range-select-footer {
-    display: block;
-    padding-top: 10px;
-  }
-}
-
 
 .show-calendar {
+  &.modal-calendar {
+    .modal-dialog {
+      max-width: 750px;
+    }
+
+    .modal-body {
+      padding: 0;
+    }
+  }
+
   .range-select-date-range .filter-calendar {
     display: block;
   }
 }
 
+.show.modal-tags .modal-body {
+  padding-bottom: 0;
+}
+
 .range-select-tags-range {
+  display: block;
+
   .tag-collection {
     height: 100px;
     overflow: hidden;
     overflow-y: scroll;
-    padding-right: 15px;
-    margin-top: 10px;
+    margin-top: 16px;
 
     > .tag {
       display: block;
@@ -290,27 +321,7 @@
 }
 
 .single {
-  .range-select-date-range {
-    .filter-calendar.to-date-selector,
-    .filter-calendar-button-panel,
-    .range-select-footer {
-      display: none;
-    }
-  }
-
-  .range-select {
-    .range-select-range-field {
-      display: none;
-    }
-
-    .range-select-content > div > .calendar {
-      border: none;
-    }
-  }
-
-  .range-select-tags-range {
-    .range-select-footer {
-      border-bottom: none;
-    }
+  .range-select .range-select-content > div > .calendar {
+    border: none;
   }
 }
