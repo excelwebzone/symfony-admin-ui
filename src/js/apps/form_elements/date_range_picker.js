@@ -20,7 +20,7 @@ export default class DateRangePicker {
     this.showCustomRangeLabel = true;
     this.timePicker = false;
     this.timePicker24Hour = false;
-    this.timePickerIncrement = 30;
+    this.timePickerIncrement = 1;
     this.timePickerHours = [];
     this.linkedCalendars = true;
     this.autoUpdateInput = true;
@@ -899,6 +899,28 @@ export default class DateRangePicker {
       }
     }
 
+    // check and update selected option
+    let found = false;
+    for (let hour of hours) {
+      for (let m = 0; m < Math.round(60 / this.timePickerIncrement); m++) {
+        let minute = m * this.timePickerIncrement;
+        let time = selected.clone().hour(hour).minute(minute);
+        if (time.isSame(selected)) {
+          found = true;
+          break;
+        }
+      }
+    }
+    if (!found) {
+      selected.hour(0).minute(0);
+
+      if (side === 'left') {
+        this.startDate.hour(0).minute(0);
+      } else if (side === 'right') {
+        this.endDate.hour(0).minute(0);
+      }
+    }
+
     let choices = [];
     for (let hour of hours) {
       for (let m = 0; m < Math.round(60 / this.timePickerIncrement); m++) {
@@ -923,13 +945,13 @@ export default class DateRangePicker {
         else if (hour === 12 && minute === 0)
           timeLabel = 'Noon';
 
-        let time = selected.clone().hour(hour).minute(minute).second(0);
+        let time = selected.clone().hour(hour).minute(minute);
         let isDisabled = (minDate && time.isBefore(minDate))
           || (maxDate && time.isAfter(maxDate));
 
-        let iSelected = time.isSame(selected);
+        let isSelected = time.isSame(selected);
 
-        choices.push(`<option value="${hour < 10 ? String(hour).padStart(2, '0') : hour}:${minute < 10 ? String(minute).padStart(2, '0') : minute}" ${iSelected ? 'selected="selected"' : ''} ${isDisabled ? 'disabled="disabled"' : ''}>${timeLabel}</option>`);
+        choices.push(`<option value="${hour < 10 ? String(hour).padStart(2, '0') : hour}:${minute < 10 ? String(minute).padStart(2, '0') : minute}" ${isSelected ? 'selected="selected"' : ''} ${isDisabled ? 'disabled="disabled"' : ''}>${timeLabel}</option>`);
       }
     }
 
@@ -1339,7 +1361,7 @@ export default class DateRangePicker {
     // Remove selected button
     this.$container.find('.ranges button').removeClass('btn-primary');
 
-    let format = this.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD';
+    let format = this.timePicker ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
     let customRange = true;
     let i = 0;
     for (let range in this.ranges) {
@@ -1570,10 +1592,16 @@ export default class DateRangePicker {
 
   updateElement() {
     if (this.$picker.is('input') && this.autoUpdateInput) {
-      let newValue = this.startDate.format(this.locale.format);
+      // force zero seconds and milliseconds
+      let startDate = this.startDate.clone().second(0).milliseconds(0);
+      let endDate = this.endDate
+        ? this.endDate.clone().second(0).milliseconds(0)
+        : null;
 
-      if (!this.singleDatePicker)
-        newValue += this.locale.separator + this.endDate.format(this.locale.format);
+      let newValue = startDate.format(this.locale.format);
+
+      if (!this.singleDatePicker && endDate && !endDate.isSame(startDate))
+        newValue += this.locale.separator + endDate.format(this.locale.format);
 
       if (newValue !== this.$picker.val())
         this.$picker.val(newValue).trigger('change');

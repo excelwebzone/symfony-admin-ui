@@ -95,8 +95,11 @@ export function initFormElements(containerEl) {
       let start, end;
 
       if (value) {
-        start = value.split(options.locale.separator)[0];
-        end = value.split(options.locale.separator)[1];
+        start = moment(value.split(options.locale.separator)[0]);
+
+        if (value.split(options.locale.separator)[1]) {
+          end = moment(value.split(options.locale.separator)[1]);
+        }
       }
 
       return [start, end];
@@ -105,8 +108,10 @@ export function initFormElements(containerEl) {
     $picker.on('show.daterangepicker', (e, dateRangePicker) => {
       const dates = splitDateRange($picker.val());
 
-      if (dates[0]) dateRangePicker.setStartDate(moment(dates[0]));
-      if (dates[1]) dateRangePicker.setEndDate(moment(dates[1]));
+      if (dates[0]) dateRangePicker.setStartDate(dates[0]);
+
+      if (dates[1]) dateRangePicker.setEndDate(dates[1]);
+      else if (dates[0]) dateRangePicker.setEndDate(dates[0]);
 
       dateRangePicker.updateView();
     });
@@ -122,11 +127,15 @@ export function initFormElements(containerEl) {
       }
 
       const dates = splitDateRange($picker.val());
+      if (dates[1]) {
+        if (dates[1].isSame(dates[0])) {
+          dates[1] = null;
+        }
+      }
 
-      let value = moment(dates[0]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD')
-
-      if (!options.singleDatePicker || false) {
-        value += options.locale.separator + moment(dates[1]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD');
+      let value = dates[0].format(options.timePicker ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
+      if (!(options.singleDatePicker || false) && dates[1]) {
+        value += options.locale.separator + dates[1].format(options.timePicker ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
       }
 
       $picker.prev().val(value).trigger('change');
