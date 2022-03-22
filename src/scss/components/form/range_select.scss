@@ -164,7 +164,11 @@
     .has-floating-label {
       padding: 0;
 
-      select {
+      .date-input[disabled] {
+        color: #c8c8c8;
+      }
+
+      .time-select {
         position: absolute;
         right: 16px;
         border-bottom: none;

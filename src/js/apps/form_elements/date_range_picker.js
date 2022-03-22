@@ -86,7 +86,7 @@ export default class DateRangePicker {
                           <div class="range-select-range-field">
                             <div class="has-floating-label">
                               <select class="time-select"></select>
-                              <input type="text" class="input-text ignore-input" placeholder=" " maxlength="10" />
+                              <input type="text" class="date-input input-text ignore-input" placeholder=" " maxlength="10" />
                               <label>From:</label>
                             </div>
                           </div>
@@ -96,7 +96,7 @@ export default class DateRangePicker {
                           <div class="range-select-range-field">
                             <div class="has-floating-label">
                               <select class="time-select"></select>
-                              <input type="text" class="input-text ignore-input" placeholder=" " maxlength="10" />
+                              <input type="text" class="date-input input-text ignore-input" placeholder=" " maxlength="10" />
                               <label>To:</label>
                             </div>
                           </div>
@@ -128,7 +128,7 @@ export default class DateRangePicker {
                     <div class="range-select-range-field">
                       <div class="has-floating-label">
                         <select class="time-select"></select>
-                        <input type="text" class="input-text ignore-input" placeholder=" " maxlength="10" />
+                        <input type="text" class="date-input input-text ignore-input" placeholder=" " maxlength="10" />
                         <label>From:</label>
                       </div>
                     </div>
@@ -138,7 +138,7 @@ export default class DateRangePicker {
                     <div class="range-select-range-field">
                       <div class="has-floating-label">
                         <select class="time-select"></select>
-                        <input type="text" class="input-text ignore-input" placeholder=" " maxlength="10" />
+                        <input type="text" class="date-input input-text ignore-input" placeholder=" " maxlength="10" />
                         <label>To:</label>
                       </div>
                     </div>
@@ -584,6 +584,12 @@ export default class DateRangePicker {
       }
     }
 
+    if (!this.endDate) {
+      this.$container.find('.to-date-selector .date-input').disable();
+    } else {
+      this.$container.find('.to-date-selector .date-input').enable();
+    }
+
     this.updateMonthsInView();
     this.updateCalendars();
     this.updateFormInputs();
@@ -932,12 +938,12 @@ export default class DateRangePicker {
 
   updateFormInputs() {
     // ignore mouse movements while an above-calendar text input has focus
-    if (this.$container.find('.from-date-selector .input-text').is(':focus') || this.$container.find('.to-date-selector .input-text').is(':focus'))
+    if (this.$container.find('.from-date-selector .date-input').is(':focus') || this.$container.find('.to-date-selector .date-input').is(':focus'))
       return;
 
-    this.$container.find('.from-date-selector .input-text').val(this.startDate.format(this.locale.dateFormat));
+    this.$container.find('.from-date-selector .date-input').val(this.startDate.format(this.locale.dateFormat));
     if (this.endDate)
-      this.$container.find('.to-date-selector .input-text').val(this.endDate.format(this.locale.dateFormat));
+      this.$container.find('.to-date-selector .date-input').val(this.endDate.format(this.locale.dateFormat));
 
     if (this.singleDatePicker || (this.endDate && (this.startDate.isBefore(this.endDate) || this.startDate.isSame(this.endDate)))) {
       this.$container.find('button.apply-button').enable();
@@ -1153,7 +1159,7 @@ export default class DateRangePicker {
 
   hoverRange(e) {
     // ignore mouse movements while an above-calendar text input has focus
-    if (this.$container.find('.from-date-selector .input-text').is(':focus') || this.$container.find('.to-date-selector .input-text').is(':focus'))
+    if (this.$container.find('.from-date-selector .date-input').is(':focus') || this.$container.find('.to-date-selector .date-input').is(':focus'))
       return;
 
     let label = e.target.getAttribute('data-range-key');
@@ -1162,8 +1168,8 @@ export default class DateRangePicker {
       this.updateView();
     } else {
       let dates = this.ranges[label];
-      this.$container.find('.from-date-selector .input-text').val(dates[0].format(this.locale.dateFormat));
-      this.$container.find('.to-date-selector .input-text').val(dates[1].format(this.locale.dateFormat));
+      this.$container.find('.from-date-selector .date-input').val(dates[0].format(this.locale.dateFormat));
+      this.$container.find('.to-date-selector .date-input').val(dates[1].format(this.locale.dateFormat));
     }
   }
 
@@ -1232,10 +1238,10 @@ export default class DateRangePicker {
     let $calendar = $(e.currentTarget).parents('.calendar');
     let date = $calendar.hasClass('left') ? this.leftCalendar.calendar[row][col] : this.rightCalendar.calendar[row][col];
 
-    if (this.endDate && !this.$container.find('.from-date-selector .input-text').is(':focus')) {
-      this.$container.find('.from-date-selector .input-text').val(date.format(this.locale.dateFormat));
-    } else if (!this.endDate && !this.$container.find('.to-date-selector .input-text').is(':focus')) {
-      this.$container.find('.to-date-selector .input-text').val(date.format(this.locale.dateFormat));
+    if (this.endDate && !this.$container.find('.from-date-selector .date-input').is(':focus')) {
+      this.$container.find('.from-date-selector .date-input').val(date.format(this.locale.dateFormat));
+    } else if (!this.endDate && !this.$container.find('.to-date-selector .date-input').is(':focus')) {
+      this.$container.find('.to-date-selector .date-input').val(date.format(this.locale.dateFormat));
     }
 
     // highlight the dates between the start date and the date being hovered as a potential end date
