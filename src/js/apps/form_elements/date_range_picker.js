@@ -428,11 +428,11 @@ export default class DateRangePicker {
       this.$container.find('.from-date-selector').addClass('single');
       this.$container.find('.from-date-selector').show();
       this.$container.find('.to-date-selector').hide();
+      this.$container.find('.filter-calendar-button-panel').hide();
 
       if (!this.timePicker) {
         this.$container.find('.range-select-range-field').hide();
         this.$container.find('.range-select-footer').hide();
-        this.$container.find('.filter-calendar-button-panel').hide();
       }
     }
 
@@ -498,9 +498,8 @@ export default class DateRangePicker {
     }
 
     // if attached to a text input, set the initial value
-    if (this.$picker.val()) {
-      this.updateElement();
-    }
+    /* if (this.$picker.val())
+      this.updateElement(); */
   }
 
   setStartDate(startDate) {
@@ -528,8 +527,8 @@ export default class DateRangePicker {
         this.startDate.minute(Math.floor(this.startDate.minute() / this.timePickerIncrement) * this.timePickerIncrement);
     }
 
-    if (!this.isShowing)
-      this.updateElement();
+    /* if (!this.isShowing)
+      this.updateElement(); */
 
     this.updateMonthsInView();
   }
@@ -558,8 +557,8 @@ export default class DateRangePicker {
 
     this.previousRightTime = this.endDate.clone();
 
-    if (!this.isShowing)
-      this.updateElement();
+    /* if (!this.isShowing)
+      this.updateElement(); */
 
     this.updateMonthsInView();
   }
