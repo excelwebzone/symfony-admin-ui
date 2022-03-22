@@ -122,9 +122,12 @@ export function initFormElements(containerEl) {
       }
 
       const dates = splitDateRange($picker.val());
-      const value = moment(dates[0]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD')
-        + options.locale.separator
-        + moment(dates[1]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD');
+
+      let value = moment(dates[0]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD')
+
+      if (!options.singleDatePicker || false) {
+        value += options.locale.separator + moment(dates[1]).format(options.timePicker ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD');
+      }
 
       $picker.prev().val(value).trigger('change');
     });
