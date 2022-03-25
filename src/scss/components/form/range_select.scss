@@ -324,8 +324,12 @@
   }
 }
 
-.single {
-  .range-select .range-select-content > div > .calendar {
-    border: none;
+.single .range-select .range-select-content .filter-calendar .calendar {
+  border: none;
+}
+
+@media (max-width: 991.98px) {
+  .show-calendar.single .range-select .range-select-content .filter-calendar .calendar {
+    display: block;
   }
 }
