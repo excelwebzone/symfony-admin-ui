@@ -88,6 +88,7 @@ export default class DropdownOptions {
       return;
     }
 
+    this.$container.on('keydown', '.dropdown', (e) => this.openMenu(e));
     this.$container.on('mouseover', '.option-list-item', this.mouseOver);
     this.$container.on('mouseout', '.option-list-item', this.mouseOut);
     this.$container.on('click', '.option-list-item:not(.option-list-item-action-button)', this.selectItem);
@@ -98,6 +99,12 @@ export default class DropdownOptions {
     this.$container.on('shown.bs.dropdown', '.dropdown.has-filter', (e) => {
       $(e.currentTarget).find('.dropdown-filter > .input-text').focus();
     });
+  }
+
+  openMenu(e) {
+    if (e.keyCode === 40) { // down arrow
+      $(e.currentTarget).find('[data-toggle="dropdown"]').click();
+    }
   }
 
   mouseOver() {
