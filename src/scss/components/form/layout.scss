@@ -280,8 +280,13 @@ label .invalid-feedback {
   }
 }
 
-.address .form-group,
-.datetime .form-group {
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
+// force original padding
+.address .form-group {
+  padding-bottom: 10px !important;
+}
+
+// override width (force 2 columns)
+.datetime .col-md-6 {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
 }
