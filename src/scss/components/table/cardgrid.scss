@@ -7,17 +7,11 @@
   z-index: 1;
 
   &.is-dragging {
-    cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+    cursor: grab;
 
     *,
     a {
-      cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
-      cursor: -webkit-grabbing;
-      cursor: -moz-grabbing;
-      cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+      cursor: grab;
     }
   }
 
@@ -171,10 +165,7 @@
 }
 
 .cardgrid-component-model-cell {
-  cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab, -moz-grab, url(https://mail.google.com/mail/images/2/openhand.cur), move;
+  cursor: grab;
   position: relative;
   height: 100%;
   padding: 0 16px;
@@ -217,20 +208,14 @@
     -ms-transform: rotate(3deg);
     -webkit-transform: rotate(3deg);
     transform: rotate(3deg);
-    cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+    cursor: grab;
 
     .cell-content {
       background-color: #fff;
     }
 
     .title {
-      cursor: url(https://mail.google.com/mail/images/2/closedhand.cur), move;
-      cursor: -webkit-grabbing;
-      cursor: -moz-grabbing;
-      cursor: -webkit-grabbing, -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+      cursor: grab;
     }
 
     &.rotate-back {

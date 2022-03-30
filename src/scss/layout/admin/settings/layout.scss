@@ -286,7 +286,7 @@
   }
 
   .settings-content-table-item-action-icon i {
-    cursor: grab;
+    cursor: pointer;
     color: #909799;
   }
 
@@ -297,10 +297,7 @@
 
   .settings-content-table-item-action-icon i.drag-handle,
   .settings-content-table-item-drag-icon i.drag-handle {
-    cursor: url(https://mail.google.com/mail/images/2/openhand.cur), move;
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab, -moz-grab, url(https://mail.google.com/mail/images/2/openhand.cur), move;
+    cursor: grab;
   }
 
   .settings-content-table-item-action-icon i.ledger-icon-lock,
