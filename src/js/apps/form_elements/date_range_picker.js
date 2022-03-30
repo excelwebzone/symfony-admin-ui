@@ -27,6 +27,7 @@ export default class DateRangePicker {
     this.alwaysShowCalendars = false;
     this.useModal = false;
     this.ignoreMove = false;
+    this.isEmbedded = false;
     this.ranges = {};
 
     this.opens = 'right';
@@ -66,6 +67,9 @@ export default class DateRangePicker {
 
     if (typeof options.useModal !== 'boolean')
       options.useModal = false;
+
+    if (typeof options.isEmbedded !== 'boolean' || options.useModal)
+      options.isEmbedded = false;
 
     // allow setting options with data attributes
     // data-api options will be overwritten with custom javascript options
@@ -120,7 +124,7 @@ export default class DateRangePicker {
           `;
       else
         options.template = `
-            <div class="range-select-container">
+            <div class="range-select-container ${options.isEmbedded ? 'is-embedded' : ''}">
               <div class="range-select range-select-date-range">
                 <div class="range-select-content">
                   <div class="filter-calendar from-date-selector">

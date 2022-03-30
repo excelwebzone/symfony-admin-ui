@@ -120,11 +120,9 @@
 }
 
 @media (max-width: 991.98px) {
-  .range-select-container {
+  .range-select-container.is-embedded {
     position: relative;
-    margin: 0 -30px;
-    padding: 0 30px;
-    border: none;
+    margin: -30px -30px 30px;
     box-shadow: none;
 
     &:not(.has-nub) {

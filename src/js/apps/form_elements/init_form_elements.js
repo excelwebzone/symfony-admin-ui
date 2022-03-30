@@ -53,6 +53,10 @@ export function initFormElements(containerEl) {
       parentEl: $picker.data('parent') || $picker.closest('.form-group')
     };
 
+    if ($picker.data('embed')) {
+      options.isEmbedded = true;
+    }
+
     if ($picker.data('modal')) {
       options.useModal = true;
       options.ignoreMove = true;
