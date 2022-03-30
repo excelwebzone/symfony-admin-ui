@@ -21,6 +21,18 @@ export function initFormElements(containerEl) {
   new TypedProperty($container);
   new DropdownOptions($container);
 
+  // init tabbing dropdowns
+  for (let element of $container.find('.js-entity-form :input:not(.ignore-input),.js-filter-form :input:not(.ignore-input)')) {
+    if (!$(element).closest('.form-group').length) {
+      continue;
+    }
+
+    const $dropdown = $(element).closest('.dropdown');
+    if ($dropdown.length) {
+      $dropdown.prop('tabindex', 0);
+    }
+  }
+
   // init switch elements
   for (let element of $container.find('.js-switch-button')) {
     new SwitchButton($(element));
