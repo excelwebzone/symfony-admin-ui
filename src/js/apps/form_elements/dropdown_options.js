@@ -88,7 +88,9 @@ export default class DropdownOptions {
       return;
     }
 
-    this.$container.on('keydown', '.dropdown', (e) => this.openMenu(e));
+    this.$container.on('keydown', '.dropdown:not(.show)', (e) => this.openMenu(e));
+    this.$container.on('keydown', '.dropdown.show', (e) => this.scrollItems(e));
+
     this.$container.on('mouseover', '.option-list-item', this.mouseOver);
     this.$container.on('mouseout', '.option-list-item', this.mouseOut);
     this.$container.on('click', '.option-list-item:not(.option-list-item-action-button)', this.selectItem);
@@ -102,9 +104,61 @@ export default class DropdownOptions {
   }
 
   openMenu(e) {
-    if (e.keyCode === 40) { // down arrow
+    if (e.key === 'ArrowDown' || e.key === ' ') {
       $(e.currentTarget).find('[data-toggle="dropdown"]').click();
     }
+  }
+
+  scrollItems(e) {
+    const $wrapper = $(e.currentTarget).find('.option-list');
+    const $options = $wrapper.find('.option-list-item:not(.is-disabled):visible');
+
+    if ($options.length === 0) {
+      return;
+    }
+
+    const foundIndex = Object.values($options).findIndex((option) => {
+      return $(option).hasClass('is-highlighted');
+    });
+
+    switch (e.key) {
+      case 'ArrowDown':
+        if (foundIndex > -1 && foundIndex < $options.length - 1) {
+          $($options[foundIndex]).removeClass('is-highlighted');
+          $($options[foundIndex + 1]).addClass('is-highlighted');
+        }
+
+        break;
+
+      case 'ArrowUp':
+        if (foundIndex > 0) {
+          $($options[foundIndex]).removeClass('is-highlighted');
+          $($options[foundIndex - 1]).addClass('is-highlighted');
+        }
+
+        break;
+
+      case ' ':
+        $wrapper.find('.option-list-item.is-highlighted').click();
+
+        return;
+
+      default:
+        return;
+    }
+
+    // for select first
+    if ($wrapper.find('.option-list-item.is-highlighted').length === 0) {
+      $($options[0]).addClass('is-highlighted');
+    }
+
+    // set to top
+    $wrapper.scrollTop(0);
+
+    // then set equal to the position of the selected element minus the height of scrolling div
+    $wrapper.scrollTop($wrapper.find('.option-list-item.is-highlighted:first').offset().top - $wrapper.height());
+
+    e.preventDefault();
   }
 
   mouseOver() {
