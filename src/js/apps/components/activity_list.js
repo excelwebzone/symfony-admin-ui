@@ -298,7 +298,9 @@ export default class ActivityList {
             $textarea.focus();
             $formGroup.addClass('is-invalid');
 
-            $error.append(`<div class="invalid-feedback ${data.error.message.length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
+            if (data.error && data.error.message) {
+              $error.append(`<div class="invalid-feedback ${data.error.message.length > 30 ? 'multiline' : ''} d-block"><ul class="list-unstyled mb-0"><li><span class="initialism form-error-icon badge badge-danger">Error</span> <span class="form-error-message">${data.error.message}</span></li></ul></div>`);
+            }
           }
         })
         .catch(() => {

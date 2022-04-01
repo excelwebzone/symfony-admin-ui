@@ -389,7 +389,7 @@ export default class ListPage {
       .then(({ data }) => {
         if (data.message) {
           toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
+        } else if (data.error && data.error.message) {
           toaster(data.error.message, 'error', data.actionConfig);
         }
 
@@ -419,7 +419,7 @@ export default class ListPage {
       .then(({ data }) => {
         if (data.message) {
           toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
+        } else if (data.error && data.error.message) {
           toaster(data.error.message, 'error', data.actionConfig);
         }
 
@@ -454,7 +454,7 @@ export default class ListPage {
       .then(({ data }) => {
         if (data.message) {
           toaster(data.message, 'default', data.actionConfig);
-        } else if (data.error) {
+        } else if (data.error && data.error.message) {
           toaster(data.error.message, 'error', data.actionConfig);
         }
 

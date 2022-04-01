@@ -253,7 +253,7 @@ export default class FileUpload {
               }
             }
           }
-        } else {
+        } else if (data.error && data.error.message) {
           toaster(data.error.message, 'error');
         }
       });

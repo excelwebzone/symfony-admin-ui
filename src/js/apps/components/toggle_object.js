@@ -38,7 +38,7 @@ export default class ToggleObject {
               $($link.data('container-id')).hide();
             }
           }
-        } else {
+        } else if (data.error && data.error.message) {
           toaster(data.error.message, 'error');
         }
       });

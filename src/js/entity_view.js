@@ -110,7 +110,7 @@ export default class EntityView {
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
-          } else if (data.error) {
+          } else if (data.error && data.error.message) {
             toaster(data.error.message, 'error', data.actionConfig);
           }
 
@@ -165,7 +165,7 @@ export default class EntityView {
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
-          } else if (data.error) {
+          } else if (data.error && data.error.message) {
             toaster(data.error.message, 'error', data.actionConfig);
           }
 
@@ -193,7 +193,7 @@ export default class EntityView {
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
-          } else if (data.error) {
+          } else if (data.error && data.error.message) {
             toaster(data.error.message, 'error', data.actionConfig);
           }
 
@@ -237,7 +237,7 @@ export default class EntityView {
         .then(({ data }) => {
           if (data.message) {
             toaster(data.message, 'default', data.actionConfig);
-          } else if (data.error) {
+          } else if (data.error && data.error.message) {
             toaster(data.error.message, 'error', data.actionConfig);
           }
 
@@ -515,7 +515,7 @@ export default class EntityView {
 
     axios.post($dropdown.data('add-endpoint').replace('__ID__', $option.data('value')))
       .then(({ data }) => {
-        if (data.error) {
+        if (data.error && data.error.message) {
           toaster(data.error.message, 'error');
         }
       });
