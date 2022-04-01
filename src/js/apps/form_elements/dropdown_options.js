@@ -96,7 +96,7 @@ export default class DropdownOptions {
     this.$container.on('click', '.option-list-item:not(.option-list-item-action-button)', this.selectItem);
     this.$container.on('click', '.dropdown-tags .tag-action', this.removeTag);
     this.$container.on('click', '.dropdown-reset', this.resetValue);
-    this.$container.on('keyup', '.dropdown-filter > .input-text', _.debounce(this.filterKeyUp, 1300));
+    this.$container.on('keyup', '.dropdown-filter > .input-text', (e) => _.debounce(this.filterKeyUp(e), 1300));
 
     this.$container.on('shown.bs.dropdown', '.dropdown.has-filter', (e) => {
       $(e.currentTarget).find('.dropdown-filter > .input-text').focus();
@@ -110,10 +110,16 @@ export default class DropdownOptions {
   }
 
   scrollItems(e) {
-    const $wrapper = $(e.currentTarget).find('.option-list');
+    const $dropdown = $(e.currentTarget);
+    const $filter = $dropdown.find('.dropdown-filter');
+    const $wrapper = $dropdown.find('.option-list');
     const $options = $wrapper.find('.option-list-item:not(.is-disabled):visible');
 
-    if ($options.length === 0) {
+    if ($options.length === 0
+      || ($filter
+        && $filter.find('> .input-text').is(':focus')
+      )
+    ) {
       return;
     }
 
@@ -139,7 +145,23 @@ export default class DropdownOptions {
         break;
 
       case ' ':
-        $wrapper.find('.option-list-item.is-highlighted').click();
+        if (foundIndex > -1) {
+          $($options[foundIndex]).click();
+
+          if ($dropdown.hasClass('js-select-dropdown-multiple')
+            && $options.length > 1
+          ) {
+            $($options[foundIndex]).removeClass('is-highlighted');
+
+            if (foundIndex < $options.length - 1) {
+              $($options[foundIndex + 1]).addClass('is-highlighted');
+            } else {
+              $($options[0]).addClass('is-highlighted');
+            }
+
+            break;
+          }
+        }
 
         return;
 
@@ -152,11 +174,14 @@ export default class DropdownOptions {
       $($options[0]).addClass('is-highlighted');
     }
 
+    // get filter height
+    const filterHeight = $filter.length ? $filter.outerHeight() : 0;
+
     // set to top
-    $wrapper.scrollTop(0);
+    $wrapper.scrollTop(filterHeight);
 
     // then set equal to the position of the selected element minus the height of scrolling div
-    $wrapper.scrollTop($wrapper.find('.option-list-item.is-highlighted:first').offset().top - $wrapper.height());
+    $wrapper.scrollTop($wrapper.find('.option-list-item.is-highlighted:first').offset().top - $wrapper.height() - filterHeight);
 
     e.preventDefault();
   }
@@ -326,8 +351,16 @@ export default class DropdownOptions {
     }
   }
 
-  filterKeyUp() {
-    const $dropdown = $(this).closest('.dropdown');
+  filterKeyUp(e) {
+    const $input = $(e.currentTarget);
+    const $dropdown = $input.closest('.dropdown');
+
+    if (e.key === 'Tab' && !e.shiftKey) {
+      $dropdown.focus().trigger('keydown', { key: e.key });
+
+      return;
+    }
+
     const $options = $dropdown.find('.option-list').find('>ul');
 
     if ($dropdown.hasClass('js-autocomplete-dropdown') && $dropdown.data('endpoint')) {
@@ -342,7 +375,7 @@ export default class DropdownOptions {
       $options.html('<li class="option-list-loading"><div class="option-list-loading-spinner"><div class="circle-spinner"></div></div></li>');
       axios.get($dropdown.data('endpoint'), {
         params: {
-          search: this.value,
+          search: $input.val(),
           exclude: exclude
         }
       })
@@ -384,7 +417,7 @@ export default class DropdownOptions {
 
     $options.find('.option-list-label-empty').remove();
     $options.find(`li${ignore}`).show();
-    $options.find(`li${ignore}:not(:filter("${this.value}"))`).hide();
+    $options.find(`li${ignore}:not(:filter("${$input.val()}"))`).hide();
 
     if ($options.find('.option-list-item:visible').length === 0
       && $options.find('.option-list-label-empty').length === 0
