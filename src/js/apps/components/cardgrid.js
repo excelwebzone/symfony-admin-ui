@@ -368,6 +368,7 @@ export default class Cardgrid {
       .css('position', 'absolute')
       .css('border', 'none')
       .css('height', 'auto')
+      .css('z-index', '99999')
       .addClass('is-clone')
       .find('.cardgrid-component-model-cell')
       .addClass('drag-shadow')
