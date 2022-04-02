@@ -266,24 +266,19 @@
 }
 
 .range-select-footer {
-  height: 60px;
-  border-top: 1px solid #dce3e6 !important;
-  padding: 0 16px !important;
+  border-top: 1px solid #dce3e6;
 
   .value-range-apply {
     margin: 10px 15px 0 0;
   }
+}
 
-  .range-select-button-section {
-    margin: 10px 0 5px;
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
+.range-select-container .range-select-footer {
+  padding-top: 8px;
+  text-align: right;
 
-    .btn {
-      float: right;
-      margin: 0 5px;
-    }
+  .btn {
+    margin-left: 8px;
   }
 }
 
