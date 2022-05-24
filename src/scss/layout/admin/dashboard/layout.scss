@@ -124,111 +124,111 @@
 }
 
 @media (min-width: 992px) {
-  .col-lg-2,
-  .col-lg-4,
-  .col-lg-6,
-  .col-lg-8,
-  .col-lg-12 {
+  .dashboard-cards .col-lg-2,
+  .dashboard-cards .col-lg-4,
+  .dashboard-cards .col-lg-6,
+  .dashboard-cards .col-lg-8,
+  .dashboard-cards .col-lg-12 {
     margin-left: 10px;
     margin-right: 10px;
   }
 
-  .col-lg-2 {
+  .dashboard-cards .col-lg-2 {
     width: -webkit-calc(20% - 20px);
     width: calc(20% - 20px);
     max-width: 20%;
   }
 
-  .col-lg-4 {
+  .dashboard-cards .col-lg-4 {
     width: -webkit-calc(33.33333% - 20px);
     width: calc(33.33333% - 20px);
     max-width: 33.33333%;
   }
 
-  .col-lg-6 {
+  .dashboard-cards .col-lg-6 {
     width: -webkit-calc(50% - 20px);
     width: calc(50% - 20px);
     max-width: 50%;
   }
 
-  .col-lg-8 {
+  .dashboard-cards .col-lg-8 {
     width: -webkit-calc(66.66667% - 20px);
     width: calc(66.66667% - 20px);
     max-width: 66.66667%;
   }
 
-  .col-lg-12 {
+  .dashboard-cards .col-lg-12 {
     width: -webkit-calc(100% - 20px);
     width: calc(100% - 20px);
     max-width: 100%;
   }
 }
 
-.row-0,
-.row-1,
-.row-2,
-.row-3,
-.row-4,
-.row-5,
-.row-6,
-.row-7,
-.row-8,
-.row-9,
-.row-10,
-.row-11,
-.row-12,
-.row-13,
-.row-14,
-.row-15 {
+.dashboard-cards .row-0,
+.dashboard-cards .row-1,
+.dashboard-cards .row-2,
+.dashboard-cards .row-3,
+.dashboard-cards .row-4,
+.dashboard-cards .row-5,
+.dashboard-cards .row-6,
+.dashboard-cards .row-7,
+.dashboard-cards .row-8,
+.dashboard-cards .row-9,
+.dashboard-cards .row-10,
+.dashboard-cards .row-11,
+.dashboard-cards .row-12,
+.dashboard-cards .row-13,
+.dashboard-cards .row-14,
+.dashboard-cards .row-15 {
   overflow: hidden;
   margin-bottom: 20px;
 }
 
-.row-0 {
+.dashboard-cards .row-0 {
   height: 100px;
 }
-.row-1 {
+.dashboard-cards .row-1 {
   height: 150px;
 }
-.row-2 {
+.dashboard-cards .row-2 {
   height: 320px;
 }
-.row-3 {
+.dashboard-cards .row-3 {
   height: 490px;
 }
-.row-4 {
+.dashboard-cards .row-4 {
   height: 660px;
 }
-.row-5 {
+.dashboard-cards .row-5 {
   height: 830px;
 }
-.row-6 {
+.dashboard-cards .row-6 {
   height: 1000px;
 }
-.row-7 {
+.dashboard-cards .row-7 {
   height: 1170px;
 }
-.row-8 {
+.dashboard-cards .row-8 {
   height: 1340px;
 }
-.row-9 {
+.dashboard-cards .row-9 {
   height: 1510px;
 }
-.row-10 {
+.dashboard-cards .row-10 {
   height: 1680px;
 }
-.row-11 {
+.dashboard-cards .row-11 {
   height: 1850px;
 }
-.row-12 {
+.dashboard-cards .row-12 {
   height: 2020px;
 }
-.row-13 {
+.dashboard-cards .row-13 {
   height: 2190px;
 }
-.row-14 {
+.dashboard-cards .row-14 {
   height: 2360px;
 }
-.row-15 {
+.dashboard-cards .row-15 {
   height: 2530px;
 }
