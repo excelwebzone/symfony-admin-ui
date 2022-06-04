@@ -10,6 +10,7 @@ export default class Cardgrid {
   /**
    * {
    *   setEmptyContent: ($cell) => {..},
+   *   onMoveCell: ($cell) => {..},
    *   onFieldChange: (field, value, $cell) => {..},
    *   onDragEnd: ($field, newValue, data) => {..},
    *   prepareValue: (newValue) => {.. return newValue; }
@@ -124,8 +125,20 @@ export default class Cardgrid {
           }
         }
       }
+    }
+
+    this.markLastCells();
+    this.removeExtraRow();
+    this.datagrid.resizeTable();
+    this.datagrid.rebindEvents();
+  }
+
+  markLastCells() {
+    for (let column of this.$table.find('.datagrid-header-container .datagrid-header-cell')) {
+      const index = $(column).data('index');
 
       let $preCell = null;
+
       for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
         const $row = $(row);
         const $rowCell = $row.find(`.datagrid-cell[data-index="${index}"]`);
@@ -141,13 +154,9 @@ export default class Cardgrid {
         }
       }
     }
-
-    this.removeLastRow();
-    this.datagrid.resizeTable();
-    this.datagrid.rebindEvents();
   }
 
-  removeLastRow() {
+  removeExtraRow() {
     let $lastRow, cells, emptyCells;
     do {
       $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
@@ -224,7 +233,7 @@ export default class Cardgrid {
     }
 
     if (cleanup) {
-      this.removeLastRow();
+      this.removeExtraRow();
     }
 
     this.datagrid.resizeTable();
@@ -278,7 +287,7 @@ export default class Cardgrid {
     // set row index
     const rowIndex = $targetCell.closest('.datagrid-table-row').index();
 
-    // sort column (replace with target or place last)
+    // replace with target and place last
     let $preCell = null;
     for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
       const $row = $(row);
@@ -296,29 +305,29 @@ export default class Cardgrid {
       }
     }
 
-    // mark last cells
-    $preCell = null;
-    for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
-      const $row = $(row);
-      const $rowCell = $row.find(`.datagrid-cell[data-index="${columnIndex}"]`);
-      if ($rowCell.length) {
-        if (!$preCell) {
-          $preCell = $rowCell;
-        }
-        if (!$rowCell.hasClass('is-empty')) {
-          $preCell.removeClass('is-last');
-          $preCell = $rowCell;
-          $preCell.addClass('is-last');
-        }
-      }
-    }
-
-    this.removeLastRow();
+    this.markLastCells();
+    this.removeExtraRow();
     this.datagrid.resizeTable();
     this.datagrid.rebindEvents();
 
     const $counter = this.$table.find(`.datagrid-header-cell[data-index="${columnIndex}"]`).find('span.counter');
     $counter.text(parseInt($counter.text()) + 1);
+
+    if (typeof this.callback.onMoveCell === 'function') {
+      let $lastCell = null;
+      for (let row of this.$table.find('.datagrid-body-container .datagrid-table-row')) {
+        const $row = $(row);
+        const $rowCell = $row.find(`.datagrid-cell[data-index="${columnIndex}"].is-last`);
+        if ($rowCell.length) {
+          $lastCell = $rowCell;
+          break;
+        }
+      }
+
+      if ($lastCell.length) {
+        this.callback.onMoveCell($lastCell);
+      }
+    }
   }
 
   fieldUpdated(e, data) {
