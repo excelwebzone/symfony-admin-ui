@@ -202,7 +202,10 @@ export default class Datagrid {
     const rowHeight = this.$table.data('row-height');
     const tableWidth = this.$table.get(0).offsetWidth;
     const tableHeight = totalRows * rowHeight;
-    const containerHeight = this.$table.parent().get(0).offsetHeight - headerHeight;
+    const statsHeight = this.$table.prev('.list-page-stats').length
+      ? this.$table.prev('.list-page-stats').get(0).offsetHeight
+      : 0;
+    const containerHeight = this.$table.parent().get(0).offsetHeight - headerHeight - statsHeight;
     const dynamicColumnWidth = Math.floor(tableWidth / totalColumns);
     const maxHeight = tableHeight > containerHeight && containerHeight > 0 ? containerHeight : tableHeight;
 
