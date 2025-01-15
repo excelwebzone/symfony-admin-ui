@@ -1487,8 +1487,8 @@ export default class DateRangePicker {
 
   formInputsChanged(e) {
     let isRight = $(e.currentTarget).closest('.calendar').hasClass('right');
-    let start = moment(this.$container.find('input[name="daterangepicker_start_date"]').val(), this.locale.format);
-    let end = moment(this.$container.find('input[name="daterangepicker_end_date"]').val(), this.locale.format);
+    let start = moment(this.$container.find('.from-date-selector .date-input').val(), this.locale.format);
+    let end = moment(this.$container.find('.to-date-selector .date-input').val(), this.locale.format);
 
     if (start.isValid() && end.isValid()) {
       if (isRight && end.isBefore(start))
@@ -1498,9 +1498,9 @@ export default class DateRangePicker {
       this.setEndDate(end);
 
       if (isRight) {
-        this.$container.find('input[name="daterangepicker_start_date"]').val(this.startDate.format(this.locale.dateFormat));
+        this.$container.find('.from-date-selector .date-input').val(this.startDate.format(this.locale.dateFormat));
       } else {
-        this.$container.find('input[name="daterangepicker_end_date"]').val(this.endDate.format(this.locale.dateFormat));
+        this.$container.find('.to-date-selector .date-input').val(this.endDate.format(this.locale.dateFormat));
       }
     }
 
@@ -1509,7 +1509,7 @@ export default class DateRangePicker {
 
   formInputsFocused(e) {
     // highlight the focused input
-    this.$container.find('input[name="daterangepicker_start_date"], input[name="daterangepicker_end_date"]').removeClass('is-selected');
+    this.$container.find('.from-date-selector .date-input, .to-date-selector .date-input').removeClass('is-selected');
     $(e.currentTarget).addClass('is-selected');
 
     // set the state such that if the user goes back to using a mouse,
@@ -1532,7 +1532,7 @@ export default class DateRangePicker {
     // or changing the input value, the old endDate should be retained
 
     if (!this.endDate) {
-      let val = this.$container.find('input[name="daterangepicker_end_date"]').val();
+      let val = this.$container.find('.to-date-selector .date-input').val();
       let end = moment(val, this.locale.format);
       if (end.isValid()) {
         this.setEndDate(end);
