@@ -7,7 +7,7 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
   // in datagrid cell (updated in drawer)
   const $datagridColumn = $container.find(`.datagrid-header-cell[data-field="${field}"]`);
   if ($drawer && $drawer.length && $datagridColumn.length) {
-    const $datagridRow = $container.find(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+    const $datagridRow = $container.find(`.datagrid-body-container .js-entity-drawer[data-id="${$drawer.data('id')}"]`);
     if ($datagridRow.length) {
       let $datagridCell = $datagridRow.find(`.datagrid-cell[data-index="${$datagridColumn.data('index')}"]`);
       if (!$datagridCell.length) {
@@ -52,35 +52,69 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
     }
   }
 
-  // in page or drawer header
-  for (let $wrapper of [$container, $('.header-title')]) {
-    const $object = $wrapper.find(`[data-field="${field}"]:not(.datagrid-header-cell)`);
-    if (!_.isNull(value) && $object.data('is-numeric')) {
-      if ($object.data('is-integer')) {
-        value = numeral(value).format('0,0');
-      } else {
-        value = numeral(value).format('0,0.00');
+  // update cells in page and drawer header
+  const $wrappers = [];
+  if ($drawer && $drawer.length) {
+    const $drawerTitleBox = $drawer.find('.entity-profile-frame-title-box-text');
+    if ($drawerTitleBox.length) {
+      $wrappers.push($drawerTitleBox);
+    }
+
+    const $entity = $container.find(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+    if ($entity.length) {
+      $wrappers.push($entity);
+
+      if ($entity.data('container')) {
+        $wrappers.push($($entity.data('container')));
       }
     }
-    if (!_.isNull(value) && $object.data('starts-with')) {
-      value = $object.data('starts-with') + value;
-    }
-    if (!_.isNull(value) && $object.data('ends-with')) {
-      value = value + $object.data('ends-with');
-    }
-    $object.html(value);
+  } else {
+    $wrappers.push($container);
   }
 
-  // update row "subtitle" value
-  if ($drawer && $drawer.length) {
-    const $datagridRow = $container.find(`.js-entity-drawer[data-id="${$drawer.data('id')}"][data-subtitle]`);
-    if ($datagridRow.length) {
-      const subtitle = $datagridRow.data('subtitle');
-      if (subtitle[field]) {
-        subtitle[field] = value;
+  for (let $wrapper of $wrappers) {
+    const $elements = $wrapper.find(`[data-field="${field}"]:not(.datagrid-header-cell)`);
+    for (let $element of $elements) {
+      const $object = $($element);
+      let displayValue = value;
 
-        $datagridRow.attr('data-subtitle', JSON.stringify(subtitle));
-        $datagridRow.data('subtitle', subtitle);
+      if (!_.isNull(displayValue) && $object.data('is-numeric')) {
+        if ($object.data('is-integer')) {
+          displayValue = numeral(displayValue).format('0,0');
+        } else {
+          displayValue = numeral(displayValue).format('0,0.00');
+        }
+      }
+      if (!_.isNull(displayValue) && $object.data('starts-with')) {
+        displayValue = $object.data('starts-with') + displayValue;
+      }
+      if (!_.isNull(displayValue) && $object.data('ends-with')) {
+        displayValue = displayValue + $object.data('ends-with');
+      }
+
+      $object.html(displayValue);
+    }
+  }
+
+  // update row "title" and "subtitle" value
+  if ($drawer && $drawer.length) {
+    const $entity = $container.find(`.js-entity-drawer[data-id="${$drawer.data('id')}"]`);
+    if ($entity.length) {
+      if ($entity.data('title') !== undefined) {
+        const $drawerTitle = $drawer.find('.entity-profile-frame-title');
+        const newTitle = $drawerTitle ? $drawerTitle.text() : $entity.data('title');
+        $entity.attr('data-title', newTitle);
+        $entity.data('title', newTitle);
+      }
+
+      if ($entity.data('subtitle') !== undefined) {
+        const subtitle = $entity.data('subtitle');
+        if (subtitle[field]) {
+          subtitle[field] = value;
+
+          $entity.attr('data-subtitle', JSON.stringify(subtitle));
+          $entity.data('subtitle', subtitle);
+        }
       }
     }
   }
