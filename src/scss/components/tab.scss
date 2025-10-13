@@ -57,6 +57,18 @@
   flex: 0 1 100%;
 }
 
+.tabs-arrows {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .tab-arrow-left,
+  .tab-arrow-right {
+    margin: 0 8px;
+  }
+}
+
 .scrollable-tabs {
   .drager {
     overflow: hidden;

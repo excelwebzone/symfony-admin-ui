@@ -5,7 +5,8 @@ import uuidv4 from 'uuid/v4';
 export default class ScrollableTabs {
   constructor(selectorEl) {
     this.initDomElements(selectorEl);
-    this.bindEvents();
+    this.bindDraggableEvents();
+    this.bindArrowsEvents();
   }
 
   initDomElements(selectorEl) {
@@ -20,7 +21,7 @@ export default class ScrollableTabs {
     } while (!isNaN(this.$selector.prop('id').substr(0, 1)));
   }
 
-  bindEvents() {
+  bindDraggableEvents() {
     const self = this;
 
     interact(`#${self.$selector.prop('id')}`)
@@ -49,5 +50,34 @@ export default class ScrollableTabs {
           $target.click();
         }
       });
+  }
+
+  bindArrowsEvents() {
+    const self = this;
+
+    // find the arrows within the tabs
+    const $tabs = self.$selector;
+    const $drager = self.$drager;
+
+    // amount to scroll per click (you can adjust this)
+    const SCROLL_AMOUNT = 120;
+
+    // left arrow click
+    $drager.prev('.js-tab-left').on('click', function(e) {
+      e.preventDefault();
+      $drager.animate(
+        { scrollLeft: $drager.scrollLeft() - SCROLL_AMOUNT },
+        150
+      );
+    });
+
+    // right arrow click
+    $drager.next('.js-tab-right').on('click', function(e) {
+      e.preventDefault();
+      $drager.animate(
+        { scrollLeft: $drager.scrollLeft() + SCROLL_AMOUNT },
+        150
+      );
+    });
   }
 }
