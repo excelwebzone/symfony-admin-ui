@@ -54,16 +54,15 @@ export default class ScrollableTabs {
 
   bindArrowsEvents() {
     const self = this;
-
-    // find the arrows within the tabs
-    const $tabs = self.$selector;
     const $drager = self.$drager;
 
-    // amount to scroll per click (you can adjust this)
-    const SCROLL_AMOUNT = 120;
+    // find the nearest ancestor container for arrows
+    const $container = $drager.closest('.tabs-arrows');
 
-    // left arrow click
-    $drager.prev('.js-tab-left').on('click', function(e) {
+    // amount to scroll per arrow click (in pixels)
+    const SCROLL_AMOUNT = $container.data('scrollAmount') || 120;
+
+    $container.find('.js-tab-left').on('click', function(e) {
       e.preventDefault();
       $drager.animate(
         { scrollLeft: $drager.scrollLeft() - SCROLL_AMOUNT },
@@ -71,8 +70,7 @@ export default class ScrollableTabs {
       );
     });
 
-    // right arrow click
-    $drager.next('.js-tab-right').on('click', function(e) {
+    $container.find('.js-tab-right').on('click', function(e) {
       e.preventDefault();
       $drager.animate(
         { scrollLeft: $drager.scrollLeft() + SCROLL_AMOUNT },
