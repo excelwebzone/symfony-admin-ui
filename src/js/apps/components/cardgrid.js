@@ -12,7 +12,7 @@ export default class Cardgrid {
    *   setEmptyContent: ($cell) => {..},
    *   onMoveCell: ($cell) => {..},
    *   onFieldChange: (field, value, $cell) => {..},
-   *   onDragEnd: ($field, newValue, data) => {..},
+   *   onDragEnd: ($field, newValue, data, $cell) => {..},
    *   prepareValue: (newValue) => {.. return newValue; }
    * }
    */
@@ -455,6 +455,8 @@ export default class Cardgrid {
             this.moveCell(this.dragSourceEl, cellValue);
           }
 
+          // try to find the drawer/form/field if it's open. if not found we'll still invoke onDragEnd with $field = null
+          let $field = null;
           const $drawer = $(`.drawer-frame[data-id="${this.dragSourceEl.data('id')}"]`);
           if ($drawer.length) {
             const $form = $drawer.find('.entity-details');
@@ -469,18 +471,22 @@ export default class Cardgrid {
             }
 
             if ($form.length) {
-              let $field = $form.find(`[id$="_${this.dragSourceEl.data('target-field')}"]`);
+              $field = $form.find(`[id$="_${this.dragSourceEl.data('target-field')}"]`);
               if ($field.length === 0) {
                 $field = $form.find(`[id$="_${this.dragSourceEl.data('target-field')}_date"]`);
               }
-              if ($field.length) {
-                if (typeof this.callback.onDragEnd === 'function') {
-                  this.callback.onDragEnd($field, cellValue, data);
-                } else {
-                  $field.val(newValue);
-                }
-              }
             }
+          }
+
+          // original cell element (the active card)
+          const $cell = $(this.dragSourceEl);
+
+          // always notify callback.onDragEnd if provided, even when there is no open drawer/form
+          if (typeof this.callback.onDragEnd === 'function') {
+            this.callback.onDragEnd($field, cellValue, data, $cell);
+          } else if ($field && $field.length) {
+            // fallback behavior: if no callback provided but a field exists, set its value
+            $field.val(newValue);
           }
         });
     }
