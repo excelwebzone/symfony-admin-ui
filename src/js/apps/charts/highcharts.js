@@ -55,6 +55,23 @@ Highcharts.theme = {
       marker: {
         enabled: !1,
         symbol: 'circle'
+      },
+      borderRadius: {
+        radius: 8,
+        where: 'end'
+      },
+      stacking: 'normal'
+    },
+    column: {
+      borderRadius: {
+        radius: 8,
+        where: 'end'
+      }
+    },
+    bar: {
+      borderRadius: {
+        radius: 8,
+        where: 'end'
       }
     }
   },
