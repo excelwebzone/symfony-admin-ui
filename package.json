@@ -1,6 +1,6 @@
 {
   "name": "@excelwebzone/symfony-admin-ui",
-  "version": "2.0.230",
+  "version": "2.0.231",
   "main": "src/js/index.js",
   "description": "",
   "repository": {
