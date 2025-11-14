@@ -60,7 +60,6 @@ Highcharts.theme = {
         radius: 8,
         where: 'end'
       },
-      stacking: 'normal'
     },
     column: {
       borderRadius: {
