@@ -310,6 +310,15 @@ export default class EntityForm {
                 if (name.indexOf(`[${field}]`) > -1 || name === field) {
                   let doUpdate = true;
 
+                  const $checkbox = $(e).closest('.checkbox');
+                  if ($checkbox.length) {
+                    $checkbox.find('[type="checkbox"]').prop(
+                      'checked',
+                      value == 1 || value == true || value == 'true'
+                    );
+                    break;
+                  }
+
                   if ($element.prop('type') === 'color') {
                     value = `#${data.updatedValue}`;
                   }

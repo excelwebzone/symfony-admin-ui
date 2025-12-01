@@ -48,7 +48,21 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
   if ($form.length) {
     const $field = $form.find(`[id$="_${field}"]`);
     if ($field.length && $field.closest('.dropdown').length === 0) {
-      $field.val(value);
+      const $checkboxWrapper = $field.closest('.checkbox');
+
+      if ($checkboxWrapper.length) {
+        const isChecked =
+          value === true ||
+          value === 1 ||
+          value === '1' ||
+          value === 'true';
+
+        $checkboxWrapper
+          .find('[type="checkbox"]')
+          .prop('checked', isChecked);
+      } else {
+        $field.val(value);
+      }
     }
   }
 
