@@ -104,6 +104,11 @@ export default class ActivityList {
   }
 
   updateSelectTypesText($dropdown) {
+    if ($dropdown.hasClass('ignore-dropdown-text')) {
+      this.getActivityList($dropdown);
+      return;
+    }
+
     const $text = $dropdown.find('.dropdown-text');
 
     if ($dropdown.find('.js-multi-select-all .checkbox-input').is(':checked')) {
