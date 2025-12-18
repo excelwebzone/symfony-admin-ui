@@ -100,10 +100,6 @@
     border-color: rgba(144, 151, 153, 0.16);
   }
 
-  &.is-disabled > .dropdown .dropdown-selected {
-    display: none;
-  }
-
   &.has-icon {
     > i {
       position: absolute;
