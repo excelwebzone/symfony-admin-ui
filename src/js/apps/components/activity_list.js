@@ -135,6 +135,9 @@ export default class ActivityList {
 
   getActivityList($sourceTarget, types = null) {
     let $container = $sourceTarget.find('.activity-list');
+    if ($container.length === 0 && $sourceTarget.hasClass('activity-list')) {
+      $container = $sourceTarget;
+    }
     if ($container.length === 0 && $sourceTarget.hasClass('dropdown')) {
       $container = $sourceTarget.closest('.activity-list');
     }
