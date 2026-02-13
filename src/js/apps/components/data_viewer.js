@@ -85,6 +85,14 @@ export default class DataViewer {
     return this.datagrid;
   }
 
+  getTable() {
+    return this.$table;
+  }
+
+  getPager() {
+    return this.pager;
+  }
+
   createPager() {
     const callback = (data) => {
       if (typeof this.preCallback === 'function') {
@@ -113,6 +121,8 @@ export default class DataViewer {
         this.$table.find('.datagrid-body-container .datagrid-right-table-block>div')
           .append($html.find('.right-column').html());
 
+        this.updateLoadMoreControl($html);
+
         this.datagrid.resizeTable();
         this.datagrid.rebindEvents();
       }
@@ -122,7 +132,55 @@ export default class DataViewer {
       }
     };
 
-    this.pager = new Pager(this.$table, this.$container.find('.list-page-empty-content'), this.$container.find('.list-page-loading-popup'), false, callback);
+    this.pager = new Pager(
+      this.$table,
+      this.$container.find('.list-page-empty-content'),
+      this.$container.find('.list-page-loading-popup'),
+      false,
+      callback
+    );
+  }
+
+  updateLoadMoreControl($html) {
+    this.$table.find('.datagrid-table-load-more-row').remove();
+
+    if (this.pager.autoScroll || this.pager.disable) {
+      return;
+    }
+
+    const $leftWrap = this.$table.find('.datagrid-body-container .datagrid-left-table-block>div');
+    const $rightWrap = this.$table.find('.datagrid-body-container .datagrid-right-table-block>div');
+
+    const $leftRow = $(`
+      <div class="datagrid-table-row js-datagrid-row-height js-datagrid-row-left-width datagrid-table-load-more-row">
+        <div class="js-datagrid-row-left-width"></div>
+      </div>
+    `);
+
+    const inner = ($html.find('.load-more').html() || '').trim() || `
+      <div class="button button-icon">
+        <i class="ledger-icons ledger-icon-chevron-down"></i>
+      </div>
+    `;
+
+    const $rightRow = $(`
+      <div class="datagrid-table-row js-datagrid-row-height js-datagrid-row-right-width datagrid-table-load-more-row">
+        <div class="js-datagrid-row-right-width">
+          <div class="datagrid-table-load-more js-load-more">${inner}</div>
+        </div>
+      </div>
+    `);
+
+    if ($leftWrap.length) {
+      $leftWrap.append($leftRow);
+    }
+    $rightWrap.append($rightRow);
+
+    $rightRow.find('.js-load-more').on('click', () => {
+      $leftRow.remove();
+      $rightRow.remove();
+      this.pager.getData();
+    });
   }
 
   resetTableData() {

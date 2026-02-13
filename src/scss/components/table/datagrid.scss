@@ -120,6 +120,20 @@
   box-sizing: border-box;
 }
 
+.datagrid-table-load-more-row {
+  position: relative;
+
+  .datagrid-table-load-more {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+}
+
 .datagrid-table-row,
 .datagrid-table-row > div {
   -webkit-box-sizing: border-box;

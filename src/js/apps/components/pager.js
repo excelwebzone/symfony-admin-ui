@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import axios from '../../lib/utils/axios_utils';
-import { removeParams, getParameterValues } from '../../lib/utils/url_utility';
 
 export default class Pager {
   constructor(
@@ -13,17 +12,31 @@ export default class Pager {
     this.$container = $(containerEl);
     this.$empty = $(emptyEl);
     this.$loading = $(loadingEl);
-    this.url = this.$container.data('endpoint') || removeParams(['page']);
-    this.page = parseInt(getParameterValues('page'), 10) || 1;
+
+    this.url = this.$container.data('endpoint');
+    if (!this.url) {
+      throw new Error('Pager requires data-endpoint on container');
+    }
+
+    this.page = 1;
+    this.limit = parseInt(this.$container.data('limit')) || 20;
+    this.autoScroll = this.$container.data('auto-scroll') === undefined
+      ? true
+      : !!this.$container.data('auto-scroll');
     this.params = {};
     this.disable = disable;
     this.orgDisable = disable;
     this.callback = callback;
+
     this.initLoadMore();
   }
 
   setPage(page) {
     this.page = parseInt(page || 1);
+  }
+
+  setLimit(limit) {
+    this.limit = parseInt(limit || 20);
   }
 
   setParams(params) {
@@ -33,9 +46,11 @@ export default class Pager {
   getData() {
     this.$empty.hide();
     this.$loading.show();
+
     axios.get(this.url, {
       params: $.extend(this.params, {
-        page: this.page
+        page: this.page,
+        limit: this.limit
       })
     })
       .then(({ data }) => {
@@ -77,6 +92,10 @@ export default class Pager {
   }
 
   initLoadMore() {
+    if (!this.autoScroll) {
+      return;
+    }
+
     this.$container.find('.antiscroll-inner').on('reached-bottom', (e) => {
       if (!this.disable && !this.$loading.is(':visible')) {
         this.getData();

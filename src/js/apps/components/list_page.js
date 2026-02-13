@@ -68,6 +68,14 @@ export default class ListPage {
       this.dataViewer.filterData();
     });
 
+    $(document).on('click', '.js-list-page-limit .option-list-item', (e) => {
+      const limit = parseInt($(e.currentTarget).data('value'));
+      if (limit > 0) {
+        this.dataViewer.getPager().setLimit(limit);
+        this.dataViewer.filterData();
+      }
+    });
+
     this.$selectAllCheckbox.on('click', () => this.selectAllRows());
     this.$container.on('click', '.js-bulk-select', () => this.selectRow());
     this.$container.on('click', '.js-print-list', (e) => this.printList(e));
@@ -87,7 +95,7 @@ export default class ListPage {
         return !1;
       }
 
-      window.location.href = parseInt(getParameterValues('cardView'), 10)
+      window.location.href = parseInt(getParameterValues('cardView')[0])
         ? removeParams(['cardView'])
         : mergeUrlParams({ cardView: 1 }, window.location.href);
     });

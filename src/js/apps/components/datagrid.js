@@ -339,7 +339,16 @@ export default class Datagrid {
         }
 
         if ($element.data('horizontal')) {
-          $($element.data('scroll-block')).css('left', -e.currentTarget.scrollLeft);
+          const scrollLeft = e.currentTarget.scrollLeft;
+
+          // existing: keep header/blocks aligned
+          $($element.data('scroll-block')).css('left', -scrollLeft);
+
+          // NEW: keep "load more" pinned to left while horizontally scrolling
+          const $loadMore = $element.find('.datagrid-table-load-more');
+          if ($loadMore.length) {
+            $loadMore.css('left', (12 + scrollLeft) + 'px');
+          }
         }
       })
         .trigger('scroll');

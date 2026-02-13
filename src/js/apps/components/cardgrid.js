@@ -159,7 +159,11 @@ export default class Cardgrid {
   removeExtraRow() {
     let $lastRow, cells, emptyCells;
     do {
-      $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child');
+      $lastRow = this.$table.find('.datagrid-body-container .datagrid-table-row:last-child:not(.datagrid-table-load-more-row)');
+
+      if (!$lastRow.length) {
+        break;
+      }
 
       cells = $lastRow.find('.datagrid-cell').length;
       emptyCells = $lastRow.find('.datagrid-cell.is-empty').length;
