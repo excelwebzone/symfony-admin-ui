@@ -51,11 +51,11 @@ export function modifiedValues($drawer, field, value, $container = $('body')) {
       const $checkboxWrapper = $field.closest('.checkbox');
 
       if ($checkboxWrapper.length) {
-        const isChecked =
-          value === true ||
-          value === 1 ||
-          value === '1' ||
-          value === 'true';
+        const isChecked
+          = value === true
+          || value === 1
+          || value === '1'
+          || value === 'true';
 
         $checkboxWrapper
           .find('[type="checkbox"]')

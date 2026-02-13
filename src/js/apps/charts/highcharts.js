@@ -59,7 +59,7 @@ Highcharts.theme = {
       borderRadius: {
         radius: 8,
         where: 'end'
-      },
+      }
     },
     column: {
       borderRadius: {

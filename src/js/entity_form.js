@@ -314,7 +314,7 @@ export default class EntityForm {
                   if ($checkbox.length) {
                     $checkbox.find('[type="checkbox"]').prop(
                       'checked',
-                      value == 1 || value == true || value == 'true'
+                      value === 1 || value === true || value === 'true'
                     );
                     break;
                   }
