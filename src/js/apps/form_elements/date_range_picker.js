@@ -629,8 +629,8 @@ export default class DateRangePicker {
   updateCalendars() {
     if (this.timePicker) {
       let time = this.$container.find(`.${this.endDate ? 'from' : 'to'}-date-selector .time-select`).val();
-      let hour = time ? parseInt(time.split(':')[0], 10) : 0;
-      let minute = time ? parseInt(time.split(':')[1], 10) : 0;
+      let hour = time ? parseInt(time.split(':')[0]) : 0;
+      let minute = time ? parseInt(time.split(':')[1]) : 0;
 
       this.leftCalendar.month.hour(hour).minute(minute).second(0);
       this.rightCalendar.month.hour(hour).minute(minute).second(0);
@@ -1315,8 +1315,8 @@ export default class DateRangePicker {
     if (this.endDate || date.isBefore(this.startDate, 'day')) {
       if (this.timePicker) {
         let time = this.$container.find('.from-date-selector .time-select').val();
-        let hour = time ? parseInt(time.split(':')[0], 10) : 0;
-        let minute = time ? parseInt(time.split(':')[1], 10) : 0;
+        let hour = time ? parseInt(time.split(':')[0]) : 0;
+        let minute = time ? parseInt(time.split(':')[1]) : 0;
 
         date = date.clone().hour(hour).minute(minute).second(0);
       }
@@ -1333,8 +1333,8 @@ export default class DateRangePicker {
     } else {
       if (this.timePicker) {
         let time = this.$container.find('.to-date-selector .time-select').val();
-        let hour = time ? parseInt(time.split(':')[0], 10) : 0;
-        let minute = time ? parseInt(time.split(':')[1], 10) : 0;
+        let hour = time ? parseInt(time.split(':')[0]) : 0;
+        let minute = time ? parseInt(time.split(':')[1]) : 0;
 
         date = date.clone().hour(hour).minute(minute).second(0);
       }
@@ -1411,7 +1411,7 @@ export default class DateRangePicker {
     let $calendar = this.$container.find(`.calendar.${leftOrRight}`);
 
     // month must be Number for new moment versions
-    let month = parseInt($calendar.find('.month-select').val(), 10);
+    let month = parseInt($calendar.find('.month-select').val());
     let year = $calendar.find('.year-select').val();
 
     if (!isLeft) {
@@ -1452,8 +1452,8 @@ export default class DateRangePicker {
     let $target = $(e.currentTarget);
     let $calendar = $target.closest('.filter-calendar').find('.calendar');
 
-    let hour = parseInt(($target.val() || '00:00').split(':')[0], 10);
-    let minute = parseInt(($target.val() || '00:00').split(':')[1], 10);
+    let hour = parseInt(($target.val() || '00:00').split(':')[0]);
+    let minute = parseInt(($target.val() || '00:00').split(':')[1]);
 
     if ($calendar.hasClass('left')) {
       let start = this.startDate.clone();
