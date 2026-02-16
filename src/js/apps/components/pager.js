@@ -14,10 +14,6 @@ export default class Pager {
     this.$loading = $(loadingEl);
 
     this.url = this.$container.data('endpoint');
-    if (!this.url) {
-      throw new Error('Pager requires data-endpoint on container');
-    }
-
     this.page = 1;
     this.limit = parseInt(this.$container.data('limit')) || 20;
     this.autoScroll = this.$container.data('auto-scroll') === undefined
@@ -46,6 +42,10 @@ export default class Pager {
   getData() {
     this.$empty.hide();
     this.$loading.show();
+
+    if (!this.url) {
+      return;
+    }
 
     axios.get(this.url, {
       params: $.extend(this.params, {
