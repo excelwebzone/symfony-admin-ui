@@ -344,10 +344,26 @@ export default class Datagrid {
           // existing: keep header/blocks aligned
           $($element.data('scroll-block')).css('left', -scrollLeft);
 
-          // NEW: keep "load more" pinned to left while horizontally scrolling
+          // keep "load more" centered in the *full table*, not just the right block
           const $loadMore = $element.find('.datagrid-table-load-more');
           if ($loadMore.length) {
-            $loadMore.css('left', (12 + scrollLeft) + 'px');
+            const tableWidth = this.$table.get(0).offsetWidth;
+
+            // width of the fixed left block (0 if no left block)
+            const leftW = this.$table.find('.datagrid-left-table-block').length
+              ? this.$table.find('.js-datagrid-column-left-width').outerWidth() || 0
+              : 0;
+
+            const btnW = $loadMore.outerWidth() || 0;
+
+            // desired left position *within right block viewport*
+            const leftWithinRight = (tableWidth / 2) - leftW - (btnW / 2);
+
+            // prevent the control from drifting past the left gutter (keep a minimum 12px inset)
+            const clamped = Math.max(12, leftWithinRight);
+
+            // add scrollLeft to pin it while content scrolls
+            $loadMore.css('left', (clamped + scrollLeft) + 'px');
           }
         }
       })
