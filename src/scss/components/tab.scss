@@ -67,6 +67,13 @@
   .tab-arrow-right {
     margin: 0 8px;
   }
+
+  .is-dragging,
+  .is-dragging * {
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grabbing;
+  }
 }
 
 .scrollable-tabs {
